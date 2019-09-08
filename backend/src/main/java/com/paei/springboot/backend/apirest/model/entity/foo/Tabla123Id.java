@@ -1,4 +1,4 @@
-package com.paei.springboot.backend.apirest.model.entity;
+package com.paei.springboot.backend.apirest.model.entity.foo;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;

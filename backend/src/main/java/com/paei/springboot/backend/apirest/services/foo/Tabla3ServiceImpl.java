@@ -1,7 +1,7 @@
-package com.paei.springboot.backend.apirest.services;
+package com.paei.springboot.backend.apirest.services.foo;
 
-import com.paei.springboot.backend.apirest.dao.ITabla3Dao;
-import com.paei.springboot.backend.apirest.model.entity.Tabla3;
+import com.paei.springboot.backend.apirest.dao.foo.ITabla3Dao;
+import com.paei.springboot.backend.apirest.model.entity.foo.Tabla3;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

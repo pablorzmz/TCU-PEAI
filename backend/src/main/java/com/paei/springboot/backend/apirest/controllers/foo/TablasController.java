@@ -1,16 +1,14 @@
-package com.paei.springboot.backend.apirest.controllers;
+package com.paei.springboot.backend.apirest.controllers.foo;
 
-import com.paei.springboot.backend.apirest.model.entity.*;
-import com.paei.springboot.backend.apirest.services.ITabla123Service;
-import com.paei.springboot.backend.apirest.services.ITabla1Service;
-import com.paei.springboot.backend.apirest.services.ITabla2Service;
-import com.paei.springboot.backend.apirest.services.ITabla3Service;
+import com.paei.springboot.backend.apirest.model.entity.foo.*;
+import com.paei.springboot.backend.apirest.services.foo.ITabla123Service;
+import com.paei.springboot.backend.apirest.services.foo.ITabla1Service;
+import com.paei.springboot.backend.apirest.services.foo.ITabla2Service;
+import com.paei.springboot.backend.apirest.services.foo.ITabla3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController

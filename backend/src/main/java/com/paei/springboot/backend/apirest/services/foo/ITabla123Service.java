@@ -1,6 +1,6 @@
-package com.paei.springboot.backend.apirest.services;
+package com.paei.springboot.backend.apirest.services.foo;
 
-import com.paei.springboot.backend.apirest.model.entity.Tabla123;
+import com.paei.springboot.backend.apirest.model.entity.foo.Tabla123;
 
 import java.util.List;
 

@@ -1,18 +1,18 @@
-package com.paei.springboot.backend.apirest.model.entity;
+package com.paei.springboot.backend.apirest.model.entity.foo;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "TABLA3")
-public class Tabla3 {
+@Table(name = "TABLA2")
+public class Tabla2 {
     private long id;
     private Set<Tabla123> tabla123s = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "TABLA3_ID")
+    @Column(name = "TABLA2_ID")
     public long getId() {
         return id;
     }
@@ -20,7 +20,7 @@ public class Tabla3 {
     public void setId(long id) {
         this.id = id;
     }
-    @OneToMany(mappedBy = "primaryKeyTabla123.tabla3",
+    @OneToMany(mappedBy = "primaryKeyTabla123.tabla2",
             cascade = CascadeType.ALL)
     public Set<Tabla123> getTabla123s() {
         return tabla123s;
@@ -29,7 +29,7 @@ public class Tabla3 {
         this.tabla123s = tabla123s;
     }
 
-    public void addTabla123(Tabla123 tabla123) {
+    public void addTabla12(Tabla123 tabla123) {
         this.tabla123s.add(tabla123);
     }
 }

@@ -31,7 +31,6 @@ public class Tabla1 implements Serializable {
     public void setTabla123s(Set<Tabla123> tabla123s) {
         this.tabla123s = tabla123s;
     }
-
     public void addTabla123(Tabla123 tabla123) {
         this.tabla123s.add(tabla123);
     }

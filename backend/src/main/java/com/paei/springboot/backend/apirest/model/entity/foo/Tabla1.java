@@ -1,5 +1,7 @@
 package com.paei.springboot.backend.apirest.model.entity.foo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -10,8 +12,8 @@ import java.util.Set;
 public class Tabla1 implements Serializable {
 
     private long id;
+    @JsonIgnore
     private Set<Tabla123> tabla123s = new HashSet<>();
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

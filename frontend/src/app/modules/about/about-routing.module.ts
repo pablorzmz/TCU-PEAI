@@ -5,7 +5,7 @@ import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'about',
     component: AboutComponent
   }
 ];

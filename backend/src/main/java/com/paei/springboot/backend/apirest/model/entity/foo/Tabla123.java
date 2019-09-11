@@ -1,6 +1,7 @@
 package com.paei.springboot.backend.apirest.model.entity.foo;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "TABLA1_TABLA2_TABLA3")
@@ -12,7 +13,8 @@ import javax.persistence.*;
         @AssociationOverride(name = "primaryKeyTabla123.tabla3",
                 joinColumns = @JoinColumn(name = "TABLA3_ID"))
 })
-public class Tabla123 {
+public class Tabla123  implements Serializable {
+    private static final long serialVersionUID = -1903773696447779429L;
     // composite-id key
     private Tabla123Id primaryKeyTabla123 = new Tabla123Id();
 

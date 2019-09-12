@@ -5,8 +5,15 @@ import { LoginComponent } from './modules/auth/pages/login/login.component';
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    redirectTo: '/auth/login',
+    pathMatch: 'full'
   },
+  {
+    path: 'auth',
+    component: LoginComponent,
+    loadChildren: () =>
+      import('./modules/auth/auth.module').then(m => m.AuthModule)
+  }
 ];
 
 @NgModule({

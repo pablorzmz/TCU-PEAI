@@ -2,6 +2,8 @@ package com.paei.springboot.backend.apirest.model.entity.real;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table( name = "categoria")
@@ -33,6 +35,10 @@ public class Categoria implements Serializable {
             @JoinColumn(name = "periodo_tiempo",  nullable = false, referencedColumnName = "periodo_tiempo")
     })
     private Grupo grupo;
+
+    @OneToMany(mappedBy = "categoria")
+    private List<Material> materiales = new ArrayList<>();
+
 
     public CategoriaPK getId() {
         return Id;

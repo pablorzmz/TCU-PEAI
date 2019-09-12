@@ -1,5 +1,7 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
+import org.springframework.data.annotation.Transient;
+
 import javax.persistence.*;
 import java.io.Serializable;
 

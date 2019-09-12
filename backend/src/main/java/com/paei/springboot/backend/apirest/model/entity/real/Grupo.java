@@ -2,6 +2,8 @@ package com.paei.springboot.backend.apirest.model.entity.real;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "grupo")
@@ -29,9 +31,17 @@ public class Grupo implements Serializable {
     @ManyToOne
     private Curso curso;
 
+    @OneToMany(mappedBy = "grupo")
+    private List<SubseccionEvaluacion> subseccionEvaluaciones = new ArrayList<>();
+
+    @OneToMany(mappedBy = "grupo")
+    private List<SubseccionMaterial> subseccionMateriales = new ArrayList<>();
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "nombre_usuario_imparte")
     private Usuario usuario;
+
+    @OneToMany(mappedBy = "grupo")
+    private List<Categoria> categorias = new ArrayList<>();
 
 }

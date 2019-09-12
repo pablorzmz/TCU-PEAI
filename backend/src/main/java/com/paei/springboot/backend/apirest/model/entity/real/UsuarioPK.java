@@ -14,9 +14,9 @@ public class UsuarioPK implements Serializable {
         NombreUsuario = nombreUsuario;
     }
 
+    @Column(name = "nombre_usuario")
     private String NombreUsuario;
 
-    @Column(name = "nombre_usuario")
     public String getNombreUsuario() {
         return NombreUsuario;
     }

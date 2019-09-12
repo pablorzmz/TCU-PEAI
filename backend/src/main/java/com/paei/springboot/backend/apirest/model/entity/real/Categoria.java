@@ -1,9 +1,6 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
-import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -26,6 +23,16 @@ public class Categoria implements Serializable {
 
     @Column(name = "descripcion")
     private String Descripcion;
+
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumns({
+            @JoinColumn(name = "numero", nullable = false, referencedColumnName = "numero"),
+            @JoinColumn(name = "area_tematica_id", nullable = false, referencedColumnName = "area_tematica_id"),
+            @JoinColumn(name = "curso_nombre", nullable = false, referencedColumnName = "curso_nombre"),
+            @JoinColumn(name = "institucion_nombre", nullable = false, referencedColumnName = "institucion_nombre"),
+            @JoinColumn(name = "periodo_tiempo",  nullable = false, referencedColumnName = "periodo_tiempo")
+    })
+    private Grupo grupo;
 
     public CategoriaPK getId() {
         return Id;

@@ -2,6 +2,8 @@ package com.paei.springboot.backend.apirest.model.entity.real;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "area_tematica")
@@ -35,6 +37,10 @@ public class AreaTematica implements Serializable {
     })
     @ManyToOne
     private Institucion institucion;
+
+    @OneToMany(mappedBy = "areaTematica")
+    private List<Curso> cursos = new ArrayList<>();
+
 
     public AreaTematicaPK getId() {
         return Id;

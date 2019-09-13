@@ -1,3 +1,8 @@
 .card-imagen {
   height: 150px;
 }
+
+.bg-verde {
+  background: #D2DB0E !important;
+  height: 20px;
+}

@@ -7,16 +7,26 @@ import java.util.Objects;
 @Embeddable
 public class UsuarioGrupoInscritoPK implements Serializable {
 
-    private static final long serialVersionUID = 7246558206899768562L;
+    private static final long serialVersionUID = 1890418447314997737L;
 
-    private GrupoPK grupo;
+    private GrupoPK grupoPk;
 
-    public GrupoPK getGrupo() {
-        return grupo;
+    private UsuarioPK usuarioPK;
+
+    public GrupoPK getGrupoPk() {
+        return grupoPk;
     }
 
-    public void setGrupo(GrupoPK grupo) {
-        this.grupo = grupo;
+    public void setGrupoPk(GrupoPK grupoPk) {
+        this.grupoPk = grupoPk;
+    }
+
+    public UsuarioPK getUsuarioPK() {
+        return usuarioPK;
+    }
+
+    public void setUsuarioPK(UsuarioPK usuarioPK) {
+        this.usuarioPK = usuarioPK;
     }
 
     @Override
@@ -24,11 +34,12 @@ public class UsuarioGrupoInscritoPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UsuarioGrupoInscritoPK that = (UsuarioGrupoInscritoPK) o;
-        return Objects.equals(grupo, that.grupo);
+        return Objects.equals(usuarioPK, that.usuarioPK) &&
+                Objects.equals(grupoPk, that.grupoPk);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(grupo);
+        return Objects.hash(usuarioPK, grupoPk);
     }
 }

@@ -6,32 +6,51 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table( name = "usuario_grupo_inscrito")
+@Table(name = "usuario_grupo_inscrito")
+/*
+@AssociationOverrides({
+        @AssociationOverride(name = "usuarioGrupoInscritoPK.usuario",
+                joinColumns = @JoinColumn(name = "nombre_usuario")),
+        @AssociationOverride(name = "usuarioGrupoInscritoPK.grupo",
+                joinColumns = @JoinColumn(name = "numero")),
+        @AssociationOverride(name = "usuarioGrupoInscritoPK.grupo",
+                joinColumns = @JoinColumn(name = "curso_nombre")),
+        @AssociationOverride(name = "usuarioGrupoInscritoPK.grupo",
+                joinColumns = @JoinColumn(name = "periodo_tiempo")),
+})
+*/
 public class UsuarioGrupoInscrito implements Serializable {
 
     private static final long serialVersionUID = 6438232388229978753L;
 
-    public UsuarioGrupoInscrito(UsuarioGrupoInscritoPK id, Float notaFinal) {
-        Id = id;
-        NotaFinal = notaFinal;
-    }
-
     @EmbeddedId
-    private UsuarioGrupoInscritoPK Id;
+    private UsuarioGrupoInscritoPK usuarioGrupoInscritoPK;
 
     @Column( name = "nota_final")
     private Float NotaFinal;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "nombre_usuario", unique = true, nullable = false)
+    @MapsId("grupoPk")
+    @JoinColumns({
+            @JoinColumn(name="curso_nombre", referencedColumnName="curso_nombre"),
+            @JoinColumn(name="numero", referencedColumnName="numero"),
+            @JoinColumn(name="periodo_tiempo", referencedColumnName="periodo_tiempo")
+    })
+    @ManyToOne
+    private Grupo grupo;
+
+    @MapsId("usuarioPk")
+    @JoinColumns({
+            @JoinColumn(name="nombre_usuario", referencedColumnName="nombre_usuario"),
+    })
+    @ManyToOne
     private Usuario usuario;
 
-    public UsuarioGrupoInscritoPK getId() {
-        return Id;
+    public UsuarioGrupoInscritoPK getUsuarioGrupoInscritoPK() {
+        return usuarioGrupoInscritoPK;
     }
 
-    public void setId(UsuarioGrupoInscritoPK id) {
-        Id = id;
+    public void setUsuarioGrupoInscritoPK(UsuarioGrupoInscritoPK usuarioGrupoInscritoPK) {
+        this.usuarioGrupoInscritoPK = usuarioGrupoInscritoPK;
     }
 
     public Float getNotaFinal() {
@@ -41,5 +60,4 @@ public class UsuarioGrupoInscrito implements Serializable {
     public void setNotaFinal(Float notaFinal) {
         NotaFinal = notaFinal;
     }
-
 }

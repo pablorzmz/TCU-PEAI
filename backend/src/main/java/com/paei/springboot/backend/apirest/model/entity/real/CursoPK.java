@@ -13,12 +13,8 @@ public class CursoPK implements Serializable {
 
     private static final long serialVersionUID = 1331919158691105548L;
 
-
     @Column(name = "curso_nombre")
     private String Nombre;
-
-    private AreaTematicaPK AreaTematicaPK;
-
 
     public String getNombre() {
         return Nombre;
@@ -28,26 +24,16 @@ public class CursoPK implements Serializable {
         Nombre = nombre;
     }
 
-    public AreaTematicaPK getAreaTematicaPK() {
-        return AreaTematicaPK;
-    }
-
-    public void setAreaTematicaPK(AreaTematicaPK areaTematicaPK) {
-        AreaTematicaPK = areaTematicaPK;
-    }
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CursoPK cursoPK = (CursoPK) o;
-        return Objects.equals(Nombre, cursoPK.Nombre) &&
-                Objects.equals(AreaTematicaPK, cursoPK.AreaTematicaPK);
+        return Objects.equals(Nombre, cursoPK.Nombre);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Nombre, AreaTematicaPK );
+        return Objects.hash(Nombre);
     }
 }

@@ -1,11 +1,12 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
+import com.paei.springboot.backend.apirest.model.entity.foo.Meeting;
+import com.paei.springboot.backend.apirest.model.entity.foo.Tabla123;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "usuario")
@@ -123,4 +124,21 @@ public class Usuario  implements Serializable {
     public void setPerfilUsuario(Set<PerfilUsuario> perfilUsuario) {
         this.perfilUsuario = perfilUsuario;
     }
+
+    @OneToMany(mappedBy = "usuario")
+    private List<UsuarioGrupoInscrito> usuarioGrupoInscritos = new ArrayList<>();
+
+    /*
+    @OneToMany(mappedBy = "usuarioGrupoInscritoPK.usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<UsuarioGrupoInscrito> usuarioGrupoInscritos = new HashSet<>();
+
+    public Set<UsuarioGrupoInscrito> getUsuarioGrupoInscritos() {
+        return usuarioGrupoInscritos;
+    }
+
+    public void setUsuarioGrupoInscritos(Set<UsuarioGrupoInscrito> usuarioGrupoInscritos) {
+        this.usuarioGrupoInscritos = usuarioGrupoInscritos;
+    }
+    */
+
 }

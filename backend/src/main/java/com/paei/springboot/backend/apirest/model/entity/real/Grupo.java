@@ -1,9 +1,13 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
+import com.paei.springboot.backend.apirest.model.entity.foo.Tabla123;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "grupo")
@@ -24,8 +28,6 @@ public class Grupo implements Serializable {
 
     @MapsId("curso_id")
     @JoinColumns({
-            @JoinColumn(name="institucion_nombre", referencedColumnName="institucion_nombre"),
-            @JoinColumn(name="area_tematica_id", referencedColumnName="area_tematica_id"),
             @JoinColumn(name="curso_nombre", referencedColumnName="curso_nombre")
     })
     @ManyToOne
@@ -43,5 +45,21 @@ public class Grupo implements Serializable {
 
     @OneToMany(mappedBy = "grupo")
     private List<Categoria> categorias = new ArrayList<>();
+
+    @OneToMany(mappedBy = "grupo")
+    private List<UsuarioGrupoInscrito> usuarioGrupoInscritos = new ArrayList<>();
+
+    /*
+    @OneToMany(mappedBy = "usuarioGrupoInscritoPK.grupo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<UsuarioGrupoInscrito> usuarioGrupoInscritos = new HashSet<>();
+
+    public Set<UsuarioGrupoInscrito> getUsuarioGrupoInscritos() {
+        return usuarioGrupoInscritos;
+    }
+
+    public void setUsuarioGrupoInscritos(Set<UsuarioGrupoInscrito> usuarioGrupoInscritos) {
+        this.usuarioGrupoInscritos = usuarioGrupoInscritos;
+    }
+    */
 
 }

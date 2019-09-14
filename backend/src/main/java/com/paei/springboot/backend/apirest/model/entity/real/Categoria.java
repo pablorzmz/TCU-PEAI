@@ -29,9 +29,7 @@ public class Categoria implements Serializable {
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumns({
             @JoinColumn(name = "numero", nullable = false, referencedColumnName = "numero"),
-            @JoinColumn(name = "area_tematica_id", nullable = false, referencedColumnName = "area_tematica_id"),
             @JoinColumn(name = "curso_nombre", nullable = false, referencedColumnName = "curso_nombre"),
-            @JoinColumn(name = "institucion_nombre", nullable = false, referencedColumnName = "institucion_nombre"),
             @JoinColumn(name = "periodo_tiempo",  nullable = false, referencedColumnName = "periodo_tiempo")
     })
     private Grupo grupo;

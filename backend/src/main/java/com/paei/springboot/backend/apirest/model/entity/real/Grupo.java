@@ -1,6 +1,7 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
-import com.paei.springboot.backend.apirest.model.entity.foo.Tabla123;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -46,7 +47,8 @@ public class Grupo implements Serializable {
     @OneToMany(mappedBy = "grupo")
     private List<Categoria> categorias = new ArrayList<>();
 
-    @OneToMany(mappedBy = "grupo")
+    @OneToMany(mappedBy = "grupo", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<UsuarioGrupoInscrito> usuarioGrupoInscritos = new ArrayList<>();
 
     /*

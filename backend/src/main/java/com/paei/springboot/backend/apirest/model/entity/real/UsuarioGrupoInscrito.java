@@ -60,4 +60,20 @@ public class UsuarioGrupoInscrito implements Serializable {
     public void setNotaFinal(Float notaFinal) {
         NotaFinal = notaFinal;
     }
+
+    public Grupo getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(Grupo grupo) {
+        this.grupo = grupo;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

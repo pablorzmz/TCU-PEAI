@@ -1,7 +1,7 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
-import com.paei.springboot.backend.apirest.model.entity.foo.Meeting;
-import com.paei.springboot.backend.apirest.model.entity.foo.Tabla123;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -14,8 +14,11 @@ public class Usuario  implements Serializable {
 
     private static final long serialVersionUID = -628956646940225121L;
 
-    @OneToMany(mappedBy = "perfilUsuario.usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<PerfilUsuario> perfilUsuario = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "institucionPerfilUsuarioPK.usuario",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<InstitucionPerfilUsuario> institucionPerfilUsuarios = new HashSet<>();
+
 
     @EmbeddedId
     private UsuarioPK NombreUsuario;
@@ -117,16 +120,25 @@ public class Usuario  implements Serializable {
         Foto = foto;
     }
 
-    public Set<PerfilUsuario> getPerfilUsuario() {
-        return perfilUsuario;
-    }
-
-    public void setPerfilUsuario(Set<PerfilUsuario> perfilUsuario) {
-        this.perfilUsuario = perfilUsuario;
-    }
-
-    @OneToMany(mappedBy = "usuario")
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<UsuarioGrupoInscrito> usuarioGrupoInscritos = new ArrayList<>();
+
+    public Set<InstitucionPerfilUsuario> getInstitucionPerfilUsuarios() {
+        return institucionPerfilUsuarios;
+    }
+
+    public void setInstitucionPerfilUsuarios(Set<InstitucionPerfilUsuario> institucionPerfilUsuarios) {
+        this.institucionPerfilUsuarios = institucionPerfilUsuarios;
+    }
+
+    public List<UsuarioGrupoInscrito> getUsuarioGrupoInscritos() {
+        return usuarioGrupoInscritos;
+    }
+
+    public void setUsuarioGrupoInscritos(List<UsuarioGrupoInscrito> usuarioGrupoInscritos) {
+        this.usuarioGrupoInscritos = usuarioGrupoInscritos;
+    }
 
     /*
     @OneToMany(mappedBy = "usuarioGrupoInscritoPK.usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -1,7 +1,10 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,6 +17,7 @@ public class InstitucionPK implements Serializable {
     }
 
     @Column(name = "institucion_nombre")
+    @Length(max = 60)
     private String Nombre;
 
     public String getNombre() {

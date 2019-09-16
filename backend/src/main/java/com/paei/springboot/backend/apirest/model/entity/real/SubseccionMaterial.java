@@ -27,11 +27,9 @@ public class SubseccionMaterial implements Serializable {
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumns({
-            @JoinColumn(name = "numero", unique = true, nullable = false, referencedColumnName = "numero"),
-            @JoinColumn(name = "area_tematica_id", unique = true, nullable = false, referencedColumnName = "area_tematica_id"),
-            @JoinColumn(name = "curso_nombre", unique = true, nullable = false, referencedColumnName = "curso_nombre"),
-            @JoinColumn(name = "institucion_nombre", unique = true, nullable = false, referencedColumnName = "institucion_nombre"),
-            @JoinColumn(name = "periodo_tiempo", unique = true, nullable = false, referencedColumnName = "periodo_tiempo")
+            @JoinColumn(name = "numero", unique = false, nullable = false, referencedColumnName = "numero"),
+            @JoinColumn(name = "curso_nombre", unique = false, nullable = false, referencedColumnName = "curso_nombre"),
+            @JoinColumn(name = "periodo_tiempo", unique = false, nullable = false, referencedColumnName = "periodo_tiempo")
     })
     private Grupo grupo;
 

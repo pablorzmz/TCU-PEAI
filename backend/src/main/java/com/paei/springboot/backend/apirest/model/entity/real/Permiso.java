@@ -1,5 +1,7 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -11,13 +13,15 @@ public class Permiso implements Serializable {
 
     private static final long serialVersionUID = 5786995689259432153L;
 
+    @OneToMany(mappedBy = "institucionPerfilPermisoPK.permiso",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<InstitucionPerfilPermiso> institucionPerfilPermisos = new HashSet<>();
+
     public Permiso(PermisoPK id, String nombre) {
         Id = id;
         Nombre = nombre;
     }
-
-    @OneToMany(mappedBy = "perfilPermiso.permiso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<PerfilPermiso> perfilPermiso = new HashSet<>();
 
     @EmbeddedId
     private PermisoPK Id;
@@ -41,11 +45,11 @@ public class Permiso implements Serializable {
         Nombre = nombre;
     }
 
-    public Set<PerfilPermiso> getPerfilPermiso() {
-        return perfilPermiso;
+    public Set<InstitucionPerfilPermiso> getInstitucionPerfilPermisos() {
+        return institucionPerfilPermisos;
     }
 
-    public void setPerfilPermiso(Set<PerfilPermiso> perfilPermiso) {
-        this.perfilPermiso = perfilPermiso;
+    public void setInstitucionPerfilPermisos(Set<InstitucionPerfilPermiso> institucionPerfilPermisos) {
+        this.institucionPerfilPermisos = institucionPerfilPermisos;
     }
 }

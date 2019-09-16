@@ -10,12 +10,11 @@ import java.util.List;
 public class AreaTematica implements Serializable {
     private static final long serialVersionUID = 1959919138250916358L;
 
-    public AreaTematica(AreaTematicaPK id, String nombre, String descripcion, SiglaTematica siglaTematica, Institucion institucion) {
+    public AreaTematica(AreaTematicaPK id, String nombre, String descripcion, SiglaTematica siglaTematica) {
         Id = id;
         Nombre = nombre;
         Descripcion = descripcion;
         this.siglaTematica = siglaTematica;
-        this.institucion = institucion;
     }
 
     @EmbeddedId
@@ -31,16 +30,12 @@ public class AreaTematica implements Serializable {
     @JoinColumn(name = "sigla_tematica_id")
     private SiglaTematica siglaTematica;
 
-    @MapsId("institucion_nombre")
-    @JoinColumns({
-            @JoinColumn(name="institucion_nombre", referencedColumnName="institucion_nombre")
-    })
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "nombre_institucion")
     private Institucion institucion;
 
     @OneToMany(mappedBy = "areaTematica")
     private List<Curso> cursos = new ArrayList<>();
-
 
     public AreaTematicaPK getId() {
         return Id;

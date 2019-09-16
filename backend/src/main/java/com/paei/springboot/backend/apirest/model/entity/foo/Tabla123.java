@@ -1,5 +1,7 @@
 package com.paei.springboot.backend.apirest.model.entity.foo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -47,6 +49,7 @@ public class Tabla123  implements Serializable {
     public Tabla2 getTabla2(){
         return primaryKeyTabla123.getTabla2();
     }
+
     @Transient
     public Tabla3 getTabla3() {
         return primaryKeyTabla123.getTabla3();

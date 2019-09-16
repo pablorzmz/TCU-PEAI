@@ -8,6 +8,7 @@ import com.paei.springboot.backend.apirest.services.foo.ITabla3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -34,24 +35,12 @@ public class TablasController {
         // Tablas 1
         Tabla1 ta1 = new Tabla1();
         ta1.setId(1);
-        Tabla1 ta2 = new Tabla1();
-        ta2.setId(2);
-        Tabla1 ta3 = new Tabla1();
-        ta3.setId(3);
         // Tablas 2
         Tabla2 tb1 = new Tabla2();
         tb1.setId(1);
-        Tabla2 tb2 = new Tabla2();
-        tb2.setId(2);
-        Tabla2 tb3 = new Tabla2();
-        tb3.setId(3);
         // Tablas 3
         Tabla3 tc1 = new Tabla3();
         tc1.setId(1);
-        Tabla3 tc2 = new Tabla3();
-        tc2.setId(2);
-        Tabla3 tc3 = new Tabla3();
-        tc3.setId(3);
         // Tablas 123
         Tabla123 tabla123 = new Tabla123();
         Tabla123Id tabla123Id = new Tabla123Id();
@@ -61,11 +50,11 @@ public class TablasController {
         tabla123.setPrimaryKeyTabla123(tabla123Id);
 
         // Se guardan los cambios
-
-        iTabla1Service.save(ta1);
         iTabla2Service.save(tb1);
         iTabla3Service.save(tc1);
-        iTabla123Service.save(tabla123);
+        ta1.addTabla123(tabla123);
+        iTabla1Service.save(ta1);
+
 
         return iTabla1Service.findAll();
     }

@@ -1,15 +1,30 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.paei.springboot.backend.apirest.model.entity.foo.Tabla123;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "institucion")
 public class Institucion implements Serializable {
 
     private static final long serialVersionUID = -5494201154230598756L;
+
+    @OneToMany(mappedBy = "institucionPerfilUsuarioPK.institucion",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<InstitucionPerfilUsuario> institucionPerfilUsuarios = new HashSet<>();
+
+    @OneToMany(mappedBy = "institucionPerfilPermisoPK.institucion",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private Set<InstitucionPerfilPermiso> institucionPerfilPermisos = new HashSet<>();
 
     public Institucion(InstitucionPK nombre, String descripcion, String ubicación, Boolean habilitada, String foto) {
         Nombre = nombre;
@@ -75,6 +90,30 @@ public class Institucion implements Serializable {
 
     public void setFoto(String foto) {
         Foto = foto;
+    }
+
+    public Set<InstitucionPerfilUsuario> getInstitucionPerfilUsuarios() {
+        return institucionPerfilUsuarios;
+    }
+
+    public void setInstitucionPerfilUsuarios(Set<InstitucionPerfilUsuario> institucionPerfilUsuarios) {
+        this.institucionPerfilUsuarios = institucionPerfilUsuarios;
+    }
+
+    public Set<InstitucionPerfilPermiso> getInstitucionPerfilPermisos() {
+        return institucionPerfilPermisos;
+    }
+
+    public void setInstitucionPerfilPermisos(Set<InstitucionPerfilPermiso> institucionPerfilPermisos) {
+        this.institucionPerfilPermisos = institucionPerfilPermisos;
+    }
+
+    public List<AreaTematica> getAreaTematicas() {
+        return areaTematicas;
+    }
+
+    public void setAreaTematicas(List<AreaTematica> areaTematicas) {
+        this.areaTematicas = areaTematicas;
     }
 }
 

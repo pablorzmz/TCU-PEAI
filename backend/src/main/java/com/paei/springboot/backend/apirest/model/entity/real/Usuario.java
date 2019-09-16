@@ -1,11 +1,12 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "usuario")
@@ -13,8 +14,11 @@ public class Usuario  implements Serializable {
 
     private static final long serialVersionUID = -628956646940225121L;
 
-    @OneToMany(mappedBy = "perfilUsuario.usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<PerfilUsuario> perfilUsuario = new HashSet<>();
+    @JsonIgnore
+    @OneToMany(mappedBy = "institucionPerfilUsuarioPK.usuario",
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<InstitucionPerfilUsuario> institucionPerfilUsuarios = new HashSet<>();
+
 
     @EmbeddedId
     private UsuarioPK NombreUsuario;
@@ -116,11 +120,37 @@ public class Usuario  implements Serializable {
         Foto = foto;
     }
 
-    public Set<PerfilUsuario> getPerfilUsuario() {
-        return perfilUsuario;
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<UsuarioGrupoInscrito> usuarioGrupoInscritos = new ArrayList<>();
+
+    public Set<InstitucionPerfilUsuario> getInstitucionPerfilUsuarios() {
+        return institucionPerfilUsuarios;
     }
 
-    public void setPerfilUsuario(Set<PerfilUsuario> perfilUsuario) {
-        this.perfilUsuario = perfilUsuario;
+    public void setInstitucionPerfilUsuarios(Set<InstitucionPerfilUsuario> institucionPerfilUsuarios) {
+        this.institucionPerfilUsuarios = institucionPerfilUsuarios;
     }
+
+    public List<UsuarioGrupoInscrito> getUsuarioGrupoInscritos() {
+        return usuarioGrupoInscritos;
+    }
+
+    public void setUsuarioGrupoInscritos(List<UsuarioGrupoInscrito> usuarioGrupoInscritos) {
+        this.usuarioGrupoInscritos = usuarioGrupoInscritos;
+    }
+
+    /*
+    @OneToMany(mappedBy = "usuarioGrupoInscritoPK.usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<UsuarioGrupoInscrito> usuarioGrupoInscritos = new HashSet<>();
+
+    public Set<UsuarioGrupoInscrito> getUsuarioGrupoInscritos() {
+        return usuarioGrupoInscritos;
+    }
+
+    public void setUsuarioGrupoInscritos(Set<UsuarioGrupoInscrito> usuarioGrupoInscritos) {
+        this.usuarioGrupoInscritos = usuarioGrupoInscritos;
+    }
+    */
+
 }

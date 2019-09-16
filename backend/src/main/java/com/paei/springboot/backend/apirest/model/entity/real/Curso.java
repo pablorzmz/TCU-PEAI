@@ -25,12 +25,8 @@ public class Curso implements Serializable {
     @Column( name = "foto" )
     private String Foto;
 
-    @MapsId("area_tematica_id")
-    @JoinColumns({
-            @JoinColumn(name="institucion_nombre", referencedColumnName="institucion_nombre"),
-            @JoinColumn(name="area_tematica_id", referencedColumnName="area_tematica_id")
-    })
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "area_tematica_id")
     private AreaTematica areaTematica;
 
     @OneToMany(mappedBy = "curso")
@@ -58,5 +54,13 @@ public class Curso implements Serializable {
 
     public void setFoto(String foto) {
         Foto = foto;
+    }
+
+    public AreaTematica getAreaTematica() {
+        return areaTematica;
+    }
+
+    public void setAreaTematica(AreaTematica areaTematica) {
+        this.areaTematica = areaTematica;
     }
 }

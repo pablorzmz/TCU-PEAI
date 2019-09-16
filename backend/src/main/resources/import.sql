@@ -25,26 +25,26 @@ INSERT INTO sigla_tematica VALUES (2, 'MAT-001')
 INSERT INTO sigla_tematica VALUES (3, 'ART-001')
 
 /*Areas tematicas*/
-INSERT INTO area_tematica VALUES (1, 'Cedes Don Bosco', 'Área temática de Fisica', 'Física', 1);
-INSERT INTO area_tematica VALUES (2, 'Cedes Don Bosco', 'Área temática de Matemática', 'Matemática', 2);
-INSERT INTO area_tematica VALUES (1, 'Universidad de Costa Rica', 'Área temática de Fisica', 'Física', 2);
-INSERT INTO area_tematica VALUES (2, 'Universidad de Costa Rica', 'Área temática de Arte', 'Arte', 3);
+INSERT INTO area_tematica VALUES (1, 'Área temática de Fisica', 'Física', 'Cedes Don Bosco',  1);
+INSERT INTO area_tematica VALUES (2, 'Área temática de Matemática', 'Matemática', 'Cedes Don Bosco', 2);
+INSERT INTO area_tematica VALUES (3, 'Área temática de Fisica', 'Física', 'Universidad de Costa Rica', 2);
+INSERT INTO area_tematica VALUES (4, 'Área temática de Arte', 'Arte','Universidad de Costa Rica', 3);
 
 /*Cursos*/
-INSERT INTO curso VALUES (1, 'Cedes Don Bosco', 'Física General I', 'Curso donde se cubre los temas generales de Física', 'ruta/foto/server');
-INSERT INTO curso VALUES (1, 'Cedes Don Bosco', 'Física General II', 'Curso donde se cubre los temas generales, más avanzados, de Física', 'ruta/foto/server');
-INSERT INTO curso VALUES (2, 'Cedes Don Bosco', 'Algebra', 'Curso donde se cubre la algebra básica', 'ruta/foto/server');
-INSERT INTO curso VALUES (1, 'Universidad de Costa Rica', 'Física I', 'Curso donde se cubre los temas generales de Física, se trabaja con la práctica', 'ruta/foto/server');
-INSERT INTO curso VALUES (2, 'Universidad de Costa Rica', 'Cine', 'Curso donde se cubre ls historia del Cine', 'ruta/foto/server');
+INSERT INTO curso VALUES ('Física General I', 'Curso donde se cubre los temas generales de Física', 'ruta/foto/server', 1);
+INSERT INTO curso VALUES ('Física General II', 'Curso donde se cubre los temas generales, más avanzados, de Física', 'ruta/foto/server', 1);
+INSERT INTO curso VALUES ('Algebra', 'Curso donde se cubre la algebra básica', 'ruta/foto/server', 2);
+INSERT INTO curso VALUES ('Física I', 'Curso donde se cubre los temas generales de Física, se trabaja con la práctica', 'ruta/foto/server', 3);
+INSERT INTO curso VALUES ('Cine', 'Curso donde se cubre ls historia del Cine', 'ruta/foto/server', 4);
 
 /*Grupos*/
-INSERT INTO grupo VALUES (1, '1 semestre', 1, 'Universidad de Costa Rica', 'Física I', 'jorge54');
-INSERT INTO grupo VALUES (2, '1 semestre', 1, 'Universidad de Costa Rica', 'Física I', 'marii');
-INSERT INTO grupo VALUES (1, '2 semestres', 2, 'Universidad de Costa Rica', 'Cine', 'mario76');
-INSERT INTO grupo VALUES (1, '1 semestre', 1, 'Cedes Don Bosco', 'Física General I', 'bran24');
-INSERT INTO grupo VALUES (1, '1 semestre', 1, 'Cedes Don Bosco', 'Física General II', 'marii');
-INSERT INTO grupo VALUES (2, '1 semestre', 1, 'Cedes Don Bosco', 'Física General II', 'marii');
-INSERT INTO grupo VALUES (1, '1 semestre', 2, 'Cedes Don Bosco', 'Algebra', 'gabrielaPo98');
+INSERT INTO grupo VALUES (1, '1 semestre', 'Física I', 'jorge54');
+INSERT INTO grupo VALUES (2, '1 semestre', 'Física I', 'marii');
+INSERT INTO grupo VALUES (1, '2 semestres',  'Cine', 'mario76');
+INSERT INTO grupo VALUES (1, '1 semestre', 'Física General I', 'bran24');
+INSERT INTO grupo VALUES (1, '1 semestre', 'Física General II', 'marii');
+INSERT INTO grupo VALUES (2, '1 semestre', 'Física General II', 'marii');
+INSERT INTO grupo VALUES (1, '1 semestre', 'Algebra', 'gabrielaPo98');
 
 /*Perfiles*/
 INSERT INTO perfil VALUES (1, 'Encargado de impartir cursos', 'Profesor', 'Universidad de Costa Rica');
@@ -58,20 +58,29 @@ INSERT INTO permiso VALUES (2, 'Recibir un curso');
 
 
 /*Perfil-Permiso*/
-INSERT INTO perfil_permiso VALUES (1, 1);
-INSERT INTO perfil_permiso VALUES (2, 1);
-INSERT INTO perfil_permiso VALUES (3, 2);
-INSERT INTO perfil_permiso VALUES (4, 2);
+INSERT INTO institucion_perfil_permiso VALUES (1, 1, 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_permiso VALUES (2, 2, 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_permiso VALUES (1, 1, 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_permiso VALUES (2, 2, 'Cedes Don Bosco');
 
 
 /*Perfil-Usuario*/
-INSERT INTO perfil_usuario VALUES (true, 3, 'steveen');
-INSERT INTO perfil_usuario VALUES (true, 4, 'steveen');
-INSERT INTO perfil_usuario VALUES (true, 3, 'stephXO');
-INSERT INTO perfil_usuario VALUES (true, 4, 'devora45');
+INSERT INTO institucion_perfil_usuario VALUES (3, 'steveen', 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_usuario VALUES (4, 'steveen', 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_usuario VALUES (3, 'stephXO', 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_usuario VALUES (4, 'devora45', 'Cedes Don Bosco');
+
+INSERT INTO institucion_perfil_usuario VALUES (2, 'marii', 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_usuario VALUES (2, 'bran24', 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_usuario VALUES (2, 'gabrielaPo98', 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_usuario VALUES (1, 'jorge54', 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_usuario VALUES (1, 'marii', 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_usuario VALUES (1, 'mario76', 'Universidad de Costa Rica');
+
+
 
 /*Usuario_Grupo_Inscrito*/
-INSERT INTO usuario_grupo_inscrito VALUES (1, '1 semestre', 1, 'Universidad de Costa Rica', 'Física I', 0, 'steveen');
-INSERT INTO usuario_grupo_inscrito VALUES (1, '2 semestres', 2, 'Universidad de Costa Rica', 'Cine', 0, 'stephXO');
-INSERT INTO usuario_grupo_inscrito VALUES (2, '1 semestre', 2, 'Cedes Don Bosco', 'Algebra', 0, 'devora45');
-/* INSERT INTO usuario_grupo_inscrito VALUES (2, '1 semestre', 2, 'Cedes Don Bosco', 'Algebra', 0, 'steveen'); */
+INSERT INTO usuario_grupo_inscrito VALUES ('steveen', 0, 1, '1 semestre', 'Física I');
+INSERT INTO usuario_grupo_inscrito VALUES ('stephXO', 0, 1, '2 semestres', 'Cine');
+INSERT INTO usuario_grupo_inscrito VALUES ('devora45', 0, 1, '1 semestre', 'Algebra');
+INSERT INTO usuario_grupo_inscrito VALUES ('steveen', 0, 1, '1 semestre', 'Algebra');

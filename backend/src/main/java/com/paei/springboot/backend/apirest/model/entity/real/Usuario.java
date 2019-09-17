@@ -48,6 +48,17 @@ public class Usuario  implements Serializable {
     @Column(name = "foto")
     private String Foto;
 
+    @Column(name = "habilitado")
+    private Boolean Habilitado;
+
+    public Boolean getHabilitado() {
+        return Habilitado;
+    }
+
+    public void setHabilitado(Boolean habilitado) {
+        Habilitado = habilitado;
+    }
+
     public UsuarioPK getNombreUsuario() {
         return NombreUsuario;
     }

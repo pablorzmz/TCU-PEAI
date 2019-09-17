@@ -2,21 +2,21 @@
 /*Observaciones: No separar una instrucción en varias línea. No le gusta a MySQL*/
 
 /*Profes*/
-INSERT INTO usuario VALUES ('jorge54', 'Fonseca Castro', 'jorge54@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Jorge', 'E1F53135E559C253', 'Otro', '88282838');
-INSERT INTO usuario VALUES ('mario76', 'Vega Tenorio', 'marito54@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Mario', 'E1F53135E559C253', 'Otro', '88282345');
-INSERT INTO usuario VALUES ('gabrielaPo98', 'Poveda Castro', 'gabiPoveda@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Gabriela', 'E1F53135E559C253', 'Otro', '84356838');
-INSERT INTO usuario VALUES ('marii', 'Perez Perez', 'mari54@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Maria', 'E1F53135E559C253', 'Otro', '88296338');
-INSERT INTO usuario VALUES ('bran24', 'Dota Noria', 'bran24@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Brandon', 'E1F53135E559C253', 'Otro', '76382838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('jorge54', 'Fonseca Castro', 'jorge54@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Jorge', 1, 'E1F53135E559C253', 'Otro', '88282838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('mario76', 'Vega Tenorio', 'marito54@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Mario',1, 'E1F53135E559C253', 'Otro', '88282345');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('gabrielaPo98', 'Poveda Castro', 'gabiPoveda@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Gabriela',1, 'E1F53135E559C253', 'Otro', '84356838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('marii', 'Perez Perez', 'mari54@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Maria',1, 'E1F53135E559C253', 'Otro', '88296338');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('bran24', 'Dota Noria', 'bran24@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Brandon',1, 'E1F53135E559C253', 'Otro', '76382838');
 
 /*Estudiantes*/
-INSERT INTO usuario VALUES ('steveen', 'Fort Castro', 'steveen@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Steven', 'E1F53135E559C253', 'Otro', '84376838');
-INSERT INTO usuario VALUES ('stephXO', 'Loria Perez', 'sthephanieLP@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Sthephanie', 'E1F53135E559C253', 'Otro', '88288738');
-INSERT INTO usuario VALUES ('devora45', 'Zeledón Álvarez', 'nanaAL@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Devora', 'E1F53135E559C253', 'Otro', '71232838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('steveen', 'Fort Castro', 'steveen@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Steven',1, 'E1F53135E559C253', 'Otro', '84376838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('stephXO', 'Loria Perez', 'sthephanieLP@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Sthephanie',1, 'E1F53135E559C253', 'Otro', '88288738');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('devora45', 'Zeledón Álvarez', 'nanaAL@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Devora',1, 'E1F53135E559C253', 'Otro', '71232838');
 
 
 /*Instituciones*/
-INSERT INTO institucion (institucion_nombre, descripcion, foto, habilitada, ubicacion) VALUES ('Cedes Don Bosco', 'Colegio Técnico Profesional Semi-Privado','ruta/foto/server',true,'San José');
-INSERT INTO institucion (institucion_nombre, descripcion, foto, habilitada, ubicacion) VALUES ('Universidad de Costa Rica', 'Universidad pública #1 del país','ruta/foto/server',true,'San Pedro');
+INSERT INTO institucion (institucion_nombre, descripcion, foto, habilitada, ubicacion) VALUES ('Cedes Don Bosco', 'Colegio Técnico Profesional Semi-Privado','ruta/foto/server',1,'San José');
+INSERT INTO institucion (institucion_nombre, descripcion, foto, habilitada, ubicacion) VALUES ('Universidad de Costa Rica', 'Universidad pública #1 del país','ruta/foto/server',1,'San Pedro');
 
 
 /*Siglas tematicas*/
@@ -40,7 +40,7 @@ INSERT INTO curso VALUES ('Cine', 'Curso donde se cubre ls historia del Cine', '
 /*Grupos*/
 INSERT INTO grupo VALUES (1, '1 semestre', 'Física I', 'jorge54');
 INSERT INTO grupo VALUES (2, '1 semestre', 'Física I', 'marii');
-INSERT INTO grupo VALUES (1, '2 semestres',  'Cine', 'mario76');
+INSERT INTO grupo VALUES (1, '2 semestre',  'Cine', 'mario76');
 INSERT INTO grupo VALUES (1, '1 semestre', 'Física General I', 'bran24');
 INSERT INTO grupo VALUES (1, '1 semestre', 'Física General II', 'marii');
 INSERT INTO grupo VALUES (2, '1 semestre', 'Física General II', 'marii');
@@ -78,9 +78,7 @@ INSERT INTO institucion_perfil_usuario VALUES (1, 'marii', 'Universidad de Costa
 INSERT INTO institucion_perfil_usuario VALUES (1, 'mario76', 'Universidad de Costa Rica');
 
 
-
 /*Usuario_Grupo_Inscrito*/
-INSERT INTO usuario_grupo_inscrito VALUES ('steveen', 0, 1, '1 semestre', 'Física I');
-INSERT INTO usuario_grupo_inscrito VALUES ('stephXO', 0, 1, '2 semestres', 'Cine');
-INSERT INTO usuario_grupo_inscrito VALUES ('devora45', 0, 1, '1 semestre', 'Algebra');
-INSERT INTO usuario_grupo_inscrito VALUES ('steveen', 0, 1, '1 semestre', 'Algebra');
+INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_nombre) VALUES ('steveen', 0, 1, '1 semestre', 'Física I');
+INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_nombre) VALUES ('stephXO', 0, 1, '2 semestre', 'Cine');
+INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_nombre) VALUES ('stephXO', 0, 1, '1 semestre', 'Física I');

@@ -42,17 +42,17 @@ public class UsuarioService implements UserDetailsService {
         List<GrantedAuthority> perfiles = usuario.getInstitucionPerfilUsuarios()
                 .stream()
                 .map(ipu -> new SimpleGrantedAuthority(
-                        ipu.getPerfil().getNombre() + "_" + ipu.getInstitucion().getNombre().getNombre()))
+                        ipu.getPerfil().getNombre()))
                 .peek( authority -> logger.info("Perfil en institucion:" + authority.getAuthority()) )
                 .collect(Collectors.toList());
 
         // Se construye un usuario de la interfaz para Auth2
         return new User(
-                 usuario.getNombreUsuario().getNombreUsuario(),
+                 usuario.getUsuarioPK().getNombreUsuario(),
                 usuario.getSalt(),usuario.getHabilitado(),
                 true,
                 true,
                 true,
-                null);
+                perfiles);
     }
 }

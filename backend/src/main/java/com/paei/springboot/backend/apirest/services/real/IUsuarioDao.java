@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface IUsuarioDao extends CrudRepository<Usuario, UsuarioPK> {
 
-    @Query("select u from Usuario u where u.NombreUsuario.NombreUsuario = ?1")
+    @Query("select u from Usuario u where u.usuarioPK.NombreUsuario = ?1")
     public Usuario findBNombreUsuario(String nombreUsuario);
 
 }

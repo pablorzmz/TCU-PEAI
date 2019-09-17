@@ -17,6 +17,8 @@ public class InstitucionPerfilUsuario implements Serializable {
 
     private static final long serialVersionUID = 3365562036753010084L;
 
+    public InstitucionPerfilUsuario(){}
+
     private InstitucionPerfilUsuarioPK institucionPerfilUsuarioPK;
 
     @Transient

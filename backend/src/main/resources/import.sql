@@ -2,16 +2,16 @@
 /*Observaciones: No separar una instrucción en varias línea. No le gusta a MySQL*/
 
 /*Profes*/
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('jorge54', 'Fonseca Castro', 'jorge54@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Jorge', 1, 'E1F53135E559C253', 'Otro', '88282838');
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('mario76', 'Vega Tenorio', 'marito54@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Mario',1, 'E1F53135E559C253', 'Otro', '88282345');
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('gabrielaPo98', 'Poveda Castro', 'gabiPoveda@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Gabriela',1, 'E1F53135E559C253', 'Otro', '84356838');
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('marii', 'Perez Perez', 'mari54@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Maria',1, 'E1F53135E559C253', 'Otro', '88296338');
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('bran24', 'Dota Noria', 'bran24@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Brandon',1, 'E1F53135E559C253', 'Otro', '76382838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('jorge54', 'Fonseca Castro', 'jorge54@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Jorge', 1, '$2a$10$tM4OB700xydM2T5EilZLWeovyeK974xxF0c2BZHd53v856BaTWgu.', 'Otro', '88282838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('mario76', 'Vega Tenorio', 'marito54@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Mario',1, '$2a$10$7QqULJ8RYmzGvmR/ucAc5OWL/Qkv/YU9/aNZtvHzPHwkQUc4pWZf2', 'Otro', '88282345');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('gabrielaPo98', 'Poveda Castro', 'gabiPoveda@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Gabriela',1, '$2a$10$WzZfBkvkFpLmM0dSJgcsCegHA0OhTpRojUCvmYrIEvemi1xBT7xji', 'Otro', '84356838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('marii', 'Perez Perez', 'mari54@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Maria',1, '$2a$10$ge0wJhlmsOI.Vb8ZCMeAMenb6zPY6/uQUYp1xTcuBgNkxfaMbFwmu', 'Otro', '88296338');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('bran24', 'Dota Noria', 'bran24@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Brandon',1, '$2a$10$8RPnZmMcNjAYLExOjvanvudAmfHJ3wO2uoQsCSzQrjIAeZQtN.7RS', 'Otro', '76382838');
 
 /*Estudiantes*/
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('steveen', 'Fort Castro', 'steveen@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Steven',1, 'E1F53135E559C253', 'Otro', '84376838');
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('stephXO', 'Loria Perez', 'sthephanieLP@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Sthephanie',1, 'E1F53135E559C253', 'Otro', '88288738');
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('devora45', 'Zeledón Álvarez', 'nanaAL@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Devora',1, 'E1F53135E559C253', 'Otro', '71232838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('steveen', 'Fort Castro', 'steveen@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Steven',1, '$2a$10$sSyjvSJM7JIuQ8XyUj7xz.DIj6ba0jMhTWOF8PYH0KaBn.mhNB3A.', 'Otro', '84376838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('stephXO', 'Loria Perez', 'sthephanieLP@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Sthephanie',1, '$2a$10$mbgCttJe87jG8XEteSeds.9hDFeKGdc/SCMcrPgFUpNoE1Z9nmU7.', 'Otro', '88288738');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('devora45', 'Zeledón Álvarez', 'nanaAL@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Devora',1, '$2a$10$GeCFnD90HZLsd1GXVHd.nuVwHMtGgE11WE0IIXAWtYqWMIPI.KFwi', 'Otro', '71232838');
 
 
 /*Instituciones*/
@@ -47,10 +47,8 @@ INSERT INTO grupo VALUES (2, '1 semestre', 'Física General II', 'marii');
 INSERT INTO grupo VALUES (1, '1 semestre', 'Algebra', 'gabrielaPo98');
 
 /*Perfiles*/
-INSERT INTO perfil VALUES (1, 'Encargado de impartir cursos', 'Profesor', 'Universidad de Costa Rica');
-INSERT INTO perfil VALUES (2, 'Encargado de impartir cursos', 'Profesor', 'Cedes Don Bosco');
-INSERT INTO perfil VALUES (3, 'Puede recibir cursos', 'Estudiante', 'Universidad de Costa Rica');
-INSERT INTO perfil VALUES (4, 'Puede recibir cursos', 'Estudiante', 'Cedes Don Bosco');
+INSERT INTO perfil (perfil_id, nombre, descripcion) VALUES (1,'ROLE_Profesor', 'Encargado de impartir cursos');
+INSERT INTO perfil (perfil_id, nombre, descripcion) VALUES (2,'ROLE_Estudiante', 'Puede recibir cursos');
 
 /*Permisos*/
 INSERT INTO permiso VALUES (1, 'Impartir un curso');
@@ -58,24 +56,24 @@ INSERT INTO permiso VALUES (2, 'Recibir un curso');
 
 
 /*Perfil-Permiso*/
-INSERT INTO institucion_perfil_permiso VALUES (1, 1, 'Universidad de Costa Rica');
-INSERT INTO institucion_perfil_permiso VALUES (2, 2, 'Universidad de Costa Rica');
-INSERT INTO institucion_perfil_permiso VALUES (1, 1, 'Cedes Don Bosco');
-INSERT INTO institucion_perfil_permiso VALUES (2, 2, 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (1, 1, 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (2, 2, 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (1, 1, 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (2, 2, 'Cedes Don Bosco');
 
 
 /*Perfil-Usuario*/
-INSERT INTO institucion_perfil_usuario VALUES (3, 'steveen', 'Universidad de Costa Rica');
-INSERT INTO institucion_perfil_usuario VALUES (4, 'steveen', 'Cedes Don Bosco');
-INSERT INTO institucion_perfil_usuario VALUES (3, 'stephXO', 'Universidad de Costa Rica');
-INSERT INTO institucion_perfil_usuario VALUES (4, 'devora45', 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (2, 'steveen', 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (2, 'steveen', 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (2, 'stephXO', 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (2, 'devora45', 'Cedes Don Bosco');
 
-INSERT INTO institucion_perfil_usuario VALUES (2, 'marii', 'Cedes Don Bosco');
-INSERT INTO institucion_perfil_usuario VALUES (2, 'bran24', 'Cedes Don Bosco');
-INSERT INTO institucion_perfil_usuario VALUES (2, 'gabrielaPo98', 'Cedes Don Bosco');
-INSERT INTO institucion_perfil_usuario VALUES (1, 'jorge54', 'Universidad de Costa Rica');
-INSERT INTO institucion_perfil_usuario VALUES (1, 'marii', 'Universidad de Costa Rica');
-INSERT INTO institucion_perfil_usuario VALUES (1, 'mario76', 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (1, 'marii', 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (1, 'bran24', 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (1, 'gabrielaPo98', 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (1, 'jorge54', 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (1, 'marii', 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (1, 'mario76', 'Universidad de Costa Rica');
 
 
 /*Usuario_Grupo_Inscrito*/

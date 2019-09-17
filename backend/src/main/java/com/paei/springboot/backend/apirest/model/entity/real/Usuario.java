@@ -1,6 +1,7 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import net.bytebuddy.implementation.bind.annotation.Default;
 
 
 import javax.persistence.*;
@@ -14,14 +15,30 @@ public class Usuario  implements Serializable {
 
     private static final long serialVersionUID = -628956646940225121L;
 
+    public Usuario(){
+
+    }
+
+    public Usuario(UsuarioPK nombreUsuario, @Email String correo, String nombre, String apellidos, Date fechaNacimiento, String salt, String sexo, Long telefono, String foto, Boolean habilitado) {
+        usuarioPK = nombreUsuario;
+        Correo = correo;
+        Nombre = nombre;
+        Apellidos = apellidos;
+        FechaNacimiento = fechaNacimiento;
+        Salt = salt;
+        Sexo = sexo;
+        Telefono = telefono;
+        Foto = foto;
+        Habilitado = habilitado;
+    }
+
     @JsonIgnore
     @OneToMany(mappedBy = "institucionPerfilUsuarioPK.usuario",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<InstitucionPerfilUsuario> institucionPerfilUsuarios = new HashSet<>();
 
-
     @EmbeddedId
-    private UsuarioPK NombreUsuario;
+    private UsuarioPK usuarioPK;
 
     @Column(name = "correo")
     @Email
@@ -59,12 +76,12 @@ public class Usuario  implements Serializable {
         Habilitado = habilitado;
     }
 
-    public UsuarioPK getNombreUsuario() {
-        return NombreUsuario;
+    public UsuarioPK getUsuarioPK() {
+        return usuarioPK;
     }
 
-    public void setNombreUsuario(UsuarioPK nombreUsuario) {
-        NombreUsuario = nombreUsuario;
+    public void setUsuarioPK(UsuarioPK usuarioPK) {
+        this.usuarioPK = usuarioPK;
     }
 
     public String getCorreo() {

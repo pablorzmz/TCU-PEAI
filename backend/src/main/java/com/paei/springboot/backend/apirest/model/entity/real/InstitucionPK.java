@@ -20,6 +20,8 @@ public class InstitucionPK implements Serializable {
     @Length(max = 60)
     private String Nombre;
 
+    public InstitucionPK(){}
+
     public String getNombre() {
         return Nombre;
     }

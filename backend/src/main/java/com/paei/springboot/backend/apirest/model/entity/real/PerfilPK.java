@@ -15,6 +15,8 @@ public class PerfilPK implements Serializable {
         Id = id;
     }
 
+    public PerfilPK(){}
+
     @Column(name = "perfil_id")
     private Long Id;
 

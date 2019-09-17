@@ -16,6 +16,8 @@ public class Institucion implements Serializable {
 
     private static final long serialVersionUID = -5494201154230598756L;
 
+    public Institucion(){}
+
     @OneToMany(mappedBy = "institucionPerfilUsuarioPK.institucion",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore

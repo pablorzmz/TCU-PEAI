@@ -2,7 +2,11 @@
   height: 150px;
 }
 
+.text-turqueza {
+  color: #005A70;
+}
+
 .bg-verde {
-  background: #D2DB0E !important;
+  background: #FFCF01 !important;
   height: 20px;
 }

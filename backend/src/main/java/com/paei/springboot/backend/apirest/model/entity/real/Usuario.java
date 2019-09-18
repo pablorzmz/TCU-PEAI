@@ -34,7 +34,7 @@ public class Usuario  implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "institucionPerfilUsuarioPK.usuario",
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+            cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<InstitucionPerfilUsuario> institucionPerfilUsuarios = new HashSet<>();
 
     @EmbeddedId

@@ -1,5 +1,6 @@
 package com.paei.springboot.backend.apirest.services.real;
 
+import com.paei.springboot.backend.apirest.dao.real.IUsuarioDao;
 import com.paei.springboot.backend.apirest.model.entity.real.Usuario;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
@@ -17,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UsuarioService implements UserDetailsService {
+public class UsuarioService implements UserDetailsService, IUsuarioService {
 
     @Autowired
     private IUsuarioDao iUsuarioDao;
@@ -30,7 +31,7 @@ public class UsuarioService implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
 
         // Primero se encuentra el usuario
-        Usuario usuario = iUsuarioDao.findBNombreUsuario(s);
+        Usuario usuario = iUsuarioDao.findByNombreUsuario(s);
 
         // En caso de que no exista el usuario
         if (usuario == null ){
@@ -54,5 +55,11 @@ public class UsuarioService implements UserDetailsService {
                 true,
                 true,
                 perfiles);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Usuario findUsuarioByNombreUsuario(String nombreUsuario) {
+        return iUsuarioDao.findByNombreUsuario(nombreUsuario);
     }
 }

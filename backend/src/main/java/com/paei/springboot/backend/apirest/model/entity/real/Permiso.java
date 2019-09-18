@@ -13,6 +13,8 @@ public class Permiso implements Serializable {
 
     private static final long serialVersionUID = 5786995689259432153L;
 
+    public Permiso(){}
+
     @OneToMany(mappedBy = "institucionPerfilPermisoPK.permiso",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore

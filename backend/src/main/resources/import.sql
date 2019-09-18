@@ -72,6 +72,8 @@ INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_no
 INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (1, 'bran24', 'Cedes Don Bosco');
 INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (1, 'gabrielaPo98', 'Cedes Don Bosco');
 INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (1, 'jorge54', 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (1, 'jorge54', 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (2, 'jorge54', 'Cedes Don Bosco');
 INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (1, 'marii', 'Universidad de Costa Rica');
 INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (1, 'mario76', 'Universidad de Costa Rica');
 

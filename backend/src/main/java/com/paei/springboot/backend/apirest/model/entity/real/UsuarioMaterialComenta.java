@@ -12,6 +12,8 @@ public class UsuarioMaterialComenta  implements Serializable {
 
     private static final long serialVersionUID = -4349637338469336272L;
 
+    public UsuarioMaterialComenta(){}
+
     public UsuarioMaterialComenta(UsuarioMaterialComentaPK id, String textoComentario, Date fecha, Boolean visible) {
         Id = id;
         TextoComentario = textoComentario;

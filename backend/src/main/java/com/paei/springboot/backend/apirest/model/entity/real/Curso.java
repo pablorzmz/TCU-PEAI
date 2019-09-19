@@ -10,6 +10,8 @@ import java.util.List;
 public class Curso implements Serializable {
     private static final long serialVersionUID = 3891558444775224854L;
 
+    public Curso(){}
+
     public Curso(CursoPK id, String descripcion, String foto) {
         Id = id;
         Descripcion = descripcion;

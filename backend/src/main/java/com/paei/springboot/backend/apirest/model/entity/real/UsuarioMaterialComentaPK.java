@@ -9,6 +9,8 @@ public class UsuarioMaterialComentaPK implements Serializable {
 
     private static final long serialVersionUID = -4922637785241075774L;
 
+    public UsuarioMaterialComentaPK(){}
+
     private MaterialPK material;
 
     private UsuarioPK usuario;

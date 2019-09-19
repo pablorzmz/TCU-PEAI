@@ -23,6 +23,8 @@ public class UsuarioGrupoInscrito implements Serializable {
 
     private static final long serialVersionUID = 6438232388229978753L;
 
+    public UsuarioGrupoInscrito(){}
+
     @EmbeddedId
     private UsuarioGrupoInscritoPK usuarioGrupoInscritoPK;
 

@@ -16,6 +16,8 @@ public class Grupo implements Serializable {
 
     private static final long serialVersionUID = 5927864906117084238L;
 
+    public Grupo(){}
+
     @EmbeddedId
     private GrupoPK Id;
 

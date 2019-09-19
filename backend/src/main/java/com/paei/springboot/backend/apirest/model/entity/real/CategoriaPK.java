@@ -10,6 +10,9 @@ public class CategoriaPK implements Serializable {
 
     private static final long serialVersionUID = 5843767508554528083L;
 
+
+    public CategoriaPK(){}
+
     public CategoriaPK(Long id) {
         Id = id;
     }

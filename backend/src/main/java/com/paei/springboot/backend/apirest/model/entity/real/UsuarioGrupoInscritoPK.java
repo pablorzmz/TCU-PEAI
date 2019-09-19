@@ -9,6 +9,8 @@ public class UsuarioGrupoInscritoPK implements Serializable {
 
     private static final long serialVersionUID = 1890418447314997737L;
 
+    public UsuarioGrupoInscritoPK(){}
+
     private GrupoPK grupoPk;
 
     private UsuarioPK usuarioPK;

@@ -9,6 +9,8 @@ import java.util.Objects;
 public class AreaTematicaPK implements Serializable {
     private static final long serialVersionUID = -6671460126658601266L;
 
+    public AreaTematicaPK(){}
+
     public AreaTematicaPK(Long id) {
         Id = id;
     }

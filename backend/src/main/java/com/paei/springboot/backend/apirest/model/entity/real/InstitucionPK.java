@@ -12,6 +12,8 @@ import java.util.Objects;
 public class InstitucionPK implements Serializable {
     private static final long serialVersionUID = 3872230053906647109L;
 
+    public InstitucionPK(){}
+
     public InstitucionPK(String nombre) {
         Nombre = nombre;
     }
@@ -19,8 +21,6 @@ public class InstitucionPK implements Serializable {
     @Column(name = "institucion_nombre")
     @Length(max = 60)
     private String Nombre;
-
-    public InstitucionPK(){}
 
     public String getNombre() {
         return Nombre;

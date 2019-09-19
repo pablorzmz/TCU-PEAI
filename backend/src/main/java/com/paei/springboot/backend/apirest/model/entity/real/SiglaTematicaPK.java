@@ -9,6 +9,8 @@ import java.util.Objects;
 public class SiglaTematicaPK implements Serializable {
     private static final long serialVersionUID = 218622441679582547L;
 
+    public SiglaTematicaPK(){}
+
     @Column(name = "sigla_tematica_id")
     private Long Id;
 

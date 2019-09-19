@@ -10,6 +10,8 @@ public class EvaluacionPK implements Serializable {
 
     private static final long serialVersionUID = 1801541372316102902L;
 
+    public EvaluacionPK(){}
+
     public EvaluacionPK(Integer id, SubseccionEvaluacionPK subsuccionEvaluacion) {
         Id = id;
         this.subsuccionEvaluacion = subsuccionEvaluacion;

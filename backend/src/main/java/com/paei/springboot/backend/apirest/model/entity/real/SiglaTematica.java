@@ -11,6 +11,9 @@ public class SiglaTematica implements Serializable {
 
     private static final long serialVersionUID = -883967794851832045L;
 
+
+    public SiglaTematica(){}
+
     public SiglaTematica(SiglaTematicaPK id, String sigla) {
         Id = id;
         Sigla = sigla;

@@ -10,6 +10,8 @@ public class MaterialPK implements Serializable {
 
     private static final long serialVersionUID = 6018210033638588985L;
 
+    public MaterialPK(){}
+
     public MaterialPK(String nombre, SubSeccionMaterialPK subSeccionMaterial) {
         Nombre = nombre;
         this.subSeccionMaterial = subSeccionMaterial;

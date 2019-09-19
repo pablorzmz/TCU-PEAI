@@ -36,7 +36,7 @@ public class Categoria implements Serializable {
     })
     private Grupo grupo;
 
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
     private List<Material> materiales = new ArrayList<>();
 
 

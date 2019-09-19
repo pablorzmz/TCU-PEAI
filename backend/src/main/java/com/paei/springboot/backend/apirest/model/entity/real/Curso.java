@@ -31,7 +31,7 @@ public class Curso implements Serializable {
     @JoinColumn(name = "area_tematica_id")
     private AreaTematica areaTematica;
 
-    @OneToMany(mappedBy = "curso")
+    @OneToMany(mappedBy = "curso", fetch = FetchType.LAZY)
     private List<Grupo> grupos = new ArrayList<>();
 
     public CursoPK getId() {

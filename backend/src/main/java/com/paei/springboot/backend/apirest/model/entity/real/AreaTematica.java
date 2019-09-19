@@ -36,7 +36,7 @@ public class AreaTematica implements Serializable {
     @JoinColumn(name = "nombre_institucion")
     private Institucion institucion;
 
-    @OneToMany(mappedBy = "areaTematica")
+    @OneToMany(mappedBy = "areaTematica", fetch = FetchType.LAZY)
     private List<Curso> cursos = new ArrayList<>();
 
     public AreaTematicaPK getId() {

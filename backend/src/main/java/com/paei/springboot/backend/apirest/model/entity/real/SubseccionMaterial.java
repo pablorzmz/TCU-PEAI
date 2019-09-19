@@ -35,7 +35,7 @@ public class SubseccionMaterial implements Serializable {
     })
     private Grupo grupo;
 
-    @OneToMany(mappedBy = "subseccionMaterial")
+    @OneToMany(mappedBy = "subseccionMaterial", fetch = FetchType.LAZY)
     private List<Material> materiales = new ArrayList<>();
 
     public Grupo getGrupo() {

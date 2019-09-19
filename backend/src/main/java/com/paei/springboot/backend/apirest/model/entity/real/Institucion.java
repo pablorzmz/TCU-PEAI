@@ -50,7 +50,7 @@ public class Institucion implements Serializable {
     @Column(name = "foto")
     private String Foto;
 
-    @OneToMany(mappedBy = "institucion")
+    @OneToMany(mappedBy = "institucion", fetch = FetchType.LAZY)
     private List<AreaTematica> areaTematicas = new ArrayList<>();
 
     public InstitucionPK getInstitucionPK() {

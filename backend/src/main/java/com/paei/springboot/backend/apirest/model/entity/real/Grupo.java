@@ -36,17 +36,17 @@ public class Grupo implements Serializable {
     @ManyToOne
     private Curso curso;
 
-    @OneToMany(mappedBy = "grupo")
+    @OneToMany(mappedBy = "grupo", fetch = FetchType.LAZY)
     private List<SubseccionEvaluacion> subseccionEvaluaciones = new ArrayList<>();
 
-    @OneToMany(mappedBy = "grupo")
+    @OneToMany(mappedBy = "grupo", fetch = FetchType.LAZY)
     private List<SubseccionMaterial> subseccionMateriales = new ArrayList<>();
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "nombre_usuario_imparte")
     private Usuario usuario;
 
-    @OneToMany(mappedBy = "grupo")
+    @OneToMany(mappedBy = "grupo", fetch = FetchType.LAZY)
     private List<Categoria> categorias = new ArrayList<>();
 
     @OneToMany(mappedBy = "grupo", fetch = FetchType.LAZY)

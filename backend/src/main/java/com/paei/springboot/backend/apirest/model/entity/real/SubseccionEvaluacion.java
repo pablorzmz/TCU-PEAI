@@ -36,7 +36,7 @@ public class SubseccionEvaluacion implements Serializable
     })
     private Grupo grupo;
 
-    @OneToMany(mappedBy = "subseccionEvaluacion")
+    @OneToMany(mappedBy = "subseccionEvaluacion", fetch = FetchType.LAZY)
     private List<Evaluacion> evaluaciones = new ArrayList<>();
 
 

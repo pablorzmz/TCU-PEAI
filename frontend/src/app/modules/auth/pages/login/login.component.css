@@ -1,1 +1,10 @@
+/*Clase del background del contenedor del form*/
+.bg-turqueza {
+  background-color: #00BABC;
+}
+
+/*Borde del contenedor del form*/
+.border-gray {
+  border-color: #707070;
+}
 

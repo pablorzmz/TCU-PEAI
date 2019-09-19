@@ -1,10 +1,10 @@
-<div class="h-100  d-flex justify-content-between align-items-center">
-  <div class="h-75 mx-0 d-flex justify-content-center align-items-center w-60">
-      <app-about class="w-80"></app-about>
+<div class="row h-100 w-100 mx-0">
+  <div class="col-lg-7 mx-0 d-flex justify-content-center align-items-center ">
+      <app-about class="p-3"></app-about>
   </div>
-  <div class="w-40 h-75 mx-0 d-flex justify-content-center align-items-center ">
-    <div class="w-75 h-75 p-5 border border-dark rounded-lg">
-          <h3 class="my-4">TCU Ciencia Accesible</h3>
+  <div class="col-lg-5 d-flex justify-content-center align-items-center ">
+    <div class=" text-white bg-turqueza p-5 border border-gray rounded-lg">
+          <h3 class="my-4">Iniciar Sesión</h3>
           <form>
           <div class="form-group">
             <label for="exampleInputEmail1">Correo</label>
@@ -15,9 +15,15 @@
             <label for="exampleInputPassword1">Contraseña</label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su contraseña">
           </div>
-          <button type="Submit" class="btn btn-primary">Ingresar</button>
+            <div class="row">
+              <div class="col-sm p-2">
+                <button type="Submit" class="btn btn-primary ">Registrarme</button>
+              </div>
+              <div class="col-sm p-2">
+                <button type="Submit" class="btn btn-warning">Iniciar Sesión</button>
+              </div>
+            </div>
         </form>
     </div>
-   <div>
+  </div>
 </div>
-

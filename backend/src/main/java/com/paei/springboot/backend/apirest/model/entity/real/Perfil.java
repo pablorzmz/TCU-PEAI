@@ -13,6 +13,8 @@ public class Perfil  implements Serializable {
 
     private static final long serialVersionUID = -2058982657833793266L;
 
+    public Perfil(){}
+
     @JsonIgnore
     @OneToMany(mappedBy = "institucionPerfilUsuarioPK.perfil",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -23,25 +25,19 @@ public class Perfil  implements Serializable {
     @JsonIgnore
     private Set<InstitucionPerfilPermiso> institucionPerfilPermisos = new HashSet<>();
 
-    public Perfil(PerfilPK id, String nombre, String descripcion, Institucion institucion) {
+    public Perfil(PerfilPK id, String descripcion, Institucion institucion) {
         Id = id;
-        Nombre = nombre;
         Descripcion = descripcion;
-        this.institucion = institucion;
     }
-
-    @EmbeddedId
-    private PerfilPK Id;
 
     @Column(name = "nombre")
     private String Nombre;
 
+    @EmbeddedId
+    private PerfilPK Id;
+
     @Column(name = "descripcion")
     private String Descripcion;
-
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Institucion institucion;
-
 
     public PerfilPK getId() {
         return Id;
@@ -56,7 +52,7 @@ public class Perfil  implements Serializable {
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.Nombre = nombre;
     }
 
     public String getDescripcion() {
@@ -65,14 +61,6 @@ public class Perfil  implements Serializable {
 
     public void setDescripcion(String descripcion) {
         Descripcion = descripcion;
-    }
-
-    public Institucion getInstitucion() {
-        return institucion;
-    }
-
-    public void setInstitucion(Institucion institucion) {
-        this.institucion = institucion;
     }
 
     public Set<InstitucionPerfilUsuario> getInstitucionPerfilUsuarios() {

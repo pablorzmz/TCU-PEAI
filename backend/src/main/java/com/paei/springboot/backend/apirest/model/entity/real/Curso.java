@@ -10,6 +10,8 @@ import java.util.List;
 public class Curso implements Serializable {
     private static final long serialVersionUID = 3891558444775224854L;
 
+    public Curso(){}
+
     public Curso(CursoPK id, String descripcion, String foto) {
         Id = id;
         Descripcion = descripcion;
@@ -29,7 +31,7 @@ public class Curso implements Serializable {
     @JoinColumn(name = "area_tematica_id")
     private AreaTematica areaTematica;
 
-    @OneToMany(mappedBy = "curso")
+    @OneToMany(mappedBy = "curso", fetch = FetchType.LAZY)
     private List<Grupo> grupos = new ArrayList<>();
 
     public CursoPK getId() {

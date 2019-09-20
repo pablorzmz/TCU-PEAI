@@ -11,6 +11,8 @@ public class SubseccionEvaluacion implements Serializable
 {
     private static final long serialVersionUID = 5314742781555961959L;
 
+    public SubseccionEvaluacion(){}
+
     public SubseccionEvaluacion(SubseccionEvaluacionPK id, String nombre, Boolean habilitada) {
         Id = id;
         Nombre = nombre;
@@ -34,7 +36,7 @@ public class SubseccionEvaluacion implements Serializable
     })
     private Grupo grupo;
 
-    @OneToMany(mappedBy = "subseccionEvaluacion")
+    @OneToMany(mappedBy = "subseccionEvaluacion", fetch = FetchType.LAZY)
     private List<Evaluacion> evaluaciones = new ArrayList<>();
 
 

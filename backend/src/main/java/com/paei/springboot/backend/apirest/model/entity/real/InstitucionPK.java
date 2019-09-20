@@ -12,6 +12,8 @@ import java.util.Objects;
 public class InstitucionPK implements Serializable {
     private static final long serialVersionUID = 3872230053906647109L;
 
+    public InstitucionPK(){}
+
     public InstitucionPK(String nombre) {
         Nombre = nombre;
     }

@@ -9,6 +9,8 @@ public class Material implements Serializable {
 
     private static final long serialVersionUID = 2766807839901964384L;
 
+    public Material(){}
+
     public Material(MaterialPK id, String descripcion, String tipo, String url) {
         Id = id;
         Descripcion = descripcion;

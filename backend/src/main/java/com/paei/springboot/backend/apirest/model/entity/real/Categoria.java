@@ -11,6 +11,8 @@ public class Categoria implements Serializable {
 
     private static final long serialVersionUID = -4113078676010766568L;
 
+    public Categoria(){}
+
     public Categoria(CategoriaPK id, String nombre, String descripcion) {
         Id = id;
         Nombre = nombre;
@@ -34,7 +36,7 @@ public class Categoria implements Serializable {
     })
     private Grupo grupo;
 
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
     private List<Material> materiales = new ArrayList<>();
 
 

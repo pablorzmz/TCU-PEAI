@@ -10,6 +10,8 @@ public class SubseccionEvaluacionPK implements Serializable {
 
     private static final long serialVersionUID = -6672966718784425768L;
 
+    public SubseccionEvaluacionPK(){}
+
     public SubseccionEvaluacionPK(Integer id) {
         Id = id;
     }

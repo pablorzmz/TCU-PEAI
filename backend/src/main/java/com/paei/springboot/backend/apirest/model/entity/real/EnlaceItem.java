@@ -11,6 +11,8 @@ import java.io.Serializable;
 public class EnlaceItem implements Serializable {
     private static final long serialVersionUID = -9153459702575319845L;
 
+    public EnlaceItem(){}
+
     public EnlaceItem(EnlaceItemPK id, String url, String tipo, String nombre) {
         Id = id;
         Url = url;

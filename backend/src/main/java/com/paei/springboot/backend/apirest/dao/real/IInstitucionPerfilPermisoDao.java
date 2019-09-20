@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface IInstitucionPerfilPermisoDao extends CrudRepository<InstitucionPerfilPermiso, InstitucionPerfilPermisoPK> {
 
-    @Query("SELECT U FROM InstitucionPerfilPermiso U WHERE U.institucionPerfilPermisoPK.perfil = ?1 and U.institucionPerfilPermisoPK.institucion = ?2")
+    @Query("SELECT U FROM InstitucionPerfilPermiso U WHERE U.institucionPerfilPermisoPK.perfil = ?1 AND U.institucionPerfilPermisoPK.institucion = ?2")
     public List<InstitucionPerfilPermiso> findInstitucionPerfilPermisoByInstitucionAndPerfil(Perfil perfil, Institucion institucion);
 
 }

@@ -17,10 +17,16 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
 import java.util.Arrays;
 
+
+/**
+ *  Clase principal de configuraciones de clientes (frontends) a optener servicioes
+ *  del backend. La mayoria de los métodos tienen documentación oficial ya que se
+ *  heredan de una clase
+ */
 @Configuration
 @EnableAuthorizationServer
-public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
+public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
@@ -31,6 +37,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private InformacionAdicionalToken informacionAdicionalToken;
 
+    /**
+     * @param security Configuración de seguridad para establecer que se permiten todos los clientes frontend
+     *                 si están autorizados.
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
@@ -39,6 +50,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         ;
     }
 
+    /**
+     * @param clients permite configurar los clientes frontend y agregarlos con su tipo de autorización
+     *                y contraseñas
+     * @throws Exception
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients
@@ -52,6 +68,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         ;
     }
 
+    /**
+     * @param endpoints Permite conigurar opciones avanzadas del token que se retorna al frontend
+     *                  Por ejemplo, registrar la información adicional
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
@@ -70,6 +91,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         return new JwtTokenStore(accessTokenConverter());
     }
 
+    /**
+     * Permite la configuración de autentificaicón punto a punto de tipo RSA con sus respectivas
+     * llaves públicas y privadas.
+     * @return
+     */
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();

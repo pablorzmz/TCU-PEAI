@@ -14,6 +14,8 @@ public class PermisoPK implements Serializable {
         Id = id;
     }
 
+    public PermisoPK(){}
+
     @Column(name = "permiso_id")
     private Long Id;
 

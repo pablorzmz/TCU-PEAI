@@ -10,6 +10,8 @@ import java.util.List;
 public class SubseccionMaterial implements Serializable {
     private static final long serialVersionUID = 2521005430944303873L;
 
+    public SubseccionMaterial(){}
+
     public SubseccionMaterial(SubSeccionMaterialPK id, String nombre, Boolean habilitada) {
         Id = id;
         Nombre = nombre;
@@ -33,7 +35,7 @@ public class SubseccionMaterial implements Serializable {
     })
     private Grupo grupo;
 
-    @OneToMany(mappedBy = "subseccionMaterial")
+    @OneToMany(mappedBy = "subseccionMaterial", fetch = FetchType.LAZY)
     private List<Material> materiales = new ArrayList<>();
 
     public Grupo getGrupo() {

@@ -10,6 +10,8 @@ public class EnlaceItemPK implements Serializable {
 
     private static final long serialVersionUID = -6089482280789527913L;
 
+    public EnlaceItemPK(){}
+
     public EnlaceItemPK(Long id) {
         Id = id;
     }

@@ -12,6 +12,8 @@ public class GrupoPK implements Serializable {
 
     private static final long serialVersionUID = -7280981508233899842L;
 
+    public GrupoPK(){}
+
     public GrupoPK(CursoPK curso, Integer numero, String periodoTiempo) {
         this.curso = curso;
         Numero = numero;

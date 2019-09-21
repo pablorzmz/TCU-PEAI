@@ -10,6 +10,8 @@ import java.util.List;
 public class AreaTematica implements Serializable {
     private static final long serialVersionUID = 1959919138250916358L;
 
+    public AreaTematica(){}
+
     public AreaTematica(AreaTematicaPK id, String nombre, String descripcion, SiglaTematica siglaTematica) {
         Id = id;
         Nombre = nombre;
@@ -34,7 +36,7 @@ public class AreaTematica implements Serializable {
     @JoinColumn(name = "nombre_institucion")
     private Institucion institucion;
 
-    @OneToMany(mappedBy = "areaTematica")
+    @OneToMany(mappedBy = "areaTematica", fetch = FetchType.LAZY)
     private List<Curso> cursos = new ArrayList<>();
 
     public AreaTematicaPK getId() {

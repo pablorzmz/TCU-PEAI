@@ -14,6 +14,10 @@ public class UsuarioPK implements Serializable {
         NombreUsuario = nombreUsuario;
     }
 
+    public  UsuarioPK(){
+
+    }
+
     @Column(name = "nombre_usuario")
     private String NombreUsuario;
 

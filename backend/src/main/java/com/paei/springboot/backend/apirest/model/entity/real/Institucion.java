@@ -1,7 +1,6 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.paei.springboot.backend.apirest.model.entity.foo.Tabla123;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,6 +15,8 @@ public class Institucion implements Serializable {
 
     private static final long serialVersionUID = -5494201154230598756L;
 
+    public Institucion(){}
+
     @OneToMany(mappedBy = "institucionPerfilUsuarioPK.institucion",
             cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
@@ -27,7 +28,7 @@ public class Institucion implements Serializable {
     private Set<InstitucionPerfilPermiso> institucionPerfilPermisos = new HashSet<>();
 
     public Institucion(InstitucionPK nombre, String descripcion, String ubicación, Boolean habilitada, String foto) {
-        Nombre = nombre;
+        institucionPK = nombre;
         Descripcion = descripcion;
         Ubicación = ubicación;
         Habilitada = habilitada;
@@ -35,7 +36,7 @@ public class Institucion implements Serializable {
     }
 
     @EmbeddedId
-    private InstitucionPK Nombre;
+    private InstitucionPK institucionPK;
 
     @Column(name = "descripcion")
     private String Descripcion;
@@ -49,15 +50,15 @@ public class Institucion implements Serializable {
     @Column(name = "foto")
     private String Foto;
 
-    @OneToMany(mappedBy = "institucion")
+    @OneToMany(mappedBy = "institucion", fetch = FetchType.LAZY)
     private List<AreaTematica> areaTematicas = new ArrayList<>();
 
-    public InstitucionPK getNombre() {
-        return Nombre;
+    public InstitucionPK getInstitucionPK() {
+        return institucionPK;
     }
 
-    public void setNombre(InstitucionPK nombre) {
-        Nombre = nombre;
+    public void setInstitucionPK(InstitucionPK institucionPK) {
+        this.institucionPK = institucionPK;
     }
 
     public String getDescripcion() {

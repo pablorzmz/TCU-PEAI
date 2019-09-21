@@ -10,6 +10,8 @@ public class Evaluacion implements Serializable {
 
     private static final long serialVersionUID = -4441741033649109829L;
 
+    public Evaluacion(){}
+
     public Evaluacion(EvaluacionPK id, Date fechaInicio, Date fechaFin, String nombre, String descripcion, Float valor, Boolean habilitada) {
         Id = id;
         FechaInicio = fechaInicio;

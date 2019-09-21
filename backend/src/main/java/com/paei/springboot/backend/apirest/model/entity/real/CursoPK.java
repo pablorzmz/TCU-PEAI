@@ -13,6 +13,8 @@ public class CursoPK implements Serializable {
 
     private static final long serialVersionUID = 1331919158691105548L;
 
+    public CursoPK(){}
+
     @Column(name = "curso_nombre")
     private String Nombre;
 

@@ -10,6 +10,8 @@ public class SubSeccionMaterialPK implements Serializable {
 
     private static final long serialVersionUID = -436657807192930994L;
 
+    public SubSeccionMaterialPK(){}
+
     @Column(name = "subseccion_material_id")
     private Integer Id;
 

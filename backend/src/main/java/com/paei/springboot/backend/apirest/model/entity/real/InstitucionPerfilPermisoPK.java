@@ -11,6 +11,8 @@ public class InstitucionPerfilPermisoPK implements Serializable {
 
     private static final long serialVersionUID = 2977759630309106950L;
 
+    public InstitucionPerfilPermisoPK(){}
+
     private Institucion institucion;
 
     private Perfil perfil;

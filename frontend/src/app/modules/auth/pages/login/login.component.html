@@ -5,22 +5,22 @@
   <div class="col-lg-5 d-flex justify-content-center align-items-center ">
     <div class=" text-white bg-turqueza p-5 border border-gray rounded-lg">
           <h3 class="my-4">Iniciar Sesión</h3>
-          <form>
+          <form method="post">
           <div class="form-group">
-            <label for="exampleInputEmail1">Correo</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ingrese su correo">
-            <small id="emailHelp" class="form-text text-muted">Nunca comparta su correo con alguien mas.</small>
+            <label for="nombreUsuario">Correo</label>
+            <input [(ngModel)]="usuario.usuarioPK.nombreUsuario" type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese su nombre de usuario" required autofocus>
+            <small id="nombreUsuarioHelp" class="form-text text-muted">Nunca comparta su correo con alguien mas.</small>
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Contraseña</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Ingrese su contraseña">
+            <label for="salt">Contraseña</label>
+            <input [(ngModel)]="usuario.salt" type="password" class="form-control" id="salt" name="salt" placeholder="Ingrese su contraseña" required>
           </div>
             <div class="row">
               <div class="col-sm p-2">
-                <button type="Submit" class="btn btn-primary ">Registrarme</button>
+                <button type="button" (click)="mensajeRegistro()" class="btn btn-primary ">Registrarme</button>
               </div>
               <div class="col-sm p-2">
-                <button type="Submit" class="btn btn-warning">Iniciar Sesión</button>
+                <button (click)="login()" type="Submit" class="btn btn-warning">Iniciar Sesión</button>
               </div>
             </div>
         </form>

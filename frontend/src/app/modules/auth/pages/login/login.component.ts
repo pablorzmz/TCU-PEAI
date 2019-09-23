@@ -12,15 +12,19 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   usuario: Usuario;
+  // TODO redirigir a la vista principal de instituciones
+  private  RUTA_REDIRECCION = '/register';
+
   constructor(private  authService: AuthService,
               private router: Router) {
     this.usuario = new Usuario();
   }
 
   ngOnInit() {
-    swal.fire('SweetAlert2 funcionando!',
-      'Instalado correctamente',
-      'success');
+    // En caso de haber iniciado sesión, simplemente se redirige a la dirección por defecto.
+    if (this.authService.usuarioEstaLogeado()) {
+      this.router.navigate([this.RUTA_REDIRECCION]);
+    }
   }
 
   mensajeRegistro(): void {
@@ -41,16 +45,22 @@ export class LoginComponent implements OnInit {
       //  Se llama al servicio y se suscribe al resultado
       this.authService.login(this.usuario).subscribe(
         respuesta => {
-          console.log(respuesta);
           // Se guardan el usuario y el token, perfiles, permisos e instituciones
           this.authService.guardarUsuario(respuesta.access_token);
           this.authService.guardarToken(respuesta.access_token);
           this.authService.guardarPerfilesInstitucionUsuario(respuesta.perfiles_instituciones);
-          // TODO redirigir a la vista principal de instituciones
-          this.router.navigate(['/register']);
+          this.authService.guardarPerfilesInstitucionesPermisosUsuario(respuesta.perfiles_instituciones_permisos);
+          this.router.navigate([this.RUTA_REDIRECCION]);
           swal.fire('Bienvenido al sistema',
             '¡Hola ' + `${this.authService.usuario.nombre} ${this.authService.usuario.apellidos}!`,
             'success');
+        },
+        error => {
+            if (error.status === 400 ) {
+              swal.fire('Datos de inicio de sesión incorrectos',
+                'Usuario o contraseña incorrectos',
+                'error');
+            }
         }
       );
     }

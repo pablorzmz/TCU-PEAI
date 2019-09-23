@@ -44,10 +44,7 @@ public class InformacionAdicionalToken implements TokenEnhancer {
         Map<String, List<String>> perfilesInstituciones = new HashMap<>();
         for (var ipu: listaInstalacionesPerfiles) {
             // Si no existe la llave se agrega
-            if( perfilesInstituciones.get(ipu.getPerfil().getNombre()) == null)
-            {
-                perfilesInstituciones.put(ipu.getPerfil().getNombre(),new ArrayList<>());
-            }
+            perfilesInstituciones.computeIfAbsent(ipu.getPerfil().getNombre(), k -> new ArrayList<>());
             // Se reemplaza espacio en blanco por guión en el nombre de la institucion
             perfilesInstituciones.get(ipu.getPerfil().getNombre()).add(ipu.getInstitucion().getInstitucionPK().getNombre());
         }
@@ -61,9 +58,7 @@ public class InformacionAdicionalToken implements TokenEnhancer {
                 // Se reemplaza espacio en blanco por * en el nombre de la institucion
                 var llaveTemporal =ipu.getPerfil().getNombre()+"*"+ipu.getInstitucion().getInstitucionPK().getNombre().replace(" ","-");
                 // Si no existe la llave se crea
-                if( perfilesInstitucionesPermisos.get(llaveTemporal)==null){
-                    perfilesInstitucionesPermisos.put(llaveTemporal,new ArrayList<>());
-                }
+                perfilesInstitucionesPermisos.computeIfAbsent(llaveTemporal, k -> new ArrayList<>());
                 perfilesInstitucionesPermisos.get(llaveTemporal).add(permiso.getPermiso().getNombre());
             }
         }

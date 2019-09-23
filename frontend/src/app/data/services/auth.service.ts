@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Usuario} from '../schema/Usuario';
+import {objectLiteralExpression} from 'codelyzer/util/astQuery';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,9 @@ export class AuthService {
 
   private _usuario: Usuario;
   private _accessToken: string;
+  private _PERFIL_INSTITUCION_LLAVE = 'perfilesInstituciones';
+  private _PERFIL_INSTITUCION_PERMISO_LLAVE = 'perfilesInstitucionesPermisos';
+  private _USUARIO_LLAVE = 'usuario';
 
   constructor(private http: HttpClient) { }
 
@@ -27,9 +31,9 @@ export class AuthService {
   }
 
   public get accessToken(): string {
-    if (this._accessToken !== null ) {
+    if (this._accessToken !== null  && this._accessToken !== undefined) {
       return this._accessToken;
-    } else if (this._accessToken == null && sessionStorage.getItem('accessToken') != null){
+    } else if ((this._accessToken == null || this._accessToken === undefined ) && sessionStorage.getItem('accessToken') != null){
       this._accessToken = sessionStorage.getItem('accessToken');
       return this._accessToken;
     }
@@ -72,7 +76,7 @@ export class AuthService {
     this._usuario.nombre = payLoad.nombre;
     this._usuario.apellidos = payLoad.apellidos;
     this._usuario.usuarioPK.nombreUsuario = payLoad.user_name;
-    sessionStorage.setItem('usuario', JSON.stringify(this._usuario));
+    sessionStorage.setItem(this._USUARIO_LLAVE, JSON.stringify(this._usuario));
   }
 
   /**
@@ -96,16 +100,6 @@ export class AuthService {
     return null;
   }
 
-
-  /**
-   * Método que permite guardar una lista de objetos en la sesión  sobre los permisos que tienen
-   * cada perfil del usuario en la institución específica
-   * @param pip Objeto del token permiso institucion perfil
-   */
-  guardarPerfilesInstitucionesPermisoUsuario( pip: any): void {
-
-  }
-
   /**
    * Método que guardar las instituciones por perfil del usuario a través del token jwt
    * @param pi perfilesInstituciones obtenidos del jwt
@@ -119,7 +113,123 @@ export class AuthService {
         perfilesInstituciones.push(temp);
       }
     );
-    sessionStorage.setItem('perfilesInstituciones', perfilesInstituciones.toString());
-    console.log( JSON.parse('[' + sessionStorage.getItem('perfilesInstituciones') + ']') );
+    sessionStorage.setItem( this._PERFIL_INSTITUCION_LLAVE, perfilesInstituciones.toString());
   }
+
+  /**
+   * Método que permite obtener una lista de objetos con dos atributos:
+   * perfil: el nombre del perfil.
+   * instituciones: un array con los nombres de instituciones en cada perfil.
+   * Retorna nulo en caso de que no haya nada en el sessionStorage
+   */
+  obtenerPerfilesInstituciones(): any {
+    if ( sessionStorage.getItem(this._PERFIL_INSTITUCION_LLAVE)  == null ){
+      return null;
+    }
+    return JSON.parse( '[' +  sessionStorage.getItem(this._PERFIL_INSTITUCION_LLAVE) + ']' );
+  }
+
+  /**
+   * Método que almacena los permisos de los perfiles por institucion en el sessionStorage para consultarlos cuando
+   * sea necesario
+   * @param pip Objeto recuperado del token para ser formateado y almacenado en el sessionStorage
+   */
+  guardarPerfilesInstitucionesPermisosUsuario(pip: any): void {
+    const perfilesInstitucionesPermisos = [];
+    const llaves = Object.keys(pip);
+    llaves.map(
+      valor => {
+        const temp = JSON.stringify({ perfilInstitucion: valor.replace(/-/g, ' '), permisos: pip[valor]});
+        perfilesInstitucionesPermisos.push(temp);
+      }
+    );
+    sessionStorage.setItem(this._PERFIL_INSTITUCION_PERMISO_LLAVE, perfilesInstitucionesPermisos.toString());
+  }
+
+  /**
+   * Método que devuelve una lista de objetos que tiene como atributos lo siguiente
+   * perfilInstitucion: El nombre del perfil  + * + nombre de la institucion
+   * permisos: una lista de nombres de permisos
+   * Devuelve nulo si no se encuentra en el sessionStorage.
+   */
+  obtenerPerfilesInstitucionesPermisosUsuario(): any {
+    if ( sessionStorage.getItem(this._PERFIL_INSTITUCION_PERMISO_LLAVE) == null) {
+      return null;
+    }
+    return JSON.parse( '[' + sessionStorage.getItem(this._PERFIL_INSTITUCION_PERMISO_LLAVE) + ']');
+  }
+
+  /**
+   * Permite verificar si hay un usuario logeado o no
+   * Retorna verdadero o falso según corresponda
+   */
+  usuarioEstaLogeado(): boolean {
+    const datos = this.obtenerDatosToken(this.accessToken);
+    if ( datos != null && datos.user_name && datos.user_name.length) {
+      return true;
+    }
+    return false;
+  }
+
+  /**
+   * Método que permite hacer el cierre de sesión de los datos de la aplicación.
+   */
+  cerrarSesion(): void {
+    this._accessToken = null;
+    this._usuario = null;
+    sessionStorage.clear();
+  }
+
+  /**
+   * Método que permite verificar si un usuario tiene un perfil en una institucion específica
+   * @param perfil Constante string con el nombre del perfil
+   * @param nombreInstitucion nombre de la institucion
+   * Retorna verdadero o falso si tiene o no ese perfil en esa institucion
+   */
+  tienePerfilEnInstitucion(perfil: string, nombreInstitucion: string): boolean {
+    let resultado = false;
+    const perfilesPorInstitucion = this.obtenerPerfilesInstituciones();
+    if ( perfilesPorInstitucion == null || perfilesPorInstitucion === undefined ) { return false; }
+    perfilesPorInstitucion.map(
+      (objetoPerfilInstitucion: any) => {
+        if ((objetoPerfilInstitucion.perfil as string) === perfil) {
+          objetoPerfilInstitucion.instituciones.map(
+            (ni: string) => { if (ni === nombreInstitucion ) { resultado = true; } }
+          );
+        }
+      }
+    );
+    return resultado;
+  }
+
+  /**
+   * método que permite verificar si existe la combinación permiso-perfil-institucion
+   * @param permiso nombre del permiso a verificar
+   * @param perfil nombre del perfil (Constante) para verificar
+   * @param nombreInstitucion nombre de la institucion
+   * Retorna verdadero o falso segun corresponda
+   */
+  tienePermisoEnPerfilInstitucion(permiso: string, perfil: string, nombreInstitucion: string ): boolean {
+    let resultado = false;
+    const permisosPerfilesInstitucion = this.obtenerPerfilesInstitucionesPermisosUsuario();
+    if ( permisosPerfilesInstitucion === null || permisosPerfilesInstitucion === undefined ){
+      return false;
+    } else {
+      const llaveTemporal = perfil + '*' + nombreInstitucion;
+      permisosPerfilesInstitucion.map(
+        (pip: any) => {
+          if ( pip.perfilInstitucion === llaveTemporal ) {
+              pip.permisos.map(
+                (p: string) => { if ( p === permiso ) { resultado = true; return; } }
+              );
+          }
+      }
+      );
+    }
+    return resultado;
+  }
+
 }
+
+
+

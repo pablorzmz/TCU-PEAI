@@ -1,4 +1,4 @@
-import { SiglaTematicaPK } from './SiglaTematicaPK'
+import { SiglaTematicaPK } from './SiglaTematicaPK';
 
 export class SiglaTematica {
   Id: SiglaTematicaPK;

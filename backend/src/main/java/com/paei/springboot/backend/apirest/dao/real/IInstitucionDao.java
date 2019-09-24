@@ -12,11 +12,10 @@ public interface IInstitucionDao extends CrudRepository <Institucion, Institucio
 
     /**
      * Consulta las áreas temáticas de una institución
-     *
-     * @author Jefferson Álvarez
      * @param institucionPK es la pk de la institución de la cuál se desean obtener las areas temáticas
+     * @return Retorna una lista con las áreas temáticas de una institución
      */
-    @Query("SELECT AreaTematica FROM Institucion I join I.areaTematicas AreaTematica WHERE I.institucionPK = ?1")
+    @Query("SELECT AreaTematica FROM Institucion I JOIN I.areaTematicas AreaTematica WHERE I.institucionPK = ?1")
     List<AreaTematica> findAreaTematicaByInstitucion(InstitucionPK institucionPK);
 
 }

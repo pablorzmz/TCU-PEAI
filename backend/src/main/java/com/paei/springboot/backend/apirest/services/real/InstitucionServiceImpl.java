@@ -18,8 +18,6 @@ public class InstitucionServiceImpl implements IInstitucionService{
 
     /**
      * Método que retorna las áreas temáticas de una institución
-     *
-     * @author Jefferson Álvarez
      * @param institucionPK es la pk de la institución de la cuál se desean obtener las areas temáticas
      * @return retorna una lista de las áreas temáticas de la institución dada
      */

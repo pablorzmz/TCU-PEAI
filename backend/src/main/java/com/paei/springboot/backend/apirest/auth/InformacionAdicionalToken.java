@@ -59,7 +59,7 @@ public class InformacionAdicionalToken implements TokenEnhancer {
                 var llaveTemporal =ipu.getPerfil().getNombre()+"*"+ipu.getInstitucion().getInstitucionPK().getNombre().replace(" ","-");
                 // Si no existe la llave se crea
                 perfilesInstitucionesPermisos.computeIfAbsent(llaveTemporal, k -> new ArrayList<>());
-                perfilesInstitucionesPermisos.get(llaveTemporal).add(permiso.getPermiso().getNombre());
+                perfilesInstitucionesPermisos.get(llaveTemporal).add(permiso.getPermiso().getId().getId().toString());
             }
         }
         // Se recuperan los permisos por perfil en cada institucion

@@ -23,7 +23,7 @@ export class AuthService {
   public get usuario(): Usuario {
     if (this._usuario !== null ) {
       return this._usuario;
-    } else if (this._usuario == null && sessionStorage.getItem('usuario') != null){
+    } else if (this._usuario == null && sessionStorage.getItem('usuario') != null) {
       this._usuario = JSON.parse(sessionStorage.getItem('usuario')) as Usuario;
       return this._usuario;
     }
@@ -33,7 +33,7 @@ export class AuthService {
   public get accessToken(): string {
     if (this._accessToken !== null  && this._accessToken !== undefined) {
       return this._accessToken;
-    } else if ((this._accessToken == null || this._accessToken === undefined ) && sessionStorage.getItem('accessToken') != null){
+    } else if ((this._accessToken == null || this._accessToken === undefined ) && sessionStorage.getItem('accessToken') != null) {
       this._accessToken = sessionStorage.getItem('accessToken');
       return this._accessToken;
     }
@@ -56,7 +56,7 @@ export class AuthService {
       } );
 
     // Se crean los parametros que van en los header de la petición
-    let params = new URLSearchParams();
+    const  params = new URLSearchParams();
     params.set('grant_type', 'password');
     params.set('username', usuario.usuarioPK.nombreUsuario);
     params.set('password', usuario.salt);
@@ -71,7 +71,7 @@ export class AuthService {
    * @param accessToken tokend de accesso de jwt
    */
   guardarUsuario(accessToken: string) {
-    let payLoad= this.obtenerDatosToken(accessToken);
+    const payLoad = this.obtenerDatosToken(accessToken);
     this._usuario = new Usuario();
     this._usuario.nombre = payLoad.nombre;
     this._usuario.apellidos = payLoad.apellidos;
@@ -81,7 +81,7 @@ export class AuthService {
 
   /**
    * Método que permite guardar el token en el sessionStorage para usarlo cuando sea necesario
-   * @param accessToken
+   * @param accessToken Token de acceso del frontend a recursos backend
    */
   guardarToken( accessToken: string) {
     this._accessToken = accessToken;
@@ -90,7 +90,7 @@ export class AuthService {
 
   /**
    * Método que permite obtener los datos importantes del session storage
-   * @param accessToken
+   * @param accessToken Token de acceso del frontend a recursos backend
    */
   obtenerDatosToken(accessToken: string): any {
     if (accessToken !== null) {
@@ -123,7 +123,7 @@ export class AuthService {
    * Retorna nulo en caso de que no haya nada en el sessionStorage
    */
   obtenerPerfilesInstituciones(): any {
-    if ( sessionStorage.getItem(this._PERFIL_INSTITUCION_LLAVE)  == null ){
+    if ( sessionStorage.getItem(this._PERFIL_INSTITUCION_LLAVE)  == null ) {
       return null;
     }
     return JSON.parse( '[' +  sessionStorage.getItem(this._PERFIL_INSTITUCION_LLAVE) + ']' );
@@ -209,10 +209,10 @@ export class AuthService {
    * @param nombreInstitucion nombre de la institucion
    * Retorna verdadero o falso segun corresponda
    */
-  tienePermisoEnPerfilInstitucion(permiso: string, perfil: string, nombreInstitucion: string ): boolean {
+  tienePermisoEnPerfilInstitucion(permiso: number, perfil: string, nombreInstitucion: string ): boolean {
     let resultado = false;
     const permisosPerfilesInstitucion = this.obtenerPerfilesInstitucionesPermisosUsuario();
-    if ( permisosPerfilesInstitucion === null || permisosPerfilesInstitucion === undefined ){
+    if ( permisosPerfilesInstitucion === null || permisosPerfilesInstitucion === undefined ) {
       return false;
     } else {
       const llaveTemporal = perfil + '*' + nombreInstitucion;
@@ -220,7 +220,7 @@ export class AuthService {
         (pip: any) => {
           if ( pip.perfilInstitucion === llaveTemporal ) {
               pip.permisos.map(
-                (p: string) => { if ( p === permiso ) { resultado = true; return; } }
+                (p: string) => { if ( p === permiso.toString() ) { resultado = true; return; } }
               );
           }
       }

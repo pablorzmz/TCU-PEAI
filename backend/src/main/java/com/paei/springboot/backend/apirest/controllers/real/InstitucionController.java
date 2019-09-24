@@ -12,7 +12,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/institucion")
+@RequestMapping("/api/instituciones")
 
 public class InstitucionController {
 
@@ -25,7 +25,7 @@ public class InstitucionController {
      * @return retorna la lista de areas tematicas que tenga la institución
      * @throws InstitucionNotFoundException si la institución no existe
      */
-    @GetMapping("/areas_tematicas")
+    @GetMapping("/listar_areas_tematicas")
     public List<AreaTematica> recuperarAreasTematicasDeInstitucion(@RequestParam String nombre){
         // Se crea la Pk de la institucion
         InstitucionPK institucionPK = new InstitucionPK(nombre);

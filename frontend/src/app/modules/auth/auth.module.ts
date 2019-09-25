@@ -4,12 +4,20 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AboutComponent } from './components/about/about.component';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent, AboutComponent],
+  declarations: [LoginComponent, RegisterComponent, AboutComponent, HeaderComponent],
+  exports: [
+    HeaderComponent
+  ],
   imports: [
-    AuthRoutingModule
+    AuthRoutingModule,
+    FormsModule,
+    HttpClientModule
   ]
 })
 export class AuthModule { }

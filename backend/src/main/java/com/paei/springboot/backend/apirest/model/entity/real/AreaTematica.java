@@ -1,5 +1,6 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,12 +29,13 @@ public class AreaTematica implements Serializable {
     @Column(name = "descripcion")
     private String Descripcion;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "sigla_tematica_id")
     private SiglaTematica siglaTematica;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "nombre_institucion")
+    @JsonIgnore
     private Institucion institucion;
 
     @OneToMany(mappedBy = "areaTematica", fetch = FetchType.LAZY)

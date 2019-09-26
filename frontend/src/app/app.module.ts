@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
+import { InstitucionModule } from './modules/institucion/institucion.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { AuthModule } from './modules/auth/auth.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AuthModule
+    AuthModule,
+    InstitucionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

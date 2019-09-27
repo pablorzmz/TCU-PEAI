@@ -2,7 +2,6 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {AuthService} from './auth.service';
-import {AreaTematica} from '../schema/AreaTematica';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,9 @@ export class InstitucionService {
   readonly urlEndpoint = 'http://localhost:8080/api/instituciones';
 
   getAreasTematicas(nombreInstitucion: string): Observable<any>  {
-    const urlConsulta = `${this.urlEndpoint}/listar_areas_tematicas?nombre=${nombreInstitucion}`;
+    const rutaConsultarAreasTematicas = '/listar_areas_tematicas';
+    const parametroConsulta = '?nombre=';
+    const urlConsulta = `${this.urlEndpoint}${rutaConsultarAreasTematicas}${parametroConsulta}${nombreInstitucion}`;
     // Se definen los encabezados para el tipo de autorización del protocolo
     const httpHeaders = new HttpHeaders(
       {

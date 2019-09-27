@@ -1,3 +1,8 @@
 export class InstitucionPK {
- Nombre: string;
+ private Nombre: string;
+
+
+ public getNombre(): string {
+    return this.Nombre;
+  }
 }

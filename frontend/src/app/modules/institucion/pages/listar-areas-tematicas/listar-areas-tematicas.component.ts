@@ -1,6 +1,7 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
 import { InstitucionService } from '../../../../data/services/institucion.service';
 import {AreaTematica} from '../../../../data/schema/AreaTematica';
+import {InstitucionPK} from '../../../../data/schema/InstitucionPK';
 
 @Component({
   selector: 'app-listar-areas-tematicas',
@@ -10,14 +11,22 @@ import {AreaTematica} from '../../../../data/schema/AreaTematica';
 export class ListarAreasTematicasComponent implements OnInit {
 
   constructor(private institucionService: InstitucionService) { }
-  areasTematicas: Array<AreaTematica>;
+
+  @Input() institucion: InstitucionPK;   // Se refiere a la institucion en la cual se encuentra
+  areasTematicas: Array<AreaTematica>;   // Contiene las áreas temáticas de institucón
 
   ngOnInit() {
-    this.institucionService.getAreasTematicas('Universidad de Costa Rica').subscribe(
+    const nombreInstitucion = this.institucion.getNombre();
+    // Se solicitan las areas tematicas de la institucion
+    const request = this.institucionService.getAreasTematicas(nombreInstitucion).subscribe(
       res => {
+        // Si las recibe se asignan al atributo areasTematicas
         this.areasTematicas = res;
-        console.log(this.areasTematicas);
+        console.log(res);
+        // Quitamos la subscripcion
+        request.unsubscribe();
       },
+      // En caso de que no se reciba correctamente se lanza una excepcion
       err => console.error(err)
     );
   }

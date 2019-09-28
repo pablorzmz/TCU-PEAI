@@ -1,1 +1,13 @@
-<p>listar-areas-tematicas works!</p>
+<div class="w-100 row" *ngIf="areasTematicas">
+  <div class="col-md-6 mb-5" *ngFor="let areaTematica of areasTematicas">
+    <div class="card">
+      <img class="card-img-top card-imagen" src="{{areaTematica.foto}}" alt="Foto del area temática">
+      <div class="card-body">
+        <h5 class="card-title">{{areaTematica.nombre}}</h5>
+        <p>{{areaTematica.descripcion}}</p>
+      </div>
+    </div>
+    <div class="card-footer">Cedes Don Bosco</div>
+  </div>
+</div>
+

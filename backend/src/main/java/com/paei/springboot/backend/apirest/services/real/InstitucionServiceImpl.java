@@ -24,11 +24,12 @@ public class InstitucionServiceImpl implements IInstitucionService{
         return (List<Institucion>)institucionDao.findAll();
     }
 
+    /*
     @Override
     @Transactional(readOnly = true)
     public Page<Institucion> findAll(Pageable pageable) {
         return institucionDao.findAll(pageable);
-    }
+    }*/
 
     @Override
     @Transactional(readOnly = true)

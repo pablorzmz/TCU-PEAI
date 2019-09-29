@@ -1,0 +1,58 @@
+<div class="card border-primary mb-3">
+  <div class="card-header">Instituciones</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Listado de instituciones</h5>
+
+    <div *ngIf="instituciones2?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos.
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="instituciones2?.length > 0">
+      <tbody>
+      <tr *ngFor="let institucion of instituciones2">
+        <td>
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{institucion}}</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+            <div class="card-body">
+              <a href="#" class="card-link">Entrar</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card border-primary mb-3">
+  <div class="card-header">Instituciones</div>
+  <div class="card-body text-primary">
+    <h5 class="card-title">Listado de instituciones</h5>
+
+    <div *ngIf="instituciones?.length == 0" class="alert alert-info">
+      No hay registros en la Base de Datos.
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="instituciones?.length > 0">
+      <tbody>
+      <tr *ngFor="let institucion of instituciones">
+        <td>
+          <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{institucion.Nombre}}</h5>
+              <p class="card-text">{{institucion.Descripcion}}</p>
+            </div>
+            <div class="card-body">
+              <a href="#" class="card-link">Entrar</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

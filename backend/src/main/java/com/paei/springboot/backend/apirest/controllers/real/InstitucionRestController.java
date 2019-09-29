@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,14 +30,20 @@ public class InstitucionRestController {
     }
 
     @GetMapping("/instituciones2")
-    public List<Institucion> index2(){
-        return institucionService.findAllInstituciones();
+    public List<String> index2(){
+        List<Institucion> lista = institucionService.findAllInstituciones();
+        List<String> result = new ArrayList<>();
+        for (Institucion institucion: lista){
+            result.add(institucion.getInstitucionPK().getNombre());
+        }
+        return result;
     }
 
+    /*
     @GetMapping("/instituciones/page/{page}")
     public Page<Institucion> index(@PathVariable Integer page){
         return institucionService.findAll(PageRequest.of(page, 4));
-    }
+    }*/
 
     @GetMapping("/instituciones/{id}")
     public ResponseEntity<?> show(@PathVariable InstitucionPK id){

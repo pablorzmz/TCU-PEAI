@@ -11,7 +11,7 @@ import java.util.List;
 public interface IInstitucionService {
     public List<Institucion> findAll();
 
-    public Page<Institucion> findAll(Pageable pageable);
+    //public Page<Institucion> findAll(Pageable pageable);
 
     public Institucion findById(InstitucionPK nombre);
 

@@ -8,20 +8,20 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class InstitucionService {
-  private urlEndPoint2 = 'http://localhost:8080/api/instituciones2';
+  // private urlEndPoint2 = 'http://localhost:8080/api/instituciones2';
   private urlEndPoint = 'http://localhost:8080/api/instituciones';
   // private httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) { }
 
-  getInstituciones2(): Observable<string[]> {
+  /*getInstituciones2(): Observable<string[]> {
     return this.http.get(this.urlEndPoint2).pipe(
       map((response) => response as string[] )
     );
-  }
+  }*/
 
   getInstituciones(): Observable<Institucion[]> {
-    return this.http.get(this.urlEndPoint2).pipe(
+    return this.http.get(this.urlEndPoint).pipe(
       map((response) => response as Institucion[] )
     );
   }

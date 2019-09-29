@@ -51,6 +51,7 @@ public class Institucion implements Serializable {
     private String Foto;
 
     @OneToMany(mappedBy = "institucion", fetch = FetchType.LAZY)
+    @JsonIgnore // --> para evitar JSON recursivo
     private List<AreaTematica> areaTematicas = new ArrayList<>();
 
     public InstitucionPK getInstitucionPK() {

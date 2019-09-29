@@ -9,16 +9,13 @@ import {InstitucionService} from './institucion.service';
 })
 export class InstitucionesComponent implements OnInit {
   instituciones: Institucion[];
-  instituciones2: string[];
+  // instituciones2: string[];
 
   constructor(private institucionService: InstitucionService) { }
 
   ngOnInit() {
-    this.institucionService.getInstituciones2().subscribe(
-      insti => this.instituciones2 = insti
-    );
     this.institucionService.getInstituciones().subscribe(
-      insti => this.instituciones = insti
+      institucion => this.instituciones = institucion
     );
   }
 

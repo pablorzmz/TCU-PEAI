@@ -1,3 +1,3 @@
 export class InstitucionPK {
- Nombre: string;
+ nombre: string;
 }

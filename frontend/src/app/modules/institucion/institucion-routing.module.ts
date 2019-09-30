@@ -5,7 +5,8 @@ import { ListarAreasTematicasComponent } from './pages/listar-areas-tematicas/li
 
 const routes: Routes = [
    {
-    path: 'areas_tematicas',
+    path: 'areas_tematicas/:nombreInstitucion',
+    pathMatch: 'full',
     component: ListarAreasTematicasComponent
   }
 ];

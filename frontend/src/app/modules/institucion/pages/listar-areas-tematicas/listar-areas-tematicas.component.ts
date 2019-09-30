@@ -1,7 +1,7 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import { InstitucionService } from '../../../../data/services/institucion.service';
 import {AreaTematica} from '../../../../data/schema/AreaTematica';
-import {InstitucionPK} from '../../../../data/schema/InstitucionPK';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-listar-areas-tematicas',
@@ -10,27 +10,28 @@ import {InstitucionPK} from '../../../../data/schema/InstitucionPK';
 })
 export class ListarAreasTematicasComponent implements OnInit {
 
-  constructor(private institucionService: InstitucionService) { }
+  constructor(private route: ActivatedRoute, private institucionService: InstitucionService) { }
 
-  @Input() institucion: InstitucionPK;   // Se refiere a la institucion en la cual se encuentra
+  nombreInstitucion: string;             // Contiene el nombre de la institucion de la cual se espera obtener las areas tematicas
   areasTematicas: Array<AreaTematica>;   // Contiene las áreas temáticas de institucón
 
   ngOnInit() {
-    // const nombreInstitucion = this.institucion.getNombre();
-    const nombreInstitucion = 'Cedes Don Bosco';
-    // Se solicitan las areas tematicas de la institucion
-    const request = this.institucionService.getAreasTematicas(nombreInstitucion).subscribe(
-      res => {
-        // Si las recibe se asignan al atributo areasTematicas
-        this.areasTematicas = res;
-        console.log(this.areasTematicas);
-        // Quitamos la subscripcion
-        request.unsubscribe();
-      },
-      // En caso de que no se reciba correctamente se lanza una excepcion
-      // Esto se implementa cuando esté el interceptor
-      err => console.error(err)
-    );
+    this.route.paramMap.subscribe(params => {
+      // Se solicita el parametro
+      this.nombreInstitucion = params.get('nombreInstitucion');
+      // Se solicitan las areas tematicas de la institucion
+      const request = this.institucionService.getAreasTematicas(this.nombreInstitucion).subscribe(
+        res => {
+          // Si las recibe se asignan al atributo areasTematicas
+          this.areasTematicas = res;
+          console.log(this.areasTematicas);
+          // Quitamos la subscripcion
+          request.unsubscribe();
+        },
+        // En caso de que no se reciba correctamente se lanza una excepcion
+        // Esto se implementa cuando esté el interceptor
+        err => console.error(err)
+      );
+    });
   }
-
 }

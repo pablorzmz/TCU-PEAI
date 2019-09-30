@@ -1,4 +1,4 @@
-<div class="container instucionesContainer">
+<div class="container float-left mt-5">
 <div class="card border-primary mb-3">
   <div class="card-header">
     <nav class="navbar navbar-light bg-light">
@@ -27,6 +27,7 @@
         </div>
       </div>
     </div>
+    <paginator-nav *ngIf="paginador" [paginador] = "paginador"></paginator-nav>
   </div>
 </div>
 </div>

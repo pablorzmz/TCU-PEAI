@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Institucion} from '../../data/schema/Institucion';
 import {InstitucionService} from './institucion.service';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-instituciones',
@@ -9,14 +10,29 @@ import {InstitucionService} from './institucion.service';
 })
 export class InstitucionesComponent implements OnInit {
   instituciones: Institucion[];
-  // instituciones2: string[];
+  paginador: any;
 
-  constructor(private institucionService: InstitucionService) { }
+  constructor(private institucionService: InstitucionService,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.paramMap.subscribe( params => {
+      let page: number = +params.get('page');
+      if (!page) {
+        page = 0;
+      }
+      this.institucionService.getInstituciones2(page).subscribe(
+        (response) => {
+          this.instituciones = response.content as Institucion[];
+          this.paginador = response;
+        });
+    });
+
+    /*
     this.institucionService.getInstituciones().subscribe(
-      institucion => this.instituciones = institucion
-    );
+      response => this.instituciones = response);
+
+    // */
   }
 
 }

@@ -16,8 +16,7 @@ import { AreaTematicaModule } from './modules/area-tematica/area-tematica.module
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    BrowserAnimationsModule
-    AuthModule,
+    BrowserAnimationsModule,
     AreaTematicaModule
   ],
   providers: [],

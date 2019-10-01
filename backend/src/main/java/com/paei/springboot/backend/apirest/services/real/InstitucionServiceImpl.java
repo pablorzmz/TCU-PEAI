@@ -17,18 +17,18 @@ import java.util.Optional;
 public class InstitucionServiceImpl implements IInstitucionService{
 
     @Autowired
-    private IInstitucionDao institucionDao;
+    private IInstitucionDao iInstitucionDao;
 
     @Override
     @Transactional(readOnly = true)
     public List<Institucion> findAll() {
-        return (List<Institucion>)institucionDao.findAll();
+        return (List<Institucion>)iInstitucionDao.findAll();
     }
 
     @Override
     @Transactional(readOnly = true)
     public Page<Institucion> findAll(Pageable pageable) {
-        return institucionDao.findAll(pageable);
+        return iInstitucionDao.findAll(pageable);
     }
 
     /**

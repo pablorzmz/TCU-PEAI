@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface IInstitucionService {
+
     public List<Institucion> findAll();
 
     public Page<Institucion> findAll(Pageable pageable);

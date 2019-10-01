@@ -6,6 +6,8 @@ import com.paei.springboot.backend.apirest.model.entity.real.Institucion;
 import com.paei.springboot.backend.apirest.model.entity.real.InstitucionPK;
 import com.paei.springboot.backend.apirest.services.real.IInstitucionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,13 +43,12 @@ public class InstitucionController {
         }
     }
 
-    @GetMapping("/instituciones")
     public List<Institucion> index(){
-        return institucionService.findAll();
+        return iInstitucionService.findAll();
     }
 
-    @GetMapping("/instituciones/page/{page}")
+    @GetMapping("/page/{page}")
     public Page<Institucion> index(@PathVariable Integer page){
-        return institucionService.findAll(PageRequest.of(page, 4));
+        return iInstitucionService.findAll(PageRequest.of(page, 4));
     }
 }

@@ -13,10 +13,11 @@ public class AreaTematica implements Serializable {
 
     public AreaTematica(){}
 
-    public AreaTematica(AreaTematicaPK id, String nombre, String descripcion, SiglaTematica siglaTematica) {
+    public AreaTematica(AreaTematicaPK id, String nombre, String descripcion, SiglaTematica siglaTematica, String foto) {
         Id = id;
         Nombre = nombre;
         Descripcion = descripcion;
+        Foto = foto;
         this.siglaTematica = siglaTematica;
     }
 
@@ -28,6 +29,9 @@ public class AreaTematica implements Serializable {
 
     @Column(name = "descripcion")
     private String Descripcion;
+
+    @Column( name = "foto" )
+    private String Foto;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "sigla_tematica_id")
@@ -79,5 +83,13 @@ public class AreaTematica implements Serializable {
 
     public void setInstitucion(Institucion institucion) {
         this.institucion = institucion;
+    }
+
+    public String getFoto() {
+        return Foto;
+    }
+
+    public void setFoto(String foto) {
+        Foto = foto;
     }
 }

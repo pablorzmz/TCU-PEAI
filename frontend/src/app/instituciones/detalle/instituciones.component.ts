@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Institucion} from '../../data/schema/Institucion';
 import {InstitucionService} from './institucion.service';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-instituciones',
@@ -27,12 +27,6 @@ export class InstitucionesComponent implements OnInit {
           this.paginador = response;
         });
     });
-
-    /*
-    this.institucionService.getInstituciones().subscribe(
-      response => this.instituciones = response);
-
-    // */
   }
 
 }

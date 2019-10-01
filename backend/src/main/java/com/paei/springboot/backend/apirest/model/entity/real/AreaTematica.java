@@ -30,7 +30,7 @@ public class AreaTematica implements Serializable {
     @Column(name = "descripcion")
     private String Descripcion;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "sigla_tematica_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private SiglaTematica siglaTematica;

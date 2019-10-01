@@ -44,12 +44,9 @@ public class InformacionAdicionalToken implements TokenEnhancer {
         Map<String, List<String>> perfilesInstituciones = new HashMap<>();
         for (var ipu: listaInstalacionesPerfiles) {
             // Si no existe la llave se agrega
-            if( perfilesInstituciones.get(ipu.getPerfil().getNombre()) == null)
-            {
-                perfilesInstituciones.put(ipu.getPerfil().getNombre(),new ArrayList<>());
-            }
+            perfilesInstituciones.computeIfAbsent(ipu.getPerfil().getNombre(), k -> new ArrayList<>());
             // Se reemplaza espacio en blanco por guión en el nombre de la institucion
-            perfilesInstituciones.get(ipu.getPerfil().getNombre()).add(ipu.getInstitucion().getInstitucionPK().getNombre().replace(" ","-"));
+            perfilesInstituciones.get(ipu.getPerfil().getNombre()).add(ipu.getInstitucion().getInstitucionPK().getNombre());
         }
         // Finalmentes se agrega el diccionario a la info adicional
         info.put("perfiles_instituciones",perfilesInstituciones);
@@ -58,13 +55,11 @@ public class InformacionAdicionalToken implements TokenEnhancer {
         for (var ipu: listaInstalacionesPerfiles) {
             var permisosInstitucionPerfil = iInstitucionPerfilPermisoService.findInstitucionPerfilPermisoByInstitucionAndPerfil(ipu.getPerfil(),ipu.getInstitucion());
             for (var permiso: permisosInstitucionPerfil) {
-                // Se reemplaza espacio en blanco por guión en el nombre de la institucion
-                var llaveTemporal =ipu.getPerfil().getNombre()+"_"+ipu.getInstitucion().getInstitucionPK().getNombre().replace(" ","-");
+                // Se reemplaza espacio en blanco por * en el nombre de la institucion
+                var llaveTemporal =ipu.getPerfil().getNombre()+"*"+ipu.getInstitucion().getInstitucionPK().getNombre().replace(" ","-");
                 // Si no existe la llave se crea
-                if( perfilesInstitucionesPermisos.get(llaveTemporal)==null){
-                    perfilesInstitucionesPermisos.put(llaveTemporal,new ArrayList<>());
-                }
-                perfilesInstitucionesPermisos.get(llaveTemporal).add(permiso.getPermiso().getNombre());
+                perfilesInstitucionesPermisos.computeIfAbsent(llaveTemporal, k -> new ArrayList<>());
+                perfilesInstitucionesPermisos.get(llaveTemporal).add(permiso.getPermiso().getId().getId().toString());
             }
         }
         // Se recuperan los permisos por perfil en cada institucion

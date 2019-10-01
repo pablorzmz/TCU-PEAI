@@ -2,13 +2,11 @@ package com.paei.springboot.backend.apirest.services.real;
 
 import com.paei.springboot.backend.apirest.dao.real.IAreaTematicaDao;
 import com.paei.springboot.backend.apirest.model.entity.real.AreaTematica;
-import com.paei.springboot.backend.apirest.model.entity.real.Institucion;
 import com.paei.springboot.backend.apirest.model.entity.real.InstitucionPK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AreaTematicaServiceImpl implements IAreaTematicaService {

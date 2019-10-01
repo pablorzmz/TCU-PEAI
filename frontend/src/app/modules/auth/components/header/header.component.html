@@ -1,29 +1,29 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #DCEDF6">
    <a class="navbar-brand" href="#">
-     <img src="assets/img/TCU_LOGO.PNG" width="100" height="50" class="navbar-brand d-inline-block align-top">
+     <img src="assets/img/TCU_LOGO.PNG" width="30" height="35" class="navbar-brand d-inline-block">
+     <span style="color: #FFCF01">Ciencia <a style="color: gray">Accesible</a></span>
    </a>
    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
    </button>
 
   <div *ngIf="authService.usuarioEstaLogeado()" class="collapse navbar-collapse" id="navbarNav" >
-
-    <ul class="navbar-nav">
+    <ul class="navbar-nav mx-auto">
       <li class="nav-item">
         <button class="btn btn-lg" style="background-color: #DCEDF6; color: gray" mat-flat-button [matMenuTriggerFor]="miEntorno">
           <i class="fa fa-home"></i>
             Mi entorno
         </button>
         <mat-menu #miEntorno="matMenu" yPosition="below">
-          <button class="btn" *ngIf="puedeVerInstituciones()" mat-menu-item>
+          <button class="btn"  mat-menu-item>
             <i class="fa fa-building"></i>
             Instituciones
           </button>
-          <button class="btn" *ngIf="puedeVerAreasTematicas()" mat-menu-item>
+          <button class="btn"  mat-menu-item>
             <i class="fa fa-th-large"></i>
             Áreas temáticas
           </button>
-          <button class="btn" *ngIf="puedeVerCursos()" mat-menu-item>
+          <button class="btn" mat-menu-item>
             <i class="fa fa-book"></i>
             Cursos
           </button>
@@ -37,6 +37,10 @@
           Mi cuenta
         </button>
         <mat-menu #miCuenta="matMenu" yPosition="below">
+          <button  class="btn" mat-menu-item>
+            <i class="fa fa-cog"></i>
+            Configuración
+          </button>
           <button  class="btn" (click)="cerrarSesion()" mat-menu-item>
             <i class="fa fa-sign-out"></i>
             Cerrar sesión

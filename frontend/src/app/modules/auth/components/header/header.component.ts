@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../../data/services/auth.service';
-import {CONSTANTES} from '../../../../data/util/Constantes';
 import {Router} from '@angular/router';
 
 @Component({
@@ -10,49 +9,19 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-
-  private Constantes: CONSTANTES;
-
   constructor( private authService: AuthService, private router: Router) {
-    this.Constantes = new CONSTANTES();
   }
 
   ngOnInit() {
 
   }
 
+  /**
+   *  Método que utiliza el servicio de autorización para cerrar sesión y volver a login
+   */
   cerrarSesion(): void {
     this.authService.cerrarSesion();
     this.router.navigate(['/auth/login']);
-
-  }
-
-  puedeVerInstituciones(): boolean {
-    let resultado = false;
-    const perfilesInstitciones = this.authService.obtenerPerfilesInstituciones();
-    perfilesInstitciones.map(
-      pi => {
-        const idPerfil = pi.perfil as string;
-        pi.instituciones.map(
-          nombreInstitucion => {
-              if (this.authService.tienePermisoEnPerfilInstitucion(this.Constantes.VISUALIZAR_INSTITUCIONES.ID,
-                nombreInstitucion, idPerfil)) {
-                  resultado = true;
-                  return;
-              }
-          }
-        );
-      }
-    );
-    return resultado;
-  }
-
-  puedeVerAreasTematicas(): boolean {
-    return true;
-  }
-
-  puedeVerCursos(): boolean {
-    return true;
   }
 
 }

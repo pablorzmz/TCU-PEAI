@@ -25,10 +25,11 @@ INSERT INTO sigla_tematica VALUES (2, 'MAT-001')
 INSERT INTO sigla_tematica VALUES (3, 'ART-001')
 
 /*Areas tematicas*/
-INSERT INTO area_tematica VALUES (1, 'Área temática de Fisica', 'Física', 'Cedes Don Bosco',  1);
-INSERT INTO area_tematica VALUES (2, 'Área temática de Matemática', 'Matemática', 'Cedes Don Bosco', 2);
-INSERT INTO area_tematica VALUES (3, 'Área temática de Fisica', 'Física', 'Universidad de Costa Rica', 2);
-INSERT INTO area_tematica VALUES (4, 'Área temática de Arte', 'Arte','Universidad de Costa Rica', 3);
+INSERT INTO area_tematica VALUES (1, 'Área temática de Fisica', 'https://image.freepik.com/vector-gratis/fondo-acerca-ciencia_1284-699.jpg', 'Física', 'Cedes Don Bosco',  1);
+INSERT INTO area_tematica VALUES (2, 'Área temática de Matemática', 'https://image.freepik.com/vector-gratis/fondo-acerca-ciencia_1284-699.jpg', 'Matemática', 'Cedes Don Bosco', 2);
+INSERT INTO area_tematica VALUES (3, 'Área temática de Fisica', 'https://image.freepik.com/vector-gratis/fondo-acerca-ciencia_1284-699.jpg','Física', 'Universidad de Costa Rica', 2);
+INSERT INTO area_tematica VALUES (4, 'Área temática de Arte', 'https://image.freepik.com/vector-gratis/fondo-acerca-ciencia_1284-699.jpg', 'Arte','Universidad de Costa Rica', 3);
+INSERT INTO area_tematica VALUES (5, 'Área temática de Arte', 'https://image.freepik.com/vector-gratis/fondo-acerca-ciencia_1284-699.jpg', 'Arte','Cedes Don Bosco', 3);
 
 /*Cursos*/
 INSERT INTO curso VALUES ('Física General I', 'Curso donde se cubre los temas generales de Física', 'ruta/foto/server', 1);

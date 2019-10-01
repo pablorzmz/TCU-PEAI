@@ -5,23 +5,19 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { AreaTematicaModule } from './modules/area-tematica/area-tematica.module';
-import { InstitucionesComponent } from './instituciones/detalle/instituciones.component';
-import { PaginatorComponent } from './paginator/paginator.component';
-import {HttpClientModule} from '@angular/common/http';
+import {InstitucionModule} from './modules/instituciones/institucion.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    InstitucionesComponent,
-    PaginatorComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    AreaTematicaModule
-    HttpClientModule
+    AreaTematicaModule,
+    InstitucionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Institucion} from '../../data/schema/Institucion';
+import {Institucion} from '../schema/Institucion';
 import {Observable} from 'rxjs';
 import { map } from 'rxjs/operators';
 

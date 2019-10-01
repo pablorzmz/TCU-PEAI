@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './modules/auth/pages/login/login.component';
 import {AuthGuardService} from './core/guard/auth.guard';
-import {InstitucionesComponent} from './instituciones/detalle/instituciones.component';
 
 const routes: Routes = [
   {
@@ -15,9 +14,7 @@ const routes: Routes = [
     component: LoginComponent,
     loadChildren: () =>
       import('./modules/auth/auth.module').then(m => m.AuthModule)
-  },
-  {path: 'instituciones', component: InstitucionesComponent},
-  {path: 'instituciones/page/:page', component: InstitucionesComponent}
+  }
 ];
 
 @NgModule({

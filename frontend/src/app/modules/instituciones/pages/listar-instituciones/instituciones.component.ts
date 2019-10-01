@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Institucion} from '../../data/schema/Institucion';
-import {InstitucionService} from './institucion.service';
+import {Institucion} from '../../../../data/schema/Institucion';
+import {InstitucionService} from '../../../../data/services/institucion.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({

@@ -1,0 +1,36 @@
+<div class="p-3 w-100" *ngIf="instituciones">
+  <div class="row mx-0 w-100 my-4">
+    <div class="col-sm">
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">Mis Instituciones</a>
+        <form class="form-inline" *ngIf="instituciones?.length > 0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+      </nav>
+    </div>
+  </div>
+  <div class="row mx-0 w-100">
+    <div class="col-md-6 mb-5" *ngFor="let institucion of instituciones">
+      <div class="card">
+        <img src="{{institucion.foto}}" class="card-img-top" alt="Foto Institucion">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a [routerLink]="['/areas_tematicas/',institucion.institucionPK.nombre]"> {{institucion.institucionPK.nombre}} </a>
+          </h5>
+          <p class="card-text">{{institucion.descripcion}}</p>
+          <a [routerLink]="['/areas_tematicas/',institucion.institucionPK.nombre]" class="btn btn-primary">Entrar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mx-0 w-100">
+    <div *ngIf="instituciones?.length == 0" class="col-md-12 alert alert-info">
+      No hay instituciones en la Base de Datos.
+    </div>
+    <paginator-nav class="col-md-12" *ngIf="paginador" [paginador] = "paginador"></paginator-nav>
+  </div>
+</div>
+<div *ngIf="!instituciones" class="alert alert-danger m-3">
+  Error en la Base de Datos.
+</div>

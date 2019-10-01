@@ -7,8 +7,6 @@ import com.paei.springboot.backend.apirest.model.entity.real.InstitucionPK;
 import com.paei.springboot.backend.apirest.services.real.IAreaTematicaService;
 import com.paei.springboot.backend.apirest.services.real.IInstitucionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,14 +43,5 @@ public class AreaTematicaController {
             // Se retorna una excepcion si no se ecnuentra una isntitución
             throw new InstitucionNotFoundException(nombre);
         }
-    }
-
-    public List<Institucion> index(){
-        return iInstitucionService.findAll();
-    }
-
-    @GetMapping("/page/{page}")
-    public Page<Institucion> index(@PathVariable Integer page){
-        return iInstitucionService.findAll(PageRequest.of(page, 4));
     }
 }

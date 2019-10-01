@@ -2,8 +2,9 @@ import { AreaTematicaPK } from './AreaTematicaPK';
 import { SiglaTematica } from './SiglaTematica';
 
 export class AreaTematica {
-  Id: AreaTematicaPK;
-  Nombre: string;
-  Descripcion: string;
+  id: AreaTematicaPK;
+  nombre: string;
+  descripcion: string;
   siglaTematica: SiglaTematica;
+  foto: string;
 }

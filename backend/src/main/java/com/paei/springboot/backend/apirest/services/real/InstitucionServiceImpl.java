@@ -10,11 +10,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
-public class InstitucionServiceImpl implements IInstitucionService{
+public class InstitucionServiceImpl implements IInstitucionService {
 
     @Autowired
     private IInstitucionDao iInstitucionDao;
@@ -29,17 +28,6 @@ public class InstitucionServiceImpl implements IInstitucionService{
     @Transactional(readOnly = true)
     public Page<Institucion> findAll(Pageable pageable) {
         return iInstitucionDao.findAll(pageable);
-    }
-
-    /**
-     * Método que retorna las áreas temáticas de una institución
-     * @param institucionPK es la pk de la institución de la cuál se desean obtener las areas temáticas
-     * @return retorna una lista de las áreas temáticas de la institución dada
-     */
-    @Override
-    public List<AreaTematica> getAreaTematicaPorInstitucion(InstitucionPK institucionPK) {
-        List<AreaTematica> listaAreasTematicas = iInstitucionDao.findAreaTematicaByInstitucion(institucionPK);
-        return listaAreasTematicas;
     }
 
     /**

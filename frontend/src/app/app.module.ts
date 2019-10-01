@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
+import { AreaTematicaModule } from './modules/area-tematica/area-tematica.module';
 import { InstitucionesComponent } from './instituciones/detalle/instituciones.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -19,6 +20,7 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
+    AreaTematicaModule
     HttpClientModule
   ],
   providers: [],

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { InstitucionRoutingModule } from './institucion-routing.module';
+import { AreaTematicaRoutingModule } from './area-tematica-routing.module';
 import { ListarAreasTematicasComponent } from './pages/listar-areas-tematicas/listar-areas-tematicas.component';
-import {InstitucionService} from '../../data/services/institucion.service';
+import { AreaTematicaService } from '../../data/services/area-tematica.service';
 
 
 @NgModule({
@@ -13,10 +13,10 @@ import {InstitucionService} from '../../data/services/institucion.service';
   ],
   imports: [
     CommonModule,
-    InstitucionRoutingModule
+    AreaTematicaRoutingModule
   ],
   providers: [
-    InstitucionService
+    AreaTematicaService
   ]
 })
-export class InstitucionModule { }
+export class AreaTematicaModule { }

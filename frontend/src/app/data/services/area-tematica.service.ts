@@ -6,14 +6,14 @@ import {AuthService} from './auth.service';
 @Injectable({
   providedIn: 'root'
 })
-export class InstitucionService {
+export class AreaTematicaService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  readonly urlEndpoint = 'http://localhost:8080/api/instituciones';
+  readonly urlEndpoint = 'http://localhost:8080/api/areas_tematicas';
 
   getAreasTematicas(nombreInstitucion: string): Observable<any>  {
-    const rutaConsultarAreasTematicas = '/listar_areas_tematicas';
+    const rutaConsultarAreasTematicas = '/listar_areas_tematicas_de_institucion';
     const parametroConsulta = '?nombre=';
     const urlConsulta = `${this.urlEndpoint}${rutaConsultarAreasTematicas}${parametroConsulta}${nombreInstitucion}`;
     // Se definen los encabezados para el tipo de autorización del protocolo

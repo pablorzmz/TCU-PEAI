@@ -7,10 +7,13 @@
       <nav class="navbar navbar-light" style="background-color: #DCEDF6">
         <h5 style="color: #005A70">Áreas temáticas de {{nombreInstitucion}}</h5>
       </nav>
+      <div *ngIf="areasTematicas.length == 0" class="alert alert-warning my-4" role="alert">
+        La institución {{nombreInstitucion}} no cuenta con áreas tematicas asociadas
+      </div>
     </div>
   </div>
 
-  <div class="row mx-0 w-100">
+  <div *ngIf="areasTematicas.length > 0" class="row mx-0 w-100">
     <div class="col-md-6 mb-5" *ngFor="let areaTematica of areasTematicas">
       <div class="card">
         <img class="card-img-top card-imagen" src="{{areaTematica.foto}}" alt="Foto del area temática">

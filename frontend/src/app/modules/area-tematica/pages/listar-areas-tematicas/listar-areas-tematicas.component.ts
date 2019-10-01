@@ -1,7 +1,7 @@
 import {Component, Inject, Input, OnInit} from '@angular/core';
-import { InstitucionService } from '../../../../data/services/institucion.service';
-import {AreaTematica} from '../../../../data/schema/AreaTematica';
+import { AreaTematicaService } from '../../../../data/services/area-tematica.service';
 import { ActivatedRoute } from '@angular/router';
+import { AreaTematica } from '../../../../data/schema/AreaTematica';
 
 @Component({
   selector: 'app-listar-areas-tematicas',
@@ -10,16 +10,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ListarAreasTematicasComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private institucionService: InstitucionService) { }
+  constructor(private route: ActivatedRoute, private institucionService: AreaTematicaService) { }
 
-  nombreInstitucion: string;             // Contiene el nombre de la institucion de la cual se espera obtener las areas tematicas
+  nombreInstitucion: string;             // Contiene el nombre de la area-tematica de la cual se espera obtener las areas tematicas
   areasTematicas: Array<AreaTematica>;   // Contiene las áreas temáticas de institucón
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       // Se solicita el parametro
       this.nombreInstitucion = params.get('nombreInstitucion');
-      // Se solicitan las areas tematicas de la institucion
+      // Se solicitan las areas tematicas de la area-tematica
       const request = this.institucionService.getAreasTematicas(this.nombreInstitucion).subscribe(
         res => {
           // Si las recibe se asignan al atributo areasTematicas

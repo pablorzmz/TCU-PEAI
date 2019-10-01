@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
-import { InstitucionModule } from './modules/institucion/institucion.module';
+import { AreaTematicaModule } from './modules/area-tematica/area-tematica.module';
 
 
 @NgModule({
@@ -15,7 +15,7 @@ import { InstitucionModule } from './modules/institucion/institucion.module';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    InstitucionModule
+    AreaTematicaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

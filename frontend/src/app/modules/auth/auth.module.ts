@@ -7,6 +7,8 @@ import { AboutComponent } from './components/about/about.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
+import {CommonModule} from '@angular/common';
+import {MatIconModule, MatMenuModule} from '@angular/material';
 
 
 @NgModule({
@@ -17,7 +19,10 @@ import { HeaderComponent } from './components/header/header.component';
   imports: [
     AuthRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    MatMenuModule,
+    MatIconModule
   ]
 })
 export class AuthModule { }

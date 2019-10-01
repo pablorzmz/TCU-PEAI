@@ -215,7 +215,7 @@ export class AuthService {
     if ( permisosPerfilesInstitucion === null || permisosPerfilesInstitucion === undefined ) {
       return false;
     } else {
-      const llaveTemporal = perfil + '*' + nombreInstitucion;
+      const llaveTemporal = nombreInstitucion + '*' + perfil;
       permisosPerfilesInstitucion.map(
         (pip: any) => {
           if ( pip.perfilInstitucion === llaveTemporal ) {

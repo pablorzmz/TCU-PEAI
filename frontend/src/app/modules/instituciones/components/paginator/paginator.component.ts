@@ -5,8 +5,9 @@ import {Component, Input, OnInit} from '@angular/core';
   templateUrl: './paginator.component.html'
 })
 export class PaginatorComponent implements OnInit {
+  // Objeto donde se guarda el resultado de la consulta, del cual se obtienen los datos necesarios para la paginacion
   @Input() paginador: any;
-  paginas: number[];
+  paginas: number[]; // Lista de las paginas posibles
 
   constructor() { }
 

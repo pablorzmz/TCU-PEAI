@@ -19,12 +19,11 @@ public class InstitucionServiceImpl implements IInstitucionService {
     @Autowired
     private IInstitucionDao iInstitucionDao;
 
-    @Override
-    @Transactional(readOnly = true)
-    public List<Institucion> findAll() {
-        return (List<Institucion>)iInstitucionDao.findAll();
-    }
-
+    /**
+     * Método para pedir las TODAS las intituciones en páginas
+     * @param pageable Objeto de solicitud de pagina de donde se obtiene el número de página que quiero y la cantidad de items por página
+     * @return Retorna un Page con las intituciones que estan en la página solicitada y los datos de la paginación
+     */
     @Override
     @Transactional(readOnly = true)
     public Page<Institucion> findAll(Pageable pageable) {
@@ -34,7 +33,7 @@ public class InstitucionServiceImpl implements IInstitucionService {
     /**
      * Método que busca una institucion por su PK
      * @param institucionPK es la PK de la institución
-     * @return retorna una institucón, si existe, null en caso contrario
+     * @return retorna una institución, si existe, null en caso contrario
      */
     @Override
     public Institucion getInstitucion(InstitucionPK institucionPK) {

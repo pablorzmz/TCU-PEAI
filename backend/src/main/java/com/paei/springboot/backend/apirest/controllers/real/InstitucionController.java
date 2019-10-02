@@ -9,13 +9,18 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/instituciones")
 public class InstitucionController {
 
     @Autowired
     private IInstitucionService iInstitucionService;
 
-    @GetMapping("/instituciones/page/{page}")
+    /**
+     * Metodo para pedir las TODAS las intituciones en paginas
+     * @param page nuemero de pagina que se quiere consultar
+     * @return Retorna un Page con las intituciones que estan en la pagina solicitada y los datos de la paginacion
+     */
+    @GetMapping("obtener_instituciones/page/{page}")
     public Page<Institucion> index(@PathVariable Integer page){
         return iInstitucionService.findAll(PageRequest.of(page, 4));
     }

@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AreaTematicaRoutingModule } from './area-tematica-routing.module';
-import { ListarAreasTematicasComponent } from './pages/listar-areas-tematicas/listar-areas-tematicas.component';
+import { ListarAreasTematicasInstitucionComponent } from './pages/listar-areas-tematicas-institucion/listar-areas-tematicas-institucion.component';
 import { AreaTematicaService } from '../../data/services/area-tematica.service';
+import { ListarAreasTematicasComponent } from './pages/listar-areas-tematicas/listar-areas-tematicas.component';
 
 
 @NgModule({
-  declarations: [ListarAreasTematicasComponent],
+  declarations: [ListarAreasTematicasInstitucionComponent, ListarAreasTematicasComponent],
   exports: [
-    ListarAreasTematicasComponent
+    ListarAreasTematicasInstitucionComponent
   ],
   imports: [
     CommonModule,

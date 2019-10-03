@@ -44,4 +44,14 @@ public class AreaTematicaController {
             throw new InstitucionNotFoundException(nombre);
         }
     }
+
+    /**
+     * Metodo que devuelve todas las areas tematicas del sistema
+     * @return retorna la lista de areas tematicas
+     */
+    @GetMapping("/listar_areas_tematicas")
+    public List<AreaTematica> recuperarAreasTematica(){
+        List<AreaTematica> areaTematicas = iAreaTematicaService.getAreasTematicas();
+        return areaTematicas;
+    }
 }

@@ -1,5 +1,6 @@
 import { AreaTematicaPK } from './AreaTematicaPK';
 import { SiglaTematica } from './SiglaTematica';
+import {Institucion} from './Institucion';
 
 export class AreaTematica {
   id: AreaTematicaPK;
@@ -7,4 +8,5 @@ export class AreaTematica {
   descripcion: string;
   siglaTematica: SiglaTematica;
   foto: string;
+  institucion: Institucion;
 }

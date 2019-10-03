@@ -18,4 +18,12 @@ public interface IAreaTematicaDao extends CrudRepository <AreaTematica, AreaTema
     @Query("SELECT AreaTematica FROM Institucion I JOIN I.areaTematicas AreaTematica WHERE I.institucionPK = ?1")
     List<AreaTematica> findAreaTematicaByInstitucion(InstitucionPK institucionPK);
 
+    /**
+     * Consulta todas las áreas temáticas
+     * @return Retorna una lista con las áreas temáticas de una institución
+     */
+    @Query("SELECT A FROM AreaTematica A")
+    @Override
+    List<AreaTematica> findAll();
+
 }

@@ -1,8 +1,7 @@
 export class InstitucionPK {
- private Nombre: string;
-
+ nombre: string;
 
  public getNombre(): string {
-    return this.Nombre;
+    return this.nombre;
   }
 }

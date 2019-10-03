@@ -12,7 +12,7 @@ import java.util.List;
 public class AreaTematicaServiceImpl implements IAreaTematicaService {
 
     @Autowired
-    IAreaTematicaDao iInstitucionDao;
+    IAreaTematicaDao iAreaTematicaDao;
 
     /**
      * Método que retorna las áreas temáticas de una institución
@@ -21,7 +21,17 @@ public class AreaTematicaServiceImpl implements IAreaTematicaService {
      */
     @Override
     public List<AreaTematica> getAreaTematicaPorInstitucion(InstitucionPK institucionPK) {
-        List<AreaTematica> listaAreasTematicas = iInstitucionDao.findAreaTematicaByInstitucion(institucionPK);
+        List<AreaTematica> listaAreasTematicas = iAreaTematicaDao.findAreaTematicaByInstitucion(institucionPK);
+        return listaAreasTematicas;
+    }
+
+    /**
+     * Método que retorna las areas tematicas existentes
+     * @return retorna una lista de las áreas temáticas existentes
+     */
+    @Override
+    public List<AreaTematica> getAreasTematicas(){
+        List<AreaTematica> listaAreasTematicas = iAreaTematicaDao.findAll();
         return listaAreasTematicas;
     }
 }

@@ -16,10 +16,10 @@
         <img src="{{institucion.foto}}" class="card-img-top card-imagen" alt="Foto Institucion">
         <div class="card-body">
           <h5 class="card-title">
-            <a style="color: #005A70" [routerLink]="['/areas_tematicas/',institucion.institucionPK.nombre]"> {{institucion.institucionPK.nombre}} </a>
+            <a style="color: #005A70" [routerLink]="['/areas_tematicas_institucion/',institucion.institucionPK.nombre]"> {{institucion.institucionPK.nombre}} </a>
           </h5>
           <p class="card-text">{{institucion.descripcion}}</p>
-          <a [routerLink]="['/areas_tematicas/',institucion.institucionPK.nombre]" class="btn btn-primary">Entrar</a>
+          <a [routerLink]="['/areas_tematicas_institucion/',institucion.institucionPK.nombre]" class="btn btn-primary">Entrar</a>
         </div>
       </div>
     </div>

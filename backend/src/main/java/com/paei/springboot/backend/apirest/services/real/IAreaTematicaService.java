@@ -14,4 +14,10 @@ public interface IAreaTematicaService {
      */
     List<AreaTematica> getAreaTematicaPorInstitucion(InstitucionPK institucionPK);
 
+    /**
+     * Método que retorna las areas tematicas existentes
+     * @return retorna una lista de las áreas temáticas existentes
+     */
+    List<AreaTematica> getAreasTematicas();
+
 }

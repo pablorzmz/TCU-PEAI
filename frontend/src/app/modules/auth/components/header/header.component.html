@@ -1,5 +1,52 @@
-<nav class="navbar navbar-light" style="background-color: #DCEDF6">
-  <button class="border-0" style="background-color: transparent">
-    <img src="assets/img/TCU_LOGO.PNG" width="140" height="50" class="d-inline-block align-top">
-  </button>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #DCEDF6">
+   <a class="navbar-brand" href="#">
+     <img src="assets/img/TCU_LOGO.PNG" width="30" height="35" class="navbar-brand d-inline-block">
+     <span style="color: #FFCF01">Ciencia <a style="color: gray">Accesible</a></span>
+   </a>
+   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+   </button>
+
+  <div *ngIf="authService.usuarioEstaLogeado()" class="collapse navbar-collapse" id="navbarNav" >
+    <ul class="navbar-nav mx-auto">
+      <li class="nav-item">
+        <a class="btn btn-lg" style="background-color: #DCEDF6; color: gray" mat-flat-button [matMenuTriggerFor]="miEntorno">
+          <i class="fa fa-home"></i>
+            Mi entorno
+        </a>
+        <mat-menu #miEntorno="matMenu" yPosition="below">
+          <a class="btn"  mat-menu-item [routerLink]="['/instituciones']">
+            <i class="fa fa-building"></i>
+            Instituciones
+          </a>
+          <a class="btn"  mat-menu-item [routerLink]="['/areas_tematicas']">
+            <i class="fa fa-th-large"></i>
+            Áreas temáticas
+          </a>
+          <a class="btn" mat-menu-item>
+            <i class="fa fa-book"></i>
+            Cursos
+          </a>
+        </mat-menu>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item mr-auto">
+        <button class="btn btn-lg" style="background-color: #DCEDF6; color: gray" mat-flat-button [matMenuTriggerFor]="miCuenta">
+          <i class="fa fa-user-circle"></i>
+          Mi cuenta
+        </button>
+        <mat-menu #miCuenta="matMenu" yPosition="below">
+          <a  class="btn" mat-menu-item>
+            <i class="fa fa-cog"></i>
+            Configuración
+          </a>
+          <a  class="btn" (click)="cerrarSesion()" mat-menu-item>
+            <i class="fa fa-sign-out"></i>
+            Cerrar sesión
+          </a>
+        </mat-menu>
+      </li>
+    </ul>
+  </div>
 </nav>

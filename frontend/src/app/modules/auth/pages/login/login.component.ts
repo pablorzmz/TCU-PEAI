@@ -12,8 +12,7 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   usuario: Usuario;
-  // TODO redirigir a la vista principal de instituciones
-  private  RUTA_REDIRECCION = '/register';
+  private  RUTA_REDIRECCION = '/instituciones';
 
   constructor(private  authService: AuthService,
               private router: Router) {

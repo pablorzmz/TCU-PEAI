@@ -4,11 +4,14 @@
   <div class="row mx-0 w-100 my-4">
     <div class="col-sm">
       <!-- Al nav falta agregarle el buscador -->
-      <nav class="navbar navbar-light" style="background-color: #DCEDF6">
-        <h5 style="color: #005A70">Áreas temáticas</h5>
+      <nav *ngIf="areasTematicas.length > 0" class="navbar navbar-light" style="background-color: #DCEDF6">
+        <h5 style="color: #005A70">Áreas temáticas de {{areasTematicas[0].institucion.institucionPK.nombre}}</h5>
+      </nav>
+      <nav *ngIf="areasTematicas.length == 0" class="navbar navbar-light" style="background-color: #DCEDF6">
+        <h5 style="color: #005A70">Áreas temáticas de {{nombreInstitucion}}</h5>
       </nav>
       <div *ngIf="areasTematicas.length == 0" class="alert alert-warning my-4" role="alert">
-        No hay áreas temáticas en el sistema
+        La institución {{nombreInstitucion}} no cuenta con áreas tematicas asociadas
       </div>
     </div>
   </div>
@@ -19,9 +22,10 @@
         <img class="card-img-top card-imagen" src="{{areaTematica.foto}}" alt="Foto del area temática">
         <div class="card-body">
           <h5 style="color: #005A70" class="card-title">{{areaTematica.nombre}}</h5>
-          <p>{{areaTematica.institucion.institucionPK.nombre}}</p>
+          <p>{{areaTematica.descripcion}}</p>
         </div>
       </div>
     </div>
   </div>
 </div>
+

@@ -54,6 +54,9 @@ INSERT INTO perfil (perfil_id, nombre, descripcion) VALUES (2,'ROLE_Estudiante',
 /*Permisos*/
 INSERT INTO permiso VALUES (1, 'Impartir un curso');
 INSERT INTO permiso VALUES (2, 'Recibir un curso');
+INSERT INTO permiso VALUES (3, 'Visualizar areas temáticas');
+INSERT INTO permiso VALUES (4, 'Visualizar instituciones');
+INSERT INTO permiso VALUES (5, 'Visualizar cursos');
 
 
 /*Perfil-Permiso*/
@@ -61,7 +64,6 @@ INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre
 INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (2, 2, 'Universidad de Costa Rica');
 INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (1, 1, 'Cedes Don Bosco');
 INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (2, 2, 'Cedes Don Bosco');
-
 
 /*Perfil-Usuario*/
 INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (2, 'steveen', 'Universidad de Costa Rica');

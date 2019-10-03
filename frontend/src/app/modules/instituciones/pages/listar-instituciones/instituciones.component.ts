@@ -13,7 +13,9 @@ export class InstitucionesComponent implements OnInit {
   paginador: any; // Objeto donde se guarda el resultado de la consulta, que será enviado para la paginación
 
   constructor(private institucionService: InstitucionService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute) {
+    this.instituciones = new Array();
+  }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe( params => {

@@ -1,6 +1,7 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,11 +36,12 @@ public class AreaTematica implements Serializable {
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "sigla_tematica_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private SiglaTematica siglaTematica;
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "nombre_institucion")
-    @JsonIgnore
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Institucion institucion;
 
     @OneToMany(mappedBy = "areaTematica", fetch = FetchType.LAZY)

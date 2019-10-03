@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AreaTematicaModule } from './modules/area-tematica/area-tematica.module';
+import {InstitucionModule} from './modules/instituciones/institucion.module';
 
 
 @NgModule({
@@ -18,6 +19,8 @@ import { AreaTematicaModule } from './modules/area-tematica/area-tematica.module
     AuthModule,
     BrowserAnimationsModule,
     AreaTematicaModule
+    AreaTematicaModule,
+    InstitucionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

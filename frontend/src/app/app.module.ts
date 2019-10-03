@@ -18,7 +18,6 @@ import {InstitucionModule} from './modules/instituciones/institucion.module';
     AppRoutingModule,
     AuthModule,
     BrowserAnimationsModule,
-    AreaTematicaModule
     AreaTematicaModule,
     InstitucionModule
   ],

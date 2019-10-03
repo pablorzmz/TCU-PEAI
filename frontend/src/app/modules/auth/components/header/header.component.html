@@ -10,23 +10,23 @@
   <div *ngIf="authService.usuarioEstaLogeado()" class="collapse navbar-collapse" id="navbarNav" >
     <ul class="navbar-nav mx-auto">
       <li class="nav-item">
-        <button class="btn btn-lg" style="background-color: #DCEDF6; color: gray" mat-flat-button [matMenuTriggerFor]="miEntorno">
+        <a class="btn btn-lg" style="background-color: #DCEDF6; color: gray" mat-flat-button [matMenuTriggerFor]="miEntorno">
           <i class="fa fa-home"></i>
             Mi entorno
-        </button>
+        </a>
         <mat-menu #miEntorno="matMenu" yPosition="below">
-          <button class="btn"  mat-menu-item>
+          <a class="btn"  mat-menu-item [routerLink]="['/instituciones']">
             <i class="fa fa-building"></i>
             Instituciones
-          </button>
-          <button class="btn"  mat-menu-item>
+          </a>
+          <a class="btn"  mat-menu-item>
             <i class="fa fa-th-large"></i>
             Áreas temáticas
-          </button>
-          <button class="btn" mat-menu-item>
+          </a>
+          <a class="btn" mat-menu-item>
             <i class="fa fa-book"></i>
             Cursos
-          </button>
+          </a>
         </mat-menu>
       </li>
     </ul>
@@ -37,14 +37,14 @@
           Mi cuenta
         </button>
         <mat-menu #miCuenta="matMenu" yPosition="below">
-          <button  class="btn" mat-menu-item>
+          <a  class="btn" mat-menu-item>
             <i class="fa fa-cog"></i>
             Configuración
-          </button>
-          <button  class="btn" (click)="cerrarSesion()" mat-menu-item>
+          </a>
+          <a  class="btn" (click)="cerrarSesion()" mat-menu-item>
             <i class="fa fa-sign-out"></i>
             Cerrar sesión
-          </button>
+          </a>
         </mat-menu>
       </li>
     </ul>

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { AreaTematicaModule } from './modules/area-tematica/area-tematica.module';
+import {InstitucionModule} from './modules/instituciones/institucion.module';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { AreaTematicaModule } from './modules/area-tematica/area-tematica.module
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    AreaTematicaModule
+    AreaTematicaModule,
+    InstitucionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

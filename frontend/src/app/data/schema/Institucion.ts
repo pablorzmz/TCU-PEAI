@@ -2,8 +2,8 @@ import { InstitucionPK } from './InstitucionPK';
 
 export class Institucion {
   institucionPK: InstitucionPK;
-  Descripcion: string;
-  Ubicación: string;
-  Habilitada: boolean;
-  Foto: string;
+  descripcion: string;
+  ubicación: string;
+  habilitada: boolean;
+  foto: string;
 }

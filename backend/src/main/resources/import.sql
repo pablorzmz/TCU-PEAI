@@ -15,8 +15,8 @@ INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,no
 
 
 /*Instituciones*/
-INSERT INTO institucion (institucion_nombre, descripcion, foto, habilitada, ubicacion) VALUES ('Cedes Don Bosco', 'Colegio Técnico Profesional Semi-Privado','ruta/foto/server',1,'San José');
-INSERT INTO institucion (institucion_nombre, descripcion, foto, habilitada, ubicacion) VALUES ('Universidad de Costa Rica', 'Universidad pública #1 del país','ruta/foto/server',1,'San Pedro');
+INSERT INTO institucion (institucion_nombre, descripcion, foto, habilitada, ubicacion) VALUES ('Cedes Don Bosco', 'Colegio Técnico Profesional Semi-Privado','https://www.cedesdonbosco.ed.cr/es/images/logos/logocedes.png',1,'San José');
+INSERT INTO institucion (institucion_nombre, descripcion, foto, habilitada, ubicacion) VALUES ('Universidad de Costa Rica', 'Universidad pública #1 del país','http://www.cia.ucr.ac.cr/wp-content/uploads/2016/02/logoUCR_0.png',1,'San Pedro');
 
 
 /*Siglas tematicas*/

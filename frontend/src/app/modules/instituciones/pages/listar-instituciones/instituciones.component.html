@@ -13,7 +13,7 @@
   <div class="row mx-0 w-100">
     <div class="col-md-6 mb-5" *ngFor="let institucion of instituciones">
       <div class="card">
-        <img src="{{institucion.foto}}" class="card-img-top card-imagen" alt="Foto Institucion">
+        <img src="{{institucion.foto}}" class="card-img-top" alt="Foto Institucion">
         <div class="card-body">
           <h5 class="card-title">
             <a style="color: #005A70" [routerLink]="['/areas_tematicas/',institucion.institucionPK.nombre]"> {{institucion.institucionPK.nombre}} </a>

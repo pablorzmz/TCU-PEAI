@@ -15,6 +15,10 @@ public class CursoPK implements Serializable {
 
     public CursoPK(){}
 
+    public CursoPK(String nombre){
+        this.Nombre = nombre;
+    }
+
     @Column(name = "curso_nombre")
     private String Nombre;
 

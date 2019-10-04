@@ -31,7 +31,7 @@ public class Grupo implements Serializable {
 
     @MapsId("curso_id")
     @JoinColumns({
-            @JoinColumn(name="curso_nombre", referencedColumnName="curso_nombre")
+            @JoinColumn(name="curso_id", referencedColumnName="curso_id")
     })
     @ManyToOne
     private Curso curso;

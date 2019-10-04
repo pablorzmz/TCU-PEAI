@@ -12,14 +12,18 @@ public class Curso implements Serializable {
 
     public Curso(){}
 
-    public Curso(CursoPK id, String descripcion, String foto) {
+    public Curso(CursoPK id, String nombre, String descripcion, String foto) {
         Id = id;
+        Nombre = nombre;
         Descripcion = descripcion;
         Foto = foto;
     }
 
     @EmbeddedId
     private CursoPK Id;
+
+    @Column(name = "nombre")
+    private String Nombre;
 
     @Column( name = "descripcion")
     private String Descripcion;
@@ -40,6 +44,14 @@ public class Curso implements Serializable {
 
     public void setId(CursoPK id) {
         Id = id;
+    }
+
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String nombre) {
+        Nombre = nombre;
     }
 
     public String getDescripcion() {

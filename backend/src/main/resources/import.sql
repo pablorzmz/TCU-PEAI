@@ -32,20 +32,20 @@ INSERT INTO area_tematica VALUES (4, 'Área temática de Arte', 'https://image.f
 INSERT INTO area_tematica VALUES (5, 'Área temática de Arte', 'https://image.freepik.com/vector-gratis/fondo-acerca-ciencia_1284-699.jpg', 'Arte','Cedes Don Bosco', 3);
 
 /*Cursos*/
-INSERT INTO curso VALUES ('Física General I', 'Curso donde se cubre los temas generales de Física', 'ruta/foto/server', 1);
-INSERT INTO curso VALUES ('Física General II', 'Curso donde se cubre los temas generales, más avanzados, de Física', 'ruta/foto/server', 1);
-INSERT INTO curso VALUES ('Algebra', 'Curso donde se cubre la algebra básica', 'ruta/foto/server', 2);
-INSERT INTO curso VALUES ('Física I', 'Curso donde se cubre los temas generales de Física, se trabaja con la práctica', 'ruta/foto/server', 3);
-INSERT INTO curso VALUES ('Cine', 'Curso donde se cubre ls historia del Cine', 'ruta/foto/server', 4);
+INSERT INTO curso VALUES (1, 'Curso donde se cubre los temas generales de Física', 'ruta/foto/server', 'Física General I',  1);
+INSERT INTO curso VALUES (2, 'Curso donde se cubre los temas generales, más avanzados, de Física', 'ruta/foto/server','Física General II', 1);
+INSERT INTO curso VALUES (3, 'Curso donde se cubre la algebra básica', 'ruta/foto/server', 'Algebra', 2);
+INSERT INTO curso VALUES (4, 'Curso donde se cubre los temas generales de Física, se trabaja con la práctica', 'ruta/foto/server','Física I',  3);
+INSERT INTO curso VALUES (5, 'Curso donde se cubre ls historia del Cine', 'ruta/foto/server', 'Cine',  4);
 
 /*Grupos*/
-INSERT INTO grupo VALUES (1, '1 semestre', 'Física I', 'jorge54');
-INSERT INTO grupo VALUES (2, '1 semestre', 'Física I', 'marii');
-INSERT INTO grupo VALUES (1, '2 semestre',  'Cine', 'mario76');
-INSERT INTO grupo VALUES (1, '1 semestre', 'Física General I', 'bran24');
-INSERT INTO grupo VALUES (1, '1 semestre', 'Física General II', 'marii');
-INSERT INTO grupo VALUES (2, '1 semestre', 'Física General II', 'marii');
-INSERT INTO grupo VALUES (1, '1 semestre', 'Algebra', 'gabrielaPo98');
+INSERT INTO grupo VALUES (1, '1 semestre', 4, 'jorge54');
+INSERT INTO grupo VALUES (2, '1 semestre', 4, 'marii');
+INSERT INTO grupo VALUES (1, '2 semestre',  5, 'mario76');
+INSERT INTO grupo VALUES (1, '1 semestre', 1, 'bran24');
+INSERT INTO grupo VALUES (1, '1 semestre', 2, 'marii');
+INSERT INTO grupo VALUES (2, '1 semestre', 2, 'marii');
+INSERT INTO grupo VALUES (1, '1 semestre', 3, 'gabrielaPo98');
 
 /*Perfiles*/
 INSERT INTO perfil (perfil_id, nombre, descripcion) VALUES (1,'ROLE_Profesor', 'Encargado de impartir cursos');
@@ -82,6 +82,6 @@ INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_no
 
 
 /*Usuario_Grupo_Inscrito*/
-INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_nombre) VALUES ('steveen', 0, 1, '1 semestre', 'Física I');
-INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_nombre) VALUES ('stephXO', 0, 1, '2 semestre', 'Cine');
-INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_nombre) VALUES ('stephXO', 0, 1, '1 semestre', 'Física I');
+INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_id) VALUES ('steveen', 0, 1, '1 semestre', 4);
+INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_id) VALUES ('stephXO', 0, 1, '2 semestre', 5);
+INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_id) VALUES ('stephXO', 0, 1, '1 semestre', 4);

@@ -4,16 +4,16 @@
       <div class="card-body">
         <div class="row">
           <div class="col">
-            <h6 class="card-title">Institucion: </h6>
-            <p class="card-text"> Este es el nombre de una institucion</p>
+            <h6 class="card-title">Institución: </h6>
+            <p class="card-text"> {{institucion.institucionPK.nombre}}</p>
             <h6 class="card-title">Área temática:</h6>
-            <p class="card-text"> Este es el nombre de un area tematica</p>
+            <p class="card-text"> {{areaTematica.nombre}}</p>
           </div>
           <div class="col">
             <h6 class="card-title">Nombre del curso:</h6>
-            <p class="card-text"> Nombre de un curso</p>
+            <p class="card-text"> {{curso.nombre}}</p>
             <h6 class="card-title">Profesor(a):</h6>
-            <p class="card-text"> Nombre de un profesor</p>
+            <p class="card-text"> {{profesorCurso.nombre}}</p>
           </div>
         </div>
         <div class="dropdown-divider"></div>
@@ -21,12 +21,7 @@
           <div class="col">
             <h6 class="card-title">Descripción:</h6>
             <p class="card-text">
-              Lorem ipsum dolor sit amet consectetur adipiscing elit cursus ligula auctor
-              pharetra ut, vehicula nisl dui ultrices placerat facilisis porttitor etiam
-              quisque nullam. Praesent mollis est fusce neque primis dis ad, volutpat himenaeos
-              cras pretium donec ultrices ornare, viverra fermentum varius phasellus condimentum
-              aenean. Cubilia euismod sapien eu et mollis proin, dictum consequat turpis senectus
-              leo platea mi, ante auctor justo dis magnis.
+              {{curso.descripcion}}
             </p>
           </div>
         </div>

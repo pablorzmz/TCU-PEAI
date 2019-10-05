@@ -6,7 +6,7 @@ import {VistaPrincipalCursoComponent} from './pages/principal/vista-principal-cu
 
 const routes: Routes = [
   {
-    path: 'vista_principal_curso',
+    path: 'vista_principal_curso/:id',
     pathMatch: 'full',
     component: VistaPrincipalCursoComponent,
     canActivate: [AuthGuardService]

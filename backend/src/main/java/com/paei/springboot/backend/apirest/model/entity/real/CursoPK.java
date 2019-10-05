@@ -1,7 +1,5 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
-import org.hibernate.validator.constraints.Length;
-
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
@@ -15,15 +13,15 @@ public class CursoPK implements Serializable {
 
     public CursoPK(){}
 
-    @Column(name = "curso_nombre")
-    private String Nombre;
+    @Column(name = "curso_id")
+    private Long Id;
 
-    public String getNombre() {
-        return Nombre;
+    public Long getId() {
+        return Id;
     }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public void setId(Long id) {
+        Id = id;
     }
 
     @Override
@@ -31,11 +29,11 @@ public class CursoPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CursoPK cursoPK = (CursoPK) o;
-        return Objects.equals(Nombre, cursoPK.Nombre);
+        return Objects.equals(Id, cursoPK.Id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Nombre);
+        return Objects.hash(Id);
     }
 }

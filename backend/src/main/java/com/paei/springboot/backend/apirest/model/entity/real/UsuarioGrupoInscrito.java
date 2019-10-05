@@ -33,7 +33,7 @@ public class UsuarioGrupoInscrito implements Serializable {
 
     @MapsId("grupoPk")
     @JoinColumns({
-            @JoinColumn(name="curso_nombre", referencedColumnName="curso_nombre"),
+            @JoinColumn(name="curso_id", referencedColumnName="curso_id"),
             @JoinColumn(name="numero", referencedColumnName="numero"),
             @JoinColumn(name="periodo_tiempo", referencedColumnName="periodo_tiempo")
     })

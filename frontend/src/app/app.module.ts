@@ -7,7 +7,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AreaTematicaModule } from './modules/area-tematica/area-tematica.module';
 import {InstitucionModule} from './modules/instituciones/institucion.module';
-
+import { VistaPrincipalCursoModule} from './modules/vista-principal-curso/vista-principal-curso.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import {InstitucionModule} from './modules/instituciones/institucion.module';
     AuthModule,
     BrowserAnimationsModule,
     AreaTematicaModule,
-    InstitucionModule
+    InstitucionModule,
+    VistaPrincipalCursoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

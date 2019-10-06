@@ -12,7 +12,11 @@ public class CursoPK implements Serializable {
     private static final long serialVersionUID = 1331919158691105548L;
 
     public CursoPK(){}
-    
+
+    public CursoPK(Long id){
+        this.Id = id;
+    }
+
     @Column(name = "curso_id")
     private Long Id;
 

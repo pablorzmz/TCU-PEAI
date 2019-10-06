@@ -23,9 +23,9 @@ public class GrupoController {
     private ICursoService iCursoService;
 
     @GetMapping("/listar_grupos_de_curso")
-    public List<Grupo> recuperarGruposDeCurso(@RequestParam String nombreCurso){
+    public List<Grupo> recuperarGruposDeCurso(@RequestParam Long idCurso){
         // Se crea el cursoPK a partir del nombre recibido
-        CursoPK cursoPK = new CursoPK(nombreCurso);
+        CursoPK cursoPK = new CursoPK(idCurso);
         // Se obtiene el curso a partir del cursoPK
         Curso curso = iCursoService.getCurso(cursoPK);
         // Si el curso no es null se obtienen los grupos y los retorna
@@ -34,7 +34,7 @@ public class GrupoController {
             return listaGrupos;
         }else {
             // Si el curso es null es porque no existe, se retorna la excepcion
-            throw new CursoNotFoundException(nombreCurso);
+            throw new CursoNotFoundException(idCurso);
         }
     }
 }

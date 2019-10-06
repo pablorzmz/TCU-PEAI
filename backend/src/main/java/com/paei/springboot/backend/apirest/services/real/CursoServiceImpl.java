@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ICursoServiceImpl implements ICursoService {
+public class CursoServiceImpl implements ICursoService {
 
     @Autowired
     private ICursoDao iCursoDao;

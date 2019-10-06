@@ -37,8 +37,8 @@ public class CursoController {
      * @param idArea Id del area tematica de la cual obtengo los cursos
      * @return Retorna los cursos pertenecientes a un area tematica en paginas
      */
-    @GetMapping("cursos_por_area")
-    public List<Curso> cursosPorArea(@RequestParam Long idArea){
+    @GetMapping("cursos_por_area/{idArea}")
+    public List<Curso> cursosPorArea(@PathVariable Long idArea){
         //Se crea un objeto de AreaTematicaPK
         AreaTematicaPK areaTematicaPK = new AreaTematicaPK(idArea);
         // Se busca el area tematica

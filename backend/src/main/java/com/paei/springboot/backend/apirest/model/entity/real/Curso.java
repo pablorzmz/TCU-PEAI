@@ -1,5 +1,7 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -33,9 +35,11 @@ public class Curso implements Serializable {
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "area_tematica_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private AreaTematica areaTematica;
 
     @OneToMany(mappedBy = "curso", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private List<Grupo> grupos = new ArrayList<>();
 
     public CursoPK getId() {

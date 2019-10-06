@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./listar-cursos.component.css']
 })
 export class ListarCursosComponent implements OnInit {
-  cursos: Curso[] // Lista de cursos para mostrar
+  cursos: Curso[]; // Lista de cursos para mostrar
   paginador: any; // Objeto donde se guarda el resultado de la consulta, que será enviado para la paginación
   rutaPag: string = '/cursos/page/'; // Ruta del paginador
 
@@ -28,7 +28,7 @@ export class ListarCursosComponent implements OnInit {
       // Se realiza el Request al backend
       const request = this.cursoService.getCursos(page).subscribe(
         (response) => {
-          // Si se reciben instituciones se le asigna al atributo instituciones la lista de ellas
+          // Si se reciben cursos se le asigna al atributo cursos la lista de ellos
           this.cursos = response.content as Curso[];
           // Se le asigna al atributo paginador el resultado completo de la consulta
           this.paginador = response;

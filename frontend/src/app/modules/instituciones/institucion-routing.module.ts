@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {InstitucionesComponent} from './pages/listar-instituciones/instituciones.component';
 import {AuthGuardService} from '../../core/guard/auth.guard';
-import {ListarAreasTematicasComponent} from '../area-tematica/pages/listar-areas-tematicas/listar-areas-tematicas.component';
 
 const routes: Routes = [
   {

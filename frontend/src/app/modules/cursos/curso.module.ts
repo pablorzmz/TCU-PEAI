@@ -5,14 +5,17 @@ import {ListarCursosComponent} from './pages/listar-cursos/listar-cursos.compone
 import {CursoRoutingModule} from './curso-routing.module';
 import {CursoService} from '../../data/services/curso.service';
 import {CommonsModule} from '../commons/commons.module';
+import { ListarCursosDeAreaComponent } from './pages/listar-cursos-de-area/listar-cursos-de-area.component';
 
 
 @NgModule({
   declarations: [
-    ListarCursosComponent
+    ListarCursosComponent,
+    ListarCursosDeAreaComponent
   ],
   exports: [
-    ListarCursosComponent
+    ListarCursosComponent,
+    ListarCursosDeAreaComponent
   ],
   imports: [
     CommonModule,

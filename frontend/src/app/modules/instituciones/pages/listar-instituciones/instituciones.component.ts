@@ -11,6 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 export class InstitucionesComponent implements OnInit {
   instituciones: Institucion[]; // Lista de Instituciones para mostrar
   paginador: any; // Objeto donde se guarda el resultado de la consulta, que será enviado para la paginación
+  rutaPag: string = '/instituciones/page/'
 
   constructor(private institucionService: InstitucionService,
               private activatedRoute: ActivatedRoute) {

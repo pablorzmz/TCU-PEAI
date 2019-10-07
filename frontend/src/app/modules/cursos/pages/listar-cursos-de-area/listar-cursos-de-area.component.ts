@@ -19,7 +19,6 @@ export class ListarCursosDeAreaComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe( params => {
       // Se obtiene el id del Area
       this.idArea = +params.get('area');
-      console.log(this.idArea);
       // Se realiza el Request al backend
       const request = this.cursoService.getCursosDeArea(this.idArea).subscribe(
         (response) => {

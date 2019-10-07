@@ -2,11 +2,13 @@ package com.paei.springboot.backend.apirest.services.real;
 
 import com.paei.springboot.backend.apirest.dao.real.IAreaTematicaDao;
 import com.paei.springboot.backend.apirest.model.entity.real.AreaTematica;
+import com.paei.springboot.backend.apirest.model.entity.real.AreaTematicaPK;
 import com.paei.springboot.backend.apirest.model.entity.real.InstitucionPK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AreaTematicaServiceImpl implements IAreaTematicaService {
@@ -33,5 +35,20 @@ public class AreaTematicaServiceImpl implements IAreaTematicaService {
     public List<AreaTematica> getAreasTematicas(){
         List<AreaTematica> listaAreasTematicas = iAreaTematicaDao.findAll();
         return listaAreasTematicas;
+    }
+
+    /**
+     * Metodo para obtener la informacion de un area tematica
+     * @param areaTematicaPK id del area tematica de la cual quiero la informacion
+     * @return retorna el area tematica solicitada
+     */
+    @Override
+    public AreaTematica getAreaTematica(AreaTematicaPK areaTematicaPK) {
+        try {
+            Optional<AreaTematica> areaTematica = iAreaTematicaDao.findById(areaTematicaPK);
+            return areaTematica.get();
+        }catch (Exception e){
+            return null;
+        }
     }
 }

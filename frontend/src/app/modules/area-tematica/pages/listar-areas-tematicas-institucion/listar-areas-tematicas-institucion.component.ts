@@ -13,7 +13,7 @@ export class ListarAreasTematicasInstitucionComponent implements OnInit {
   constructor(private route: ActivatedRoute, private areaTematicaService: AreaTematicaService) { }
 
   nombreInstitucion: string;             // Contiene el nombre de la area-tematica de la cual se espera obtener las areas tematicas
-  areasTematicas: Array<AreaTematica>;   // Contiene las áreas temáticas de institucón
+  areasTematicas: AreaTematica[];   // Contiene las áreas temáticas de institucón
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -23,7 +23,7 @@ export class ListarAreasTematicasInstitucionComponent implements OnInit {
       const request = this.areaTematicaService.getAreasTematicasInstitucion(this.nombreInstitucion).subscribe(
         res => {
           // Si las recibe se asignan al atributo areasTematicas
-          this.areasTematicas = res;
+          this.areasTematicas = res as AreaTematica[];
           // Quitamos la subscripcion
           request.unsubscribe();
         },

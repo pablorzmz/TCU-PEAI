@@ -28,7 +28,7 @@
     <div *ngIf="instituciones?.length == 0" class="col-md-12 alert alert-info">
       No hay instituciones en la Base de Datos.
     </div>
-    <paginator-nav class="col-md-12" *ngIf="paginador" [paginador] = "paginador"></paginator-nav>
+    <paginator-nav class="col-md-12" *ngIf="paginador" [paginador] = "paginador" [ruta]="rutaPag"></paginator-nav>
   </div>
 </div>
 <div *ngIf="!instituciones" class="alert alert-danger m-3">

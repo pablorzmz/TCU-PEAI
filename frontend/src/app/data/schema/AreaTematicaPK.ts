@@ -1,3 +1,3 @@
 export class AreaTematicaPK {
-  Id: bigint;
+  id: bigint;
 }

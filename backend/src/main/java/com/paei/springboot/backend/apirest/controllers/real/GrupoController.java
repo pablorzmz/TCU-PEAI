@@ -37,4 +37,7 @@ public class GrupoController {
             throw new CursoNotFoundException(idCurso);
         }
     }
+
+    @GetMapping("/crear_grupo_de_curso")
+    public boolean crearGrupoDeCurso(@RequestParam CursoPK idCurso, @RequestParam Long numeroGrupo, @RequestParam String periodoTiempo, @RequestParam String nombreUsuario)
 }

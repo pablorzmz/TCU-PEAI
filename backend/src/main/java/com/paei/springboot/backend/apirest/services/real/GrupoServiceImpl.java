@@ -1,8 +1,7 @@
 package com.paei.springboot.backend.apirest.services.real;
 
 import com.paei.springboot.backend.apirest.dao.real.IGrupoDao;
-import com.paei.springboot.backend.apirest.model.entity.real.CursoPK;
-import com.paei.springboot.backend.apirest.model.entity.real.Grupo;
+import com.paei.springboot.backend.apirest.model.entity.real.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +22,17 @@ public class GrupoServiceImpl implements IGrupoService {
     @Override
     public List<Grupo> getGruposCurso(CursoPK cursoPK){
         return iGrupoDao.findGruposByCurso(cursoPK);
+    }
+
+    /**
+     * Método que liga un grupo con un curso dado
+     * @param cursoPK es el PK del curso
+     * @param grupoPK es el PK del grupo que se quiere insertar
+     * @return retorna verdadero si la inserción es exitosa
+     */
+    @Override
+    public boolean setGrupoCurso(CursoPK cursoPK, long numero, String periodoTiempo, Usuario usuarioImparte){
+        iGrupoDao.save();
     }
 
 }

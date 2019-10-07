@@ -56,6 +56,8 @@ public class VistaPrincipalCursoController {
                     // Si no lo imparte es un estudiante y hay que buscar el profesor de su grupo
                     profesorImparte = obtenerGrupoUsuarioEstudiante(usuario, curso.get());
                 }
+                // En caso de que el grupo por alguna razón no tenga un profesor encargado.
+                if (profesorImparte == null ) {throw new VistaPrincipalCursoNotFoundException();}
                 // Se colocan los datos para retornar al frontend
                 response.put("profesorImparte",profesorImparte);
                 response.put("curso",curso.get());

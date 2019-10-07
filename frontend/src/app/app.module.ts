@@ -21,8 +21,7 @@ import {CursoModule} from './modules/cursos/curso.module';
     BrowserAnimationsModule,
     AreaTematicaModule,
     InstitucionModule,
-    VistaPrincipalCursoModule
-    InstitucionModule,
+    VistaPrincipalCursoModule,
     CursoModule
   ],
   providers: [],

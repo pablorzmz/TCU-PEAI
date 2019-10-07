@@ -39,6 +39,7 @@ public class Curso implements Serializable {
     private AreaTematica areaTematica;
 
     @OneToMany(mappedBy = "curso", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private List<Grupo> grupos = new ArrayList<>();
 
     public CursoPK getId() {

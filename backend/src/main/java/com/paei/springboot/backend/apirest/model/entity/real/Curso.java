@@ -1,5 +1,6 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -40,6 +41,7 @@ public class Curso implements Serializable {
 
     @OneToMany(mappedBy = "curso", fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
+    @JsonIgnore
     private List<Grupo> grupos = new ArrayList<>();
 
     public List<Grupo> getGrupos() {

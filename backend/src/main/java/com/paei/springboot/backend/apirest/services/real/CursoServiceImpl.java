@@ -3,17 +3,29 @@ package com.paei.springboot.backend.apirest.services.real;
 import com.paei.springboot.backend.apirest.dao.real.ICursoDao;
 import com.paei.springboot.backend.apirest.model.entity.real.AreaTematicaPK;
 import com.paei.springboot.backend.apirest.model.entity.real.Curso;
+import com.paei.springboot.backend.apirest.model.entity.real.CursoPK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CursoServiceImpl implements ICursoService {
     @Autowired
     ICursoDao iCursoDao;
+
+    @Override
+    /**
+     * Método para recuperar un curso por id
+     * @param id Id del curso
+     * @return el curso en el objeto optional o un objeto optional vacio
+     */
+    public Optional<Curso> findyId(CursoPK id) {
+        return iCursoDao.findById(id);
+    }
 
     /**
      * Método para pedir las todos los cursos en páginas
@@ -33,28 +45,6 @@ public class CursoServiceImpl implements ICursoService {
     @Override
     public List<Curso> findCursosByAreaTematica(AreaTematicaPK areaTematicaPK) {
         return this.iCursoDao.findCursosByAreaTematica(areaTematicaPK);
-    }
-}
-
-package com.paei.springboot.backend.apirest.services.real;
-
-import com.paei.springboot.backend.apirest.dao.real.ICursoDao;
-import com.paei.springboot.backend.apirest.model.entity.real.Curso;
-import com.paei.springboot.backend.apirest.model.entity.real.CursoPK;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-
-@Service
-public class CursoServiceImpl implements ICursoService {
-
-    @Autowired
-    private ICursoDao iCursoDao;
-
-    @Override
-    public Optional<Curso> findyId(CursoPK id) {
-        return iCursoDao.findById(id);
     }
 }
 

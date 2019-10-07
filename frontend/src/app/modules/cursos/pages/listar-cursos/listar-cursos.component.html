@@ -1,0 +1,35 @@
+<div class="p-3 w-100" *ngIf="cursos">
+  <div class="row mx-0 w-100 my-4">
+    <div class="col-sm">
+      <nav class="navbar navbar-light" style="background-color: #DCEDF6">
+        <h5 style="color: #005A70">Cursos</h5>
+        <form class="form-inline" *ngIf="cursos?.length > 0">
+          <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+      </nav>
+    </div>
+  </div>
+  <div class="row mx-0 w-100">
+    <div class="col-md-6 mb-5" *ngFor="let curso of cursos">
+      <div class="card">
+        <img src="{{curso.foto}}" class="card-imagen" alt="Foto Curso">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a style="color: #005A70" [routerLink]="['/vista_principal_curso/',curso.id.id]"> {{curso.nombre}} </a>
+          </h5>
+          <p><b>Pertenece a la institución: </b>{{curso.areaTematica.institucion.institucionPK.nombre}}</p>
+          <p><b>Pertenece al área temática: </b>{{curso.areaTematica.nombre}}</p>
+          <p class="card-text">{{curso.descripcion}}</p>
+          <a class="btn btn-primary">Entrar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mx-0 w-100">
+    <div *ngIf="cursos?.length == 0" class="col-md-12 alert alert-info">
+      No hay Cursos en la Base de Datos.
+    </div>
+    <paginator-nav class="col-md-12" *ngIf="paginador" [paginador] = "paginador" [ruta]="rutaPag"></paginator-nav>
+  </div>
+</div>

@@ -24,6 +24,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * Metodo para el manejo de la excepcion de area tematica no encontrada
+     * @param ex Excepción generada
+     * @return Se retorna un CustomErrorResponse con la información del error
+     */
+    @ExceptionHandler(AreaTematicaNotFoundException.class)
+    public ResponseEntity<CustomErrorResponse> areaTematicaNoEncontrada(Exception ex) {
+        CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.NOT_FOUND, ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+    }
+
 
     /**
      * Excepción para manejar solicitar información errónea en la vista principal del curso

@@ -17,9 +17,8 @@ public interface IGrupoService {
 
     /**
      * Método que liga un grupo con un curso dado
-     * @param cursoPK es el PK del curso
-     * @param grupoPK es el PK del grupo que se quiere insertar
+     * @param grupo Grupo que se quiere guardar
      * @return retorna verdadero si la inserción es exitosa
      */
-    Boolean setGrupoCurso(CursoPK cursoPK, GrupoPK grupoPK);
+    Grupo setGrupoCurso(Grupo grupo);
 }

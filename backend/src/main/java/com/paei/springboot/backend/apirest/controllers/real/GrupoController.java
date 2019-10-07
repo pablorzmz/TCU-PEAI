@@ -1,11 +1,10 @@
 package com.paei.springboot.backend.apirest.controllers.real;
 
 import com.paei.springboot.backend.apirest.exceptions.CursoNotFoundException;
-import com.paei.springboot.backend.apirest.model.entity.real.Curso;
-import com.paei.springboot.backend.apirest.model.entity.real.CursoPK;
-import com.paei.springboot.backend.apirest.model.entity.real.Grupo;
+import com.paei.springboot.backend.apirest.model.entity.real.*;
 import com.paei.springboot.backend.apirest.services.real.ICursoService;
 import com.paei.springboot.backend.apirest.services.real.IGrupoService;
+import com.paei.springboot.backend.apirest.services.real.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +20,9 @@ public class GrupoController {
 
     @Autowired
     private ICursoService iCursoService;
+
+    @Autowired
+    private IUsuarioService iUsuarioService;
 
     @GetMapping("/listar_grupos_de_curso")
     public List<Grupo> recuperarGruposDeCurso(@RequestParam Long idCurso){
@@ -39,5 +41,14 @@ public class GrupoController {
     }
 
     @GetMapping("/crear_grupo_de_curso")
-    public boolean crearGrupoDeCurso(@RequestParam CursoPK idCurso, @RequestParam Long numeroGrupo, @RequestParam String periodoTiempo, @RequestParam String nombreUsuario)
+    public Grupo crearGrupoDeCurso(@RequestParam CursoPK cursoPK, @RequestParam GrupoPK grupoPK, @RequestParam UsuarioPK usuarioPK){
+        // Se obtiene el curso a partir del cursoPK
+        Curso curso = iCursoService.getCurso(cursoPK);
+
+        // Se obtiene el Usuario que imparte el curso
+        String nombreUsuario = usuarioPK.getNombreUsuario();
+        Usuario usuario = iUsuarioService.findUsuarioByNombreUsuario(nombreUsuario);
+
+        Grupo grupo = new Grupo();
+    };
 }

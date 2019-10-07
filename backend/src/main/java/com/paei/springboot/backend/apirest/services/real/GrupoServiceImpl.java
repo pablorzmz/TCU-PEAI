@@ -26,13 +26,11 @@ public class GrupoServiceImpl implements IGrupoService {
 
     /**
      * Método que liga un grupo con un curso dado
-     * @param cursoPK es el PK del curso
-     * @param grupoPK es el PK del grupo que se quiere insertar
+     * @param grupo Grupo que se quiere guardar
      * @return retorna verdadero si la inserción es exitosa
      */
-    @Override
-    public boolean setGrupoCurso(CursoPK cursoPK, long numero, String periodoTiempo, Usuario usuarioImparte){
-        iGrupoDao.save();
+    public Grupo setGrupoCurso(Grupo grupo){
+        return iGrupoDao.save(grupo);
     }
 
 }

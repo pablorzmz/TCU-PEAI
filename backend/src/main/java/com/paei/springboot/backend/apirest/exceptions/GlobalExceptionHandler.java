@@ -34,4 +34,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.NOT_FOUND, ex.getMessage());
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
+
+
+    /**
+     * Excepción para manejar solicitar información errónea en la vista principal del curso
+     * @param ex Excepción lanzada
+     * @return Retorna un CustomErrorResponse con la información del error
+     */
+    @ExceptionHandler(VistaPrincipalCursoNotFoundException.class)
+    public ResponseEntity<CustomErrorResponse> VistaPrincipalCursoNotFoundException(Exception ex) {
+        CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.NOT_FOUND, ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+    }
 }

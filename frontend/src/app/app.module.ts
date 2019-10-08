@@ -7,6 +7,8 @@ import { AuthModule } from './modules/auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AreaTematicaModule } from './modules/area-tematica/area-tematica.module';
 import {InstitucionModule} from './modules/instituciones/institucion.module';
+import { VistaPrincipalCursoModule} from './modules/vista-principal-curso/vista-principal-curso.module';
+import {CursoModule} from './modules/cursos/curso.module';
 import {GrupoModule} from './modules/grupo/grupo.module';
 
 
@@ -21,6 +23,8 @@ import {GrupoModule} from './modules/grupo/grupo.module';
     BrowserAnimationsModule,
     AreaTematicaModule,
     InstitucionModule,
+    VistaPrincipalCursoModule,
+    CursoModule,
     GrupoModule
   ],
   providers: [],

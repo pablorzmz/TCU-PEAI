@@ -59,6 +59,14 @@ public class Grupo implements Serializable {
     @JsonIgnore
     private List<UsuarioGrupoInscrito> usuarioGrupoInscritos = new ArrayList<>();
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
     /*
     @OneToMany(mappedBy = "usuarioGrupoInscritoPK.grupo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<UsuarioGrupoInscrito> usuarioGrupoInscritos = new HashSet<>();

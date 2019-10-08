@@ -1,0 +1,31 @@
+<div class="col my-4" style="padding-left: 25px; padding-right: 25px">
+    <div class="card mb-3">
+      <img src="https://poddardesign.com/wp-content/uploads/2019/04/0257a972769b851.jpg" class="card-img-top card-imagen" >
+      <div class="card-body">
+        <div class="row">
+          <div class="col">
+            <h6 class="card-title">Institución: </h6>
+            <p class="card-text"> {{nombreInstitucion}}</p>
+            <h6 class="card-title">Área temática:</h6>
+            <p class="card-text"> {{nombreAreaTematica}}</p>
+          </div>
+          <div class="col">
+            <h6 class="card-title">Nombre del curso:</h6>
+            <p class="card-text"> {{curso.nombre}}</p>
+            <h6 class="card-title">Profesor(a):</h6>
+            <p class="card-text"> {{nombreProfesorCurso}}</p>
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="row">
+          <div class="col">
+            <h6 class="card-title">Descripción:</h6>
+            <p class="card-text">
+              {{curso.descripcion}}
+            </p>
+          </div>
+        </div>
+        <app-listar-grupos-curso *ngIf="curso.nombre != 'Cargando...'" [idCurso]="curso.id.id"></app-listar-grupos-curso>
+      </div>
+    </div>
+</div>

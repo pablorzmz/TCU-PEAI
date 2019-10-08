@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Usuario} from '../schema/Usuario';
 import {objectLiteralExpression} from 'codelyzer/util/astQuery';
+import {UsuarioPK} from '../schema/UsuarioPK';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,9 @@ export class AuthService {
    *  Método get que permite obtener un usuario depende de donde esté
    */
   public get usuario(): Usuario {
-    if (this._usuario !== null ) {
+    if (this._usuario !== null && this._usuario !== undefined ) {
       return this._usuario;
-    } else if (this._usuario == null && sessionStorage.getItem('usuario') != null) {
+    } else if ( (this._usuario == null || this._usuario == undefined) && sessionStorage.getItem('usuario') != null) {
       this._usuario = JSON.parse(sessionStorage.getItem('usuario')) as Usuario;
       return this._usuario;
     }
@@ -75,6 +76,7 @@ export class AuthService {
     this._usuario = new Usuario();
     this._usuario.nombre = payLoad.nombre;
     this._usuario.apellidos = payLoad.apellidos;
+    this._usuario.usuarioPK = new UsuarioPK();
     this._usuario.usuarioPK.nombreUsuario = payLoad.user_name;
     sessionStorage.setItem(this._USUARIO_LLAVE, JSON.stringify(this._usuario));
   }

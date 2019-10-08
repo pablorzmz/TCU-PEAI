@@ -50,6 +50,7 @@ public class Grupo implements Serializable {
 
     @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "nombre_usuario_imparte")
+    @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Usuario usuario;
 
     @OneToMany(mappedBy = "grupo", fetch = FetchType.LAZY)
@@ -58,6 +59,11 @@ public class Grupo implements Serializable {
     @OneToMany(mappedBy = "grupo", fetch = FetchType.LAZY)
     @JsonIgnore
     private List<UsuarioGrupoInscrito> usuarioGrupoInscritos = new ArrayList<>();
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
 
     /*
     @OneToMany(mappedBy = "usuarioGrupoInscritoPK.grupo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

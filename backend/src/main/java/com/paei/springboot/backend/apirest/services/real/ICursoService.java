@@ -8,8 +8,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ICursoService {
+
+    /**
+     * Método para recuperar un curso por id
+     * @param id Id del curso
+     * @return el curso en el objeto optional o un objeto optional vacio
+     */
+    public Optional<Curso> findyId(CursoPK id);
+
     /**
      * Método para pedir las todos los cursos en páginas
      * @param pageable Objeto de solicitud de pagina de donde se obtiene el número de página que quiero y la cantidad de items por página

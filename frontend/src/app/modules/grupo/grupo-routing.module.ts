@@ -5,12 +5,6 @@ import {ListarGruposCursoComponent} from './pages/listar-grupos-curso/listar-gru
 
 
 const routes: Routes = [
-  {
-    path: 'grupos_curso/:idCurso',
-    pathMatch: 'full',
-    component: ListarGruposCursoComponent,
-    canActivate: [AuthGuardService]
-  }
 ];
 
 @NgModule({

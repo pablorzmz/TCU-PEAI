@@ -57,4 +57,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.NOT_FOUND, ex.getMessage());
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
+
+    /**
+     * Metodo para manejar la excepcion de no encontrar un curso
+     * @param ex Excepción lanzada
+     * @return Retorna un CustomErrorResponse con la información del error
+     */
+    @ExceptionHandler(UsuarioNotFoundException.class)
+    public ResponseEntity<CustomErrorResponse> usuarioNoEncontrado(Exception ex) {
+        CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.NOT_FOUND, ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+    }
 }

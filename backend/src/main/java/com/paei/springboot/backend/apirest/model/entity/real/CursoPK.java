@@ -13,6 +13,10 @@ public class CursoPK implements Serializable {
 
     public CursoPK(){}
 
+    public CursoPK(Long id){
+        this.Id = id;
+    }
+
     @Column(name = "curso_id")
     private Long Id;
 

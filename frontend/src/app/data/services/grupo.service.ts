@@ -13,13 +13,15 @@ export class GrupoService {
   readonly urlEndpoint = 'http://localhost:8080/api/grupos';
 
   getGruposCurso(idCurso: number): Observable<any> {
-    const rutaConsultarGrupos = '/listar_grupos_de_curso';
-    const parametroConsulta = '?idCurso=';
-    const urlConsulta = `${this.urlEndpoint}${rutaConsultarGrupos}${parametroConsulta}${idCurso}`;
+    const rutaConsultarGrupos = '/listar_grupos_de_curso?';
+    const parametro1Consulta = 'idCurso=';
+    const parametro2Consulta = 'nombreUsuario=';
+    const idUsuario = this.authService.usuario.usuarioPK.nombreUsuario;
+    const urlConsulta = `${this.urlEndpoint}${rutaConsultarGrupos}${parametro1Consulta}${idCurso}&${parametro2Consulta}${idUsuario}`;
     // Se definen los encabezados para el tipo de autorización del protocolo
     const httpHeaders = new HttpHeaders(
       {
-        'Authorization': 'Bearer ' + this.authService.accessToken
+        Authorization: 'Bearer ' + this.authService.accessToken
       } );
     // Finalmente se realiza la petición
     return this.http.get<any>(urlConsulta, {headers: httpHeaders});

@@ -3,6 +3,7 @@ package com.paei.springboot.backend.apirest.services.real;
 import com.paei.springboot.backend.apirest.model.entity.real.AreaTematicaPK;
 import com.paei.springboot.backend.apirest.model.entity.real.Curso;
 import com.paei.springboot.backend.apirest.model.entity.real.CursoPK;
+import com.paei.springboot.backend.apirest.model.entity.real.Usuario;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -40,5 +41,13 @@ public interface ICursoService {
      * @return Retorna el curso al cual le pertenece la PK
      */
     Curso getCurso(CursoPK cursoPK);
+
+    /**
+     * Método que permite verificar si el usuario es profesor que imparte o es estudiante
+     * @param u El usuario valido
+     * @param c El curso valido
+     * @return Verdadero o falso según sea el caso
+     */
+    boolean usuarioImparteCurso(Usuario u, Curso c);
 
 }

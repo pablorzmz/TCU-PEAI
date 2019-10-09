@@ -59,7 +59,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
-     * Metodo para manejar la excepcion de no encontrar un curso
+     * Metodo para manejar la excepcion de no encontrar un usuario
      * @param ex Excepción lanzada
      * @return Retorna un CustomErrorResponse con la información del error
      */
@@ -67,5 +67,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<CustomErrorResponse> usuarioNoEncontrado(Exception ex) {
         CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.NOT_FOUND, ex.getMessage());
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+    }
+
+    /**
+     * Metodo para manejar la excepcion de que ya se encuentra un grupo con ese id
+     * @param ex Excepción lanzada
+     * @return Retorna un CustomErrorResponse con la información del error
+     */
+    @ExceptionHandler(GrupoExist.class)
+    public ResponseEntity<CustomErrorResponse> grupoExiste(Exception ex) {
+        CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.CONFLICT, ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
     }
 }

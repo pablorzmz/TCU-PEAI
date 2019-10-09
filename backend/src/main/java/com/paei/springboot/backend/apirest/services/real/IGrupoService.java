@@ -16,6 +16,13 @@ public interface IGrupoService {
     List<Grupo> getGruposCurso(CursoPK cursoPK);
 
     /**
+     * Metodo que retorna el grupo segun su grupoPK
+     * @param grupoPK es la PK del grupo
+     * @return Grupo si existe o null en caso contrario
+     */
+    Grupo getGrupo(GrupoPK grupoPK);
+
+    /**
      * Método que liga un grupo con un curso dado
      * @param grupo Grupo que se quiere guardar
      * @return retorna verdadero si la inserción es exitosa

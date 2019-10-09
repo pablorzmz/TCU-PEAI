@@ -19,6 +19,12 @@ public class Grupo implements Serializable {
 
     public Grupo(){}
 
+    public Grupo(GrupoPK grupoPK, Usuario usuario, Curso curso){
+        this.Id = grupoPK;
+        this.usuario = usuario;
+        this.curso = curso;
+    }
+
     @EmbeddedId
     private GrupoPK Id;
 

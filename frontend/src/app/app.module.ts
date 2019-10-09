@@ -9,6 +9,8 @@ import { AreaTematicaModule } from './modules/area-tematica/area-tematica.module
 import {InstitucionModule} from './modules/instituciones/institucion.module';
 import { VistaPrincipalCursoModule} from './modules/vista-principal-curso/vista-principal-curso.module';
 import {CursoModule} from './modules/cursos/curso.module';
+import {GrupoModule} from './modules/grupo/grupo.module';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import {CursoModule} from './modules/cursos/curso.module';
     AreaTematicaModule,
     InstitucionModule,
     VistaPrincipalCursoModule,
-    CursoModule
+    CursoModule,
+    GrupoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

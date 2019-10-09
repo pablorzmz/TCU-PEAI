@@ -27,7 +27,7 @@ public class SubseccionMaterial implements Serializable {
     @Column( name = "habilitada")
     private Boolean Habilitada;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumns({
             @JoinColumn(name = "numero", unique = false, nullable = false, referencedColumnName = "numero"),
             @JoinColumn(name = "curso_id", unique = false, nullable = false, referencedColumnName = "curso_id"),

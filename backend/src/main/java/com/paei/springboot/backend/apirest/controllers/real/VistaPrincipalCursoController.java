@@ -112,7 +112,7 @@ public class VistaPrincipalCursoController {
         response.put("subseccionesMaterialPorGrupo", subListaSubseccionesMateriales);
         for (var g: grupos){
             // Se obtienen las subsecciones de materiales
-            var sbmLista = iSubseccionMaterialService.obtenerSubseccionsPorGrupoPK(g.getId());
+            var sbmLista = iSubseccionMaterialService.obtenerSubseccionesPorGrupoPK(g.getId());
             // Se limpian se atributos innnecsario para frontend
             for (var sbm: sbmLista){
                 sbm.getGrupo().setCurso(null);

@@ -84,8 +84,7 @@ public class SubseccionMaterialController {
         // Se pregunta si tiene errores en el proceso de binding
         if ( result.hasErrors() ){
             // Se retorna una excepción personalizada
-            response.put("error","Binding tiene errores a la hora de crear instancia");
-            return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
+            throw new SubseccionMaterialDataAccessException("Los datos de la subsección de material a crear son incorrectos");
         }
         // En caso contrario se intenta crear una nueva subseccion de material
         try {
@@ -98,13 +97,11 @@ public class SubseccionMaterialController {
                 subseccionMaterialNueva = iSubseccionMaterialService.crearNuevaSubseccion(nuevaSBM);
             }else{
                 //Se debe retornar una excepcion de que el grupo es inválido
-                response.put("error","El grupo para crear la subsección no se encuentra");
-                return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+                throw  new SubseccionMaterialDataAccessException("El grupo para crear la subsección no se encuentra");
             }
         }catch ( DataAccessException ex ) {
             // Lanzar excepcion personalizada
-            response.put("error","Sucedió un error al intentar crear una nueva instancia de subsección material." + ex.getMessage());
-            return new ResponseEntity<>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+            throw  new SubseccionMaterialDataAccessException("Sucedió un error al intentar crear una nueva instancia de subsección material.");
         }
         // Se crea de manera correcta y se coloca un mensaje con la entidad
         subseccionMaterialNueva.getGrupo().setUsuario(null);

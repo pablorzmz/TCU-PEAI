@@ -94,7 +94,7 @@ public class SubseccionMaterialController {
                 // Se le asigna el grupo correspondiente a la nueva subsección
                 nuevaSBM.setGrupo(grupo);
                 // Se crea y recupera la nueva subsección de material
-                subseccionMaterialNueva = iSubseccionMaterialService.crearNuevaSubseccion(nuevaSBM);
+                subseccionMaterialNueva = iSubseccionMaterialService.crearActualizarSubseccion(nuevaSBM);
             }else{
                 //Se debe retornar una excepcion de que el grupo es inválido
                 throw  new SubseccionMaterialDataAccessException("El grupo para crear la subsección no se encuentra");
@@ -109,5 +109,46 @@ public class SubseccionMaterialController {
         response.put("nuevaSBM",subseccionMaterialNueva);
         response.put("mensaje","¡Nueva subsección creada con éxito!");
         return new ResponseEntity<>(response,HttpStatus.CREATED);
+    }
+
+
+    /**
+     * Metodo que permite realizar la actualización de los datos de la subsección de material de un grupo de un curso
+     * @param subseccionMaterialParam La subección de material con los datos actualizados
+     * @param result El resultado del binding para ver si se mapearon correctamente los datos
+     * @param id el id entero de la subsección de material a actualizar
+     * @return retorna un mensaje de éxito o bien la excepción correspondiente
+     */
+    @PutMapping("/actualizar")
+    public ResponseEntity<?> actualizarSubseccionMaterial(@Valid @RequestBody SubseccionMaterial subseccionMaterialParam, BindingResult result, @RequestParam Long id){
+        // Se definen las variables necesaria(nuevo, viejo y response) para hacer la actualización
+        SubseccionMaterial subseccionMaterialActual = null;
+        Map<String, Object> response = new HashMap<>();
+        //  Primero si los objetos son válidos y no tienen errores
+        if ( result.hasErrors() ){
+            // Se lanza una excepcion
+            throw new SubseccionMaterialDataAccessException("Los datos de la subsección de material a actualizar son incorrectos");
+        }else{
+            // Se recupera la subsección de material a actualizar
+            subseccionMaterialActual = iSubseccionMaterialService.findById(id);
+            if (subseccionMaterialActual == null){
+                // Se lanza excepción de que no se encuentra
+                throw  new SubseccionMaterialNotFoundException();
+            }else{
+                // Se realiza la actualización de los datos
+                subseccionMaterialActual.setHabilitada(subseccionMaterialParam.getHabilitada());
+                subseccionMaterialActual.setNombre(subseccionMaterialParam.getNombre());
+                // luego se intenta salvar los cambios
+                try{
+                    // Se salvan los cambios
+                    iSubseccionMaterialService.crearActualizarSubseccion(subseccionMaterialActual);
+                    response.put("mensaje","¡Subsección de material actualizada con éxito!");
+                    return new ResponseEntity<>(response,HttpStatus.CREATED);
+                }catch ( Exception ex ) {
+                    // Se lanza una excepción.
+                    throw new SubseccionMaterialDataAccessException("Ocurrió un error a la hora de actualizar la subsección de material");
+                }
+            }
+        }
     }
 }

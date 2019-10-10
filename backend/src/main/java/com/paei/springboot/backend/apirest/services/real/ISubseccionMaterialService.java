@@ -39,5 +39,5 @@ public interface ISubseccionMaterialService {
      * @param nuevaSBM La nueva entidad a crear
      * @return La entidad creada
      */
-    SubseccionMaterial crearNuevaSubseccion(SubseccionMaterial nuevaSBM);
+    SubseccionMaterial crearActualizarSubseccion(SubseccionMaterial nuevaSBM);
 }

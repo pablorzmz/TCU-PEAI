@@ -35,7 +35,7 @@ public class SubseccionMaterialServiceImp implements ISubseccionMaterialService 
     }
 
     @Override
-    public SubseccionMaterial crearNuevaSubseccion(SubseccionMaterial nuevaSBM) {
+    public SubseccionMaterial crearActualizarSubseccion(SubseccionMaterial nuevaSBM) {
         return iSubseccionMaterialDao.saveAndFlush(nuevaSBM);
     }
 

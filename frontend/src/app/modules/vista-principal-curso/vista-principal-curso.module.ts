@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 
 import {VistaPrincipalCursoComponent} from './pages/principal/vista-principal-curso.component';
 import {VistaPrincipalCursoRoutingModule} from './vista-principal-curso-routing.module';
+import {GrupoModule} from '../grupo/grupo.module';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import {VistaPrincipalCursoRoutingModule} from './vista-principal-curso-routing.
     VistaPrincipalCursoComponent
   ],
   imports: [
-    CommonModule, VistaPrincipalCursoRoutingModule
+    CommonModule, VistaPrincipalCursoRoutingModule, GrupoModule
   ]
 })
 export class VistaPrincipalCursoModule {}

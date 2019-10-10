@@ -1,9 +1,7 @@
 package com.paei.springboot.backend.apirest.services.real;
 
 import com.paei.springboot.backend.apirest.dao.real.ICursoDao;
-import com.paei.springboot.backend.apirest.model.entity.real.AreaTematicaPK;
-import com.paei.springboot.backend.apirest.model.entity.real.Curso;
-import com.paei.springboot.backend.apirest.model.entity.real.CursoPK;
+import com.paei.springboot.backend.apirest.model.entity.real.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -45,6 +43,44 @@ public class CursoServiceImpl implements ICursoService {
     @Override
     public List<Curso> findCursosByAreaTematica(AreaTematicaPK areaTematicaPK) {
         return this.iCursoDao.findCursosByAreaTematica(areaTematicaPK);
+    }
+
+    /**
+     * Metodo que obtiene un curso a partir de su CursoPK
+     * @param cursoPK es la PK del curso que se desa obtener
+     * @return Retorna el curso al cual le pertenece la PK
+     */
+    @Override
+    public Curso getCurso(CursoPK cursoPK){
+        try{
+            // Se intenta recuperar el curso con el PK que venga como parametro
+            Optional<Curso> curso = iCursoDao.findById(cursoPK);
+            // Se retorna el curso en caso de que exista
+            return curso.get();
+        }catch (Exception e){
+            // Si el curso no exista entonces se retorna null
+            return null;
+        }
+    }
+
+    /**
+     * Método que permite verificar si el usuario es profesor que imparte o es estudiante
+     * @param u El usuario valido
+     * @param c El curso valido
+     * @return Verdadero o falso según sea el caso
+     */
+    @Override
+    public boolean usuarioImparteCurso(Usuario u, Curso c) {
+        // Se obtienen los grupos del Curso actual
+        List<Grupo> grupos = c.getGrupos();
+        // Se itera y se busca hasta hacer match para saber si el profesor que imparte
+        for (var grupo: grupos) {
+            if (grupo.getUsuario().getUsuarioPK().getNombreUsuario().equals(u.getUsuarioPK().getNombreUsuario())){
+                return true;
+            }
+        }
+        //  En caso contrario va a ser un estudiante
+        return false;
     }
 }
 

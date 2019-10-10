@@ -1,0 +1,20 @@
+<div class="p-3 w-100" *ngIf="grupos">
+  <!--Navbar-->
+  <div class="row mx-0 w-100 my-4">
+    <div class="col-sm">
+      <h5>Grupos</h5>
+      <div *ngIf="grupos.length == 0" class="alert alert-warning my-4" role="alert">
+        Este curso no cuenta con grupos asociados
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="grupos.length > 0" class="row mx-0 w-100">
+    <div class="col-md-12 mb-1" *ngFor="let grupo of grupos">
+      <nav class="navbar navbar-light"  style="background-color: #DCEDF6">
+        <h5 style="color: #005A70">Grupo {{grupo.id.numero}} - {{grupo.id.periodoTiempo}}</h5>
+        <!-- Aqui va el boton editar -->
+      </nav>
+    </div>
+  </div>
+</div>

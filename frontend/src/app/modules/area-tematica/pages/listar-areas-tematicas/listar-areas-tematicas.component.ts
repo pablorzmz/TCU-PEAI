@@ -21,7 +21,6 @@ export class ListarAreasTematicasComponent implements OnInit {
         res => {
           // Si las recibe se asignan al atributo areasTematicas
           this.areasTematicas = res as AreaTematica[];
-          console.log(this.areasTematicas);
           // Quitamos la subscripcion
           request.unsubscribe();
         },

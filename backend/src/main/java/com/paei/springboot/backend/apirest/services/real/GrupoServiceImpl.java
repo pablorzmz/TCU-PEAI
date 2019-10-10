@@ -1,10 +1,13 @@
 package com.paei.springboot.backend.apirest.services.real;
 
 import com.paei.springboot.backend.apirest.dao.real.IGrupoDao;
+import com.paei.springboot.backend.apirest.model.entity.real.CursoPK;
 import com.paei.springboot.backend.apirest.model.entity.real.Grupo;
 import com.paei.springboot.backend.apirest.model.entity.real.GrupoPK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class GrupoServiceImpl implements IGrupoService {
@@ -22,24 +25,6 @@ public class GrupoServiceImpl implements IGrupoService {
     public Grupo findById(GrupoPK grupoPK) {
         return iGrupoDao.findById(grupoPK).orElse(null);
     }
-}
-
-package com.paei.springboot.backend.apirest.services.real;
-
-import com.paei.springboot.backend.apirest.dao.real.IGrupoDao;
-import com.paei.springboot.backend.apirest.model.entity.real.CursoPK;
-import com.paei.springboot.backend.apirest.model.entity.real.Grupo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-
-@Service
-public class GrupoServiceImpl implements IGrupoService {
-
-    @Autowired
-    private IGrupoDao iGrupoDao;
-
 
     /**
      * Método que obtiene los grupos de un curso dado
@@ -52,3 +37,6 @@ public class GrupoServiceImpl implements IGrupoService {
     }
 
 }
+
+
+

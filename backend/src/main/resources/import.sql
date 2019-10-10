@@ -88,12 +88,6 @@ INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tie
 
 
 /********************** Sub secciones de materiales ******************************************/
-
-/*Se necesita que sea auto incremental, pero no me deja Hibernate por ser llave compuesta*/
-SET FOREIGN_KEY_CHECKS = 0;
-Alter TABLE subseccion_material MODIFY subseccion_material_id int(11) NOT NULL AUTO_INCREMENT;
-SET FOREIGN_KEY_CHECKS = 1;
-
 /* Grupo 1, Curso 4 */
 INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES (4, '1 semestre',1,'Todo el material',1);
 INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES (4, '1 semestre',1,'Lecturas complementarias',1);

@@ -18,19 +18,26 @@ public interface ISubseccionMaterialService {
      * @param subSeccionMaterialPK
      * @return Una lista con los materiales asociados
      */
-    public List<Material> obtenerMaterialesSubSeccionMaterial(SubSeccionMaterialPK subSeccionMaterialPK);
+    public List<Material> obtenerMaterialesSubSeccionMaterial(Long subSeccionMaterialPK);
 
     /**
      * Metodo que permite recuperar una subseccion por el id
      * @param subSeccionMaterialPK id de la subseccions
      * @return nulo o la subseccion según el caso
      */
-    public SubseccionMaterial findById(SubSeccionMaterialPK subSeccionMaterialPK);
+    public SubseccionMaterial findById(Long subSeccionMaterialPK);
 
 
     /**
      * Metodo que permite eliminar la subsección
      * @param subSeccionMaterialPK id de la subsección material a eliminar
      */
-    public void eliminarSubseccionMaterialPorId(SubSeccionMaterialPK subSeccionMaterialPK);
+    public void eliminarSubseccionMaterialPorId(Long subSeccionMaterialPK);
+
+    /**
+     * Metodo que permite crear una nueva subsccion de material
+     * @param nuevaSBM La nueva entidad a crear
+     * @return La entidad creada
+     */
+    SubseccionMaterial crearNuevaSubseccion(SubseccionMaterial nuevaSBM);
 }

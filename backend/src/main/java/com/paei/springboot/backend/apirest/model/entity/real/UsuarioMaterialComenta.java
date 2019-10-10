@@ -34,7 +34,7 @@ public class UsuarioMaterialComenta  implements Serializable {
     private Boolean Visible;
 
 
-    @MapsId("material_id")
+    @MapsId("material")
     @JoinColumns({
             @JoinColumn(name="material_id", referencedColumnName="material_id"),
             @JoinColumn(name="subseccion_material_id", referencedColumnName="subseccion_material_id"),

@@ -20,18 +20,23 @@ public class SubseccionMaterialServiceImp implements ISubseccionMaterialService 
     }
 
     @Override
-    public List<Material> obtenerMaterialesSubSeccionMaterial(SubSeccionMaterialPK subSeccionMaterialPK) {
+    public List<Material> obtenerMaterialesSubSeccionMaterial(Long subSeccionMaterialPK) {
         return iSubseccionMaterialDao.obtenerMaterialesAsociados(subSeccionMaterialPK);
     }
 
     @Override
-    public SubseccionMaterial findById(SubSeccionMaterialPK subSeccionMaterialPK) {
+    public SubseccionMaterial findById(Long subSeccionMaterialPK) {
         return iSubseccionMaterialDao.findById(subSeccionMaterialPK).orElse(null);
     }
 
     @Override
-    public void eliminarSubseccionMaterialPorId(SubSeccionMaterialPK subSeccionMaterialPK) {
+    public void eliminarSubseccionMaterialPorId(Long subSeccionMaterialPK) {
         iSubseccionMaterialDao.deleteById(subSeccionMaterialPK);
+    }
+
+    @Override
+    public SubseccionMaterial crearNuevaSubseccion(SubseccionMaterial nuevaSBM) {
+        return iSubseccionMaterialDao.saveAndFlush(nuevaSBM);
     }
 
 }

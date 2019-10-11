@@ -1,24 +1,36 @@
-<button class="btn btn-primary botonColor p-1"  (click)="abiriAgregarGrupo()">Agregar grupo</button>
-<button type="button" class="btn btn-default" aria-label="Left Align">
-  <span class="glyphicon glyphicon-align-left"></span>
+<button type="button" class="btn btn-primary d-flex align-items-center" p-1 (click)="abiriAgregarGrupo()">
+  <mat-icon class="mr-1">add_circle</mat-icon>
+  Agregar
 </button>
 
-<ng-template #modalAgregarGrupo class="w-50 h-50">
-  <form>
-    <div class="form-group">
-      <label for="numeroGrupo">Número de grupo</label>
-      <input type="text" class="form-control" id="numeroGrupo" required maxlength="2" placeholder="Número de grupo">
+<ng-template #modalAgregarGrupo >
+  <div class="row mx-0">
+    <div class="col-md-12 w-100 d-flex justify-content-center m-3">
+      <h5>Agregar nuevo grupo</h5>
     </div>
-    <div class="form-group">
-      <label for="periodoTiempo">Periodo de tiempo</label>
-      <input type="text" class="form-control" id="periodoTiempo" required maxlength="20" placeholder="Periodo de tiempo">
-    </div>
-    <div class="form-group">
-      <label for="profesores">Profesor</label>
-      <select disabled class="form-control" id="profesores" required>
-        <option [value]="usuario.usuarioPK">{{usuario.nombre}} {{usuario.apellidos}}</option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Crear</button>
-  </form>
+      <form class="col-md-12">
+        <div class="form-group">
+          <label for="numeroGrupo">Número de grupo</label>
+          <input type="text" class="form-control" id="numeroGrupo" required maxlength="2" placeholder="Número de grupo">
+        </div>
+        <div class="form-group">
+          <label for="periodoTiempo">Periodo de tiempo</label>
+          <input type="text" class="form-control" id="periodoTiempo" required maxlength="20" placeholder="Periodo de tiempo">
+        </div>
+        <div class="form-group">
+          <label for="profesores">Profesor</label>
+          <select disabled class="form-control" id="profesores" required>
+            <option [value]="usuario.usuarioPK">{{usuario.nombre}} {{usuario.apellidos}}</option>
+          </select>
+        </div>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-primary mr-1">
+            Crear
+          </button>
+          <button [mat-dialog-close] class="btn btn-danger">
+            Volver
+          </button>
+          </div>
+      </form>
+  </div>
 </ng-template>

@@ -9,6 +9,7 @@ import com.paei.springboot.backend.apirest.services.real.ICursoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -48,6 +49,30 @@ public class CursoController {
             List<Curso> cursos = iCursoService.findCursosByAreaTematica(areaTematicaPK);
             // Se retornamos la lista de los cursos
             return cursos;
+        }else {
+            // Se retorna un error si no existe un area tematica con el Id proporcionado
+            throw new AreaTematicaNotFoundException();
+        }
+    }
+
+    @PostMapping("listado_cursos/page/0")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Curso create(@RequestBody Curso curso){
+        return iCursoService.save(curso);
+    }
+
+    @PostMapping("listado_cursos")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Curso create2(@RequestBody Curso curso, @RequestParam Long idArea){
+        //Se crea un objeto de AreaTematicaPK
+        AreaTematicaPK areaTematicaPK = new AreaTematicaPK(idArea);
+        // Se busca el area tematica
+        AreaTematica areaTematica = iAreaTematicaService.getAreaTematica(areaTematicaPK);
+        if(areaTematica != null){
+            // Le agregamos al curso el Area Tematica
+            curso.setAreaTematica(areaTematica);
+            // Se inserta en la BD
+            return iCursoService.save(curso);
         }else {
             // Se retorna un error si no existe un area tematica con el Id proporcionado
             throw new AreaTematicaNotFoundException();

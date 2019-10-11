@@ -3,7 +3,6 @@ package com.paei.springboot.backend.apirest.controllers.real;
 import com.paei.springboot.backend.apirest.exceptions.CursoNotFoundException;
 import com.paei.springboot.backend.apirest.exceptions.UsuarioNotFoundException;
 import com.paei.springboot.backend.apirest.model.entity.real.Curso;
-import com.paei.springboot.backend.apirest.model.entity.real.CursoPK;
 import com.paei.springboot.backend.apirest.model.entity.real.Grupo;
 import com.paei.springboot.backend.apirest.model.entity.real.Usuario;
 import com.paei.springboot.backend.apirest.services.real.ICursoService;
@@ -32,7 +31,7 @@ public class GrupoController {
     @GetMapping("/listar_grupos_de_curso")
     public List<Grupo> recuperarGruposDeCurso(@RequestParam Long idCurso,  @RequestParam String nombreUsuario){
         // Se crea el cursoPK a partir del nombre recibido
-        CursoPK cursoPK = new CursoPK(idCurso);
+        Long cursoPK = idCurso;
         // Se obtiene el curso a partir del cursoPK
         Curso curso = iCursoService.getCurso(cursoPK);
         // Si el curso no es null se obtienen los grupos y los retorna

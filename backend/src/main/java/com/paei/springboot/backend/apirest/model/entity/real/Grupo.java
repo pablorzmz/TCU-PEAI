@@ -30,7 +30,7 @@ public class Grupo implements Serializable {
         Id = id;
     }
 
-    @MapsId("curso_id")
+    @MapsId("cursoId")
     @JoinColumns({
             @JoinColumn(name="curso_id", referencedColumnName="curso_id")
     })

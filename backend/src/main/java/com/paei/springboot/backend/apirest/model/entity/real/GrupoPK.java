@@ -14,13 +14,13 @@ public class GrupoPK implements Serializable {
 
     public GrupoPK(){}
 
-    public GrupoPK(CursoPK curso, Integer numero, String periodoTiempo) {
-        this.curso = curso;
+    public GrupoPK(Long cursoId, Integer numero, String periodoTiempo) {
+        this.cursoId = cursoId;
         Numero = numero;
         PeriodoTiempo = periodoTiempo;
     }
 
-    private CursoPK curso;
+    private Long cursoId;
 
     @Column( name = "numero")
     @Length( max = 2)
@@ -29,12 +29,12 @@ public class GrupoPK implements Serializable {
     @Column( name = "periodo_tiempo")
     private String PeriodoTiempo;
 
-    public CursoPK getCurso() {
-        return curso;
+    public Long getCurso() {
+        return cursoId;
     }
 
-    public void setCurso(CursoPK curso) {
-        this.curso = curso;
+    public void setCurso(Long curso) {
+        this.cursoId = curso;
     }
 
     public Integer getNumero() {
@@ -58,14 +58,14 @@ public class GrupoPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GrupoPK grupoPK = (GrupoPK) o;
-        return Objects.equals(curso, grupoPK.curso) &&
+        return Objects.equals(cursoId, grupoPK.cursoId) &&
                 Objects.equals(Numero, grupoPK.Numero) &&
                 Objects.equals(PeriodoTiempo, grupoPK.PeriodoTiempo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(curso, Numero, PeriodoTiempo);
+        return Objects.hash(cursoId, Numero, PeriodoTiempo);
     }
 }
 

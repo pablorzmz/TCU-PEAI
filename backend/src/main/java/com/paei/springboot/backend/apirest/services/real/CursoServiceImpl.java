@@ -21,7 +21,7 @@ public class CursoServiceImpl implements ICursoService {
      * @param id Id del curso
      * @return el curso en el objeto optional o un objeto optional vacio
      */
-    public Optional<Curso> findyId(CursoPK id) {
+    public Optional<Curso> findyId(Long id) {
         return iCursoDao.findById(id);
     }
 
@@ -51,7 +51,7 @@ public class CursoServiceImpl implements ICursoService {
      * @return Retorna el curso al cual le pertenece la PK
      */
     @Override
-    public Curso getCurso(CursoPK cursoPK){
+    public Curso getCurso(Long cursoPK){
         try{
             // Se intenta recuperar el curso con el PK que venga como parametro
             Optional<Curso> curso = iCursoDao.findById(cursoPK);

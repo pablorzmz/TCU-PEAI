@@ -1,7 +1,6 @@
 package com.paei.springboot.backend.apirest.services.real;
 
 import com.paei.springboot.backend.apirest.dao.real.IGrupoDao;
-import com.paei.springboot.backend.apirest.model.entity.real.CursoPK;
 import com.paei.springboot.backend.apirest.model.entity.real.Grupo;
 import com.paei.springboot.backend.apirest.model.entity.real.GrupoPK;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class GrupoServiceImpl implements IGrupoService {
      * @return lista de grupos
      */
     @Override
-    public List<Grupo> getGruposCurso(CursoPK cursoPK){
+    public List<Grupo> getGruposCurso(Long cursoPK){
         return iGrupoDao.findGruposByCurso(cursoPK);
     }
 

@@ -36,8 +36,7 @@ public class VistaPrincipalCursoController {
     @GetMapping("/informacion_curso_vista_principal")
     public ResponseEntity<?> recuperarVistaPrincipalCurso(@RequestParam Long id, @RequestParam String nombreUsuario){
         // Se intenta obtener el curso con ese id
-        CursoPK idCurso = new CursoPK();
-        idCurso.setId(id);
+        Long idCurso = id;
         // Se crea un map para meter las cosas en el response entity
         Map<String,Object> response = new HashMap<>();
         // Se recupera el curso
@@ -89,7 +88,7 @@ public class VistaPrincipalCursoController {
         // Se crea un usuario para obtener el o los grupos según el caso
         Usuario usuario = iUsuarioService.findUsuarioByNombreUsuario(nombreUsuario);
         // Se crea el curso para obtener los grupos correspondientes
-        CursoPK cursoPK = new CursoPK(); cursoPK.setId(id);
+        Long cursoPK = id;
         Curso curso = iCursoService.findyId(cursoPK).get();
         // Se crea un map para la respuesta
         Map<String, Object> response = new HashMap<>();

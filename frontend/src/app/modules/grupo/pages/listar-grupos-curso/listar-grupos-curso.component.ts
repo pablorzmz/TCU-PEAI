@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {GrupoService} from '../../../../data/services/grupo.service';
 import {ActivatedRoute} from '@angular/router';
 import {Grupo} from '../../../../data/schema/Grupo';
+import {Curso} from '../../../../data/schema/Curso';
 
 @Component({
   selector: 'app-listar-grupos-curso',
@@ -12,12 +13,12 @@ export class ListarGruposCursoComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private grupoService: GrupoService) { }
 
-  @Input() idCurso: number;
+  @Input() curso: Curso;
   grupos: Array<Grupo>;
 
   ngOnInit() {
       // Se solicitan las areas tematicas de la area-tematica
-      const request = this.grupoService.getGruposCurso(this.idCurso).subscribe(
+      const request = this.grupoService.getGruposCurso(this.curso.id.id).subscribe(
         res => {
           // Si las recibe se asignan al atributo areasTematicas
           this.grupos = res;

@@ -12,7 +12,7 @@ export class GrupoService {
 
   readonly urlEndpoint = 'http://localhost:8080/api/grupos';
 
-  getGruposCurso(idCurso: number): Observable<any> {
+  getGruposCurso(idCurso: bigint): Observable<any> {
     const rutaConsultarGrupos = '/listar_grupos_de_curso?';
     const parametro1Consulta = 'idCurso=';
     const parametro2Consulta = 'nombreUsuario=';

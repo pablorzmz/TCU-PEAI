@@ -1,0 +1,21 @@
+<button class="btn btn-primary botonColor p-1"  (click)="abiriAgregarGrupo()">Agregar grupo</button>
+
+<ng-template #modalAgregarGrupo>
+  <form>
+    <div class="form-group">
+      <label for="numeroGrupo">Número de grupo</label>
+      <input type="text" class="form-control" id="numeroGrupo" required maxlength="2" placeholder="Número de grupo">
+    </div>
+    <div class="form-group">
+      <label for="periodoTiempo">Periodo de tiempo</label>
+      <input type="text" class="form-control" id="periodoTiempo" required maxlength="20" placeholder="Periodo de tiempo">
+    </div>
+    <div class="form-group">
+      <label for="profesores">Profesor</label>
+      <select disabled class="form-control" id="profesores" required>
+        <option [value]="usuario.usuarioPK">{{usuario.nombre}} {{usuario.apellidos}}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Crear</button>
+  </form>
+</ng-template>

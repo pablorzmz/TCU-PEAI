@@ -2,8 +2,10 @@
   <!--Navbar-->
   <div class="row mx-0 w-100 my-4">
     <div class="col-sm">
-      <h5>Grupos</h5>
-      <app-agregar-grupos-curso [curso]="curso"></app-agregar-grupos-curso>
+      <div class="d-flex justify-content-between">
+        <h5>Grupos</h5>
+        <app-agregar-grupos-curso [curso]="curso"></app-agregar-grupos-curso>
+      </div>
       <div *ngIf="grupos.length == 0" class="alert alert-warning my-4" role="alert">
         Este curso no cuenta con grupos asociados
       </div>

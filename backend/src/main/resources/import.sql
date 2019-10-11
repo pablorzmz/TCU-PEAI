@@ -85,3 +85,35 @@ INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_no
 INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_id) VALUES ('steveen', 0, 1, '1 semestre', 4);
 INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_id) VALUES ('stephXO', 0, 1, '2 semestre', 5);
 INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_id) VALUES ('stephXO', 0, 1, '1 semestre', 4);
+
+
+/********************** Sub secciones de materiales ******************************************/
+/* Grupo 1, Curso 4 */
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES (4, '1 semestre',1,'Todo el material',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES (4, '1 semestre',1,'Lecturas complementarias',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES (4, '1 semestre',1,'Prácticas para quices',1);
+
+/*Grupo 2, Curso 4*/
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 4, '1 semestre',2,'Todo el material',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 4, '1 semestre',2,'Practicas quices',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 4, '1 semestre',2,'Repaso algebra',1);
+
+/*Grupo 1, Curso 5*/
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 5, '2 semestre',1,'Todo el material',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 5, '2 semestre',1,'Practicas quices',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 5, '2 semestre',1,'Repaso metodologías investigacion',1);
+
+/*Grupo 1, Curso 1*/
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 1, '1 semestre',1,'Todo el material',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 1, '1 semestre',1,'Practicas',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 1, '1 semestre',1,'Documentación para proyecto',1);
+
+/*Grupo 1, Curso 2*/
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 2, '1 semestre',1,'Todo el material',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 2, '1 semestre',1,'Apoyo APA',1);
+
+/*Grupo 2, Curso 2*/
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 2, '1 semestre',2,'Todo el material',1);
+
+/*Grupo 2, Curso 3*/
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 3, '1 semestre',1,'Todo el material',1);

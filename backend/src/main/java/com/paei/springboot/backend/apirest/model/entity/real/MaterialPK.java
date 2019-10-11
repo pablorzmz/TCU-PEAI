@@ -1,7 +1,6 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,15 +11,15 @@ public class MaterialPK implements Serializable {
 
     public MaterialPK(){}
 
-    public MaterialPK(String nombre, SubSeccionMaterialPK subSeccionMaterial) {
+    public MaterialPK(String nombre, Long subSeccionMaterial) {
         Nombre = nombre;
-        this.subSeccionMaterial = subSeccionMaterial;
+        this.subSeccionMaterialId = subSeccionMaterial;
     }
 
     @Column( name = "material_id")
     private String Nombre;
 
-    private SubSeccionMaterialPK subSeccionMaterial;
+    private Long subSeccionMaterialId;
 
     public String getNombre() {
         return Nombre;
@@ -30,12 +29,12 @@ public class MaterialPK implements Serializable {
         Nombre = nombre;
     }
 
-    public SubSeccionMaterialPK getSubSeccionMaterial() {
-        return subSeccionMaterial;
+    public Long getSubSeccionMaterialId() {
+        return subSeccionMaterialId;
     }
 
-    public void setSubSeccionMaterial(SubSeccionMaterialPK subSeccionMaterial) {
-        this.subSeccionMaterial = subSeccionMaterial;
+    public void setSubSeccionMaterialId(Long subSeccionMaterialId) {
+        this.subSeccionMaterialId = subSeccionMaterialId;
     }
 
     @Override
@@ -44,11 +43,11 @@ public class MaterialPK implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         MaterialPK that = (MaterialPK) o;
         return Objects.equals(Nombre, that.Nombre) &&
-                Objects.equals(subSeccionMaterial, that.subSeccionMaterial);
+                Objects.equals(subSeccionMaterialId, that.subSeccionMaterialId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Nombre, subSeccionMaterial);
+        return Objects.hash(Nombre, subSeccionMaterialId);
     }
 }

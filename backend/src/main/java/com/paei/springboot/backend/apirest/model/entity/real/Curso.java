@@ -24,6 +24,7 @@ public class Curso implements Serializable {
 
     @Id
     @Column(name = "curso_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @Column(name = "nombre")

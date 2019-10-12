@@ -1,6 +1,8 @@
 package com.paei.springboot.backend.apirest.controllers.real;
 
 import com.paei.springboot.backend.apirest.exceptions.CursoNotFoundException;
+import com.paei.springboot.backend.apirest.exceptions.GrupoExist;
+import com.paei.springboot.backend.apirest.model.entity.real.*;
 import com.paei.springboot.backend.apirest.exceptions.UsuarioNotFoundException;
 import com.paei.springboot.backend.apirest.model.entity.real.Curso;
 import com.paei.springboot.backend.apirest.model.entity.real.Grupo;
@@ -27,6 +29,9 @@ public class GrupoController {
 
     @Autowired
     private IUsuarioService iUsuarioService;
+
+    private final int PERMISO_AGREGAR_GRUPO_CURSO = 6;
+
 
     @GetMapping("/listar_grupos_de_curso")
     public List<Grupo> recuperarGruposDeCurso(@RequestParam Long idCurso,  @RequestParam String nombreUsuario){
@@ -77,4 +82,34 @@ public class GrupoController {
             throw new CursoNotFoundException(idCurso);
         }
     }
+
+    @PostMapping("/crear_grupo_de_curso")
+    public Grupo crearGrupoDeCurso(@RequestParam Long idCurso, @RequestParam Integer numero, @RequestParam String periodoTiempo, @RequestParam String nombreUsuario){
+        Curso curso = iCursoService.getCurso(idCurso);
+        // Si el curso no existe se retorna una excepcion
+        if (curso == null){
+            throw new CursoNotFoundException(idCurso);
+        }
+
+        // Se obtiene el Usuario que impartirá el curso
+        Usuario usuario = iUsuarioService.findUsuarioByNombreUsuario(nombreUsuario);
+        // Si el usuario existe
+        if (usuario != null){
+            // AQUI SE VA A VALIDAR SI TIENE O NO EL PERMISO
+            GrupoPK grupoPK = new GrupoPK(idCurso, numero, periodoTiempo);
+
+            // Si el grupo no existe, se crea
+            if (iGrupoService.findById(grupoPK) == null){
+                Grupo grupo = new Grupo(grupoPK, usuario, curso);
+                return iGrupoService.setGrupoCurso(grupo);
+            }else {
+                // Si el grupo ya  existe, se retorna una excepcion
+                throw new GrupoExist(curso.getNombre(), numero, periodoTiempo);
+            }
+
+        }else {
+            // Si el usuario no existe se retorna una excecpcion
+            throw new UsuarioNotFoundException(nombreUsuario);
+        }
+    };
 }

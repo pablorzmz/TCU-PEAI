@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 export class ListarCursosComponent implements OnInit {
   cursos: Curso[]; // Lista de cursos para mostrar
   paginador: any; // Objeto donde se guarda el resultado de la consulta, que será enviado para la paginación
-  rutaPag: string = '/cursos/page/'; // Ruta del paginador
+  rutaPag = '/cursos/page/'; // Ruta del paginador
 
   constructor(private cursoService: CursoService,
               private activatedRoute: ActivatedRoute) { }

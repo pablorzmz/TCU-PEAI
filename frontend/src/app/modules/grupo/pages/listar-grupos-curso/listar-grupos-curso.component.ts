@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {GrupoService} from '../../../../data/services/grupo.service';
 import {ActivatedRoute} from '@angular/router';
 import {Grupo} from '../../../../data/schema/Grupo';
+import {Curso} from '../../../../data/schema/Curso';
+import {AuthService} from '../../../../data/services/auth.service';
+import {CONSTANTES} from '../../../../data/util/Constantes';
 
 @Component({
   selector: 'app-listar-grupos-curso',
@@ -10,14 +13,23 @@ import {Grupo} from '../../../../data/schema/Grupo';
 })
 export class ListarGruposCursoComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private grupoService: GrupoService) { }
+  constructor(private route: ActivatedRoute, private grupoService: GrupoService, private authService: AuthService) { }
 
-  @Input() idCurso: number;
+  // Se recibe el curso del grupo
+  @Input() curso: Curso;
+
+  // Se recibe el nombre de la institución del curso
+  @Input() nombreInstitucion: string;
+
+  // Lista de grupos que s epueden observar
   grupos: Array<Grupo>;
+
+  // Se obtienen las contantes de permisos
+  constantes = new CONSTANTES();
 
   ngOnInit() {
       // Se solicitan las areas tematicas de la area-tematica
-      const request = this.grupoService.getGruposCurso(this.idCurso).subscribe(
+      const request = this.grupoService.getGruposCurso(this.curso.id).subscribe(
         res => {
           // Si las recibe se asignan al atributo areasTematicas
           this.grupos = res;
@@ -28,5 +40,8 @@ export class ListarGruposCursoComponent implements OnInit {
         // Esto se implementa cuando esté el interceptor
         err => console.error(err)
       );
+  }
+  actualizarGrupos($event): any {
+      this.grupos.push($event.grupo);
   }
 }

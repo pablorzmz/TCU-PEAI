@@ -15,15 +15,17 @@ public class Curso implements Serializable {
 
     public Curso(){}
 
-    public Curso(CursoPK id, String nombre, String descripcion, String foto) {
+    public Curso(Long id, String nombre, String descripcion, String foto) {
         Id = id;
         Nombre = nombre;
         Descripcion = descripcion;
         Foto = foto;
     }
 
-    @EmbeddedId
-    private CursoPK Id;
+    @Id
+    @Column(name = "curso_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
 
     @Column(name = "nombre")
     private String Nombre;
@@ -52,11 +54,11 @@ public class Curso implements Serializable {
         this.grupos = grupos;
     }
 
-    public CursoPK getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(CursoPK id) {
+    public void setId(Long id) {
         Id = id;
     }
 

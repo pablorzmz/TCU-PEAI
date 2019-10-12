@@ -30,4 +30,7 @@ export class ListarGruposCursoComponent implements OnInit {
         err => console.error(err)
       );
   }
+  actualizarGrupos($event): any {
+      this.grupos.push($event.grupo);
+  }
 }

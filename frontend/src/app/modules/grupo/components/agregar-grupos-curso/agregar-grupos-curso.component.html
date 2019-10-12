@@ -8,26 +8,31 @@
     <div class="col-md-12 w-100 d-flex justify-content-center m-3">
       <h5>Agregar nuevo grupo</h5>
     </div>
-      <form class="col-md-12">
+      <form [formGroup]="agregarGrupoForm" class="col-md-12">
         <div class="form-group">
           <label for="numeroGrupo">Número de grupo</label>
-          <input type="text" class="form-control" id="numeroGrupo" required maxlength="2" placeholder="Número de grupo">
+          <input formControlName="numeroGrupo" id="numeroGrupo" type="text" class="form-control" maxlength="2" placeholder="Número de grupo" required>
+          <div class="text-danger" *ngIf="numeroGrupo.touched && numeroGrupo.status== 'INVALID'">Este espacio solo debe contener números</div>
         </div>
         <div class="form-group">
           <label for="periodoTiempo">Periodo de tiempo</label>
-          <input type="text" class="form-control" id="periodoTiempo" required maxlength="20" placeholder="Periodo de tiempo">
+          <input formControlName="periodoTiempo" id="periodoTiempo" type="text" class="form-control" id="periodoTiempo"
+                 placeholder="Periodo de tiempo" required>
+          <div class="text-danger" *ngIf="periodoTiempo.touched && periodoTiempo.status== 'INVALID'">Es preiodo de tiempo es inválido</div>
         </div>
         <div class="form-group">
           <label for="profesores">Profesor</label>
-          <select disabled class="form-control" id="profesores" required>
-            <option [value]="usuario.usuarioPK">{{usuario.nombre}} {{usuario.apellidos}}</option>
+          <!--Posteriormente se evaluará si puede o no ver una lista de profes -->
+          <select formControlName="profesor" disabled class="form-control" id="profesores" required>
+            <option [ngValue]="usuario.usuarioPK.nombreUsuario">{{usuario.nombre}} {{usuario.apellidos}}</option>
           </select>
+          <div class="text-danger" *ngIf="profesor.touched && profesor.status== 'INVALID' ">El valor del profesor seleccionado es incorrecto</div>
         </div>
         <div class="d-flex justify-content-end">
-          <button class="btn btn-primary mr-1">
+          <button type="submit" [disabled]="agregarGrupoForm.invalid" (click)="crearGrupo()" class="btn btn-primary mr-1">
             Crear
           </button>
-          <button [mat-dialog-close] class="btn btn-danger">
+          <button (click)="cerrarAgregarGrupo()" class="btn btn-danger">
             Volver
           </button>
           </div>

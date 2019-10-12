@@ -85,9 +85,7 @@ public class GrupoController {
 
     @PostMapping("/crear_grupo_de_curso")
     public Grupo crearGrupoDeCurso(@RequestParam Long idCurso, @RequestParam Integer numero, @RequestParam String periodoTiempo, @RequestParam String nombreUsuario){
-        // Se obtiene el curso a partir del id
-        CursoPK cursoPK = new CursoPK(idCurso);
-        Curso curso = iCursoService.getCurso(cursoPK);
+        Curso curso = iCursoService.getCurso(idCurso);
         // Si el curso no existe se retorna una excepcion
         if (curso == null){
             throw new CursoNotFoundException(idCurso);
@@ -98,10 +96,10 @@ public class GrupoController {
         // Si el usuario existe
         if (usuario != null){
             // AQUI SE VA A VALIDAR SI TIENE O NO EL PERMISO
-            GrupoPK grupoPK = new GrupoPK(cursoPK, numero, periodoTiempo);
+            GrupoPK grupoPK = new GrupoPK(idCurso, numero, periodoTiempo);
 
             // Si el grupo no existe, se crea
-            if (iGrupoService.getGrupo(grupoPK) == null){
+            if (iGrupoService.findById(grupoPK) == null){
                 Grupo grupo = new Grupo(grupoPK, usuario, curso);
                 return iGrupoService.setGrupoCurso(grupo);
             }else {

@@ -12,7 +12,7 @@ export class GrupoService {
 
   readonly urlEndpoint = 'http://localhost:8080/api/grupos';
 
-  getGruposCurso(idCurso: bigint): Observable<any> {
+  getGruposCurso(idCurso: number): Observable<any> {
     const rutaConsultarGrupos = '/listar_grupos_de_curso?';
     const parametro1Consulta = 'idCurso=';
     const parametro2Consulta = 'nombreUsuario=';
@@ -27,7 +27,7 @@ export class GrupoService {
     return this.http.get<any>(urlConsulta, {headers: httpHeaders});
   }
 
-  setGruposCurso(idCurso: bigint, numero: number, periodoTiempo: string, nombreUsuario: string): Observable<any> {
+  setGruposCurso(idCurso: number, numero: number, periodoTiempo: string, nombreUsuario: string): Observable<any> {
       const rutaConsultarGrupos = '/crear_grupo_de_curso?';
       // Se hace un set de los parametros a enviar
       const parametro1Consulta = 'idCurso=';

@@ -37,20 +37,6 @@ public class GrupoServiceImpl implements IGrupoService {
         return iGrupoDao.findGruposByCurso(cursoPK);
     }
 
-    /**
-     * Metodo que retorna el grupo segun su grupoPK
-     * @param grupoPK es la PK del grupo
-     * @return Grupo si existe o null en caso contrario
-     */
-    @Override
-    public Grupo getGrupo(GrupoPK grupoPK){
-        try {
-            Optional<Grupo> grupo = iGrupoDao.findById(grupoPK);
-            return grupo.get();
-        }catch (Exception e){
-            return null;
-        }
-    };
 
     /**
      * Método que liga un grupo con un curso dado

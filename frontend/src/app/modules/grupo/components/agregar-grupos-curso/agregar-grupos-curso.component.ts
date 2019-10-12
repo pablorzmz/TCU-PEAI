@@ -105,7 +105,7 @@ export class AgregarGruposCursoComponent implements OnInit {
       // Variable que almacena el grupo que será guardado
       let grupo: Grupo;
       // tslint:disable-next-line:max-line-length
-      const request = this.grupoService.setGruposCurso(this.curso.id.id, this.numeroGrupo.value, this.periodoTiempo.value, this.profesor.value).subscribe(
+      const request = this.grupoService.setGruposCurso(this.curso.id, this.numeroGrupo.value, this.periodoTiempo.value, this.profesor.value).subscribe(
         res => {
           // Si lo recibe se le asigna el grupo a la variable
           grupo = res;
@@ -121,10 +121,7 @@ export class AgregarGruposCursoComponent implements OnInit {
         // En caso de que no se reciba correctamente se lanza una excepcion
         // Esto se implementa cuando esté el interceptor
         err => {
-          console.log(err);
-          if (err.status === 409) {
-            this.mensajeGrupoExiste(err.error.error);
-          }
+          this.manejarError(err);
         }
       );
     } else {
@@ -143,6 +140,14 @@ export class AgregarGruposCursoComponent implements OnInit {
       title: 'Grupo creado',
       confirmButtonText: 'Aceptar'
     });
+  }
+
+  manejarError(err): any {
+    // Si es un error de conflicto
+    if (err.status === 409) {
+      this.mensajeGrupoExiste(err.error.error);
+    }
+    // Aqui se pueden manejar otros posibles errores
   }
 
   /**

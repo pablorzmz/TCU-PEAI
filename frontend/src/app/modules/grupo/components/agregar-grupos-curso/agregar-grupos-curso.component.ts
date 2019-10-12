@@ -56,17 +56,24 @@ export class AgregarGruposCursoComponent implements OnInit {
       profesor: [this.usuario.usuarioPK.nombreUsuario, Validators.maxLength(50)],
     });
   }
-  // Metodo para hacer los requiered de numero de grupo
+
+  /**
+   * Metodo para hacer los requiered de numero de grupo
+   */
   get numeroGrupo() {
     return this.agregarGrupoForm.get('numeroGrupo');
   }
 
-  // Metodo para hacer los requiered de periodo de tiempo
+  /**
+   * Metodo para hacer los requiered de periodo de tiempo
+   */
   get periodoTiempo() {
     return this.agregarGrupoForm.get('periodoTiempo');
   }
 
-  // Metodo para hacer los requiered de profesor
+  /**
+   * Metodo para hacer los requiered de profesor
+   */
   get profesor() {
     return this.agregarGrupoForm.get('profesor');
   }
@@ -93,40 +100,76 @@ export class AgregarGruposCursoComponent implements OnInit {
    * Metodo que hace el post
    */
    crearGrupo(): any {
-    // Variable que almacena el grupo que será guardado
-     let grupo: Grupo;
-    // tslint:disable-next-line:max-line-length
-     const request = this.grupoService.setGruposCurso(this.curso.id.id, this.numeroGrupo.value, this.periodoTiempo.value, this.profesor.value).subscribe(
-      res => {
-        // Si lo recibe se le asigna el grupo a la variable
-        grupo = res;
-        // Se cierra el dialog
-        this.cerrarAgregarGrupo();
-        // Se indica que el grupo ha sido creado
-        this.grupoCreado();
-        // Se emite el cambio de que ya ha sido creado el grupo
-        this.valueChange.emit({grupo});
-        // Quitamos la subscripcion
-        request.unsubscribe();
-      },
-      // En caso de que no se reciba correctamente se lanza una excepcion
-      // Esto se implementa cuando esté el interceptor
-      err => {
-        console.error(err);
-        return null;
-      }
-    );
+     // Se verifica si tiene el permiso
+    if (this.authService.validarTienePermisoEnAlgunPerfil(6)) {
+      // Variable que almacena el grupo que será guardado
+      let grupo: Grupo;
+      // tslint:disable-next-line:max-line-length
+      const request = this.grupoService.setGruposCurso(this.curso.id.id, this.numeroGrupo.value, this.periodoTiempo.value, this.profesor.value).subscribe(
+        res => {
+          // Si lo recibe se le asigna el grupo a la variable
+          grupo = res;
+          // Se cierra el dialog
+          this.cerrarAgregarGrupo();
+          // Se indica que el grupo ha sido creado
+          this.mensajeGrupoCreado();
+          // Se emite el cambio de que ya ha sido creado el grupo
+          this.valueChange.emit({grupo});
+          // Quitamos la subscripcion
+          request.unsubscribe();
+        },
+        // En caso de que no se reciba correctamente se lanza una excepcion
+        // Esto se implementa cuando esté el interceptor
+        err => {
+          console.log(err);
+          if (err.status === 409) {
+            this.mensajeGrupoExiste(err.error.error);
+          }
+        }
+      );
+    } else {
+      this.mensajeNoTienePermisos();
+    }
   }
 
   /**
    * Método que indica que el grupo ha sido creado
    */
-  grupoCreado(): any {
+  mensajeGrupoCreado(): any {
     // Mensaje para indicar que se creó
     this.swalWithBootstrapButtons.fire({
       position: 'center',
       type: 'success',
       title: 'Grupo creado',
+      confirmButtonText: 'Aceptar'
+    });
+  }
+
+  /**
+   * Método que indica que ha habido un error en la creación
+   * @param err contiene el mensaje de error
+   */
+  mensajeGrupoExiste(err: string): any {
+    // Mensaje para indicar que se creó
+    this.swalWithBootstrapButtons.fire({
+      position: 'center',
+      type: 'error',
+      title: 'El grupo ya existe',
+      text: err,
+      confirmButtonText: 'Aceptar'
+    });
+  }
+
+  /**
+   * Método que indica que el grupo ha sido creado
+   */
+  mensajeNoTienePermisos(): any {
+    // Mensaje para indicar que no tiene los permisos
+    this.swalWithBootstrapButtons.fire({
+      position: 'center',
+      type: 'error',
+      title: 'No tiene permisos',
+      text: 'No cuenta con los permisos para realizar esta acción',
       confirmButtonText: 'Aceptar'
     });
   }

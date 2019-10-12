@@ -28,7 +28,6 @@ export class GrupoService {
   }
 
   setGruposCurso(idCurso: bigint, numero: number, periodoTiempo: string, nombreUsuario: string): Observable<any> {
-    if (this.authService.validarTienePermisoEnAlgunPerfil(6)) {
       const rutaConsultarGrupos = '/crear_grupo_de_curso?';
       // Se hace un set de los parametros a enviar
       const parametro1Consulta = 'idCurso=';
@@ -46,6 +45,4 @@ export class GrupoService {
       // Finalmente se realiza la petición
       return this.http.post<any>(urlConsulta, {}, {headers: httpHeaders});
     }
-  }
-
 }

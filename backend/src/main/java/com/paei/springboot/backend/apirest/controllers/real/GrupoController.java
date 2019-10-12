@@ -107,7 +107,7 @@ public class GrupoController {
                 return iGrupoService.setGrupoCurso(grupo);
             }else {
                 // Si el grupo ya  existe, se retorna una excepcion
-                throw new GrupoExist(idCurso, numero, periodoTiempo);
+                throw new GrupoExist(curso.getNombre(), numero, periodoTiempo);
             }
 
         }else {

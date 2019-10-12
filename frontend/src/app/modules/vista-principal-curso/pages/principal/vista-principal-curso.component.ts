@@ -3,6 +3,7 @@ import {Curso} from '../../../../data/schema/Curso';
 import {ActivatedRoute} from '@angular/router';
 import {VistaPrincipalCursoService} from '../../../../data/services/vista-principal-curso.service';
 import {Router} from '@angular/router';
+import {SubseccionMaterial} from '../../../../data/schema/SubseccionMaterial';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class VistaPrincipalCursoComponent implements OnInit {
   private nombreAreaTematica: string;
   private nombreInstitucion: string;
   private nombreProfesorCurso: string;
+  private listaSubseccionMateriales: any;
 
   constructor(
       private activatedRoute: ActivatedRoute,
@@ -23,6 +25,7 @@ export class VistaPrincipalCursoComponent implements OnInit {
       private  router: Router
     ) {
     // Datos dummies mientras incializa
+    this.listaSubseccionMateriales = null;
     this.curso = new Curso();
     this.curso.nombre = 'Cargando...';
     this.curso.descripcion = 'Cargando...';
@@ -44,6 +47,17 @@ export class VistaPrincipalCursoComponent implements OnInit {
             this.nombreAreaTematica = response.areaTematica;
             this.nombreInstitucion = response.nombreInstitucion;
             this.nombreProfesorCurso = response.profesorImparte;
+            // Se obtienen todas las subsecciones de materiales disponibles
+            this.listaSubseccionMateriales = Array<SubseccionMaterial>();
+            const idsGrupos = Object.keys(response.subseccionesMaterialPorGrupo);
+            idsGrupos.map(
+              // Se recorre por cada id de grupo las subsecciones de materiales
+              id => { response.subseccionesMaterialPorGrupo[id].map(
+                  // se agrega al array
+                  sbm => { this.listaSubseccionMateriales.push(sbm as SubseccionMaterial);}
+                );
+              }
+            );
             request.unsubscribe();
           },
           error => {

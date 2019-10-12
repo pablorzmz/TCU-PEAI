@@ -37,7 +37,8 @@ public class Material implements Serializable {
     })
     private Categoria categoria;
 
-    @MapsId("subseccion_material_id")
+
+    @MapsId("subSeccionMaterialId")
     @JoinColumns({
             @JoinColumn(name="subseccion_material_id", referencedColumnName="subseccion_material_id"),
     })

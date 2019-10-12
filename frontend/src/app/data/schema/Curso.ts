@@ -1,8 +1,7 @@
-import {CursoPK} from './CursoPK';
 import {AreaTematica} from './AreaTematica';
 
 export class Curso {
-  id: CursoPK;
+  id: number;
   nombre: string;
   descripcion: string;
   foto: string;

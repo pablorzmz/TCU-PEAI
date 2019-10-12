@@ -2,13 +2,12 @@ package com.paei.springboot.backend.apirest.dao.real;
 
 import com.paei.springboot.backend.apirest.model.entity.real.AreaTematicaPK;
 import com.paei.springboot.backend.apirest.model.entity.real.Curso;
-import com.paei.springboot.backend.apirest.model.entity.real.CursoPK;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ICursoDao extends JpaRepository<Curso, CursoPK> {
+public interface ICursoDao extends JpaRepository<Curso, Long> {
 
     /**
      * Metodo que consulta los cursos asociados a un area tematica

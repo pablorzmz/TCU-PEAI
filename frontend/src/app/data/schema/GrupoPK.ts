@@ -1,7 +1,5 @@
-import {CursoPK} from './CursoPK';
-
 export class GrupoPK {
-  curso: CursoPK;
+  cursoId: number;
   numero: bigint;
   periodoTiempo: string;
 }

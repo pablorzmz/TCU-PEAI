@@ -16,12 +16,12 @@
         <img src="{{curso.foto}}" class="card-imagen" alt="Foto Curso">
         <div class="card-body">
           <h5 class="card-title">
-            <a style="color: #005A70" [routerLink]="['/vista_principal_curso/',curso.id.id]"> {{curso.nombre}} </a>
+            <a style="color: #005A70" [routerLink]="['/vista_principal_curso/',curso.id]"> {{curso.nombre}} </a>
           </h5>
           <p><b>Pertenece a la institución: </b>{{curso.areaTematica.institucion.institucionPK.nombre}}</p>
           <p><b>Pertenece al área temática: </b>{{curso.areaTematica.nombre}}</p>
           <p class="card-text">{{curso.descripcion}}</p>
-          <a [routerLink]="['/vista_principal_curso/',curso.id.id]" class="btn btn-primary" style="color: white">Entrar</a>
+          <a [routerLink]="['/vista_principal_curso/',curso.id]" class="btn btn-primary" style="color: white">Entrar</a>
         </div>
       </div>
     </div>

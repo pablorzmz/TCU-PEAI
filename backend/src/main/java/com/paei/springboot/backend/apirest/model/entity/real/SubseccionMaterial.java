@@ -12,14 +12,10 @@ public class SubseccionMaterial implements Serializable {
 
     public SubseccionMaterial(){}
 
-    public SubseccionMaterial(SubSeccionMaterialPK id, String nombre, Boolean habilitada) {
-        Id = id;
-        Nombre = nombre;
-        Habilitada = habilitada;
-    }
-
-    @EmbeddedId
-    private SubSeccionMaterialPK Id;
+    @Id
+    @Column(name = "subseccion_material_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
 
     @Column( name = "nombre")
     private String Nombre;
@@ -27,7 +23,7 @@ public class SubseccionMaterial implements Serializable {
     @Column( name = "habilitada")
     private Boolean Habilitada;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumns({
             @JoinColumn(name = "numero", unique = false, nullable = false, referencedColumnName = "numero"),
             @JoinColumn(name = "curso_id", unique = false, nullable = false, referencedColumnName = "curso_id"),
@@ -46,11 +42,11 @@ public class SubseccionMaterial implements Serializable {
         this.grupo = grupo;
     }
 
-    public SubSeccionMaterialPK getId() {
+    public Long getId() {
         return Id;
     }
 
-    public void setId(SubSeccionMaterialPK id) {
+    public void setId(Long id) {
         Id = id;
     }
 

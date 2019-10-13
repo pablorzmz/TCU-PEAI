@@ -255,6 +255,31 @@ export class AuthService {
     );
     return resultado;
   }
+
+  /**
+   * Método que permite verificar si se tiene un permiso en algún perfil y de una institucion especifica
+   * @param permisoId Id del permiso. Valor obtenido de una de las constantes
+   * Retorna verdadero o falso si se tiene o no ese permito
+   */
+  validarTienePermisoEnAlgunPerfilDeInstitucion(permisoId: number, institucionId: string): boolean {
+    let resultado = false;
+    const perfilesInstitciones = this.obtenerPerfilesInstituciones();
+    perfilesInstitciones.map(
+      pi => {
+        const idPerfil = pi.perfil as string;
+        pi.instituciones.map(
+          nombreInstitucion => {
+            if (nombreInstitucion === institucionId && this.tienePermisoEnPerfilInstitucion(permisoId,
+              nombreInstitucion, idPerfil)) {
+              resultado = true;
+              return;
+            }
+          }
+        );
+      }
+    );
+    return resultado;
+  }
 }
 
 

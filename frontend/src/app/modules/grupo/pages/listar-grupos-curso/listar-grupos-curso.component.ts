@@ -15,6 +15,7 @@ export class ListarGruposCursoComponent implements OnInit {
   constructor(private route: ActivatedRoute, private grupoService: GrupoService, private authService: AuthService) { }
 
   @Input() curso: Curso;
+  @Input() nombreInstitucion: string;
   grupos: Array<Grupo>;
 
   ngOnInit() {

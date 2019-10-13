@@ -52,7 +52,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="d-flex ml-auto mx-3">
-                    <app-eliminar-subseccion-material-grupo [nombreInstitucion]="grupo.curso.areaTematica.institucion.institucionPK.nombre" [sbm]="sbm"></app-eliminar-subseccion-material-grupo>
+                    <app-eliminar-subseccion-material-grupo (sbmEliminarValueChange)="eliminarSubseccionMaterial($event)" [nombreInstitucion]="grupo.curso.areaTematica.institucion.institucionPK.nombre" [sbm]="sbm"></app-eliminar-subseccion-material-grupo>
                   </div>
                 </div>
                 <div class="row">

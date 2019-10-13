@@ -52,4 +52,10 @@ export class ListarGruposCursoComponent implements OnInit {
   actualizarSubseccionesMateriales($event): any {
     this.listaSubseccionMateriales.push($event.sbm);
   }
+
+  eliminarSubseccionMaterial($event): any {
+    this.listaSubseccionMateriales = this.listaSubseccionMateriales.filter( item => {
+      return item.id !== ($event.sbm as SubseccionMaterial).id ;
+    });
+  }
 }

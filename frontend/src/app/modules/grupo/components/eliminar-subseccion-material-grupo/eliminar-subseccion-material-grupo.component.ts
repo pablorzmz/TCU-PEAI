@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {SubseccionMaterial} from '../../../../data/schema/SubseccionMaterial';
 import {CONSTANTES} from '../../../../data/util/Constantes';
 import {AuthService} from '../../../../data/services/auth.service';
 import Swal from 'sweetalert2';
+import {SubseccionMaterialService} from '../../../../data/services/subseccion-material.service';
 
 @Component({
   selector: 'app-eliminar-subseccion-material-grupo',
@@ -17,11 +18,13 @@ export class EliminarSubseccionMaterialGrupoComponent implements OnInit {
   // nombre de la institucion
   @Input()  private nombreInstitucion: string;
 
+  // Aqui se emite el evento para eliminar la subsección de la vista
+  @Output() sbmEliminarValueChange = new EventEmitter<{sbm: SubseccionMaterial}>();
 
   // acceso a las constantes
   private constantes: CONSTANTES;
 
-  constructor( private authService: AuthService ) {
+  constructor( private authService: AuthService, private sbmService: SubseccionMaterialService ) {
     this.constantes = new CONSTANTES();
   }
 
@@ -33,7 +36,7 @@ export class EliminarSubseccionMaterialGrupoComponent implements OnInit {
    */
   eliminarSubseccionMaterial(): void {
     // si el usuario tiene permiso
-    if (!this.puedeEliminarSubseccionMaterial()) {
+    if (this.puedeEliminarSubseccionMaterial()) {
       // se pregunta
       Swal.fire({
         title: '¿Seguro desea eliminar?',
@@ -47,6 +50,30 @@ export class EliminarSubseccionMaterialGrupoComponent implements OnInit {
       }).then((result) => {
         if (result.value) {
           // se elimina utlizando el servicio
+          const  request =  this.sbmService.eliminarSubseccionMaterial(this.sbm).subscribe(
+            response => {
+              // se muestra mensaje
+              Swal.fire({
+                title: '¡Éxito al eliminar!',
+                text: response.mensaje,
+                type: 'success',
+                confirmButtonText: 'Aceptar'
+              });
+              // se emite
+              this.sbmEliminarValueChange.emit({ sbm: this.sbm } );
+              // se desubscribe
+              request.unsubscribe();
+            },
+            error => {
+              // Se muestra mensaje de error.
+              Swal.fire({
+                title: 'Error al eliminar subsección de material',
+                text: error.error,
+                type: 'error',
+                confirmButtonText: 'Aceptar'
+              });
+            }
+          );
         }
       });
     } else {

@@ -1,7 +1,11 @@
 package com.paei.springboot.backend.apirest.model.entity.real;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 @Embeddable
@@ -14,6 +18,9 @@ public class UsuarioMaterialComentaPK implements Serializable {
     private MaterialPK material;
 
     private UsuarioPK usuario;
+
+    @Column( name = "fecha")
+    private Date Fecha;
 
     public MaterialPK getMaterial() {
         return material;
@@ -29,6 +36,14 @@ public class UsuarioMaterialComentaPK implements Serializable {
 
     public void setUsuario(UsuarioPK usuario) {
         this.usuario = usuario;
+    }
+
+    public Date getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        Fecha = fecha;
     }
 
     @Override

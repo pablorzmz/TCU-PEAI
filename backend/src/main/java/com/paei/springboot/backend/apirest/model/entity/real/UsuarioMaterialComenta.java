@@ -14,10 +14,9 @@ public class UsuarioMaterialComenta  implements Serializable {
 
     public UsuarioMaterialComenta(){}
 
-    public UsuarioMaterialComenta(UsuarioMaterialComentaPK id, String textoComentario, Date fecha, Boolean visible) {
+    public UsuarioMaterialComenta(UsuarioMaterialComentaPK id, String textoComentario, Boolean visible) {
         Id = id;
         TextoComentario = textoComentario;
-        Fecha = fecha;
         Visible = visible;
     }
 
@@ -27,8 +26,6 @@ public class UsuarioMaterialComenta  implements Serializable {
     @Column( name = "texto_comentario")
     private String TextoComentario;
 
-    @Column( name = "fecha")
-    private Date Fecha;
 
     @Column ( name =  "visible")
     private Boolean Visible;
@@ -64,13 +61,6 @@ public class UsuarioMaterialComenta  implements Serializable {
         TextoComentario = textoComentario;
     }
 
-    public Date getFecha() {
-        return Fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        Fecha = fecha;
-    }
 
     public Boolean getVisible() {
         return Visible;
@@ -79,4 +69,8 @@ public class UsuarioMaterialComenta  implements Serializable {
     public void setVisible(Boolean visible) {
         Visible = visible;
     }
+
+    public void setMaterial(Material material){ this.material = material; }
+
+    public void setUsuario(Usuario usuario){ this.usuario = usuario; }
 }

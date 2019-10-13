@@ -103,4 +103,26 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.CONFLICT, ex.getMessage());
         return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
     }
+
+    /**
+     * Metodo para manejar la excepcion de que no existe un material
+     * @param ex Excepción lanzada
+     * @return Retorna un CustomErrorResponse con la información del error
+     */
+    @ExceptionHandler(MaterialNotFoundException.class)
+    public ResponseEntity<CustomErrorResponse> materialNoExiste(Exception ex) {
+        CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.NOT_FOUND, ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+    }
+
+    /**
+     * Metodo para manejar la excepcion de BadRequest
+     * @param ex Excepción lanzada
+     * @return Retorna un CustomErrorResponse con la información del error
+     */
+    @ExceptionHandler(SolicitudInvalidaException.class)
+    public ResponseEntity<CustomErrorResponse> solicitudInvalida(Exception ex) {
+        CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.BAD_REQUEST, ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+    }
 }

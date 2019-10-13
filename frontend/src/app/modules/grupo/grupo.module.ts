@@ -10,13 +10,17 @@ import {MatIconModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 import { AgregarSubseccionMaterialGrupoComponent } from
     './components/agregar-subseccion-material-grupo/agregar-subseccion-material-grupo.component';
+import { EliminarSubseccionMaterialGrupoComponent } from
+    './components/eliminar-subseccion-material-grupo/eliminar-subseccion-material-grupo.component';
 
 
 @NgModule({
-  declarations: [ListarGruposCursoComponent, AgregarGruposCursoComponent, AgregarSubseccionMaterialGrupoComponent],
+  declarations: [ListarGruposCursoComponent, AgregarGruposCursoComponent,
+    AgregarSubseccionMaterialGrupoComponent, EliminarSubseccionMaterialGrupoComponent],
   exports: [
     ListarGruposCursoComponent,
-    AgregarSubseccionMaterialGrupoComponent
+    AgregarSubseccionMaterialGrupoComponent,
+    EliminarSubseccionMaterialGrupoComponent
   ],
   imports: [
     CommonModule,

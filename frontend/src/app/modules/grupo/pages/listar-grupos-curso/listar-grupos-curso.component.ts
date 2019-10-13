@@ -48,4 +48,8 @@ export class ListarGruposCursoComponent implements OnInit {
   actualizarGrupos($event): any {
       this.grupos.push($event.grupo);
   }
+
+  actualizarSubseccionesMateriales($event): any {
+    this.listaSubseccionMateriales.push($event.sbm);
+  }
 }

@@ -25,7 +25,7 @@
         <div class="col">
           <div class="float-right">
             <!-- Componente para crear subsecciones de material que reciben el grupo-->
-            <app-agregar-subseccion-material-grupo [grupo]="grupo"></app-agregar-subseccion-material-grupo>
+            <app-agregar-subseccion-material-grupo [grupo]="grupo" (sbmValueChange)="actualizarSubseccionesMateriales($event)"></app-agregar-subseccion-material-grupo>
           </div>
         </div>
       </div>

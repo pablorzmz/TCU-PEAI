@@ -16,8 +16,37 @@
     <div class="col-md-12 mb-1" *ngFor="let grupo of grupos">
       <nav class="navbar navbar-light"  style="background-color: #DCEDF6">
         <h5 style="color: #005A70">Grupo {{grupo.id.numero}} - {{grupo.id.periodoTiempo}}</h5>
-        <!-- Aqui va el boton editar -->
+        <!-- Se agregan las subsecciones por cada grupo -->
       </nav>
-    </div>
+      <button class="btn btn-lg btn-block text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapseExample' + grupo.id.numero" aria-expanded="false" aria-controls="collapseExample" style="background-color: #FFCF01">
+          Material
+      </button>
+      <div class="collapse show" [id]="'collapseExample' + grupo.id.numero">
+          <div *ngFor="let sbm of listaSubseccionMateriales">
+            <div class="card">
+              <div class="card-header" style="font-style: oblique">
+                <div class="row">
+                  <div class="col">
+                    Subsección: {{' ' + sbm.nombre}}
+                  </div>
+                  <div class="col text-right" *ngIf="sbm.habilitada">
+                    <button class="btn btn-sm btn-primary">
+                      Habilitada
+                    </button>
+                  </div>
+                  <div class="col text-right" *ngIf="!sbm.habilitada">
+                    <button class="btn btn-sm btn-danger">
+                      Deshabilitada
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <p> Sin materiales disponibles</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 </div>

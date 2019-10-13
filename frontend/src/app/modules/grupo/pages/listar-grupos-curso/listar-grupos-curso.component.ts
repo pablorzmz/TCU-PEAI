@@ -5,6 +5,7 @@ import {Grupo} from '../../../../data/schema/Grupo';
 import {Curso} from '../../../../data/schema/Curso';
 import {AuthService} from '../../../../data/services/auth.service';
 import {CONSTANTES} from '../../../../data/util/Constantes';
+import {SubseccionMaterial} from '../../../../data/schema/SubseccionMaterial';
 
 @Component({
   selector: 'app-listar-grupos-curso',
@@ -14,6 +15,9 @@ import {CONSTANTES} from '../../../../data/util/Constantes';
 export class ListarGruposCursoComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private grupoService: GrupoService, private authService: AuthService) { }
+
+  // Se agrega la lista de subsecciones de materiales para ajustar por grupo
+  @Input() listaSubseccionMateriales: Array<SubseccionMaterial>;
 
   // Se recibe el curso del grupo
   @Input() curso: Curso;
@@ -28,6 +32,7 @@ export class ListarGruposCursoComponent implements OnInit {
   constantes = new CONSTANTES();
 
   ngOnInit() {
+       console.log(this.listaSubseccionMateriales);
       // Se solicitan las areas tematicas de la area-tematica
       const request = this.grupoService.getGruposCurso(this.curso.id).subscribe(
         res => {

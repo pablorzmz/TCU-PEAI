@@ -1,0 +1,55 @@
+<button type="button" class="btn btn-primary d-flex align-items-center" data-toggle="modal" data-target="#modalCrearCurso">
+  Crear Curso
+</button>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modalCrearCurso" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear nuevo Curso</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="crearCursoForm" class="col-md-12">
+          <div class="form-group">
+            <label for="nombreCurso">Nombre del Curso</label>
+            <input formControlName="nombreCurso" id="nombreCurso" type="text" class="form-control" placeholder="Nombre del Curso" required>
+            <div class="text-danger" *ngIf="nombreCurso.touched && nombreCurso.status== 'INVALID'">Nombre Invalido</div>
+          </div>
+          <div class="form-group">
+            <label for="descripcionCurso">Descripcion del curso</label>
+            <textarea formControlName="descripcionCurso" id="descripcionCurso" type="textarea" class="form-control"
+                      placeholder="Descripcion del curso" required rows="4" style="resize: none"></textarea>
+            <div class="text-danger" *ngIf="descripcionCurso.touched && descripcionCurso.status== 'INVALID'">Descripcion Invalida</div>
+          </div>
+          <div class="form-group">
+            <label for="institucionCurso">Institucion</label>
+            <select formControlName="institucionCurso" (change)="cargarAreasTematicas()"  class="form-control" id="institucionCurso" required>
+              <option value="-" disabled selected hiden>Seleccione la institucion</option>
+              <option *ngFor="let institucion of this.instituciones" [ngValue]="institucion.institucionPK.nombre">{{institucion.institucionPK.nombre}}</option>
+            </select>
+            <div class="text-danger" *ngIf="institucionCurso.touched && institucionCurso.status== 'INVALID'">Seleccione una institucion</div>
+          </div>
+          <div class="form-group">
+            <label for="areaCurso">Area Tematica</label>
+            <select formControlName="areaCurso" class="form-control" id="areaCurso" required>
+              <option value="-" disabled selected hiden>Seleccione el Area Tematica</option>
+              <option *ngFor="let area of this.areasTematicas" [ngValue]="area.id.id">{{area.nombre}}</option>
+            </select>
+            <div class="text-danger" *ngIf="areaCurso.touched && areaCurso.status== 'INVALID'">Seleccione un area tematica</div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" data-dismiss="modal" [disabled]="this.institucionCurso.value == 'Seleccione la institucion'" [disabled]="crearCursoForm.invalid" (click)="crearCurso()" class="btn btn-primary mr-1">
+          Crear
+        </button>
+        <button data-dismiss="modal" (click)="cerrarCrearCurso()" class="btn btn-danger">
+          Volver
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

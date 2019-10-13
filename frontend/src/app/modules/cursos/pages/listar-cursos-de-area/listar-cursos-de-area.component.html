@@ -3,14 +3,13 @@
     <div class="col-sm">
       <nav class="navbar navbar-light" style="background-color: #DCEDF6">
         <h5 style="color: #005A70">Cursos</h5>
-        <form class="form-inline" *ngIf="cursos?.length > 0">
-          <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-        </form>
       </nav>
     </div>
   </div>
   <div class="row mx-0 w-100">
+    <div class="col-md-12 mb-3 d-flex justify-content-end">
+      <app-crear-curso [idArea]="idArea" *ngIf="this.authService.validarTienePermisoEnAlgunPerfil(this.constantes.CREAR_CURSO.ID)" (valueChange)="actualizarCursos($event)"></app-crear-curso>
+    </div>
     <div class="col-md-6 mb-5" *ngFor="let curso of cursos">
       <div class="card">
         <img src="{{curso.foto}}" class="card-imagen" alt="Foto Curso">

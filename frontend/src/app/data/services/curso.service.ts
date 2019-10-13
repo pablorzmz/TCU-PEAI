@@ -37,7 +37,7 @@ export class CursoService {
         Authorization: 'Bearer' + this.authService.accessToken,
         'Content-Type': 'application/json'
       });
-    const urlAdd = '?idArea=' + idArea;
+    const urlAdd = '/crear_curso?idArea=' + idArea;
     return this.http.post<Curso>(this.urlEndPoint + urlAdd, curso, {headers: httpHeaders});
   }
 }

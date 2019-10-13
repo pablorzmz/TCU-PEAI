@@ -49,4 +49,10 @@ public interface ICursoService {
      */
     boolean usuarioImparteCurso(Usuario u, Curso c);
 
+    /**
+     * Metodo para insertar un curso en la base de datos
+     * @param curso Curso que se desea insertar
+     * @return Retorna el curso insertado
+     */
+    Curso save(Curso curso);
 }

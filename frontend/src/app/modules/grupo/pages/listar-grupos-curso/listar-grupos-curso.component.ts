@@ -32,7 +32,6 @@ export class ListarGruposCursoComponent implements OnInit {
   constantes = new CONSTANTES();
 
   ngOnInit() {
-       console.log(this.listaSubseccionMateriales);
       // Se solicitan las areas tematicas de la area-tematica
       const request = this.grupoService.getGruposCurso(this.curso.id).subscribe(
         res => {

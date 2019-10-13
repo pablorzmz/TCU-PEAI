@@ -31,13 +31,13 @@ export class CursoService {
     return this.http.get(this.urlEndPoint + urlAdd + idArea, {headers: httpHeaders});
   }
 
-  createCurso(curso: Curso, idArea: number): Observable<Curso> {
+  createCurso(curso: Curso, idArea: number, nombreUsuario: string): Observable<Curso> {
     const httpHeaders = new HttpHeaders(
       {
         Authorization: 'Bearer' + this.authService.accessToken,
         'Content-Type': 'application/json'
       });
-    const urlAdd = '/crear_curso?idArea=' + idArea;
+    const urlAdd = '/crear_curso?idArea=' + idArea + '&nombreUsuario=' + nombreUsuario;
     return this.http.post<Curso>(this.urlEndPoint + urlAdd, curso, {headers: httpHeaders});
   }
 }

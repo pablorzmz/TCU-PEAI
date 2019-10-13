@@ -30,6 +30,9 @@ export class CrearCursoComponent implements OnInit {
   // PopUp para mostrar la interfaz de carga de taxi
   @ViewChild('modalCrearCurso', {static: false}) modalCargarArchivo: TemplateRef<any>;
 
+  // Usuario actual del sistema
+  usuario: string;
+
   // Form para controlar los campos
   crearCursoForm: FormGroup;
 
@@ -59,6 +62,8 @@ export class CrearCursoComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Tomamos el nombre del usuario actual
+    this.usuario = this.authService.usuario.usuarioPK.nombreUsuario;
     // Si no hay area tematica
     if (this.idArea == null) {
       // hay que obtener toda la info
@@ -150,7 +155,7 @@ export class CrearCursoComponent implements OnInit {
       cursoN.nombre = this.nombreCurso.value;
       cursoN.descripcion = this.descripcionCurso.value;
       // tslint:disable-next-line:max-line-length
-      const request = this.cursoService.createCurso(cursoN, this.areaCurso.value).subscribe(
+      const request = this.cursoService.createCurso(cursoN, this.areaCurso.value, this.usuario).subscribe(
         res => {
           // Si lo recibe se le asigna el grupo a la variable
           const curso = res as Curso;

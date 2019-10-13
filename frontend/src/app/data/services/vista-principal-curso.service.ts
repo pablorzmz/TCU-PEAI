@@ -30,7 +30,7 @@ export class VistaPrincipalCursoService {
     // Se definen los encabezados para el tipo de autorización del protocolo
     const httpHeaders = new HttpHeaders(
       {
-        'Authorization': 'Bearer ' + this.authService.accessToken
+        Authorization: 'Bearer ' + this.authService.accessToken
       } );
     // Finalmente se realiza la petición
     return this.http.get<any>(urlConsulta, {headers: httpHeaders}).pipe(

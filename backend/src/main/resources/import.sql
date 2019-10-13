@@ -32,11 +32,11 @@ INSERT INTO area_tematica VALUES (4, 'Área temática de Arte', 'https://image.f
 INSERT INTO area_tematica VALUES (5, 'Área temática de Arte', 'https://image.freepik.com/vector-gratis/fondo-acerca-ciencia_1284-699.jpg', 'Arte','Cedes Don Bosco', 3);
 
 /*Cursos*/
-INSERT INTO curso VALUES (1, 'Curso donde se cubre los temas generales de Física', 'https://previews.123rf.com/images/krekdm/krekdm1608/krekdm160800078/61579579-volver-a-la-escuela-sin-fisuras-patr%C3%B3n-se-puede-utilizar-para-fondos-de-escritorio-fondo-de-p%C3%A1gina-web-pa.jpg', 'Física General I',  1);
-INSERT INTO curso VALUES (2, 'Curso donde se cubre los temas generales, más avanzados, de Física', 'https://previews.123rf.com/images/krekdm/krekdm1608/krekdm160800078/61579579-volver-a-la-escuela-sin-fisuras-patr%C3%B3n-se-puede-utilizar-para-fondos-de-escritorio-fondo-de-p%C3%A1gina-web-pa.jpg','Física General II', 1);
-INSERT INTO curso VALUES (3, 'Curso donde se cubre la algebra básica', 'https://previews.123rf.com/images/krekdm/krekdm1608/krekdm160800078/61579579-volver-a-la-escuela-sin-fisuras-patr%C3%B3n-se-puede-utilizar-para-fondos-de-escritorio-fondo-de-p%C3%A1gina-web-pa.jpg', 'Algebra', 2);
-INSERT INTO curso VALUES (4, 'Curso donde se cubre los temas generales de Física, se trabaja con la práctica', 'https://previews.123rf.com/images/krekdm/krekdm1608/krekdm160800078/61579579-volver-a-la-escuela-sin-fisuras-patr%C3%B3n-se-puede-utilizar-para-fondos-de-escritorio-fondo-de-p%C3%A1gina-web-pa.jpg','Física I',  3);
-INSERT INTO curso VALUES (5, 'Curso donde se cubre ls historia del Cine', 'https://previews.123rf.com/images/krekdm/krekdm1608/krekdm160800078/61579579-volver-a-la-escuela-sin-fisuras-patr%C3%B3n-se-puede-utilizar-para-fondos-de-escritorio-fondo-de-p%C3%A1gina-web-pa.jpg', 'Cine',  4);
+INSERT INTO curso (descripcion, foto, nombre, area_tematica_id) VALUES ('Curso donde se cubre los temas generales de Física', 'https://previews.123rf.com/images/krekdm/krekdm1608/krekdm160800078/61579579-volver-a-la-escuela-sin-fisuras-patr%C3%B3n-se-puede-utilizar-para-fondos-de-escritorio-fondo-de-p%C3%A1gina-web-pa.jpg', 'Física General I',  1);
+INSERT INTO curso (descripcion, foto, nombre, area_tematica_id) VALUES ('Curso donde se cubre los temas generales, más avanzados, de Física', 'https://previews.123rf.com/images/krekdm/krekdm1608/krekdm160800078/61579579-volver-a-la-escuela-sin-fisuras-patr%C3%B3n-se-puede-utilizar-para-fondos-de-escritorio-fondo-de-p%C3%A1gina-web-pa.jpg','Física General II', 1);
+INSERT INTO curso (descripcion, foto, nombre, area_tematica_id) VALUES ('Curso donde se cubre la algebra básica', 'https://previews.123rf.com/images/krekdm/krekdm1608/krekdm160800078/61579579-volver-a-la-escuela-sin-fisuras-patr%C3%B3n-se-puede-utilizar-para-fondos-de-escritorio-fondo-de-p%C3%A1gina-web-pa.jpg', 'Algebra', 2);
+INSERT INTO curso (descripcion, foto, nombre, area_tematica_id) VALUES ('Curso donde se cubre los temas generales de Física, se trabaja con la práctica', 'https://previews.123rf.com/images/krekdm/krekdm1608/krekdm160800078/61579579-volver-a-la-escuela-sin-fisuras-patr%C3%B3n-se-puede-utilizar-para-fondos-de-escritorio-fondo-de-p%C3%A1gina-web-pa.jpg','Física I',  3);
+INSERT INTO curso (descripcion, foto, nombre, area_tematica_id) VALUES ('Curso donde se cubre ls historia del Cine', 'https://previews.123rf.com/images/krekdm/krekdm1608/krekdm160800078/61579579-volver-a-la-escuela-sin-fisuras-patr%C3%B3n-se-puede-utilizar-para-fondos-de-escritorio-fondo-de-p%C3%A1gina-web-pa.jpg', 'Cine',  4);
 
 /*Grupos*/
 INSERT INTO grupo VALUES (1, '1 semestre', 4, 'jorge54');
@@ -57,6 +57,7 @@ INSERT INTO permiso VALUES (2, 'Recibir un curso');
 INSERT INTO permiso VALUES (3, 'Visualizar areas temáticas');
 INSERT INTO permiso VALUES (4, 'Visualizar instituciones');
 INSERT INTO permiso VALUES (5, 'Visualizar cursos');
+INSERT INTO permiso VALUES (6, 'Agregar grupos');
 
 
 /*Perfil-Permiso*/
@@ -64,6 +65,8 @@ INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre
 INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (2, 2, 'Universidad de Costa Rica');
 INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (1, 1, 'Cedes Don Bosco');
 INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (2, 2, 'Cedes Don Bosco');
+INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (1, 6, 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (1, 6, 'Cedes Don Bosco');
 
 /*Perfil-Usuario*/
 INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (2, 'steveen', 'Universidad de Costa Rica');
@@ -85,3 +88,35 @@ INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_no
 INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_id) VALUES ('steveen', 0, 1, '1 semestre', 4);
 INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_id) VALUES ('stephXO', 0, 1, '2 semestre', 5);
 INSERT INTO usuario_grupo_inscrito (nombre_usuario,nota_final,numero,periodo_tiempo,curso_id) VALUES ('stephXO', 0, 1, '1 semestre', 4);
+
+
+/********************** Sub secciones de materiales ******************************************/
+/* Grupo 1, Curso 4 */
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES (4, '1 semestre',1,'Todo el material',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES (4, '1 semestre',1,'Lecturas complementarias',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES (4, '1 semestre',1,'Prácticas para quices',1);
+
+/*Grupo 2, Curso 4*/
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 4, '1 semestre',2,'Todo el material',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 4, '1 semestre',2,'Practicas quices',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 4, '1 semestre',2,'Repaso algebra',1);
+
+/*Grupo 1, Curso 5*/
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 5, '2 semestre',1,'Todo el material',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 5, '2 semestre',1,'Practicas quices',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 5, '2 semestre',1,'Repaso metodologías investigacion',1);
+
+/*Grupo 1, Curso 1*/
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 1, '1 semestre',1,'Todo el material',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 1, '1 semestre',1,'Practicas',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 1, '1 semestre',1,'Documentación para proyecto',1);
+
+/*Grupo 1, Curso 2*/
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 2, '1 semestre',1,'Todo el material',1);
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 2, '1 semestre',1,'Apoyo APA',1);
+
+/*Grupo 2, Curso 2*/
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 2, '1 semestre',2,'Todo el material',1);
+
+/*Grupo 2, Curso 3*/
+INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 3, '1 semestre',1,'Todo el material',1);

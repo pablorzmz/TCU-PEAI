@@ -1,4 +1,3 @@
-export class UsuarioPK
-  {
+export class UsuarioPK {
     nombreUsuario: string;
   }

@@ -1,6 +1,7 @@
 package com.paei.springboot.backend.apirest.exceptions;
 
 
+import com.paei.springboot.backend.apirest.controllers.real.SubseccionMaterialController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -67,5 +68,39 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<CustomErrorResponse> usuarioNoEncontrado(Exception ex) {
         CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.NOT_FOUND, ex.getMessage());
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+    }
+
+    /**
+     * Excepcion para cuando se va a utilizar una subsección de material y no existe
+     * @param ex Excepcion lanzada
+     * @return Retorna un CustomErrorResponse con la información del error
+     */
+    @ExceptionHandler(SubseccionMaterialNotFoundException.class)
+    public ResponseEntity<CustomErrorResponse> SubseccionMaterialNotFoundException(Exception ex){
+        CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.NOT_FOUND, ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+    }
+
+    /**
+     * Excepcion para cuando haya un conflicto de datos que no permita realizar una operación
+     * @param ex Excepción lanzada
+     * @return Retorna un CustomErrorResponse con la información del error
+     */
+    @ExceptionHandler(SubseccionMaterialDataAccessException.class)
+    public ResponseEntity<CustomErrorResponse> SubseccionMaterialDataAccessException(Exception ex){
+        CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    /**
+     * Metodo para manejar la excepcion de que ya se encuentra un grupo con ese id
+     * @param ex Excepción lanzada
+     * @return Retorna un CustomErrorResponse con la información del error
+     */
+    @ExceptionHandler(GrupoExist.class)
+    public ResponseEntity<CustomErrorResponse> grupoExiste(Exception ex) {
+        CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.CONFLICT, ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
     }
 }

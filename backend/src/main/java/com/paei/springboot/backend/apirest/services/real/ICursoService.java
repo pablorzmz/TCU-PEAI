@@ -2,7 +2,6 @@ package com.paei.springboot.backend.apirest.services.real;
 
 import com.paei.springboot.backend.apirest.model.entity.real.AreaTematicaPK;
 import com.paei.springboot.backend.apirest.model.entity.real.Curso;
-import com.paei.springboot.backend.apirest.model.entity.real.CursoPK;
 import com.paei.springboot.backend.apirest.model.entity.real.Usuario;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +17,7 @@ public interface ICursoService {
      * @param id Id del curso
      * @return el curso en el objeto optional o un objeto optional vacio
      */
-    public Optional<Curso> findyId(CursoPK id);
+    public Optional<Curso> findyId(Long id);
 
     /**
      * Método para pedir las todos los cursos en páginas
@@ -40,7 +39,7 @@ public interface ICursoService {
      * @param cursoPK es la PK del curso que se desa obtener
      * @return Retorna el curso al cual le pertenece la PK
      */
-    Curso getCurso(CursoPK cursoPK);
+    Curso getCurso(Long cursoPK);
 
     /**
      * Método que permite verificar si el usuario es profesor que imparte o es estudiante

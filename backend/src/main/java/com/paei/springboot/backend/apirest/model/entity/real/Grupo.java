@@ -19,6 +19,12 @@ public class Grupo implements Serializable {
 
     public Grupo(){}
 
+    public Grupo(GrupoPK grupoPK, Usuario usuario, Curso curso){
+        this.Id = grupoPK;
+        this.usuario = usuario;
+        this.curso = curso;
+    }
+
     @EmbeddedId
     private GrupoPK Id;
 
@@ -30,7 +36,7 @@ public class Grupo implements Serializable {
         Id = id;
     }
 
-    @MapsId("curso_id")
+    @MapsId("cursoId")
     @JoinColumns({
             @JoinColumn(name="curso_id", referencedColumnName="curso_id")
     })
@@ -65,6 +71,12 @@ public class Grupo implements Serializable {
     }
 
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
     /*
     @OneToMany(mappedBy = "usuarioGrupoInscritoPK.grupo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<UsuarioGrupoInscrito> usuarioGrupoInscritos = new HashSet<>();

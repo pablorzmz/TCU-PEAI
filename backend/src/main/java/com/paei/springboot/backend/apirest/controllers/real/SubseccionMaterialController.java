@@ -89,7 +89,10 @@ public class SubseccionMaterialController {
         // En caso contrario se intenta crear una nueva subseccion de material
         try {
             // Se recupera el grupo para crearlo
-            Grupo grupo =  iGrupoService.findById(nuevaSBM.getGrupo().getId());
+            Grupo grupo =  null;
+            try {
+                grupo =  iGrupoService.findById(nuevaSBM.getGrupo().getId());
+            }catch (Exception ex) { }
             if (grupo != null){
                 // Se le asigna el grupo correspondiente a la nueva subsección
                 nuevaSBM.setGrupo(grupo);
@@ -99,7 +102,7 @@ public class SubseccionMaterialController {
                 //Se debe retornar una excepcion de que el grupo es inválido
                 throw  new SubseccionMaterialDataAccessException("El grupo para crear la subsección no se encuentra");
             }
-        }catch ( DataAccessException ex ) {
+        }catch ( Exception ex ) {
             // Lanzar excepcion personalizada
             throw  new SubseccionMaterialDataAccessException("Sucedió un error al intentar crear una nueva instancia de subsección material.");
         }

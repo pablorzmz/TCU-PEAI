@@ -6,12 +6,15 @@ import {CursoRoutingModule} from './curso-routing.module';
 import {CursoService} from '../../data/services/curso.service';
 import {CommonsModule} from '../commons/commons.module';
 import { ListarCursosDeAreaComponent } from './pages/listar-cursos-de-area/listar-cursos-de-area.component';
+import { CrearCursoComponent } from './components/crear-curso/crear-curso.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
   declarations: [
     ListarCursosComponent,
-    ListarCursosDeAreaComponent
+    ListarCursosDeAreaComponent,
+    CrearCursoComponent
   ],
   exports: [
     ListarCursosComponent,
@@ -22,6 +25,7 @@ import { ListarCursosDeAreaComponent } from './pages/listar-cursos-de-area/lista
     CursoRoutingModule,
     HttpClientModule,
     CommonsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     CursoService

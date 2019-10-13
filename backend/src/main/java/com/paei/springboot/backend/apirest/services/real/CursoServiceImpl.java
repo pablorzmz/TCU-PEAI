@@ -82,5 +82,16 @@ public class CursoServiceImpl implements ICursoService {
         //  En caso contrario va a ser un estudiante
         return false;
     }
+
+    /**
+     * Metodo para insertar un curso en la base de datos
+     *
+     * @param curso Curso que se desea insertar
+     * @return Retorna el curso insertado
+     */
+    @Override
+    public Curso save(Curso curso) {
+        return iCursoDao.save(curso);
+    }
 }
 

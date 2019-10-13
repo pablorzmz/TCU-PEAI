@@ -31,6 +31,16 @@ public class InstitucionServiceImpl implements IInstitucionService {
     }
 
     /**
+     * Método para pedir las TODAS las intituciones
+     *
+     * @return Retorna una lista con todas las instituciones
+     */
+    @Override
+    public List<Institucion> findAll() {
+        return iInstitucionDao.findAll();
+    }
+
+    /**
      * Método que busca una institucion por su PK
      * @param institucionPK es la PK de la institución
      * @return retorna una institución, si existe, null en caso contrario

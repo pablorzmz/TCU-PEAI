@@ -61,7 +61,7 @@ public class CursoController {
         return iCursoService.save(curso);
     }
 
-    @PostMapping("listado_cursos")
+    @PostMapping("crear_curso")
     @ResponseStatus(HttpStatus.CREATED)
     public Curso create2(@RequestBody Curso curso, @RequestParam Long idArea){
         //Se crea un objeto de AreaTematicaPK
@@ -71,6 +71,11 @@ public class CursoController {
         if(areaTematica != null){
             // Le agregamos al curso el Area Tematica
             curso.setAreaTematica(areaTematica);
+            // Verificamos si el curso que se va a insertar tiene foto
+            if(curso.getFoto() == null){
+                // Si no tiene le agregamos la basica
+                curso.setFoto("https://previews.123rf.com/images/krekdm/krekdm1608/krekdm160800078/61579579-volver-a-la-escuela-sin-fisuras-patr%C3%B3n-se-puede-utilizar-para-fondos-de-escritorio-fondo-de-p%C3%A1gina-web-pa.jpg");
+            }
             // Se inserta en la BD
             return iCursoService.save(curso);
         }else {

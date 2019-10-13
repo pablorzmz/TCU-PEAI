@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/instituciones")
@@ -23,5 +25,14 @@ public class InstitucionController {
     @GetMapping("obtener_instituciones/page/{page}")
     public Page<Institucion> index(@PathVariable Integer page){
         return iInstitucionService.findAll(PageRequest.of(page, 4));
+    }
+
+    /**
+     * Método para pedir las TODAS las intituciones
+     * @return Retorna una lista con todas las instituciones
+     */
+    @GetMapping("obtener_instituciones")
+    public List<Institucion> index2(){
+        return iInstitucionService.findAll();
     }
 }

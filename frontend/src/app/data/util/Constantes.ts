@@ -16,7 +16,7 @@ export class CONSTANTES {
   public readonly VISUALIZAR_CURSOS: any = { ID: 5, NOMBRE: 'Visualizar cursos' };
   public readonly AGREGAR_GRUPOS: any = { ID: 6, NOMBRE: 'Agregar grupos' };
   public readonly CREAR_CURSO: any = { ID: 7, NOMBRE: 'Crear Curso' };
-
+  public readonly AGREGAR_SUBSECCION_MATERIAL_GRUPO: any = {ID: 101, NOMBRE: 'Agregar subseccion material en grupos'};
 
 }
 

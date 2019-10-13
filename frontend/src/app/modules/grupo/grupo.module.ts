@@ -8,12 +8,15 @@ import { AgregarGruposCursoComponent } from './components/agregar-grupos-curso/a
 import { MatDialogModule } from '@angular/material';
 import {MatIconModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import { AgregarSubseccionMaterialGrupoComponent } from
+    './components/agregar-subseccion-material-grupo/agregar-subseccion-material-grupo.component';
 
 
 @NgModule({
-  declarations: [ListarGruposCursoComponent, AgregarGruposCursoComponent],
+  declarations: [ListarGruposCursoComponent, AgregarGruposCursoComponent, AgregarSubseccionMaterialGrupoComponent],
   exports: [
-    ListarGruposCursoComponent
+    ListarGruposCursoComponent,
+    AgregarSubseccionMaterialGrupoComponent
   ],
   imports: [
     CommonModule,

@@ -60,6 +60,7 @@ INSERT INTO permiso VALUES (5, 'Visualizar cursos');
 INSERT INTO permiso VALUES (6, 'Agregar grupos');
 INSERT INTO permiso VALUES (7, 'Crear Curso');
 
+INSERT INTO permiso VALUES (101, 'Agregar subseccion material en grupos');
 
 /*Perfil-Permiso*/
 INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (1, 1, 'Universidad de Costa Rica');
@@ -70,6 +71,9 @@ INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre
 INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (1, 6, 'Cedes Don Bosco');
 INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (1, 7, 'Universidad de Costa Rica');
 INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (1, 7, 'Cedes Don Bosco');
+
+INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (1, 101, 'Universidad de Costa Rica');
+INSERT INTO institucion_perfil_permiso  (perfil_id,permiso_id,institucion_nombre) VALUES (1, 101, 'Cedes Don Bosco');
 
 /*Perfil-Usuario*/
 INSERT INTO institucion_perfil_usuario  (perfil_id,nombre_usuario,institucion_nombre) VALUES (2, 'steveen', 'Universidad de Costa Rica');

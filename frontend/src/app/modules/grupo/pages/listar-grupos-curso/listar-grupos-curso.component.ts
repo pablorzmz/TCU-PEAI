@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {Grupo} from '../../../../data/schema/Grupo';
 import {Curso} from '../../../../data/schema/Curso';
 import {AuthService} from '../../../../data/services/auth.service';
+import {CONSTANTES} from '../../../../data/util/Constantes';
 
 @Component({
   selector: 'app-listar-grupos-curso',
@@ -14,9 +15,17 @@ export class ListarGruposCursoComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private grupoService: GrupoService, private authService: AuthService) { }
 
+  // Se recibe el curso del grupo
   @Input() curso: Curso;
+
+  // Se recibe el nombre de la institución del curso
   @Input() nombreInstitucion: string;
+
+  // Lista de grupos que s epueden observar
   grupos: Array<Grupo>;
+
+  // Se obtienen las contantes de permisos
+  constantes = new CONSTANTES();
 
   ngOnInit() {
       // Se solicitan las areas tematicas de la area-tematica

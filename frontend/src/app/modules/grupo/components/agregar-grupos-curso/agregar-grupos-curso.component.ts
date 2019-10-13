@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Grupo} from '../../../../data/schema/Grupo';
 import {GrupoService} from '../../../../data/services/grupo.service';
 import Swal from 'sweetalert2';
+import {CONSTANTES} from '../../../../data/util/Constantes';
 
 @Component({
   selector: 'app-agregar-grupos-curso',
@@ -32,6 +33,9 @@ export class AgregarGruposCursoComponent implements OnInit {
 
   // Usuario actual del sistema
   usuario: Usuario;
+
+  // Se obtienen las contantes de permisos
+  constantes = new CONSTANTES();
 
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
@@ -101,7 +105,7 @@ export class AgregarGruposCursoComponent implements OnInit {
    */
    crearGrupo(): any {
      // Se verifica si tiene el permiso
-    if (this.authService.validarTienePermisoEnAlgunPerfil(6)) {
+    if (this.authService.validarTienePermisoEnAlgunPerfil(this.constantes.AGREGAR_GRUPOS.ID)) {
       // Variable que almacena el grupo que será guardado
       let grupo: Grupo;
       // tslint:disable-next-line:max-line-length

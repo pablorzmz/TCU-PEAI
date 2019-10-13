@@ -4,7 +4,7 @@
     <div class="col-sm">
       <div class="d-flex justify-content-between">
         <h5>Grupos</h5>
-        <app-agregar-grupos-curso *ngIf="this.authService.validarTienePermisoEnAlgunPerfilDeInstitucion(6, this.nombreInstitucion)" (valueChange)="actualizarGrupos($event)" [curso]="curso"></app-agregar-grupos-curso>
+        <app-agregar-grupos-curso *ngIf="this.authService.validarTienePermisoEnAlgunPerfilDeInstitucion(constantes.AGREGAR_GRUPOS.ID, this.nombreInstitucion)" (valueChange)="actualizarGrupos($event)" [curso]="curso"></app-agregar-grupos-curso>
       </div>
       <div *ngIf="grupos.length == 0" class="alert alert-warning my-4" role="alert">
         Este curso no cuenta con grupos asociados

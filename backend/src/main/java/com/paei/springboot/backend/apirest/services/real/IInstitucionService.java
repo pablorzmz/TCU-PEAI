@@ -5,6 +5,8 @@ import com.paei.springboot.backend.apirest.model.entity.real.InstitucionPK;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface IInstitucionService {
 
     /**
@@ -13,6 +15,12 @@ public interface IInstitucionService {
      * @return Retorna un Page con las intituciones que estan en la página solicitada y los datos de la paginación
      */
     public Page<Institucion> findAll(Pageable pageable);
+
+    /**
+     * Método para pedir las TODAS las intituciones
+     * @return Retorna una lista con todas las instituciones
+     */
+    public List<Institucion> findAll();
 
     /**
      * Método que busca una institucion por su PK

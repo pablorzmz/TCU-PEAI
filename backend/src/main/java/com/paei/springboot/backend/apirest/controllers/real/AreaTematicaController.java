@@ -1,7 +1,9 @@
 package com.paei.springboot.backend.apirest.controllers.real;
 
+import com.paei.springboot.backend.apirest.exceptions.AreaTematicaNotFoundException;
 import com.paei.springboot.backend.apirest.exceptions.InstitucionNotFoundException;
 import com.paei.springboot.backend.apirest.model.entity.real.AreaTematica;
+import com.paei.springboot.backend.apirest.model.entity.real.AreaTematicaPK;
 import com.paei.springboot.backend.apirest.model.entity.real.Institucion;
 import com.paei.springboot.backend.apirest.model.entity.real.InstitucionPK;
 import com.paei.springboot.backend.apirest.services.real.IAreaTematicaService;
@@ -9,6 +11,7 @@ import com.paei.springboot.backend.apirest.services.real.IInstitucionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.geom.Area;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -53,5 +56,24 @@ public class AreaTematicaController {
     public List<AreaTematica> recuperarAreasTematica(){
         List<AreaTematica> areaTematicas = iAreaTematicaService.getAreasTematicas();
         return areaTematicas;
+    }
+
+    /**
+     * Metodo para retornar la informacion de un area tematica
+     * @param idArea id del area tematica de la cual se requiere la informacion
+     * @return Retornamos la informacion del area tematica o una excepcion en caso de no encontrarla
+     */
+    @GetMapping("/obtener_info_area")
+    public AreaTematica recuperarAreaTematicaPorId(@RequestParam Long idArea){
+        // Creamos la llave
+        AreaTematicaPK areaTematicaPK = new AreaTematicaPK(idArea);
+        AreaTematica areaTematica = iAreaTematicaService.getAreaTematica(areaTematicaPK);
+        if (areaTematica != null){
+            // Si existe la retornamos
+            return areaTematica;
+        }else{
+            // Si no existe tiramos exepcion
+            throw new AreaTematicaNotFoundException();
+        }
     }
 }

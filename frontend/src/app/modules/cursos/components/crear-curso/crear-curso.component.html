@@ -27,7 +27,7 @@
           <div class="form-group">
             <label for="institucionCurso">Institucion</label>
             <select formControlName="institucionCurso" (change)="cargarAreasTematicas()"  class="form-control" id="institucionCurso" required>
-              <option value="-" disabled selected hiden>Seleccione la institucion</option>
+              <option value="-" disabled selected>Seleccione la institucion</option>
               <option *ngFor="let institucion of this.instituciones" [ngValue]="institucion.institucionPK.nombre">{{institucion.institucionPK.nombre}}</option>
             </select>
             <div class="text-danger" *ngIf="institucionCurso.touched && institucionCurso.status== 'INVALID'">Seleccione una institucion</div>
@@ -35,7 +35,7 @@
           <div class="form-group">
             <label for="areaCurso">Area Tematica</label>
             <select formControlName="areaCurso" class="form-control" id="areaCurso" required>
-              <option value="-" disabled selected hiden>Seleccione el Area Tematica</option>
+              <option value="-" disabled selected>Seleccione el Area Tematica</option>
               <option *ngFor="let area of this.areasTematicas" [ngValue]="area.id.id">{{area.nombre}}</option>
             </select>
             <div class="text-danger" *ngIf="areaCurso.touched && areaCurso.status== 'INVALID'">Seleccione un area tematica</div>

@@ -55,12 +55,12 @@ public class CursoController {
         }
     }
 
-    @PostMapping("listado_cursos/page/0")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Curso create(@RequestBody Curso curso){
-        return iCursoService.save(curso);
-    }
-
+    /**
+     * Metodo para insertar un curso
+     * @param curso datos del curso
+     * @param idArea iD del area a la cual le quiero agregar el curso
+     * @return Retorna el curso creado
+     */
     @PostMapping("crear_curso")
     @ResponseStatus(HttpStatus.CREATED)
     public Curso create2(@RequestBody Curso curso, @RequestParam Long idArea){

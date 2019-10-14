@@ -10,6 +10,7 @@ import {InstitucionModule} from './modules/instituciones/institucion.module';
 import { VistaPrincipalCursoModule} from './modules/vista-principal-curso/vista-principal-curso.module';
 import {CursoModule} from './modules/cursos/curso.module';
 import {GrupoModule} from './modules/grupo/grupo.module';
+import {ForoModule} from './modules/foro/foro.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {GrupoModule} from './modules/grupo/grupo.module';
     InstitucionModule,
     VistaPrincipalCursoModule,
     CursoModule,
-    GrupoModule
+    GrupoModule,
+    ForoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

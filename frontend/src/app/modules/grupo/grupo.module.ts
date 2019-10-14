@@ -8,6 +8,7 @@ import { AgregarGruposCursoComponent } from './components/agregar-grupos-curso/a
 import { MatDialogModule } from '@angular/material';
 import {MatIconModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
+import {ForoModule} from '../foro/foro.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {ReactiveFormsModule} from '@angular/forms';
     GrupoRoutingModule,
     MatDialogModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ForoModule
   ],
   providers: [
     GrupoService

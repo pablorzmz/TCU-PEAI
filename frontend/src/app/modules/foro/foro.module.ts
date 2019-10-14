@@ -2,19 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ForoRoutingModule } from './foro-routing.module';
-import { MensajeComponent } from './components/mensaje/mensaje.component';
+import {ComentarioComponent} from './components/comentario/comentario.component';
 import {ForoService} from '../../data/services/foro.service';
 import { ForoListarComentariosComponent } from './pages/foro-listar-comentarios/foro-listar-comentarios.component';
+import { AgregarComentarioComponent } from './components/agregar-comentario/agregar-comentario.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
-  declarations: [MensajeComponent, ForoListarComentariosComponent],
+  declarations: [ComentarioComponent, ForoListarComentariosComponent, AgregarComentarioComponent],
   imports: [
     CommonModule,
-    ForoRoutingModule
+    ForoRoutingModule,
+    ReactiveFormsModule
   ],
   exports: [
-    MensajeComponent,
+    ComentarioComponent,
     ForoListarComentariosComponent
   ],
   providers: [ForoService]

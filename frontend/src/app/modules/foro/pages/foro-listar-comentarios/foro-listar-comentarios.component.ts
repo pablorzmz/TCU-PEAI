@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ForoService} from '../../../../data/services/foro.service';
+import {Usuario} from '../../../../data/schema/Usuario';
+import {AuthService} from '../../../../data/services/auth.service';
 
 @Component({
   selector: 'app-foro-listar-comentarios',
@@ -8,12 +10,16 @@ import {ForoService} from '../../../../data/services/foro.service';
 })
 export class ForoListarComentariosComponent implements OnInit {
 
-  constructor(private foroService: ForoService) { }
+  constructor(private foroService: ForoService, private authService: AuthService) { }
 
   // Aqui se guardan los comentarios
   comentarios: Array<any>;
 
+  // EL usuario actual
+  usuario: Usuario;
+
   ngOnInit() {
+    this.usuario = this.authService.usuario;
     this.foroService.getComentariosMaterial('1', 1).subscribe(
       res => {
         this.comentarios = res;
@@ -23,26 +29,8 @@ export class ForoListarComentariosComponent implements OnInit {
       });
   }
 
-  /*
-      // ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-    const materialPK = new MaterialPK();
-    materialPK.nombre = '1';
-    materialPK.subSeccionMaterialId = 1;
+  actualizarcomentarios($event): any {
+    this.comentarios.push($event.comentario);
+  }
 
-    const usuarioPK = new UsuarioPK();
-    usuarioPK.nombreUsuario = 'steveen';
-
-    const usuarioMaterialComentaPK = new UsuarioMaterialComentaPK();
-    usuarioMaterialComentaPK.usuario = usuarioPK;
-
-    usuarioMaterialComentaPK.material = materialPK;
-
-    this.usuarioMaterialComenta.id = usuarioMaterialComentaPK;
-
-    this.usuarioMaterialComenta.textoComentario = 'Madre miaaaa';
-
-    this.usuarioMaterialComenta.visible = true;
-
-    // ESTOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-   */
 }

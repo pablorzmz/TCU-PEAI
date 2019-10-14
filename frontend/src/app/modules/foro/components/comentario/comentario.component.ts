@@ -1,16 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {UsuarioMaterialComenta} from '../../../../data/schema/UsuarioMaterialComenta';
-import {MaterialPK} from '../../../../data/schema/MaterialPK';
-import {UsuarioPK} from '../../../../data/schema/UsuarioPK';
-import {UsuarioMaterialComentaPK} from '../../../../data/schema/UsuarioMaterialComentaPK';
 import {ForoService} from '../../../../data/services/foro.service';
 
 @Component({
-  selector: 'app-mensaje',
-  templateUrl: './mensaje.component.html',
-  styleUrls: ['./mensaje.component.css']
+  selector: 'app-comentario',
+  templateUrl: './comentario.component.html',
+  styleUrls: ['./comentario.component.css']
 })
-export class MensajeComponent implements OnInit {
+export class ComentarioComponent implements OnInit {
 
   // Se guardara el nombre de la persona que comenta
   @Input() nombrePersona: string;

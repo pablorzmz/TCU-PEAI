@@ -10,6 +10,7 @@ import {MatIconModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
 // tslint:disable-next-line:max-line-length
 import { AgregarSubseccionMaterialGrupoComponent } from './components/agregar-subseccion-material-grupo/agregar-subseccion-material-grupo.component';
+import {ForoModule} from '../foro/foro.module';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AgregarSubseccionMaterialGrupoComponent } from './components/agregar-su
     GrupoRoutingModule,
     MatDialogModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ForoModule
   ],
   providers: [
     GrupoService

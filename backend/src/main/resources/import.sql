@@ -9,9 +9,9 @@ INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,no
 INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('bran24', 'Dota Noria', 'bran24@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Brandon',1, '$2a$10$8RPnZmMcNjAYLExOjvanvudAmfHJ3wO2uoQsCSzQrjIAeZQtN.7RS', 'Otro', '76382838');
 
 /*Estudiantes*/
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('steveen', 'Fort Castro', 'steveen@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Steven',1, '$2a$10$sSyjvSJM7JIuQ8XyUj7xz.DIj6ba0jMhTWOF8PYH0KaBn.mhNB3A.', 'Otro', '84376838');
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('stephXO', 'Loria Perez', 'sthephanieLP@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Sthephanie',1, '$2a$10$mbgCttJe87jG8XEteSeds.9hDFeKGdc/SCMcrPgFUpNoE1Z9nmU7.', 'Otro', '88288738');
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('devora45', 'Zeledón Álvarez', 'nanaAL@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Devora',1, '$2a$10$GeCFnD90HZLsd1GXVHd.nuVwHMtGgE11WE0IIXAWtYqWMIPI.KFwi', 'Otro', '71232838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('steveen', 'Fort Castro', 'steveen@yopmail.com', '1998-01-01', 'https://icon-library.net/images/default-user-icon/default-user-icon-14.jpg', 'Steven',1, '$2a$10$sSyjvSJM7JIuQ8XyUj7xz.DIj6ba0jMhTWOF8PYH0KaBn.mhNB3A.', 'Otro', '84376838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('stephXO', 'Loria Perez', 'sthephanieLP@yopmail.com', '1998-01-01', 'https://icon-library.net/images/default-user-icon/default-user-icon-14.jpg', 'Sthephanie',1, '$2a$10$mbgCttJe87jG8XEteSeds.9hDFeKGdc/SCMcrPgFUpNoE1Z9nmU7.', 'Otro', '88288738');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('devora45', 'Zeledón Álvarez', 'nanaAL@yopmail.com', '1998-01-01', 'https://icon-library.net/images/default-user-icon/default-user-icon-14.jpg', 'Devora',1, '$2a$10$GeCFnD90HZLsd1GXVHd.nuVwHMtGgE11WE0IIXAWtYqWMIPI.KFwi', 'Otro', '71232838');
 
 
 /*Instituciones*/

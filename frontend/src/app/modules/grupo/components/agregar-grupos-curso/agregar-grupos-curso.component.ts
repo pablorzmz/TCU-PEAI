@@ -156,7 +156,7 @@ export class AgregarGruposCursoComponent implements OnInit {
 
   /**
    * Método que indica que ha habido un error en la creación
-   * @param err contiene el mensaje de error
+   * @param err contiene el comentario de error
    */
   mensajeGrupoExiste(err: string): any {
     // Mensaje para indicar que se creó

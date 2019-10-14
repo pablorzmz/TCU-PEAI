@@ -7,7 +7,7 @@ import { GrupoService } from '../../data/services/grupo.service';
 import { AgregarGruposCursoComponent } from './components/agregar-grupos-curso/agregar-grupos-curso.component';
 import { MatDialogModule } from '@angular/material';
 import {MatIconModule} from '@angular/material';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AgregarSubseccionMaterialGrupoComponent } from
     './components/agregar-subseccion-material-grupo/agregar-subseccion-material-grupo.component';
 import { EliminarSubseccionMaterialGrupoComponent } from
@@ -30,7 +30,8 @@ import { EditarSubseccionMaterialGrupoComponent } from
     GrupoRoutingModule,
     MatDialogModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     GrupoService

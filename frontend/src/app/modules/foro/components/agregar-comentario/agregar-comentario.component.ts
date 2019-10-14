@@ -55,11 +55,14 @@ export class AgregarComentarioComponent implements OnInit {
 
     usuarioMaterialComenta.visible = true;
 
-    this.foroService.setComentarioMaterial(usuarioMaterialComenta).subscribe(
+    /*****************************/
+
+    const request = this.foroService.setComentarioMaterial(usuarioMaterialComenta).subscribe(
       res => {
         const comentario = res;
         this.comentarForm.reset();
         this.valueChange.emit({comentario});
+        request.unsubscribe();
       });
 
   }

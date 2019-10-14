@@ -8,9 +8,8 @@ import { AgregarGruposCursoComponent } from './components/agregar-grupos-curso/a
 import { MatDialogModule } from '@angular/material';
 import {MatIconModule} from '@angular/material';
 import {ReactiveFormsModule} from '@angular/forms';
-import { AgregarSubseccionMaterialGrupoComponent } from
-    './components/agregar-subseccion-material-grupo/agregar-subseccion-material-grupo.component';
-import {ForoModule} from '../foro/foro.module';
+// tslint:disable-next-line:max-line-length
+import { AgregarSubseccionMaterialGrupoComponent } from './components/agregar-subseccion-material-grupo/agregar-subseccion-material-grupo.component';
 
 
 @NgModule({
@@ -24,8 +23,7 @@ import {ForoModule} from '../foro/foro.module';
     GrupoRoutingModule,
     MatDialogModule,
     MatIconModule,
-    ReactiveFormsModule,
-    ForoModule
+    ReactiveFormsModule
   ],
   providers: [
     GrupoService

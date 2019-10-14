@@ -12,52 +12,36 @@ import {ForoService} from '../../../../data/services/foro.service';
 })
 export class MensajeComponent implements OnInit {
 
-  usuarioMaterialComenta: UsuarioMaterialComenta = new UsuarioMaterialComenta();
+  // Se guardara el nombre de la persona que comenta
+  @Input() nombrePersona: string;
 
-  usuarioMaterialComenta2: UsuarioMaterialComenta;
+  // Comentario
+  @Input() usuarioMaterialComenta: UsuarioMaterialComenta;
 
+  // Se guardara la fecha correcta en formato normal
   fechaComentario: string;
+
 
   constructor(private foroService: ForoService) { }
 
   ngOnInit() {
-    const materialPK = new MaterialPK();
-    materialPK.nombre = '1';
-    materialPK.subSeccionMaterialId = 1;
-
-    const usuarioPK = new UsuarioPK();
-    usuarioPK.nombreUsuario = 'steveen';
-
-    const usuarioMaterialComentaPK = new UsuarioMaterialComentaPK();
-    usuarioMaterialComentaPK.usuario = usuarioPK;
-
-    usuarioMaterialComentaPK.material = materialPK;
-
-    this.usuarioMaterialComenta.id = usuarioMaterialComentaPK;
-
-    this.usuarioMaterialComenta.textoComentario = 'Madre miaaaa';
-
-    this.usuarioMaterialComenta.visible = true;
-
-    this.foroService.setComentarioMaterial(this.usuarioMaterialComenta).subscribe(
-      res => {
-
-        this.usuarioMaterialComenta2 = res;
-        this.getFecha();
-        console.log(res);
-
-      }, err => {
-
-        console.log(err);
-    });
+    // Se hace el set correcto para mostrar la fecha
+    this.getFecha();
   }
 
+  /**
+   * Método que hace el set de la fecha que se muestra en el comentario
+   */
   getFecha(): any {
-       const fecha = new Date(this.usuarioMaterialComenta2.id.fecha);
+       const fecha = new Date(this.usuarioMaterialComenta.id.fecha);
     // tslint:disable-next-line:max-line-length
        this.fechaComentario = `${fecha.getDate()} de ${this.getMes(fecha.getMonth())} de ${fecha.getFullYear()}, ${this.getHora(fecha.getHours(), fecha.getMinutes())}`;
   }
 
+  /**
+   * Método que obtiene el mes de la fecha en español según su indice de 0 a 11
+   * @param mes es la posición del mes
+   */
   getMes(mes: number): string {
     switch (mes) {
       case 0: return 'Enero';
@@ -87,6 +71,11 @@ export class MensajeComponent implements OnInit {
     }
   }
 
+  /**
+   * Método que trasnforma una hora militar a una normal
+   * @param hora es la hora militar
+   * @param minutos son los minutos de 0 a 59
+   */
   getHora(hora: number, minutos: number): string {
     // Indica que medio dia es a las 12
     const medioDia = 12;

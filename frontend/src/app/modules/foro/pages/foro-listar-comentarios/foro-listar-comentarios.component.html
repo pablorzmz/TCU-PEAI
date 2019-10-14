@@ -1,0 +1,7 @@
+<div *ngIf="comentarios">
+  <div *ngFor="let comentario of comentarios">
+    <div class="my-3">
+      <app-mensaje  [nombrePersona]="comentario.nombrePersona" [usuarioMaterialComenta]="comentario.usuarioMaterialComenta"></app-mensaje>
+    </div>
+  </div>
+</div>

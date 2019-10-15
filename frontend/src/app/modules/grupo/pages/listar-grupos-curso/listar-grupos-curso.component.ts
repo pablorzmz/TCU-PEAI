@@ -49,7 +49,21 @@ export class ListarGruposCursoComponent implements OnInit {
       this.grupos.push($event.grupo);
   }
 
-  actualizarSubseccionesMateriales($event): any {
+  crearSubseccionMaterial($event): any {
     this.listaSubseccionMateriales.push($event.sbm);
+  }
+
+  eliminarSubseccionMaterial($event): any {
+    this.listaSubseccionMateriales = this.listaSubseccionMateriales.filter( item => {
+      return item.id !== ($event.sbm as SubseccionMaterial).id ;
+    });
+  }
+
+  actualizarSubseccionMaterial($event): any {
+    this.listaSubseccionMateriales.map( sbm => {
+      if (sbm.id === $event.sbm.id) {
+        sbm.nombre = $event.sbm.nombre;
+      }
+    });
   }
 }

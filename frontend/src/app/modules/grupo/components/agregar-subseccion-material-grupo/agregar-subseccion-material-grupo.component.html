@@ -15,7 +15,7 @@
       <div class="form-group">
         <label for="nombreSubseccion">Nombre</label>
         <input formControlName="nombreSubseccion" id="nombreSubseccion" type="text" class="form-control" id="nombreSubseccion"
-               placeholder="Nombre de la subsección de material" required>
+               placeholder="Nombre de la subsección de material" required maxlength="30">
         <div class="text-danger" *ngIf="nombreSubseccion.touched && nombreSubseccion.status== 'INVALID'">Nombre no puede ser vacío (30 max) </div>
       </div>
       <!-- Botones de accion-->

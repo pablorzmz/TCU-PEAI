@@ -25,7 +25,7 @@
         <div class="col">
           <div class="float-right">
             <!-- Componente para crear subsecciones de material que reciben el grupo-->
-            <app-agregar-subseccion-material-grupo [grupo]="grupo" (sbmValueChange)="actualizarSubseccionesMateriales($event)"></app-agregar-subseccion-material-grupo>
+            <app-agregar-subseccion-material-grupo [grupo]="grupo" (sbmValueChange)="crearSubseccionMaterial($event)"></app-agregar-subseccion-material-grupo>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="d-flex ml-auto mx-3">
-                      <app-editar-subseccion-material-grupo [sbmAEditar]="sbm" class="mx-1"></app-editar-subseccion-material-grupo>
+                      <app-editar-subseccion-material-grupo (sbmActualizarValueChange)="actualizarSubseccionMaterial($event)" [grupo]="grupo" [sbmAEditar]="sbm" class="mx-1"></app-editar-subseccion-material-grupo>
                       <app-eliminar-subseccion-material-grupo (sbmEliminarValueChange)="eliminarSubseccionMaterial($event)" [nombreInstitucion]="grupo.curso.areaTematica.institucion.institucionPK.nombre" [sbm]="sbm"></app-eliminar-subseccion-material-grupo>
                   </div>
                 </div>

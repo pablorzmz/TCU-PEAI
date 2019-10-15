@@ -1,8 +1,12 @@
-import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../../../data/services/auth.service';
 import {SubseccionMaterial} from '../../../../data/schema/SubseccionMaterial';
+import {CONSTANTES} from '../../../../data/util/Constantes';
+import {Grupo} from '../../../../data/schema/Grupo';
+import {SubseccionMaterialService} from '../../../../data/services/subseccion-material.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-editar-subseccion-material-grupo',
@@ -11,8 +15,14 @@ import {SubseccionMaterial} from '../../../../data/schema/SubseccionMaterial';
 })
 export class EditarSubseccionMaterialGrupoComponent implements OnInit {
 
+  // Nombre de institucion para la validación del permiso
+  @Input() grupo: Grupo;
+
   // La subsección a editar
   @Input() sbmAEditar: SubseccionMaterial;
+
+  // Aqui se emite el evento para actualizar la subsección de la vista
+  @Output() sbmActualizarValueChange = new EventEmitter<{sbm: SubseccionMaterial}>();
 
   // Contiene la configuracion del dialog
   dialogConfig: MatDialogConfig;
@@ -23,8 +33,12 @@ export class EditarSubseccionMaterialGrupoComponent implements OnInit {
   // Form para controlar los campos
   editarSBMForm: FormGroup;
 
-  constructor(private dialog: MatDialog, private authService: AuthService) {
+  // acceso a los valores constantes
+  constantes: CONSTANTES;
+
+  constructor(private dialog: MatDialog, private authService: AuthService, private sbmService: SubseccionMaterialService) {
     this.dialogConfig = new MatDialogConfig();
+    this.constantes = new CONSTANTES();
   }
 
   ngOnInit() {
@@ -53,7 +67,28 @@ export class EditarSubseccionMaterialGrupoComponent implements OnInit {
    * Metodo principal para editar finalmente la sbm
    */
   editarSBM(): void {
-
+    // se establece el nuevo nombre para la subsección material
+    this.sbmAEditar.nombre = this.editarSBMForm.get('nombreSBM').value;
+    // Se establece el grupo
+    this.sbmAEditar.grupo = this.grupo;
+    // se hace llamado al servicio para actualizar
+    const request = this.sbmService.actualizarSubseccionMaterial(this.sbmAEditar).subscribe(
+      response => {
+        // se muestra el mensaje de éxito
+        Swal.fire({
+          title: '¡Éxito al actualizar!',
+          text: response.mensaje,
+          type: 'success',
+          confirmButtonText: 'Aceptar'
+        });
+        // Se emite para actualizar
+        this.sbmActualizarValueChange.emit({sbm: this.sbmAEditar})
+        // se desubscribe
+        request.unsubscribe();
+      }
+    );
+    // Se cierra el modal
+    this.dialog.closeAll();
   }
 
   /**
@@ -61,6 +96,15 @@ export class EditarSubseccionMaterialGrupoComponent implements OnInit {
    */
   abrirModalEditarSBM(): void {
     this.dialog.open(this.modalEditarSBM, this.dialogConfig);
+  }
+
+  /**
+   * Metodo que permite validar si un usuario puede editar la información de un curso.
+   * retorna verdadero o false según el caso
+   */
+  puedeEditarSBM(): boolean {
+    return this.authService.validarTienePermisoEnAlgunPerfilDeInstitucion(
+      this.constantes.EDITAR_SUBSECCION_MATERIAL_GRUPO.ID, this.grupo.curso.areaTematica.institucion.institucionPK.nombre);
   }
 
 }

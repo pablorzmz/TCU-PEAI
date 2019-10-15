@@ -1,8 +1,7 @@
-<button type="button" class="btn btn-info btn-sm d-flex align-items-center" data-toggle="modal" data-target="#modalEditarSBM" (click)="abrirModalEditarSBM()">
+<button *ngIf="puedeEditarSBM()" type="button" class="btn btn-info btn-sm d-flex align-items-center" data-toggle="modal" data-target="#modalEditarSBM" (click)="abrirModalEditarSBM()">
   <mat-icon class="mr-1">edit</mat-icon>
   Editar
 </button>
-
 
 <ng-template #modalEditarSBM class="modal modal-dialog-scrollable">
   <div class="modal-content border-0">

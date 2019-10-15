@@ -73,4 +73,30 @@ export class SubseccionMaterialService {
     );
   }
 
+  /**
+   * Método para actualizar una sbm, comunicacion con le backend
+   * @param sbmEditado sbm para hacer el put en backend
+   * retorna la respuesta con o sin el error.
+   */
+  actualizarSubseccionMaterial(sbmEditado: SubseccionMaterial): Observable<any> {
+    // parametro
+    const paramIdSBM = '?id=' + sbmEditado.id;
+    // subruta
+    const subRutaActualizar = this.urlEndpoint + '/actualizar' + paramIdSBM;
+    // se crean los encabezados
+    const httpHeaders = new HttpHeaders(
+      {
+        Authorization: 'Bearer ' + this.authService.accessToken,
+        'Content-Type': 'application/json'
+      } );
+    // se hace la solicitud
+    return this.http.put<any>(subRutaActualizar, sbmEditado, {headers: httpHeaders }).pipe(
+      catchError (e => {
+        // En caso de error, se maneja desde acá
+        Swal.fire('Error al actualizar subsección material', e.error.error, 'error');
+        return throwError(e);
+      })
+    );
+  }
+
 }

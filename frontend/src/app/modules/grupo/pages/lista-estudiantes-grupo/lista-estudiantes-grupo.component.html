@@ -1,0 +1,77 @@
+<div class="p-3 w-100">
+  <div class="row mx-0 w-100 my-4">
+    <div class="col-sm">
+      <h4 style="color: #005A70">Agregar estudiantes al grupo {{this.grupoPK.numero}} - {{this.grupoPK.periodoTiempo}}</h4>
+    </div>
+  </div>
+  <div class="row mx-0 w-100">
+    <div class="col-lg-6 mb-2">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Estudiantes matriculados en el grupo</h5>
+        </div>
+        <div class="card-body" style="max-height: 480px; overflow-y: auto">
+          <table class="table w-100" *ngIf="estudiantes?.length > 0">
+            <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Accion</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let estudiante of estudiantes">
+              <td>{{ estudiante.usuarioPK.nombreUsuario }}</td>
+              <td>{{ estudiante.nombre }}</td>
+              <td>{{ estudiante.apellidos }}</td>
+              <td>
+                <button type="button" name="Eliminar" class="btn btn-danger" (click)="eliminarEstudiante(estudiante)">Eliminar</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div *ngIf="!estudiantes || estudiantes?.length == 0" class="alert alert-info m-3">
+            No hay estudiantes matriculados en el curso.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6 mb-2">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Estudiantes disponibles para agregar</h5>
+        </div>
+        <div class="card-body" style="max-height: 480px; overflow-y: auto">
+          <table class="table w-100" *ngIf="estudiantesDisponibles?.length > 0">
+            <thead>
+            <tr>
+              <th>Usuario</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Accion</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let estudianteD of estudiantesDisponibles">
+              <td>{{ estudianteD.usuarioPK.nombreUsuario }}</td>
+              <td>{{ estudianteD.nombre }}</td>
+              <td>{{ estudianteD.apellidos }}</td>
+              <td>
+                <button type="button" name="Agregar" class="btn btn-primary" (click)="agregarEstudiante(estudianteD)">Agregar</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <div *ngIf="!estudiantesDisponibles || estudiantesDisponibles?.length == 0" class="alert alert-info m-3">
+            No hay estudiantes disponibles.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mx-0 w-100">
+
+  </div>
+</div>
+

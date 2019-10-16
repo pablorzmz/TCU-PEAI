@@ -16,10 +16,12 @@ import { EditarSubseccionMaterialGrupoComponent } from
     './components/editar-subseccion-material-grupo/editar-subseccion-material-grupo.component';
 import {ForoModule} from '../foro/foro.module';
 import { VerMaterialComponent } from './components/ver-material/ver-material.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
 @NgModule({
   declarations: [ListarGruposCursoComponent, AgregarGruposCursoComponent,
+    // tslint:disable-next-line:max-line-length
     AgregarSubseccionMaterialGrupoComponent, EliminarSubseccionMaterialGrupoComponent, EditarSubseccionMaterialGrupoComponent, VerMaterialComponent],
   exports: [
     ListarGruposCursoComponent,
@@ -34,7 +36,8 @@ import { VerMaterialComponent } from './components/ver-material/ver-material.com
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
-    ForoModule
+    ForoModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [
     GrupoService

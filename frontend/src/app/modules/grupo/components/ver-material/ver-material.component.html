@@ -1,1 +1,8 @@
-<p>ver-material works!</p>
+<div class="container">
+  <h2 class="my-4">{{titulo}}</h2>
+  <div class="mb-3" style="height: 90vh;">
+    <ngx-extended-pdf-viewer [src]="'http://localhost:4200/assets/example.pdf'" useBrowserLocale="true" height="90vh"></ngx-extended-pdf-viewer>
+  </div>
+  <h2 class="my-4">Discute sobre el material</h2>
+  <app-foro-listar-comentarios></app-foro-listar-comentarios>
+</div>

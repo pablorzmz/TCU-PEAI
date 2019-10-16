@@ -7,7 +7,6 @@ import {ForoService} from '../../data/services/foro.service';
 import { ForoListarComentariosComponent } from './pages/foro-listar-comentarios/foro-listar-comentarios.component';
 import { AgregarComentarioComponent } from './components/agregar-comentario/agregar-comentario.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
 @NgModule({
@@ -15,8 +14,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
   imports: [
     CommonModule,
     ForoRoutingModule,
-    ReactiveFormsModule,
-    NgxExtendedPdfViewerModule
+    ReactiveFormsModule
   ],
   exports: [
     ComentarioComponent,

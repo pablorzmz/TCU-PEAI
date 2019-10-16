@@ -11,6 +11,15 @@ export class InstitucionService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
+  getInstituciones(): Observable<any> {
+    const httpHeaders = new HttpHeaders(
+      {
+        Authorization: 'Bearer' + this.authService.accessToken
+      });
+    const urlAdd = '/obtener_instituciones';
+    return this.http.get(this.urlEndPoint + urlAdd, {headers: httpHeaders});
+  }
+
   getInstituciones2(page: number): Observable<any> {
     const httpHeaders = new HttpHeaders(
       {

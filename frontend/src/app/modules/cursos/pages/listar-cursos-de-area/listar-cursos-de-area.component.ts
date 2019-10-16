@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {CursoService} from '../../../../data/services/curso.service';
 import {ActivatedRoute} from '@angular/router';
 import {Curso} from '../../../../data/schema/Curso';
+import {CONSTANTES} from "../../../../data/util/Constantes";
+import {AuthService} from "../../../../data/services/auth.service";
 
 @Component({
   selector: 'app-listar-cursos-de-area',
@@ -12,8 +14,12 @@ export class ListarCursosDeAreaComponent implements OnInit {
   cursos: Curso[]; // Lista de cursos para mostrar
   idArea: number; // id del area de la cual quiero la lista de cursos
 
+  // Se obtienen las contantes de permisos
+  constantes = new CONSTANTES();
+
   constructor(private cursoService: CursoService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe( params => {
@@ -28,6 +34,10 @@ export class ListarCursosDeAreaComponent implements OnInit {
           request.unsubscribe();
         });
     });
+  }
+
+  actualizarCursos($event): any {
+    this.cursos.push($event.curso);
   }
 
 }

@@ -37,4 +37,14 @@ export class AreaTematicaService {
     return this.http.get<any>(urlConsulta, {headers: httpHeaders});
   }
 
+  getAreaTematicaById(idArea: number): Observable<any> {
+    const httpHeaders = new HttpHeaders(
+      {
+        Authorization: 'Bearer' + this.authService.accessToken,
+        'Content-Type': 'application/json'
+      });
+    const urlAdd = '/obtener_info_area?idArea=' + idArea;
+    return this.http.get<any>(this.urlEndpoint + urlAdd, {headers: httpHeaders});
+  }
+
 }

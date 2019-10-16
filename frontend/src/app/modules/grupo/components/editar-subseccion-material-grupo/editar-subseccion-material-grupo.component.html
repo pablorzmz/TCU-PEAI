@@ -1,0 +1,34 @@
+<button *ngIf="puedeEditarSBM()" type="button" class="btn btn-info btn-sm d-flex align-items-center" data-toggle="modal" data-target="#modalEditarSBM" (click)="abrirModalEditarSBM()">
+  <mat-icon class="mr-1">edit</mat-icon>
+  Editar
+</button>
+
+<ng-template #modalEditarSBM class="modal modal-dialog-scrollable">
+  <div class="modal-content border-0">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Editar subsección material</h5>
+      <button type="button" class="close"  (click)="cerrarEditarSBMForm()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="editarSBMForm" class="col-md-12">
+        <div class="form-group row">
+          <label for="nombreSBM">Nombre</label>
+          <input formControlName="nombreSBM" id="nombreSBM" type="text" class="form-control" id="nombreSBM"
+                 placeholder="Nombre de la subsección de material" required maxlength="30">
+          <div class="text-danger" *ngIf="nombreSBM.touched && nombreSBM.status== 'INVALID'">Nombre no puede ser vacío (30 max) </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" [disabled]="editarSBMForm.invalid" (click)="editarSBM()" class="btn btn-primary mr-1">
+        Editar
+      </button>
+      <button (click)="cerrarEditarSBMForm()" class="btn btn-danger">
+        Volver
+      </button>
+    </div>
+  </div>
+</ng-template>
+

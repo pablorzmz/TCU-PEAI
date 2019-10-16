@@ -15,7 +15,10 @@ export class CONSTANTES {
   public readonly VISUALIZAR_INSTITUCIONES: any = { ID: 4, NOMBRE: 'Visualizar instituciones' };
   public readonly VISUALIZAR_CURSOS: any = { ID: 5, NOMBRE: 'Visualizar cursos' };
   public readonly AGREGAR_GRUPOS: any = { ID: 6, NOMBRE: 'Agregar grupos' };
+  public readonly CREAR_CURSO: any = { ID: 7, NOMBRE: 'Crear Curso' };
   public readonly AGREGAR_SUBSECCION_MATERIAL_GRUPO: any = {ID: 101, NOMBRE: 'Agregar subseccion material en grupos'};
+  public readonly ELIMINAR_SUBSECCION_MATERIAL_GRUPO: any = {ID: 102, NOMBRE: 'Eliminar subseccion material en grupos'};
+  public readonly EDITAR_SUBSECCION_MATERIAL_GRUPO: any = {ID: 103, NOMBRE: 'Editar subseccion material en grupos'};
 
 }
 

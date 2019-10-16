@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
+import {Curso} from "../schema/Curso";
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +29,15 @@ export class CursoService {
       });
     const urlAdd = '/cursos_por_area/';
     return this.http.get(this.urlEndPoint + urlAdd + idArea, {headers: httpHeaders});
+  }
+
+  createCurso(curso: Curso, idArea: number, nombreUsuario: string): Observable<Curso> {
+    const httpHeaders = new HttpHeaders(
+      {
+        Authorization: 'Bearer' + this.authService.accessToken,
+        'Content-Type': 'application/json'
+      });
+    const urlAdd = '/crear_curso?idArea=' + idArea + '&nombreUsuario=' + nombreUsuario;
+    return this.http.post<Curso>(this.urlEndPoint + urlAdd, curso, {headers: httpHeaders});
   }
 }

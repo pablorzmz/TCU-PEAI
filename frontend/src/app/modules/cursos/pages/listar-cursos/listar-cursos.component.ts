@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Curso} from '../../../../data/schema/Curso';
 import {CursoService} from '../../../../data/services/curso.service';
 import {ActivatedRoute} from '@angular/router';
+import {CONSTANTES} from "../../../../data/util/Constantes";
+import {AuthService} from "../../../../data/services/auth.service";
 
 @Component({
   selector: 'app-listar-cursos',
@@ -12,9 +14,12 @@ export class ListarCursosComponent implements OnInit {
   cursos: Curso[]; // Lista de cursos para mostrar
   paginador: any; // Objeto donde se guarda el resultado de la consulta, que será enviado para la paginación
   rutaPag = '/cursos/page/'; // Ruta del paginador
+  // Se obtienen las contantes de permisos
+  constantes = new CONSTANTES();
 
   constructor(private cursoService: CursoService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe( params => {
@@ -36,6 +41,12 @@ export class ListarCursosComponent implements OnInit {
           request.unsubscribe();
         });
     });
+  }
+
+  actualizarCursos($event): any {
+    if (this.cursos.length < 4) {
+      this.cursos.push($event.curso);
+    }
   }
 
 }

@@ -6,6 +6,8 @@ import {Curso} from '../../../../data/schema/Curso';
 import {AuthService} from '../../../../data/services/auth.service';
 import {CONSTANTES} from '../../../../data/util/Constantes';
 import {SubseccionMaterial} from '../../../../data/schema/SubseccionMaterial';
+import {MaterialService} from '../../../../data/services/material.service';
+import {Material} from '../../../../data/schema/Material';
 
 @Component({
   selector: 'app-listar-grupos-curso',
@@ -14,7 +16,7 @@ import {SubseccionMaterial} from '../../../../data/schema/SubseccionMaterial';
 })
 export class ListarGruposCursoComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private grupoService: GrupoService, private authService: AuthService) { }
+  constructor(private route: ActivatedRoute, private grupoService: GrupoService, private authService: AuthService, private materialService: MaterialService) { }
 
   // Se agrega la lista de subsecciones de materiales para ajustar por grupo
   @Input() listaSubseccionMateriales: Array<SubseccionMaterial>;
@@ -31,6 +33,9 @@ export class ListarGruposCursoComponent implements OnInit {
   // Se obtienen las contantes de permisos
   constantes = new CONSTANTES();
 
+  // lista de materiales de cada grupo
+  listaMateriales: Array<any>;
+
   ngOnInit() {
       // Se solicitan las areas tematicas de la area-tematica
       const request = this.grupoService.getGruposCurso(this.curso.id).subscribe(
@@ -44,6 +49,15 @@ export class ListarGruposCursoComponent implements OnInit {
         // Esto se implementa cuando esté el interceptor
         err => console.error(err)
       );
+      // se recuperan los materiales
+      const resquestMateriales = this.materialService.obtenerMaterialesCurso(this.curso.id).subscribe(
+        response => {
+          // Se asignan a la lista de materiales
+          this.listaMateriales = response.materiales;
+          // Se dessubscribre
+          resquestMateriales.unsubscribe();
+      }
+    );
   }
   actualizarGrupos($event): any {
       this.grupos.push($event.grupo);

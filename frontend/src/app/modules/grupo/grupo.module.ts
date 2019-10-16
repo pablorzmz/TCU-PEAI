@@ -15,11 +15,12 @@ import { EliminarSubseccionMaterialGrupoComponent } from
 import { EditarSubseccionMaterialGrupoComponent } from
     './components/editar-subseccion-material-grupo/editar-subseccion-material-grupo.component';
 import {ForoModule} from '../foro/foro.module';
+import { VerMaterialComponent } from './components/ver-material/ver-material.component';
 
 
 @NgModule({
   declarations: [ListarGruposCursoComponent, AgregarGruposCursoComponent,
-    AgregarSubseccionMaterialGrupoComponent, EliminarSubseccionMaterialGrupoComponent, EditarSubseccionMaterialGrupoComponent],
+    AgregarSubseccionMaterialGrupoComponent, EliminarSubseccionMaterialGrupoComponent, EditarSubseccionMaterialGrupoComponent, VerMaterialComponent],
   exports: [
     ListarGruposCursoComponent,
     AgregarSubseccionMaterialGrupoComponent,

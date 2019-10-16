@@ -51,14 +51,40 @@
               </div>
               <div class="card-body">
                 <div class="row">
-                  <div class="d-flex ml-auto mx-3">
+                  <div class="d-flex ml-auto mx-3 my-2">
                       <app-editar-subseccion-material-grupo (sbmActualizarValueChange)="actualizarSubseccionMaterial($event)" [grupo]="grupo" [sbmAEditar]="sbm" class="mx-1"></app-editar-subseccion-material-grupo>
                       <app-eliminar-subseccion-material-grupo (sbmEliminarValueChange)="eliminarSubseccionMaterial($event)" [nombreInstitucion]="grupo.curso.areaTematica.institucion.institucionPK.nombre" [sbm]="sbm"></app-eliminar-subseccion-material-grupo>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col">
-                    <p> Sin materiales disponibles </p>
+                    <!-- Se cargan los materiales para cada subseccion -->
+                    <div *ngFor="let materiales of listaMateriales">
+                      <div *ngIf="materiales.sbm_id == sbm.id" >
+                        <p *ngIf="materiales.sbm_material.length <= 0">
+                          Sin materiales disponibles.
+                        </p>
+                        <div *ngFor="let m of materiales.sbm_material">
+                          <div class="card">
+                            <div class="card-header" style="background-color: #DCEDF6">
+                              <h6 class="card-title" style="color: #005A70">
+                                {{m.id.nombre}}
+                              </h6>
+                              <p class="card-subtitle mb-2 text-muted">
+                                <mat-icon class="mr-1" style="color: red; vertical-align: middle">picture_as_pdf</mat-icon>
+                                {{m.tipo}}
+                              </p>
+                            </div>
+                            <div class="card-body">
+                              <p class="card-subtitle mb-2 text-muted"> Descripción: {{' ' + m.descripcion}}</p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                              <button type="button" class="btn btn-primary btn-sm">Ir al material</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

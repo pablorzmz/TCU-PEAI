@@ -38,7 +38,7 @@
         <div class="col">
           <div class="float-right">
             <!-- Componente para crear subsecciones de material que reciben el grupo-->
-            <app-agregar-subseccion-material-grupo [grupo]="grupo" (sbmValueChange)="actualizarSubseccionesMateriales($event)"></app-agregar-subseccion-material-grupo>
+            <app-agregar-subseccion-material-grupo [grupo]="grupo" (sbmValueChange)="crearSubseccionMaterial($event)"></app-agregar-subseccion-material-grupo>
           </div>
         </div>
       </div>
@@ -50,12 +50,12 @@
                   <div class="col">
                     Subsección: {{' ' + sbm.nombre}}
                   </div>
-                  <div class="col text-right" *ngIf="sbm.habilitada">
+                  <div class="mx-3" *ngIf="sbm.habilitada">
                     <button class="btn btn-sm btn-success">
                       Habilitada
                     </button>
                   </div>
-                  <div class="col text-right" *ngIf="!sbm.habilitada">
+                  <div class="mx-3" *ngIf="!sbm.habilitada">
                     <button class="btn btn-sm btn-danger">
                       Deshabilitada
                     </button>
@@ -63,7 +63,17 @@
                 </div>
               </div>
               <div class="card-body">
-                <p> Sin materiales disponibles</p>
+                <div class="row">
+                  <div class="d-flex ml-auto mx-3">
+                      <app-editar-subseccion-material-grupo (sbmActualizarValueChange)="actualizarSubseccionMaterial($event)" [grupo]="grupo" [sbmAEditar]="sbm" class="mx-1"></app-editar-subseccion-material-grupo>
+                      <app-eliminar-subseccion-material-grupo (sbmEliminarValueChange)="eliminarSubseccionMaterial($event)" [nombreInstitucion]="grupo.curso.areaTematica.institucion.institucionPK.nombre" [sbm]="sbm"></app-eliminar-subseccion-material-grupo>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <p> Sin materiales disponibles </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

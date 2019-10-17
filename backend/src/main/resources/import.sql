@@ -171,7 +171,7 @@ INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,ca
 INSERT INTO categoria(categoria_id, descripcion, nombre, numero, periodo_tiempo, curso_id) VALUES(1, 'Es de arte Abstracto', 'Arte Abstracto', 1, '1 semestre', 4 )
 
 /*Material*/
-INSERT INTO material(material_id, subseccion_material_id, descripcion, tipo, url, categoria_id) VALUES (1, 1, 'Material de arte', 'Material chingon', 'https://www.redalyc.org/pdf/166/16620943011.pdf', 1);
+INSERT INTO material(material_id, subseccion_material_id, descripcion, tipo, url, categoria_id) VALUES ('Simulación basada en Agentes', 1, 'Material de arte', 'Material chingon', 'https://www.redalyc.org/pdf/166/16620943011.pdf', 1);
 
 /*Usuario_Material_Comenta*/
 INSERT INTO usuario_material_comenta (nombre_usuario, fecha, texto_comentario, visible, material_id, subseccion_material_id) VALUES ('steveen', current_date() , 'Madre mia Willy', true, 1, 1);

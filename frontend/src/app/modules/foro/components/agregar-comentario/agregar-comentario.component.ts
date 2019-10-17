@@ -90,6 +90,7 @@ export class AgregarComentarioComponent implements OnInit {
     // Se necesita crea y setea el PK de la instancia a enviar
     const usuarioMaterialComentaPK = new UsuarioMaterialComentaPK();
     usuarioMaterialComentaPK.usuario = usuarioPK;
+    usuarioMaterialComentaPK.material = materialPK;
 
 
     // Se agrega el PK de la instancia

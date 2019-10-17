@@ -20,6 +20,9 @@ export class VerMaterialComponent implements OnInit {
   // Es la subseccion a la que pertenece
   idSubSeccion: number;
 
+  // Es la ruta para obtener el archivo
+  ruta: string;
+
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(
       params => {
@@ -30,6 +33,10 @@ export class VerMaterialComponent implements OnInit {
         const solicitud = this.materialService.obtenerMaterial(this.idMaterial, this.idSubSeccion).subscribe(
           response => {
             this.material = response;
+            // Se espera que las conulas se hagan con esta ruta
+            this.ruta =  `${this.material.url}`
+            // Se espera que las conulas se hagan con esta ruta
+            console.log(this.material);
             solicitud.unsubscribe();
           },
           error => {

@@ -8,10 +8,7 @@ import com.paei.springboot.backend.apirest.model.entity.real.Curso;
 import com.paei.springboot.backend.apirest.model.entity.real.Grupo;
 import com.paei.springboot.backend.apirest.model.entity.real.Material;
 import com.paei.springboot.backend.apirest.model.entity.real.SubseccionMaterial;
-import com.paei.springboot.backend.apirest.services.real.ICursoService;
-import com.paei.springboot.backend.apirest.services.real.IGrupoService;
-import com.paei.springboot.backend.apirest.services.real.IMaterialService;
-import com.paei.springboot.backend.apirest.services.real.ISubseccionMaterialService;
+import com.paei.springboot.backend.apirest.services.real.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,6 +22,9 @@ import java.util.*;
 
 @RequestMapping("/api/material")
 public class MaterialController {
+
+    @Autowired
+    private IUploadMaterialService iUploadMaterialService;
 
     @Autowired
     private IMaterialService iMaterialService;
@@ -87,6 +87,7 @@ public class MaterialController {
         Material material = iMaterialService.getById(idMaterial, idSubSeccion);
         if(material != null){
             // Si el material existe se retorna
+            material.setUrl(iUploadMaterialService.getPath(material.getId().getNombre()).toString());
             return material;
         }
         else {

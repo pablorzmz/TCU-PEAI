@@ -13,6 +13,12 @@ public class InstitucionPerfilUsuarioServiceImpl implements IInstitucionPerfilUs
     @Autowired
     IInstitucionPerfilUsuarioDao iInstitucionPerfilUsuarioDao;
 
+    /**
+     * Metodo para obtener los estudiantes asociados a una institucion
+     * @param institucionPK id de la institucion
+     * @param nombrePerfil nombre del perfil de estudiante
+     * @return Retorna la lista de estudiantes
+     */
     @Override
     public List<Usuario> getEstudiantesDeInstitucion(InstitucionPK institucionPK, String nombrePerfil) {
         return iInstitucionPerfilUsuarioDao.getEstudiantesDeInstitucion(institucionPK, nombrePerfil);

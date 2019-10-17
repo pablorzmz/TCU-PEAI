@@ -1,0 +1,16 @@
+@media screen and (max-width: 500px) {
+  table th:nth-of-type(3){
+    display: none;
+  }
+  table td:nth-of-type(3) {
+    display: none;
+  }
+}
+@media screen and (max-width: 400px) {
+  table th:nth-of-type(2){
+    display: none;
+  }
+  table td:nth-of-type(2) {
+    display: none;
+  }
+}

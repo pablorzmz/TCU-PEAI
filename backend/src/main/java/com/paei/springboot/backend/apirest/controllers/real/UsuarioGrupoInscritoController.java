@@ -1,5 +1,7 @@
 package com.paei.springboot.backend.apirest.controllers.real;
 
+import com.paei.springboot.backend.apirest.exceptions.GrupoNotFoundException;
+import com.paei.springboot.backend.apirest.exceptions.SubseccionMaterialDataAccessException;
 import com.paei.springboot.backend.apirest.exceptions.UsuarioNotFoundException;
 import com.paei.springboot.backend.apirest.model.entity.real.*;
 import com.paei.springboot.backend.apirest.services.real.IGrupoService;
@@ -26,6 +28,13 @@ public class UsuarioGrupoInscritoController {
     @Autowired
     IUsuarioService iUsuarioService;
 
+    /**
+     * Metodo para listar todos los estudiantes inscritos en un grupo
+     * @param numGrupo numero del grupo
+     * @param cursoId id del curso al que pertenece el grupo
+     * @param periodoT periodo de tiempo en el que se imparte el curso
+     * @return Retorna una lista con los estudiantes
+     */
     @GetMapping("estudiantes_de_grupo")
     public List<Usuario> estsDeGrupo(@RequestParam Integer numGrupo, @RequestParam Long cursoId, @RequestParam String periodoT){
         GrupoPK grupoPK = new GrupoPK(cursoId, numGrupo, periodoT);
@@ -36,11 +45,16 @@ public class UsuarioGrupoInscritoController {
             // Retornamos los estudiantes del grupo
             return iUsuarioGrupoInscritoService.estudiantesInscritosEnGrupo(grupoPK);
         }else{
-            // Falta retornar error
-            return null;
+            // En caso de no encontrar el grupo se tira un error
+            throw new GrupoNotFoundException(grupoPK);
         }
     }
 
+    /**
+     * Metodo para inscribir un estudiante en un grupo
+     * @param usuarioGrupoInscritoPK id del grupo al que se desea inscribir el usuario
+     * @return Retorna el usuario inscrito en el curso
+     */
     @PostMapping("insertar_estudiante_grupo")
     @ResponseStatus(HttpStatus.CREATED)
     public Usuario agregarEstudianteGrupo(@RequestBody UsuarioGrupoInscritoPK usuarioGrupoInscritoPK){
@@ -64,18 +78,27 @@ public class UsuarioGrupoInscritoController {
                     // Retornamos el usuario agregado
                     return usuarioGrupoInscrito.getUsuario();
                 }catch (Exception ex){
-                    // Falta Error
-                    return null;
+                    // Retornamos error
+                    throw new SubseccionMaterialDataAccessException("No se pudo insertar el estudiante");
                 }
             }else{
-                // Falta Error
-                return null;
+                // En caso de no encontrar el grupo se tira un error
+                throw new GrupoNotFoundException(grupo.getId());
             }
         }else{
+            // En caso de no encontrar el usuario se tira un error
             throw new UsuarioNotFoundException(nombreUsuario);
         }
     }
 
+    /**
+     * Metodo para eliminar un estudiante de un grupo
+     * @param numGrupo numero del grupo
+     * @param idCurso id del curso al que pertenece el grupo
+     * @param periodoT periodo de tiempo en el que se imparte el curso
+     * @param nombreUsuario nombre del usuario que se desea eliminar del grupo
+     * @return retorna el usuario eliminado
+     */
     @DeleteMapping("eliminar_estudiante_grupo")
     public Usuario eliminarUsuarioGrupo(@RequestParam Long idCurso, @RequestParam Integer numGrupo, @RequestParam String periodoT, @RequestParam String nombreUsuario){
         // Hay que verificar si existe el usuario y el grupo
@@ -93,14 +116,15 @@ public class UsuarioGrupoInscritoController {
                     // Retornamos el usuario agregado
                     return usuario;
                 }catch (Exception ex){
-                    // Falta Error
-                    return null;
+                    // Retornamos error
+                    throw new SubseccionMaterialDataAccessException("No se pudo eliminar el estudiante");
                 }
             }else{
-                // Falta Error
-                return null;
+                // En caso de no encontrar el grupo se tira un error
+                throw new GrupoNotFoundException(grupoPK);
             }
         }else{
+            // En caso de no encontrar el usuario se tira un error
             throw new UsuarioNotFoundException(nombreUsuario);
         }
     }

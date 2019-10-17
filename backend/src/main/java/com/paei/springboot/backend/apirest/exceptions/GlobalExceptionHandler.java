@@ -1,7 +1,6 @@
 package com.paei.springboot.backend.apirest.exceptions;
 
 
-import com.paei.springboot.backend.apirest.controllers.real.SubseccionMaterialController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -102,5 +101,16 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<CustomErrorResponse> grupoExiste(Exception ex) {
         CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.CONFLICT, ex.getMessage());
         return new ResponseEntity<>(errors, HttpStatus.CONFLICT);
+    }
+
+    /**
+     * Metodo para manejar la excepcion de no encontrar un grupo
+     * @param ex Excepción lanzada
+     * @return Retorna un CustomErrorResponse con la información del error
+     */
+    @ExceptionHandler(GrupoNotFoundException.class)
+    public ResponseEntity<CustomErrorResponse> grupoNoExiste(Exception ex){
+        CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.NOT_FOUND, ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
 }

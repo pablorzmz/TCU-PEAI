@@ -19,7 +19,7 @@
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opcionesNavbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div *ngIf="1==1" class="collapse navbar-collapse" id="opcionesNavbar">
+          <div *ngIf="this.authService.validarTienePermisoEnAlgunPerfilDeInstitucion(constantes.VER_LISTA_ESTUDIANTES.ID, this.nombreInstitucion)" class="collapse navbar-collapse" id="opcionesNavbar">
             <ul class="navbar-nav ml-5">
               <li class="nav-item">
                 <a class="nav-item btn d-flex align-items-center" [routerLink]="['/agregar_estudiantes_grupo/',this.nombreInstitucion,this.curso.id,grupo.id.numero,grupo.id.periodoTiempo]">

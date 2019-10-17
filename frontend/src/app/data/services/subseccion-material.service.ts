@@ -66,7 +66,8 @@ export class SubseccionMaterialService {
         Swal.fire({
           title: 'Error al eliminar subsección de material',
           text: err.error.error,
-          type: 'error'
+          type: 'error',
+          confirmButtonText: 'Aceptar'
         });
         return throwError(err);
       })

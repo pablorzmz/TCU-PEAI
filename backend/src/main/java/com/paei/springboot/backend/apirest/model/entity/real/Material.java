@@ -31,7 +31,7 @@ public class Material implements Serializable {
     private String Url;
 
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumns({
             @JoinColumn(name = "categoria_id", unique = false, nullable = true, referencedColumnName = "categoria_id"),
     })

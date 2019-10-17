@@ -135,3 +135,36 @@ INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habili
 
 /*Grupo 2, Curso 3*/
 INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habilitada) VALUES ( 3, '1 semestre',1,'Todo el material',1);
+
+
+/* Se insertan algunos materiales */
+
+/* Grupo 1, Curso 4 */
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',1, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',2, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',3, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+
+/*Grupo 2, Curso 4*/
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',4, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',5, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',6, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+
+/*Grupo 1, Curso 5*/
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',7, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',8, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',9, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+
+/*Grupo 1, Curso 1*/
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',10, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',11, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',12, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+
+/*Grupo 1, Curso 2*/
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',13, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',14, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+
+/*Grupo 2, Curso 2*/
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',15, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+
+/*Grupo 2, Curso 3*/
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',16, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);

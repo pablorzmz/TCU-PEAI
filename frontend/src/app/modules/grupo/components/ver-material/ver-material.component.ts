@@ -13,9 +13,7 @@ export class VerMaterialComponent implements OnInit {
   // Es el material que será mostrado
   @Input() material: Material;
 
-  titulo = 'Electromagnetismo';
-
-
   ngOnInit() {
+    console.log(this.material);
   }
 }

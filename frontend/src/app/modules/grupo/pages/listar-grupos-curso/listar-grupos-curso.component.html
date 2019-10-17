@@ -50,7 +50,7 @@
                 </div>
               </div>
               <div class="card-body">
-                <div class="row">
+                <div class="row my-2">
                   <div class="d-flex flex-wrap justify-content-end w-100 mx-3">
                       <app-editar-subseccion-material-grupo (sbmActualizarValueChange)="actualizarSubseccionMaterial($event)" [grupo]="grupo" [sbmAEditar]="sbm" class="mx-1"></app-editar-subseccion-material-grupo>
                       <app-eliminar-subseccion-material-grupo (sbmEliminarValueChange)="eliminarSubseccionMaterial($event)" [nombreInstitucion]="grupo.curso.areaTematica.institucion.institucionPK.nombre" [sbm]="sbm"></app-eliminar-subseccion-material-grupo>
@@ -82,6 +82,7 @@
                               <button type="button" class="btn btn-primary btn-sm">Ir al material</button>
                             </div>
                           </div>
+                          <app-ver-material [material]="m"></app-ver-material>
                         </div>
                       </div>
                     </div>
@@ -94,4 +95,3 @@
       </div>
   </div>
 </div>
-<app-ver-material></app-ver-material>

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ForoService} from '../../../../data/services/foro.service';
 import {Usuario} from '../../../../data/schema/Usuario';
 import {AuthService} from '../../../../data/services/auth.service';
+import {MaterialPK} from '../../../../data/schema/MaterialPK';
 
 @Component({
   selector: 'app-foro-listar-comentarios',
@@ -12,6 +13,9 @@ export class ForoListarComentariosComponent implements OnInit {
 
   constructor(private foroService: ForoService, private authService: AuthService) { }
 
+  // Id del material del que se quiere recuperar los comentarios
+  @Input() materialPK: MaterialPK;
+
   // Aqui se guardan los comentarios
   comentarios: Array<any>;
 
@@ -20,7 +24,7 @@ export class ForoListarComentariosComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = this.authService.usuario;
-    this.foroService.getComentariosMaterial('1', 1).subscribe(
+    this.foroService.getComentariosMaterial(this.materialPK.nombre, this.materialPK.subSeccionMaterialId).subscribe(
       res => {
         this.comentarios = res;
       },

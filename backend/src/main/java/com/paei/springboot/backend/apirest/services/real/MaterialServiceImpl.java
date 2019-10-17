@@ -17,4 +17,9 @@ public class MaterialServiceImpl implements IMaterialService {
     public List<Material> obtenerMaterialesDeSubseccionMaterial(Long subseccionMaterialId) {
         return iMaterialDao.findAllBySubseccionMaterialId(subseccionMaterialId);
     }
+
+    @Override
+    public Material crearNuevoMaterial(Material material) {
+        return iMaterialDao.save(material);
+    }
 }

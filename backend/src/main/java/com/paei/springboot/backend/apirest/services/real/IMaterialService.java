@@ -11,4 +11,11 @@ public interface IMaterialService {
      * @return
      */
     public List<Material> obtenerMaterialesDeSubseccionMaterial(Long subseccionMaterialId);
+
+    /**
+     * Metodo que permite crear un nuevo material
+     * @param material El material para crear
+     * @return El material creado o la correspondiente excepcion
+     */
+    public Material crearNuevoMaterial(Material material);
 }

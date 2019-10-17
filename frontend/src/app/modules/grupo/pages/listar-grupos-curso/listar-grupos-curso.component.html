@@ -79,10 +79,9 @@
                               <p class="card-subtitle mb-2 text-muted"> Descripción: {{' ' + m.descripcion}}</p>
                             </div>
                             <div class="card-footer bg-transparent">
-                              <button type="button" class="btn btn-primary btn-sm">Ir al material</button>
+                              <button [routerLink]="['material',m.id.nombre,m.id.subSeccionMaterialId]" type="button" class="btn btn-primary btn-sm">Ir al material</button>
                             </div>
                           </div>
-                          <app-ver-material [material]="m"></app-ver-material>
                         </div>
                       </div>
                     </div>

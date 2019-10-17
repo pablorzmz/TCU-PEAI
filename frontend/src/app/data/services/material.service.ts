@@ -45,4 +45,37 @@ export class MaterialService {
     );
   }
 
+  /**
+   * Método que permite recuperar un material especifico de una subseccion especifica
+   * @param idMaterial Id del material
+   * @param idSubSeccion Id de la subseccion a la que pertenece
+   * @return El material solicitado o una excepcion de que no se pudo obtener
+   */
+  obtenerMaterial(idMaterial: string, idSubSeccion: number): Observable<any> {
+    const rutaObtenerMaterial = '/obtener_material_subseccion?';
+    // se establece el parametro de material
+    const paramIdMaterial = 'idMaterial=' + idMaterial;
+    // se establece el parametro de subseccion
+    const paramIdSubSeccion = 'idSubSeccion=' + idSubSeccion;
+    // luego se construye la subruta
+    const subRutaMaterialSubseccion = `${this.urlEndPoint}${rutaObtenerMaterial}${paramIdMaterial}&${paramIdSubSeccion}`;
+    // cabeceras de autorizacion
+    const httpHeaders = new HttpHeaders(
+      {
+        Authorization: 'Bearer' + this.authService.accessToken
+      });
+    // finalmente se hace la petición
+    return this.http.get<any>(subRutaMaterialSubseccion, {headers: httpHeaders}).pipe(
+      catchError( err => {
+        // En caso de error se muestra desde el servicio
+        Swal.fire({
+          title: 'Error al obtener el material',
+          text: err.error.error,
+          type: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+        return throwError(err);
+      })
+    );
+  }
 }

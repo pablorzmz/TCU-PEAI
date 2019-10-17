@@ -2,6 +2,8 @@ package com.paei.springboot.backend.apirest.controllers.real;
 
 
 import com.paei.springboot.backend.apirest.exceptions.CursoNotFoundException;
+import com.paei.springboot.backend.apirest.exceptions.MaterialNotFoundException;
+import com.paei.springboot.backend.apirest.exceptions.SolicitudInvalidaException;
 import com.paei.springboot.backend.apirest.model.entity.real.Curso;
 import com.paei.springboot.backend.apirest.model.entity.real.Grupo;
 import com.paei.springboot.backend.apirest.model.entity.real.Material;
@@ -71,6 +73,25 @@ public class MaterialController {
         }else {
             // Se retorna una excepcion de que el curso con ese id no sirve
             throw new CursoNotFoundException(cursoId);
+        }
+    }
+
+    /**
+     * Método que permite recuperar un material especifico de una subseccion especifica
+     * @param idMaterial Id del material
+     * @param idSubSeccion Id de la subseccion a la que pertenece
+     * @return El material solicitado o una excepcion de que no existe
+     */
+    @GetMapping("/obtener_material_subseccion")
+    public Material obtenerMaterialSubseccion( @RequestParam String idMaterial, @RequestParam Long idSubSeccion) {
+        Material material = iMaterialService.getById(idMaterial, idSubSeccion);
+        if(material != null){
+            // Si el material existe se retorna
+            return material;
+        }
+        else {
+            // Si el material no existe se retorna una excecpcion
+            throw new MaterialNotFoundException(idMaterial);
         }
     }
 

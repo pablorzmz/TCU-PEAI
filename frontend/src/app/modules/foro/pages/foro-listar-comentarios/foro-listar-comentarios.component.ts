@@ -14,7 +14,11 @@ export class ForoListarComentariosComponent implements OnInit {
   constructor(private foroService: ForoService, private authService: AuthService) { }
 
   // Id del material del que se quiere recuperar los comentarios
-  @Input() materialPK: MaterialPK;
+  @Input() idMaterial: string;
+
+  // Es la subseccion a la que pertenece
+  @Input() idSubSeccion: number;
+
 
   // Aqui se guardan los comentarios
   comentarios: Array<any>;
@@ -24,7 +28,7 @@ export class ForoListarComentariosComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = this.authService.usuario;
-    this.foroService.getComentariosMaterial(this.materialPK.nombre, this.materialPK.subSeccionMaterialId).subscribe(
+    this.foroService.getComentariosMaterial(this.idMaterial, this.idSubSeccion).subscribe(
       res => {
         this.comentarios = res;
       },

@@ -22,8 +22,11 @@ export class AgregarComentarioComponent implements OnInit {
   // Aqui se emite el evento de que se hizo el comentario
   @Output() valueChange = new EventEmitter<{comentario: any}>();
 
-  // Es el id del material el cual se quiere comentar
-  @Input() materialPK: MaterialPK;
+  // Id del material del que se quiere recuperar los comentarios
+  @Input() idMaterial: string;
+
+  // Es la subseccion a la que pertenece
+  @Input() idSubSeccion: number;
 
   // Form para controlar los campos
   comentarForm: FormGroup;
@@ -80,10 +83,14 @@ export class AgregarComentarioComponent implements OnInit {
     const usuarioPK = new UsuarioPK();
     usuarioPK.nombreUsuario = this.usuario.usuarioPK.nombreUsuario;
 
+    const materialPK = new MaterialPK();
+    materialPK.subSeccionMaterialId = this.idSubSeccion;
+    materialPK.nombre = this.idMaterial;
+
     // Se necesita crea y setea el PK de la instancia a enviar
     const usuarioMaterialComentaPK = new UsuarioMaterialComentaPK();
     usuarioMaterialComentaPK.usuario = usuarioPK;
-    usuarioMaterialComentaPK.material = this.materialPK;
+
 
     // Se agrega el PK de la instancia
     usuarioMaterialComenta.id = usuarioMaterialComentaPK;

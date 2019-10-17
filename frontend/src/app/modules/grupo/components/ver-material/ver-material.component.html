@@ -1,8 +1,11 @@
 <div *ngIf="material" class="container">
   <h2 class="my-4">{{material.id.nombre}}</h2>
   <div class="mb-3" style="height: 90vh;">
-    <ngx-extended-pdf-viewer [src]="'http://localhost:4200/assets/example.pdf'" useBrowserLocale="true" height="90vh"></ngx-extended-pdf-viewer>
+    <ngx-extended-pdf-viewer
+      [src]="'http://localhost:4200/assets/example.pdf'"
+      [showOpenFileButton]="false"
+      [showBookmarkButton]="false" useBrowserLocale="true" height="90vh"></ngx-extended-pdf-viewer>
   </div>
   <h2 class="my-4">Discute sobre el material</h2>
-  <app-foro-listar-comentarios [materialPK]="material.id"></app-foro-listar-comentarios>
+  <app-foro-listar-comentarios [idMaterial]="idMaterial" [idSubSeccion]="idSubSeccion"></app-foro-listar-comentarios>
 </div>

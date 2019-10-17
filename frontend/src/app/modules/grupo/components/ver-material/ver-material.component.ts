@@ -33,6 +33,7 @@ export class VerMaterialComponent implements OnInit {
             solicitud.unsubscribe();
           },
           error => {
+            // Si falla se devuelve a la vista del curso
             let url;
             this.activatedRoute.parent.url.subscribe(res => {
               url = res.toString().replace(',', '/');

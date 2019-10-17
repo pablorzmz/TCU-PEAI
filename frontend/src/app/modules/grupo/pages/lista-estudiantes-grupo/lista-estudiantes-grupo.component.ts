@@ -47,17 +47,18 @@ export class ListaEstudiantesGrupoComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authService.validarTienePermisoEnAlgunPerfilDeInstitucion(this.constantes.VER_LISTA_ESTUDIANTES.ID, this.nombreInstitucion)) {
-      this.activatedRoute.paramMap.subscribe( params => {
-        // Se obtiene el nombre de la institucion
-        this.nombreInstitucion = params.get('institucion');
-        // Se obtiene el id del curso
-        this.grupoPK.curso = +params.get('curso');
-        // Se obtiene el numero de grupo
-        this.grupoPK.numero = +params.get('numGrupo') ;
-        // Se obtinen el periodo de tiempo
-        this.grupoPK.periodoTiempo = params.get('periodoT');
-        // Se realiza el Request al backend
+    this.activatedRoute.paramMap.subscribe(params => {
+      // Se obtiene el nombre de la institucion
+      this.nombreInstitucion = params.get('institucion');
+      // Se obtiene el id del curso
+      this.grupoPK.curso = +params.get('curso');
+      // Se obtiene el numero de grupo
+      this.grupoPK.numero = +params.get('numGrupo');
+      // Se obtinen el periodo de tiempo
+      this.grupoPK.periodoTiempo = params.get('periodoT');
+      // Se realiza el Request al backend
+      // tslint:disable-next-line:max-line-length
+      if (this.authService.validarTienePermisoEnAlgunPerfilDeInstitucion(this.constantes.VER_LISTA_ESTUDIANTES.ID, this.nombreInstitucion)) {
         // tslint:disable-next-line:max-line-length
         const request = this.institucionPerfilUsuarioService.getEstudiantesDeInstitucion(this.nombreInstitucion, this.grupoPK.curso).subscribe(
           (response) => {
@@ -74,37 +75,37 @@ export class ListaEstudiantesGrupoComponent implements OnInit {
             });
             this.router.navigate(['/instituciones']);
           });
-      });
-      // tslint:disable-next-line:max-line-length
-      const request2 = this.usuarioGrupoInscritoService.getEstudiantesDeGrupo(this.grupoPK.curso, this.grupoPK.numero, this.grupoPK.periodoTiempo).subscribe(
-        (response) => {
-          // Se llena la lista de estudiantes del grupo
-          this.estudiantes = response as Usuario[];
-          // Se elimina la subscripcion
-          request2.unsubscribe();
-        },
-        (error) => {
-          Swal.fire({
-            title: 'Algo salio mal',
-            text: 'Vuelva a intenarlo mas tarde',
-            type: 'error',
-          });
-          this.router.navigate(['/instituciones']);
-        }
-      );
-    } else {
-      // Mensaje para indicar que no tiene los permisos
-      Swal.fire({
-        title: 'No tiene los permisos',
-        text: 'No cuenta con los permisos para acceder a esta vista',
-        type: 'error',
-        animation: false,
-        customClass: {
-          popup: 'animated tada'
-        }
-      });
-      this.router.navigate(['/instituciones']);
-    }
+        // tslint:disable-next-line:max-line-length
+        const request2 = this.usuarioGrupoInscritoService.getEstudiantesDeGrupo(this.grupoPK.curso, this.grupoPK.numero, this.grupoPK.periodoTiempo).subscribe(
+          (response) => {
+            // Se llena la lista de estudiantes del grupo
+            this.estudiantes = response as Usuario[];
+            // Se elimina la subscripcion
+            request2.unsubscribe();
+          },
+          (error) => {
+            Swal.fire({
+              title: 'Algo salio mal',
+              text: 'Vuelva a intenarlo mas tarde',
+              type: 'error',
+            });
+            this.router.navigate(['/instituciones']);
+          }
+        );
+      } else {
+        // Mensaje para indicar que no tiene los permisos
+        Swal.fire({
+          title: 'No tiene los permisos',
+          text: 'No cuenta con los permisos para acceder a esta vista',
+          type: 'error',
+          animation: false,
+          customClass: {
+            popup: 'animated tada'
+          }
+        });
+        this.router.navigate(['/instituciones']);
+      }
+    });
   }
 
   agregarEstudiante(estudiante: Usuario): void {

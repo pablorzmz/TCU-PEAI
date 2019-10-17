@@ -122,6 +122,11 @@ export class ListaEstudiantesGrupoComponent implements OnInit {
         this.estudiantes.push(estudianteN);
         // Se elimina de la lista de usuarios disponibles
         this.estudiantesDisponibles.splice(this.estudiantesDisponibles.indexOf(estudiante), 1);
+        Swal.fire({
+          title: 'Estudiante matriculado',
+          text: 'El estudiante ' + estudianteN.usuarioPK.nombreUsuario + ' ha sido matriculado con exito',
+          type: 'success',
+        });
         request.unsubscribe();
       },
       (error) => {
@@ -143,6 +148,11 @@ export class ListaEstudiantesGrupoComponent implements OnInit {
         this.estudiantesDisponibles.push(estudianteN);
         // Se elimina de la lista de usuarios disponibles
         this.estudiantes.splice(this.estudiantes.indexOf(estudiante), 1);
+        Swal.fire({
+          title: 'Estudiante retirado',
+          text: 'El estudiante ' + estudianteN.usuarioPK.nombreUsuario + ' ha sido retirado con exito',
+          type: 'success',
+        });
         request.unsubscribe();
       },
       (error) => {

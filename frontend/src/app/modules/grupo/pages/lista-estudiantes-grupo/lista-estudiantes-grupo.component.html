@@ -1,7 +1,7 @@
 <div class="p-3 w-100">
   <div class="row mx-0 w-100 my-4">
     <div class="col-sm">
-      <h4 style="color: #005A70">Agregar estudiantes al grupo {{this.grupoPK.numero}} - {{this.grupoPK.periodoTiempo}}</h4>
+      <h4 style="color: #005A70">Lista de estudiantes del grupo {{this.grupoPK.numero}} - {{this.grupoPK.periodoTiempo}}</h4>
     </div>
   </div>
   <div class="row mx-0 w-100">
@@ -26,13 +26,16 @@
               <td>{{ estudiante.nombre }}</td>
               <td>{{ estudiante.apellidos }}</td>
               <td>
-                <button type="button" name="Eliminar" class="btn btn-danger" (click)="eliminarEstudiante(estudiante)">Eliminar</button>
+                <button type="button" name="Eliminar" class="btn btn-danger d-flex align-items-center" (click)="eliminarEstudiante(estudiante)">
+                  <mat-icon class="mr-1">delete_outline</mat-icon>
+                  Eliminar
+                </button>
               </td>
             </tr>
             </tbody>
           </table>
           <div *ngIf="!estudiantes || estudiantes?.length == 0" class="alert alert-info m-3">
-            No hay estudiantes matriculados en el curso.
+            No hay estudiantes matriculados en el grupo.
           </div>
         </div>
       </div>
@@ -58,7 +61,10 @@
               <td>{{ estudianteD.nombre }}</td>
               <td>{{ estudianteD.apellidos }}</td>
               <td>
-                <button type="button" name="Agregar" class="btn btn-primary" (click)="agregarEstudiante(estudianteD)">Agregar</button>
+                <button type="button" name="Agregar" class="btn btn-primary d-flex align-items-center" (click)="agregarEstudiante(estudianteD)">
+                  <mat-icon class="mr-1">add_circle</mat-icon>
+                  Agregar
+                </button>
               </td>
             </tr>
             </tbody>

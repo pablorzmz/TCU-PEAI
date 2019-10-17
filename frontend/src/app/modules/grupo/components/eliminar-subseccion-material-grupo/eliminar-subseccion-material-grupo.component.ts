@@ -63,15 +63,6 @@ export class EliminarSubseccionMaterialGrupoComponent implements OnInit {
               this.sbmEliminarValueChange.emit({ sbm: this.sbm } );
               // se desubscribe
               request.unsubscribe();
-            },
-            error => {
-              // Se muestra mensaje de error.
-              Swal.fire({
-                title: 'Error al eliminar subsección de material',
-                text: error.error,
-                type: 'error',
-                confirmButtonText: 'Aceptar'
-              });
             }
           );
         }

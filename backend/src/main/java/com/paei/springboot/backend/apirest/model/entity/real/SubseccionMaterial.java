@@ -65,4 +65,5 @@ public class SubseccionMaterial implements Serializable {
     public void setHabilitada(Boolean habilitada) {
         Habilitada = habilitada;
     }
+
 }

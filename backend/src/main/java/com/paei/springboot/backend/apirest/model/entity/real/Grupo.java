@@ -70,13 +70,14 @@ public class Grupo implements Serializable {
         return usuario;
     }
 
-
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
     public void setCurso(Curso curso) {
         this.curso = curso;
     }
+
+
     /*
     @OneToMany(mappedBy = "usuarioGrupoInscritoPK.grupo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<UsuarioGrupoInscrito> usuarioGrupoInscritos = new HashSet<>();

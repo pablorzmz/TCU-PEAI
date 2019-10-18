@@ -14,9 +14,22 @@
 
   <div *ngIf="grupos.length > 0" class="row mx-0 w-100">
     <div class="col-md-12 mb-1" *ngFor="let grupo of grupos">
-      <nav class="navbar navbar-light"  style="background-color: #DCEDF6">
-        <h5 style="color: #005A70">Grupo {{grupo.id.numero}} - {{grupo.id.periodoTiempo}}</h5>
-        <!-- Se agregan las subsecciones por cada grupo -->
+      <nav class="navbar navbar-light navbar-expand-lg"  style="background-color: #DCEDF6">
+          <h5 style="color: #005A70">Grupo {{grupo.id.numero}} - {{grupo.id.periodoTiempo}}</h5>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opcionesNavbar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div *ngIf="this.authService.validarTienePermisoEnAlgunPerfilDeInstitucion(constantes.VER_LISTA_ESTUDIANTES.ID, this.nombreInstitucion)" class="collapse navbar-collapse" id="opcionesNavbar">
+            <ul class="navbar-nav ml-5">
+              <li class="nav-item">
+                <a class="btn d-flex align-items-center" [routerLink]="['/agregar_estudiantes_grupo/',this.nombreInstitucion,this.curso.id,grupo.id.numero,grupo.id.periodoTiempo]">
+                  <i class="material-icons mr-1">people</i>
+                  Lista Estudiantes
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- Se agregan las subsecciones por cada grupo -->
       </nav>
       <button class="btn btn-lg btn-block text-left my-1" type="button" data-toggle="collapse" [attr.data-target]="'#collapseExample' + grupo.id.numero" aria-expanded="false" aria-controls="collapseExample" style="background-color: #FFCF01">
         Material

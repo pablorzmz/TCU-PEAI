@@ -1,5 +1,5 @@
 export class GrupoPK {
-  cursoId: number;
-  numero: bigint;
+  curso: number;
+  numero: number;
   periodoTiempo: string;
 }

@@ -34,7 +34,7 @@ public class GrupoController {
 
 
     @GetMapping("/listar_grupos_de_curso")
-    public List<Grupo> recuperarGruposDeCurso(@RequestParam Long idCurso,  @RequestParam String nombreUsuario){
+        public List<Grupo> recuperarGruposDeCurso(@RequestParam Long idCurso,  @RequestParam String nombreUsuario){
         // Se crea el cursoPK a partir del nombre recibido
         Long cursoPK = idCurso;
         // Se obtiene el curso a partir del cursoPK

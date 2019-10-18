@@ -78,4 +78,13 @@ export class MaterialService {
       })
     );
   }
+
+
+  /**
+   * Método que extrae un documento del servidor
+   */
+  cargarContenidoMaterial(){
+
+
+  }
 }

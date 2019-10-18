@@ -111,8 +111,7 @@ public class MaterialController {
         try {
             recurso = iUploadMaterialService.cargar(nombreMaterial);
         }catch (MalformedURLException e){
-            // Si falla se retorna la excepcion
-            e.printStackTrace();
+            recurso = null;
         }
 
         // Se envia el contenido con header de contenido y se indica cuál es el archivo

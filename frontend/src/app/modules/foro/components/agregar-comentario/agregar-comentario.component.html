@@ -1,5 +1,5 @@
 <form [formGroup]="comentarForm">
   <div class="form-group my-0">
-    <input type="text" formControlName="comentario" id="comentario" class="form-control" maxlength="100" placeholder="Escribe un comentario" [minlength]="1" required (keydown.enter)="comentarForm.valid && agregarComentario()">
+    <input type="text" autocomplete="off" formControlName="comentario" id="comentario" class="form-control" maxlength="100" placeholder="Escribe un comentario" [minlength]="1" required (keydown.enter)="comentarForm.valid && agregarComentario()">
   </div>
 </form>

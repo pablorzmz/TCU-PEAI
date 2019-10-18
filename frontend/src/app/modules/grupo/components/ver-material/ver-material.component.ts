@@ -37,7 +37,6 @@ export class VerMaterialComponent implements OnInit {
         const solicitud = this.materialService.obtenerMaterial(this.idMaterial, this.idSubSeccion).subscribe(
           response => {
             this.material = response;
-            console.log(this.material);
             // Se espera que las conulas se hagan con esta ruta
             this.ruta =  `http://localhost:8080/api/material/uploads/materiales/${this.material.url}`;
             // Se espera que las conulas se hagan con esta ruta

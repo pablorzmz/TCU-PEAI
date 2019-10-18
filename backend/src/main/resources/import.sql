@@ -138,7 +138,7 @@ INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habili
 /* Se insertan algunos materiales */
 
 /* Grupo 1, Curso 4 */
-INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',1, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Electromagnetismo',1, 'PDF de electromagnetismo (Conceptos básicos)', 'Archivo PDF', 'Carpeta al server', null);
 INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',2, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
 INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',3, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
 
@@ -167,11 +167,5 @@ INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,ca
 /*Grupo 2, Curso 3*/
 INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',16, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
 
-/*Categoria*/
-INSERT INTO categoria(categoria_id, descripcion, nombre, numero, periodo_tiempo, curso_id) VALUES(1, 'Es de arte Abstracto', 'Arte Abstracto', 1, '1 semestre', 4 )
-
-/*Material*/
-INSERT INTO material(material_id, subseccion_material_id, descripcion, tipo, url, categoria_id) VALUES ('Simulación basada en Agentes', 1, 'Material de arte', 'Material chingon', 'https://www.redalyc.org/pdf/166/16620943011.pdf', 1);
-
 /*Usuario_Material_Comenta*/
-INSERT INTO usuario_material_comenta (nombre_usuario, fecha, texto_comentario, visible, material_id, subseccion_material_id) VALUES ('steveen', current_date() , 'Madre mia Willy', true, 'Simulación basada en Agentes', 1);
+INSERT INTO usuario_material_comenta (nombre_usuario, fecha, texto_comentario, visible, material_id, subseccion_material_id) VALUES ('steveen', current_date() , 'Excelente para aprender los conceptos basicos de electromagnetismo :)', true, 'Electromagnetismo', 1);

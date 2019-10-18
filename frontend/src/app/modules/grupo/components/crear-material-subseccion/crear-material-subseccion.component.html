@@ -1,0 +1,63 @@
+  <button type="button" class="btn btn-primary btn-sm d-flex align-items-center" (click)="abrirCrearModal()" >
+    <mat-icon class="mr-1">create_new_folder</mat-icon>
+    Nuevo material
+  </button>
+
+  <ng-template #modalCrearMaterial class="modal modal-dialog-scrollable">
+    <div class="modal-content border-0">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear nuevo material</h5>
+        <button type="button" class="close" (click)="cerrarCrearModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="crearMaterialForm" class="col-md-12">
+          <!--Nombre de la subseccion de materiales-->
+          <div class="form-group row">
+            <label for="nombreSBM">Subsección</label>
+            <input  id="nombreSBM" type="text" class="form-control" id="nombreSBM"
+                   [value]="sbm.nombre" [disabled]="true">
+          </div>
+          <!--Nombre del material-->
+          <div class="form-group row">
+            <label for="nombreMaterial">Nombre</label>
+            <input formControlName="nombreMaterial" id="nombreMaterial" type="text" class="form-control" id="nombreMaterial"
+                   placeholder="Nombre del  material" required maxlength="30">
+            <div class="text-danger" *ngIf="nombreMaterial.touched && nombreMaterial.status== 'INVALID'">Nombre no puede ser vacío (30 max) </div>
+          </div>
+          <!--Descripción del material-->
+          <div class="form-group row">
+            <label for="nombreMaterial">Descripción</label>
+            <input formControlName="descripcionMaterial" id="descripcionMaterial" type="text" class="form-control" id="descripcionMaterial"
+                   placeholder="Descripción del material" maxlength="100">
+            <div class="text-danger" *ngIf="descripcionMaterial.touched && descripcionMaterial.status== 'INVALID'">Descripción no puede superar 100 caracteres </div>
+          </div>
+        </form>
+        <!--Archivo del material del material-->
+        <label> Archivo </label>
+        <div class="input-group mb-3">
+          <div class="custom-file">
+            <input required accept=".pdf" (change)="seleccionarArchivo($event)" type="file" class="custom-file-input" id="inputGroupFile01">
+            <label *ngIf="!archivoSeleccionado" class="custom-file-label" for="inputGroupFile01" data-browse="Buscar">Seleccione un archivo</label>
+            <label *ngIf="archivoSeleccionado" class="custom-file-label" for="inputGroupFile01" data-browse="Buscar">{{archivoSeleccionado.name}}</label>
+          </div>
+        </div>
+        <!-- Progreso de carga del archivo --->
+        <p *ngIf="progreso>0" > Subiendo archivo...</p>
+        <div class="progress" *ngIf="progreso>0">
+          <div class="progress-bar progress-bar-striped" role="progressbar" [ngStyle]="{width: progreso+'%'}" attr.aria-valuenow="{{progreso}}}" aria-valuemin="0" aria-valuemax="100">
+            {{progreso}}%
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" [disabled]="crearMaterialForm.invalid && archivoSeleccionado"  class="btn btn-primary mr-1">
+          Crear
+        </button>
+        <button class="btn btn-danger" (click)="cerrarCrearModal()">
+          Volver
+        </button>
+      </div>
+    </div>
+  </ng-template>

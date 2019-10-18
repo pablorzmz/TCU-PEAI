@@ -35,7 +35,7 @@
           </div>
         </form>
         <!--Archivo del material del material-->
-        <label> Archivo </label>
+        <label> Archivo ( 25 MB máximo ) </label>
         <div class="input-group mb-3">
           <div class="custom-file">
             <input required accept=".pdf" (change)="seleccionarArchivo($event)" type="file" class="custom-file-input" id="inputGroupFile01">
@@ -52,7 +52,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" [disabled]="crearMaterialForm.invalid && archivoSeleccionado"  class="btn btn-primary mr-1">
+        <button (click)="crearMaterial()" type="submit" [disabled]="crearMaterialForm.invalid || archivoSeleccionado == null"  class="btn btn-primary mr-1">
           Crear
         </button>
         <button class="btn btn-danger" (click)="cerrarCrearModal()">

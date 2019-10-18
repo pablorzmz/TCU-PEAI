@@ -51,8 +51,8 @@
               </div>
               <div class="card-body">
                 <div class="row">
-                  <div class="d-flex ml-auto mx-3 my-2">
-                      <app-crear-material-subseccion [sbm]="sbm"></app-crear-material-subseccion>
+                  <div class="d-flex ml-auto mx-3 my-2 overflow-auto">
+                      <app-crear-material-subseccion (nuevoMaterialValueChange)="actualizarNuevoMaterial($event)" [sbm]="sbm"></app-crear-material-subseccion>
                       <app-editar-subseccion-material-grupo (sbmActualizarValueChange)="actualizarSubseccionMaterial($event)" [grupo]="grupo" [sbmAEditar]="sbm" class="mx-1"></app-editar-subseccion-material-grupo>
                       <app-eliminar-subseccion-material-grupo (sbmEliminarValueChange)="eliminarSubseccionMaterial($event)" [nombreInstitucion]="grupo.curso.areaTematica.institucion.institucionPK.nombre" [sbm]="sbm"></app-eliminar-subseccion-material-grupo>
                   </div>
@@ -66,7 +66,7 @@
                           Sin materiales disponibles.
                         </p>
                         <div *ngFor="let m of materiales.sbm_material">
-                          <div class="card">
+                          <div class="card my-2">
                             <div class="card-header" style="background-color: #DCEDF6">
                               <h6 class="card-title" style="color: #005A70">
                                 {{m.id.nombre}}
@@ -77,7 +77,8 @@
                               </p>
                             </div>
                             <div class="card-body">
-                              <p class="card-subtitle mb-2 text-muted"> Descripción: {{' ' + m.descripcion}}</p>
+                              <p *ngIf="!m.descripcion" class="card-subtitle mb-2 text-muted"> Descripción: {{' ' + m.descripcion}}</p>
+                              <p *ngIf="m.descripcion" class="card-subtitle mb-2 text-muted"> Descripción: {{' Sin descripción disponible'}}</p>
                             </div>
                             <div class="card-footer bg-transparent">
                               <button type="button" class="btn btn-primary btn-sm">Ir al material</button>

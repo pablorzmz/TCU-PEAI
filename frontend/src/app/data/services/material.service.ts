@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {AuthService} from './auth.service';
 import {catchError} from 'rxjs/operators';
@@ -43,6 +43,35 @@ export class MaterialService {
         return throwError(err);
       })
     );
+  }
+
+  /**
+   * Metodo que hace comunicación con el backend para crear un archivo
+   * @param nombreMaterial Nombre del material
+   * @param descripcionMaterial Descripción del material
+   * @param sbmId Identificador entero de la subsección de material
+   * @param archivo Archivo seleccionado para el material
+   */
+  crearMaterial( nombreMaterial: string, descripcionMaterial: string, sbmId: number, archivo: File): Observable<any> {
+    // subruta para acceder al backend
+    const subRutaCrearMaterial = this.urlEndPoint + '/materiales_grupo/upload';
+    // datos para el formulario
+    const formData = new FormData();
+    formData.append('archivo', archivo);
+    formData.append('nombreMaterial', nombreMaterial);
+    formData.append('descripcion', descripcionMaterial);
+    formData.append('sbmId', sbmId.toString());
+    // cabeceras de autorizacion
+    const httpHeaders = new HttpHeaders(
+      {
+        Authorization: 'Bearer' + this.authService.accessToken
+      });
+    // para control del progreso
+    const req = new HttpRequest('POST', subRutaCrearMaterial, formData, {
+      reportProgress: true, headers: httpHeaders
+    });
+    // finalmente se retorna el resultado
+    return this.http.request(req);
   }
 
 }

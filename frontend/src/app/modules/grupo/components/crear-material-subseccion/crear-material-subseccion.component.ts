@@ -1,10 +1,13 @@
-import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CONSTANTES} from '../../../../data/util/Constantes';
 import {AuthService} from '../../../../data/services/auth.service';
 import Swal from 'sweetalert2';
 import {SubseccionMaterial} from '../../../../data/schema/SubseccionMaterial';
+import {MaterialService} from '../../../../data/services/material.service';
+import {HttpEventType} from '@angular/common/http';
+import {Material} from '../../../../data/schema/Material';
 
 @Component({
   selector: 'app-crear-material-subseccion',
@@ -25,6 +28,9 @@ export class CrearMaterialSubseccionComponent implements OnInit {
   // Mapeo como atributo para vista del modal.
   @ViewChild( ('modalCrearMaterial'), {static: false}) modalCrearMaterial: TemplateRef<any>;
 
+  // Aqui se emite el evento para eliminar la subsección de la vista
+  @Output() nuevoMaterialValueChange = new EventEmitter<{material: Material}>();
+
   // Form para controlar los campos
   crearMaterialForm: FormGroup;
 
@@ -34,7 +40,7 @@ export class CrearMaterialSubseccionComponent implements OnInit {
   // para mostrar el progreso de carga del archivo
   progreso: number;
 
-  constructor(private dialog: MatDialog, private authService: AuthService) {
+  constructor(private dialog: MatDialog, private authService: AuthService, private materialService: MaterialService) {
     this.dialogConfig = new MatDialogConfig();
     this.constantes = new CONSTANTES();
   }
@@ -96,4 +102,46 @@ export class CrearMaterialSubseccionComponent implements OnInit {
     }
   }
 
+  // método para crear el material cuando todo sea válido
+  crearMaterial() {
+    // se hacer la peticion con el servicio
+    const request = this.materialService.crearMaterial(
+      this.nombreMaterial.value,
+      this.descripcionMaterial.value,
+      this.sbm.id,
+      this.archivoSeleccionado ).subscribe(
+      event => {
+        // Se revisa si es notificación del progreso
+        if ( event.type === HttpEventType.UploadProgress ) {
+          this.progreso = Math.round(100 * event.loaded / event.total);
+          // se verifica si es que ya terminó el response
+        } else if ( event.type === HttpEventType.Response ) {
+          // se obtiene el response mejor por aparte
+          const response: any = event.body;
+          // Se emite el cambio
+          this.nuevoMaterialValueChange.emit( { material: response.material as Material });
+          // se notifica de éxito
+          Swal.fire({
+            title: '¡Éxito al crear el material!',
+            text: response.mensaje,
+            type: 'success',
+            confirmButtonText: 'Aceptar'
+          });
+          // se desubscribe
+          request.unsubscribe();
+          // se cierra el modal
+          this.cerrarCrearModal();
+        }
+      },
+      // Se maneja el error
+        error => {
+        Swal.fire({
+          title: 'Ocurrió un error al crear el material',
+          text: error.error.error,
+          type: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      }
+    );
+  }
 }

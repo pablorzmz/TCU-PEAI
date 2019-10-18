@@ -15,6 +15,6 @@ public interface IUsuarioMaterialComentaDao extends JpaRepository<UsuarioMateria
      * @param materialPK es la pk del material de interes
      * @return retorna la lista de comentarios de ese material ordenados por fecha
      */
-    @Query("FROM UsuarioMaterialComenta UMC WHERE UMC.id.material = ?1 ORDER BY UMC.id.Fecha ASC")
+    @Query("FROM UsuarioMaterialComenta UMC WHERE UMC.id.material = ?1 and UMC.Visible = 1 ORDER BY UMC.id.Fecha ASC")
     List<UsuarioMaterialComenta> findAllByMaterialPK(MaterialPK materialPK);
 }

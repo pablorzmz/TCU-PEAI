@@ -116,7 +116,12 @@ public class MaterialController {
 
         // Se envia el contenido con header de contenido y se indica cuál es el archivo
         HttpHeaders cabecera = new HttpHeaders();
-        cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"");
+
+        if(recurso == null){
+            cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + "" + "\"");
+        }else {
+            cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"");
+        }
 
         return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
     }

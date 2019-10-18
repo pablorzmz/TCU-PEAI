@@ -15,6 +15,11 @@ public class UsuarioGrupoInscritoPK implements Serializable {
 
     private UsuarioPK usuarioPK;
 
+    public UsuarioGrupoInscritoPK(UsuarioPK usuarioPK, GrupoPK grupoPK) {
+        this.grupoPk = grupoPK;
+        this.usuarioPK = usuarioPK;
+    }
+
     public GrupoPK getGrupoPk() {
         return grupoPk;
     }

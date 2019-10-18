@@ -14,6 +14,7 @@ import { EliminarSubseccionMaterialGrupoComponent } from
     './components/eliminar-subseccion-material-grupo/eliminar-subseccion-material-grupo.component';
 import { EditarSubseccionMaterialGrupoComponent } from
     './components/editar-subseccion-material-grupo/editar-subseccion-material-grupo.component';
+import { ListaEstudiantesGrupoComponent } from './pages/lista-estudiantes-grupo/lista-estudiantes-grupo.component';
 import {ForoModule} from '../foro/foro.module';
 import { VerMaterialComponent } from './components/ver-material/ver-material.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
@@ -21,8 +22,8 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 @NgModule({
   declarations: [ListarGruposCursoComponent, AgregarGruposCursoComponent,
-    // tslint:disable-next-line:max-line-length
-    AgregarSubseccionMaterialGrupoComponent, EliminarSubseccionMaterialGrupoComponent, EditarSubseccionMaterialGrupoComponent, VerMaterialComponent],
+    AgregarSubseccionMaterialGrupoComponent, EliminarSubseccionMaterialGrupoComponent,
+    EditarSubseccionMaterialGrupoComponent, ListaEstudiantesGrupoComponent, VerMaterialComponent],
   exports: [
     ListarGruposCursoComponent,
     AgregarSubseccionMaterialGrupoComponent,

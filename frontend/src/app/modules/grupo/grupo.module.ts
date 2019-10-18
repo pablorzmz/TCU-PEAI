@@ -20,9 +20,8 @@ import { ListaEstudiantesGrupoComponent } from './pages/lista-estudiantes-grupo/
 
 @NgModule({
   declarations: [ListarGruposCursoComponent, AgregarGruposCursoComponent,
-    AgregarSubseccionMaterialGrupoComponent, EliminarSubseccionMaterialGrupoComponent, EditarSubseccionMaterialGrupoComponent, CrearMaterialSubseccionComponent],
-    AgregarSubseccionMaterialGrupoComponent, EliminarSubseccionMaterialGrupoComponent,
-    EditarSubseccionMaterialGrupoComponent, ListaEstudiantesGrupoComponent],
+    AgregarSubseccionMaterialGrupoComponent, EliminarSubseccionMaterialGrupoComponent, EditarSubseccionMaterialGrupoComponent,
+    EditarSubseccionMaterialGrupoComponent, ListaEstudiantesGrupoComponent, CrearMaterialSubseccionComponent],
   exports: [
     ListarGruposCursoComponent,
     AgregarSubseccionMaterialGrupoComponent,

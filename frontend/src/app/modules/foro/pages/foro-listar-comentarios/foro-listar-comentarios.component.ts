@@ -37,6 +37,10 @@ export class ForoListarComentariosComponent implements OnInit {
       });
   }
 
+  /**
+   * Método que se activa cuando el componente AgregarComentario agrega un comentario
+   * @param $event es el evento que ejecuta AgregarComentario
+   */
   actualizarcomentarios($event): any {
     this.comentarios.push($event.comentario);
   }

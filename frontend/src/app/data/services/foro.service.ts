@@ -14,6 +14,10 @@ export class ForoService {
 
   readonly urlEndpoint = 'http://localhost:8080/api/foro';
 
+  /**
+   * Método que agrega un comentario al foro
+   * @param usuarioMaterialComenta es el comentario en forma de entidad
+   */
   setComentarioMaterial(usuarioMaterialComenta: UsuarioMaterialComenta): Observable<any> {
     // Ruta para hacer el post del comentario
     const rutaComentarMaterial = '/comentar_material';
@@ -28,6 +32,11 @@ export class ForoService {
     return this.http.post<any>(urlConsulta, usuarioMaterialComenta, {headers: httpHeaders});
   }
 
+  /**
+   * Método que obtiene los comentarios de un material especifico
+   * @param idMaterial es el ID del material
+   * @param idSubSeccion es el ID de la subsección a la que pertenece
+   */
   getComentariosMaterial(idMaterial: string, idSubSeccion: number): Observable<any> {
     // ruta pra obtener todos los comentarios
     const rutaComentariosMaterial = '/obtener_comentarios?';

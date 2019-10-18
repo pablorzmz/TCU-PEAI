@@ -12,16 +12,20 @@ export class VerMaterialComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private materialService: MaterialService, private router: Router) { }
 
-  material: Material;
+  // Es el material que se recibe cuando se hace la solicitud
+  private material: Material;
 
   // Es el material que será mostrado
-  idMaterial: string;
+  private idMaterial: string;
 
   // Es la subseccion a la que pertenece
-  idSubSeccion: number;
+  private idSubSeccion: number;
 
   // Es la ruta para obtener el archivo
-  ruta: string;
+  private ruta: string;
+
+  // indica si el pdf no fue cargado correctamente
+  private pdfError = false;
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(
@@ -33,10 +37,10 @@ export class VerMaterialComponent implements OnInit {
         const solicitud = this.materialService.obtenerMaterial(this.idMaterial, this.idSubSeccion).subscribe(
           response => {
             this.material = response;
-            // Se espera que las conulas se hagan con esta ruta
-            this.ruta =  `${this.material.url}`
-            // Se espera que las conulas se hagan con esta ruta
             console.log(this.material);
+            // Se espera que las conulas se hagan con esta ruta
+            this.ruta =  `http://localhost:8080/api/material/uploads/materiales/${this.material.url}`;
+            // Se espera que las conulas se hagan con esta ruta
             solicitud.unsubscribe();
           },
           error => {
@@ -48,5 +52,13 @@ export class VerMaterialComponent implements OnInit {
             });
           });
       });
+  }
+
+
+  /**
+   * Método que se activa si el pdf no puede ser cargado
+   */
+  errorAlMostrarElPDF(): any {
+    this.pdfError = true;
   }
 }

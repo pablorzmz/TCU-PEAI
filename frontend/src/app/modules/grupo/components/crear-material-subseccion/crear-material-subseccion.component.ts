@@ -8,6 +8,7 @@ import {SubseccionMaterial} from '../../../../data/schema/SubseccionMaterial';
 import {MaterialService} from '../../../../data/services/material.service';
 import {HttpEventType} from '@angular/common/http';
 import {Material} from '../../../../data/schema/Material';
+import {Grupo} from '../../../../data/schema/Grupo';
 
 @Component({
   selector: 'app-crear-material-subseccion',
@@ -21,6 +22,9 @@ export class CrearMaterialSubseccionComponent implements OnInit {
 
   // La subsección de material actual para agregar el material
   @Input() sbm: SubseccionMaterial;
+
+  // Grupo al que pertenece el material
+  @Input() grupo: Grupo;
 
   // Contiene la configuracion del dialog
   dialogConfig: MatDialogConfig;
@@ -102,7 +106,17 @@ export class CrearMaterialSubseccionComponent implements OnInit {
     }
   }
 
-  // método para crear el material cuando todo sea válido
+  /**
+   * Metodo que permite validar si tiene el permiso para crear un nuevo material.
+   */
+  puedeCrearMaterial(): boolean {
+    return this.authService.validarTienePermisoEnAlgunPerfilDeInstitucion(this.constantes.AGREGAR_SUBSECCION_MATERIAL_GRUPO.ID,
+      this.grupo.curso.areaTematica.institucion.institucionPK.nombre);
+  }
+
+  /**
+   * Método para crear el material cuando todo sea válido
+   */
   crearMaterial() {
     // se hacer la peticion con el servicio
     const request = this.materialService.crearMaterial(
@@ -141,6 +155,8 @@ export class CrearMaterialSubseccionComponent implements OnInit {
           type: 'error',
           confirmButtonText: 'Aceptar'
         });
+        // se reinicia el progreso
+        this.progreso = 0;
       }
     );
   }

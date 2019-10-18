@@ -52,7 +52,7 @@
               <div class="card-body">
                 <div class="row">
                   <div class="d-flex ml-auto mx-3 my-2 overflow-auto">
-                      <app-crear-material-subseccion (nuevoMaterialValueChange)="actualizarNuevoMaterial($event)" [sbm]="sbm"></app-crear-material-subseccion>
+                      <app-crear-material-subseccion [grupo]="grupo" (nuevoMaterialValueChange)="actualizarNuevoMaterial($event)" [sbm]="sbm"></app-crear-material-subseccion>
                       <app-editar-subseccion-material-grupo (sbmActualizarValueChange)="actualizarSubseccionMaterial($event)" [grupo]="grupo" [sbmAEditar]="sbm" class="mx-1"></app-editar-subseccion-material-grupo>
                       <app-eliminar-subseccion-material-grupo (sbmEliminarValueChange)="eliminarSubseccionMaterial($event)" [nombreInstitucion]="grupo.curso.areaTematica.institucion.institucionPK.nombre" [sbm]="sbm"></app-eliminar-subseccion-material-grupo>
                   </div>

@@ -112,6 +112,11 @@ public class MaterialController {
                     // se almacena el nombre del archivo creado
                     Material nuevoMaterial = new Material();
                     MaterialPK nuevoMaterialPK = new MaterialPK(nombreMaterial, subseccionMaterial.getId());
+                    // En caso de que el material ya existe se devuelve una excepción
+                    if ( iMaterialService.findMaterialById(nuevoMaterialPK) != null ) {
+                        // Se retorna una excepción
+                        throw new MaterialDataException("El nombre del material a crear ya existe ene esta subsección.");
+                    }
                     // Se establecen los antributo
                     nuevoMaterial.setUrl(nombreArchivo);
                     nuevoMaterial.setDescripcion(descripcion);
@@ -126,7 +131,7 @@ public class MaterialController {
                     return new ResponseEntity<>(response, HttpStatus.CREATED);
                 }catch ( Exception ex ){
                     // retornar la excepcion de que no se pudo salvar el material
-                    throw new MaterialDataException();
+                    throw new MaterialDataException("La información para crear el material no es correcta.");
                 }
             } else {
                 // retornar una excepcion de que el archivo no se pudo almacenar

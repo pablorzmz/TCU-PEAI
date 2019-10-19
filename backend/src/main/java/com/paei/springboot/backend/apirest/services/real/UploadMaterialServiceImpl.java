@@ -4,6 +4,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
@@ -34,6 +35,16 @@ public class UploadMaterialServiceImpl implements IUploadMaterialService {
 
     @Override
     public boolean eliminar(String nombreArchivo) {
+        // Si el archivo existe y se tiene permiso de escritura, se elimina
+        if ( nombreArchivo != null && nombreArchivo.length() > 0 ) {
+            Path rutaFotoAnterior = getPath(nombreArchivo);
+            File archivoFotoAnterior = rutaFotoAnterior.toFile();
+            if (archivoFotoAnterior.exists() &&  archivoFotoAnterior.canRead() ){
+                archivoFotoAnterior.delete();
+                return true;
+            }
+        }
+        // No se pudo eliminar
         return false;
     }
 

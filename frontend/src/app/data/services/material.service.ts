@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {Observable, throwError, EMPTY} from 'rxjs';
 import {AuthService} from './auth.service';
 import {catchError} from 'rxjs/operators';
 import Swal from 'sweetalert2';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 
-export class MaterialService {
+export class MaterialService  {
 
   private urlEndPoint = 'http://localhost:8080/api/material';
 
@@ -71,7 +71,19 @@ export class MaterialService {
       reportProgress: true, headers: httpHeaders
     });
     // finalmente se retorna el resultado
-    return this.http.request(req);
+    return this.http.request(req).pipe(
+      catchError ( err => {
+        Swal.fire({
+          title: 'Ocurrió un error al crear el material',
+          text: err.error.error,
+          type: 'error',
+          confirmButtonText: 'Aceptar',
+          backdrop: 'transparent'
+        });
+        // Ya no se lanza más la excepcion
+        return throwError(err);
+      })
+    );
   }
 
 }

@@ -93,16 +93,30 @@ export class CrearMaterialSubseccionComponent implements OnInit {
    * Metodo para subir el archivo
    */
   seleccionarArchivo(event): void {
+    if ( event.target.files.length > 1 ) {
+      Swal.fire ({
+        title: '¡Solo se puede seleccionar un archivo a la vez!',
+        text: 'Por favor, seleccione un único archivo PDF',
+        type: 'error',
+        confirmButtonText: 'Aceptar',
+        backdrop: 'transparent'
+      });
+      this.archivoSeleccionado = null;
+      return;
+    }
     this.archivoSeleccionado = event.target.files[0];
     this.progreso = 0;
-    if (this.archivoSeleccionado.type.indexOf('application/pdf') < 0) {
-      Swal.fire ({
+    if (this.archivoSeleccionado !== undefined && this.archivoSeleccionado !== null) {
+      if (this.archivoSeleccionado.type.indexOf('application/pdf') < 0) {
+        Swal.fire ({
           title: 'Formato de archivo incorrecto',
           text: 'Por favor, seleccione un archivo PDF',
           type: 'error',
-          confirmButtonText: 'Aceptar'
-      });
-      this.archivoSeleccionado = null;
+          confirmButtonText: 'Aceptar',
+          backdrop: 'transparent'
+        });
+        this.archivoSeleccionado = null;
+      }
     }
   }
 
@@ -139,24 +153,22 @@ export class CrearMaterialSubseccionComponent implements OnInit {
             title: '¡Éxito al crear el material!',
             text: response.mensaje,
             type: 'success',
-            confirmButtonText: 'Aceptar'
+            confirmButtonText: 'Aceptar',
           });
-          // se desubscribe
-          request.unsubscribe();
+          // se reinicia el progreso
+          this.progreso = 0;
           // se cierra el modal
           this.cerrarCrearModal();
+          // se desubscribe
+          request.unsubscribe();
         }
       },
       // Se maneja el error
         error => {
-        Swal.fire({
-          title: 'Ocurrió un error al crear el material',
-          text: error.error.error,
-          type: 'error',
-          confirmButtonText: 'Aceptar'
-        });
         // se reinicia el progreso
-        this.progreso = 0;
+          this.progreso = 0;
+          // se cierra el modal
+          this.cerrarCrearModal();
       }
     );
   }

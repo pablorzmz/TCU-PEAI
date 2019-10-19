@@ -10,10 +10,12 @@ import com.paei.springboot.backend.apirest.services.real.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.validation.Valid;
 import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -36,6 +38,8 @@ public class MaterialController {
 
     @Autowired
     private IUploadMaterialService iUploadMaterialService;
+
+    @Autowired IUsuarioMaterialComentaService iUsuarioMaterialComentaService;
 
     /**
      * Método que permite recuperar todos lo materiales de un grupo por cada una de sus subsecciones de material
@@ -140,6 +144,40 @@ public class MaterialController {
         } else {
             // en caso de que sea nulo, se retorna una excepcion
             throw new SubseccionMaterialNotFoundException();
+        }
+    }
+
+    @DeleteMapping("/materiales_grupo/eliminar")
+    public ResponseEntity<?> eliminarMaterialSubseccion(@Valid @RequestBody MaterialPK materialPK, BindingResult result ){
+        // Se crean el mapa para la respuesta
+        Map<String,Object> response = new HashMap<>();
+        // Primero se revisa si e
+        if ( ! result.hasErrors() ) {
+            // intenta eliminar el material y en caso de error, se muestra la excepcion
+            Material material = iMaterialService.findMaterialById(materialPK);
+            if (material == null ){
+                throw new MaterialDataException("La información para eliminar el material no es correcta.");
+            }
+            // se intenta eliminar el archivo del material
+            if ( !iUploadMaterialService.eliminar( material.getUrl()) ){
+                throw new ArchivoMaterialIOException();
+            }
+            // Se eliminan comentarios y entidad
+            try {
+                // se eliminan todos los comentarios asociados a ese material
+                iUsuarioMaterialComentaService.eliminarComentariosDeMaterial(material.getId());
+                // Se elimina el material
+                iMaterialService.eliminarMaterialPorId(material.getId());
+                // se retorna el mensaje de que se elimina correctamente
+                response.put("mensaje","¡Material eliminado con éxito!");
+                return new ResponseEntity<>(response, HttpStatus.OK);
+            }catch ( Exception e ){
+                // lanzar la respectiva excepcion
+                throw new MaterialDataException("No se pudo eliminar el material " + material.getId().getNombre());
+            }
+        }else{
+            // retorna una excepcion de datos incorrectos
+            throw new MaterialDataException("La información dada para eliminar el material es incorrecta.");
         }
     }
 }

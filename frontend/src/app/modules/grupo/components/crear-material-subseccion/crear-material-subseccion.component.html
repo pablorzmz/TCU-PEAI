@@ -28,7 +28,7 @@
           </div>
           <!--Descripción del material-->
           <div class="form-group row">
-            <label for="nombreMaterial">Descripción</label>
+            <label for="descripcionMaterial">Descripción</label>
             <input formControlName="descripcionMaterial" id="descripcionMaterial" type="text" class="form-control" id="descripcionMaterial"
                    placeholder="Descripción del material" maxlength="100">
             <div class="text-danger" *ngIf="descripcionMaterial.touched && descripcionMaterial.status== 'INVALID'">Descripción no puede superar 100 caracteres </div>
@@ -40,7 +40,7 @@
           <div class="custom-file">
             <input required accept=".pdf" (change)="seleccionarArchivo($event)" type="file" class="custom-file-input" id="inputGroupFile01">
             <label *ngIf="!archivoSeleccionado" class="custom-file-label" for="inputGroupFile01" data-browse="Buscar">Seleccione un archivo</label>
-            <label *ngIf="archivoSeleccionado" class="custom-file-label" for="inputGroupFile01" data-browse="Buscar">{{archivoSeleccionado.name}}</label>
+            <label style="overflow: hidden" *ngIf="archivoSeleccionado" class="custom-file-label" for="inputGroupFile01" data-browse="Buscar">{{archivoSeleccionado.name}}</label>
           </div>
         </div>
         <!-- Progreso de carga del archivo --->

@@ -2,6 +2,7 @@ package com.paei.springboot.backend.apirest.services.real;
 
 import com.paei.springboot.backend.apirest.dao.real.IMaterialDao;
 import com.paei.springboot.backend.apirest.model.entity.real.Material;
+import com.paei.springboot.backend.apirest.model.entity.real.MaterialPK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,15 @@ public class MaterialServiceImpl implements IMaterialService {
     @Override
     public List<Material> obtenerMaterialesDeSubseccionMaterial(Long subseccionMaterialId) {
         return iMaterialDao.findAllBySubseccionMaterialId(subseccionMaterialId);
+    }
+
+    @Override
+    public Material crearNuevoMaterial(Material material) {
+        return iMaterialDao.save(material);
+    }
+
+    @Override
+    public Material findMaterialById(MaterialPK materialPK) {
+        return iMaterialDao.findById(materialPK).orElse(null);
     }
 }

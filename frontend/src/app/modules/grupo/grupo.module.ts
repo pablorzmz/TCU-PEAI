@@ -14,18 +14,20 @@ import { EliminarSubseccionMaterialGrupoComponent } from
     './components/eliminar-subseccion-material-grupo/eliminar-subseccion-material-grupo.component';
 import { EditarSubseccionMaterialGrupoComponent } from
     './components/editar-subseccion-material-grupo/editar-subseccion-material-grupo.component';
+import { CrearMaterialSubseccionComponent } from './components/crear-material-subseccion/crear-material-subseccion.component';
 import { ListaEstudiantesGrupoComponent } from './pages/lista-estudiantes-grupo/lista-estudiantes-grupo.component';
 
 
 @NgModule({
   declarations: [ListarGruposCursoComponent, AgregarGruposCursoComponent,
-    AgregarSubseccionMaterialGrupoComponent, EliminarSubseccionMaterialGrupoComponent,
-    EditarSubseccionMaterialGrupoComponent, ListaEstudiantesGrupoComponent],
+    AgregarSubseccionMaterialGrupoComponent, EliminarSubseccionMaterialGrupoComponent, EditarSubseccionMaterialGrupoComponent,
+    EditarSubseccionMaterialGrupoComponent, ListaEstudiantesGrupoComponent, CrearMaterialSubseccionComponent],
   exports: [
     ListarGruposCursoComponent,
     AgregarSubseccionMaterialGrupoComponent,
     EliminarSubseccionMaterialGrupoComponent,
-    EditarSubseccionMaterialGrupoComponent
+    EditarSubseccionMaterialGrupoComponent,
+    CrearMaterialSubseccionComponent
   ],
   imports: [
     CommonModule,

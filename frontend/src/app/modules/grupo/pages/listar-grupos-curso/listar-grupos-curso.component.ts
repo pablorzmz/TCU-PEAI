@@ -89,4 +89,15 @@ export class ListarGruposCursoComponent implements OnInit {
       return obj;
     });
   }
+
+  eliminarMaterial($event): any {
+    this.listaMateriales.map( obj => {
+      if ( obj.sbm_id == $event.eMaterialPk.subSeccionMaterialId ) {
+         obj.sbm_material = obj.sbm_material.filter( (item: Material) => {
+          return item.id.nombre !== $event.eMaterialPk.nombre && item.id.subSeccionMaterialId !== $event.eMaterialPk.subSeccionMaterialId ;
+        });
+      }
+      return obj;
+    });
+  }
 }

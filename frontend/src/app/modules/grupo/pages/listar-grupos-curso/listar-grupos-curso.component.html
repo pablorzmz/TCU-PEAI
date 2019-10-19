@@ -90,11 +90,18 @@
                               </p>
                             </div>
                             <div class="card-body">
-                              <p *ngIf="m.descripcion" class="card-subtitle mb-2 text-muted"> Descripción: {{' ' + m.descripcion}}</p>
-                              <p *ngIf="!m.descripcion" class="card-subtitle mb-2 text-muted"> Descripción: {{' Sin descripción disponible'}}</p>
+                              <p *ngIf="m.descripcion !== 'null' && m.descripcion" class="card-subtitle mb-2 text-muted"> Descripción: {{' ' + m.descripcion }}</p>
+                              <p *ngIf="m.descripcion === 'null' || m.descripcion === null" class="card-subtitle mb-2 text-muted"> Descripción: {{' Sin descripción disponible'}}</p>
                             </div>
                             <div class="card-footer bg-transparent">
-                              <button type="button" class="btn btn-primary btn-sm">Ir al material</button>
+                              <div class="row">
+                                <div class="col">
+                                  <button type="button" class="btn btn-primary btn-sm">Ir al material</button>
+                                </div>
+                                <div class="col">
+                                  <app-eliminar-material-grupo (materialEliminarValueChange)="eliminarMaterial($event)" [grupo]="grupo" [materialPk]="m.id" class="float-right"></app-eliminar-material-grupo>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>

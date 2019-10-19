@@ -109,7 +109,7 @@ public class MaterialController {
                     nombreArchivo = iUploadMaterialService.almacenar(archivo);
                 }catch ( Exception ex ) {
                     // retornar una excepcion de que el archivo no se pudo almacenar
-                    throw new ArchivoMaterialIOException();
+                    throw new ArchivoMaterialIOException("Ocurrió un error a la hora de almacenar el crear para el material");
                 }
                 // Para almacenar el material
                 try {
@@ -139,7 +139,7 @@ public class MaterialController {
                 }
             } else {
                 // retornar una excepcion de que el archivo no se pudo almacenar
-                throw new ArchivoMaterialIOException();
+                throw new ArchivoMaterialIOException("Ocurrió un error a la hora de almacenar el archivo para el material");
             }
         } else {
             // en caso de que sea nulo, se retorna una excepcion
@@ -148,36 +148,31 @@ public class MaterialController {
     }
 
     @DeleteMapping("/materiales_grupo/eliminar")
-    public ResponseEntity<?> eliminarMaterialSubseccion(@Valid @RequestBody MaterialPK materialPK, BindingResult result ){
+    public ResponseEntity<?> eliminarMaterialSubseccion(@RequestParam String nombre, @RequestParam Long subSeccionMaterialId ){
         // Se crean el mapa para la respuesta
         Map<String,Object> response = new HashMap<>();
-        // Primero se revisa si e
-        if ( ! result.hasErrors() ) {
-            // intenta eliminar el material y en caso de error, se muestra la excepcion
-            Material material = iMaterialService.findMaterialById(materialPK);
-            if (material == null ){
-                throw new MaterialDataException("La información para eliminar el material no es correcta.");
-            }
-            // se intenta eliminar el archivo del material
-            if ( !iUploadMaterialService.eliminar( material.getUrl()) ){
-                throw new ArchivoMaterialIOException();
-            }
-            // Se eliminan comentarios y entidad
-            try {
-                // se eliminan todos los comentarios asociados a ese material
-                iUsuarioMaterialComentaService.eliminarComentariosDeMaterial(material.getId());
-                // Se elimina el material
-                iMaterialService.eliminarMaterialPorId(material.getId());
-                // se retorna el mensaje de que se elimina correctamente
-                response.put("mensaje","¡Material eliminado con éxito!");
-                return new ResponseEntity<>(response, HttpStatus.OK);
-            }catch ( Exception e ){
-                // lanzar la respectiva excepcion
-                throw new MaterialDataException("No se pudo eliminar el material " + material.getId().getNombre());
-            }
-        }else{
-            // retorna una excepcion de datos incorrectos
-            throw new MaterialDataException("La información dada para eliminar el material es incorrecta.");
+        // intenta eliminar el material y en caso de error, se muestra la excepcion
+        MaterialPK materialPK = new MaterialPK(nombre,subSeccionMaterialId);
+        Material material = iMaterialService.findMaterialById(materialPK);
+        if (material == null ){
+            throw new MaterialDataException("La información para eliminar el material no es correcta.");
+        }
+        // se intenta eliminar el archivo del material
+        if ( !iUploadMaterialService.eliminar( material.getUrl()) ){
+            throw new ArchivoMaterialIOException("Ocurrió un error a la hora de eliminar el archivo del material");
+        }
+        // Se eliminan comentarios y entidad
+        try {
+            // se eliminan todos los comentarios asociados a ese material
+            iUsuarioMaterialComentaService.eliminarComentariosDeMaterial(material.getId());
+            // Se elimina el material
+            iMaterialService.eliminarMaterialPorId(material.getId());
+            // se retorna el mensaje de que se elimina correctamente
+            response.put("mensaje","¡Material eliminado con éxito!");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }catch ( Exception e ){
+            // lanzar la respectiva excepcion
+            throw new MaterialDataException("No se pudo eliminar el material " + material.getId().getNombre());
         }
     }
 }

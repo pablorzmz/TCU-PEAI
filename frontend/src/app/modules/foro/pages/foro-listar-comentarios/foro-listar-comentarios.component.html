@@ -5,7 +5,7 @@
       <app-agregar-comentario style="width: 90vh" [idMaterial]="idMaterial" [idSubSeccion]="idSubSeccion" (valueChange)="actualizarcomentarios($event)" class="my-0"></app-agregar-comentario>
     </div>
   </div>
-  <div class="col-md-12 d-flex justify-content-start">
+  <div class="col-md-12 d-flex justify-content-start" style="height: 50vh; overflow-y: scroll">
     <div *ngIf="comentarios">
       <div *ngFor="let comentario of comentarios">
         <div class="my-3">

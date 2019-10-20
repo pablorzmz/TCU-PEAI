@@ -1,7 +1,12 @@
 package com.paei.springboot.backend.apirest.controllers.real;
 
 
+import com.paei.springboot.backend.apirest.exceptions.ArchivoMaterialIOException;
 import com.paei.springboot.backend.apirest.exceptions.CursoNotFoundException;
+import com.paei.springboot.backend.apirest.exceptions.MaterialDataException;
+import com.paei.springboot.backend.apirest.exceptions.SubseccionMaterialNotFoundException;
+import com.paei.springboot.backend.apirest.model.entity.real.*;
+import com.paei.springboot.backend.apirest.services.real.*;
 import com.paei.springboot.backend.apirest.exceptions.MaterialNotFoundException;
 import com.paei.springboot.backend.apirest.exceptions.SolicitudInvalidaException;
 import com.paei.springboot.backend.apirest.model.entity.real.Curso;
@@ -14,10 +19,13 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.net.MalformedURLException;
+import javax.validation.Valid;
 import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -25,9 +33,6 @@ import java.util.*;
 
 @RequestMapping("/api/material")
 public class MaterialController {
-
-    @Autowired
-    private IUploadMaterialService iUploadMaterialService;
 
     @Autowired
     private IMaterialService iMaterialService;
@@ -40,6 +45,11 @@ public class MaterialController {
 
     @Autowired
     private ISubseccionMaterialService iSubseccionMaterialService;
+
+    @Autowired
+    private IUploadMaterialService iUploadMaterialService;
+
+    @Autowired IUsuarioMaterialComentaService iUsuarioMaterialComentaService;
 
     /**
      * Método que permite recuperar todos lo materiales de un grupo por cada una de sus subsecciones de material
@@ -79,6 +89,103 @@ public class MaterialController {
         }
     }
 
+    /**
+     * Metodo que permite obtener del frontend un archivo  y una entidad de material para crearlo
+     * @param archivo Archivo pdf que viene del frontend
+     * @param nombreMaterial nombre del material
+     * @param descripcion descripcion del material
+     * @param sbmId id de la subsubsección de material
+     * @return la entidad creada o la excepcion
+     */
+    @PostMapping("/materiales_grupo/upload")
+    public ResponseEntity<?> crearMaterialSubseccion( @RequestParam("archivo") MultipartFile archivo ,
+            @RequestParam("nombreMaterial") String nombreMaterial,
+            @RequestParam("descripcion") String descripcion,
+            @RequestParam("sbmId") Long sbmId) {
+        // de momento solo pdfs
+        final String tipoArchivo = "Archivo PDF";
+        // Map para la respuesta al frontend
+        Map<String, Object> response =  new HashMap<>();
+        // primero se obtiene la subsección de acuerdo con la información que viene del frontend
+        SubseccionMaterial subseccionMaterial = iSubseccionMaterialService.findById(sbmId);
+        if ( subseccionMaterial != null ) {
+            // ahora se intenta guardar el archivo en el backend
+            if ( !archivo.isEmpty() ){
+                // para el nombre del archivo
+                String nombreArchivo = null;
+                // para almacenar el archivo
+                try {
+                    // se obtiene el nombre del arhivo que se almacenó
+                    nombreArchivo = iUploadMaterialService.almacenar(archivo);
+                }catch ( Exception ex ) {
+                    // retornar una excepcion de que el archivo no se pudo almacenar
+                    throw new ArchivoMaterialIOException("Ocurrió un error a la hora de almacenar el crear para el material");
+                }
+                // Para almacenar el material
+                try {
+                    // se almacena el nombre del archivo creado
+                    Material nuevoMaterial = new Material();
+                    MaterialPK nuevoMaterialPK = new MaterialPK(nombreMaterial, subseccionMaterial.getId());
+                    // En caso de que el material ya existe se devuelve una excepción
+                    if ( iMaterialService.findMaterialById(nuevoMaterialPK) != null ) {
+                        // Se retorna una excepción
+                        throw new MaterialDataException("El nombre del material a crear ya existe ene esta subsección.");
+                    }
+                    // Se establecen los antributo
+                    nuevoMaterial.setUrl(nombreArchivo);
+                    nuevoMaterial.setDescripcion(descripcion);
+                    nuevoMaterial.setTipo(tipoArchivo);
+                    nuevoMaterial.setId(nuevoMaterialPK);
+                    nuevoMaterial.setSubseccionMaterial(subseccionMaterial);
+                    // se crea el material
+                    Material materialCreado = iMaterialService.crearNuevoMaterial(nuevoMaterial);
+                    // se retorna el response de manera correcta
+                    response.put("mensaje", "¡Material creado con éxito!");
+                    response.put("material", materialCreado);
+                    return new ResponseEntity<>(response, HttpStatus.CREATED);
+                }catch ( Exception ex ){
+                    // retornar la excepcion de que no se pudo salvar el material
+                    throw new MaterialDataException("La información para crear el material no es correcta.");
+                }
+            } else {
+                // retornar una excepcion de que el archivo no se pudo almacenar
+                throw new ArchivoMaterialIOException("Ocurrió un error a la hora de almacenar el archivo para el material");
+            }
+        } else {
+            // en caso de que sea nulo, se retorna una excepcion
+            throw new SubseccionMaterialNotFoundException();
+        }
+    }
+
+    @DeleteMapping("/materiales_grupo/eliminar")
+    public ResponseEntity<?> eliminarMaterialSubseccion(@RequestParam String nombre, @RequestParam Long subSeccionMaterialId ){
+        // Se crean el mapa para la respuesta
+        Map<String,Object> response = new HashMap<>();
+        // intenta eliminar el material y en caso de error, se muestra la excepcion
+        MaterialPK materialPK = new MaterialPK(nombre,subSeccionMaterialId);
+        Material material = iMaterialService.findMaterialById(materialPK);
+        if (material == null ){
+            throw new MaterialDataException("La información para eliminar el material no es correcta.");
+        }
+        // se intenta eliminar el archivo del material
+        if ( !iUploadMaterialService.eliminar( material.getUrl()) ){
+            throw new ArchivoMaterialIOException("Ocurrió un error a la hora de eliminar el archivo del material");
+        }
+        // Se eliminan comentarios y entidad
+        try {
+            // se eliminan todos los comentarios asociados a ese material
+            iUsuarioMaterialComentaService.eliminarComentariosDeMaterial(material.getId());
+            // Se elimina el material
+            iMaterialService.eliminarMaterialPorId(material.getId());
+            // se retorna el mensaje de que se elimina correctamente
+            response.put("mensaje","¡Material eliminado con éxito!");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }catch ( Exception e ){
+            // lanzar la respectiva excepcion
+            //throw new MaterialDataException("No se pudo eliminar el material " + material.getId().getNombre());
+            throw new MaterialDataException(e.toString());
+        }
+    }
     /**
      * Método que permite recuperar un material especifico de una subseccion especifica
      * @param idMaterial Id del material

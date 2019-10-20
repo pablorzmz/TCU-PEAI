@@ -45,6 +45,9 @@ public class Material implements Serializable {
     @ManyToOne
     private SubseccionMaterial subseccionMaterial;
 
+    public void setSubseccionMaterial(SubseccionMaterial subseccionMaterial) {
+        this.subseccionMaterial = subseccionMaterial;
+    }
 
     public MaterialPK getId() {
         return Id;

@@ -5,11 +5,14 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.nio.file.Files;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
 
 @Service
 public class UploadMaterialServiceImpl implements IUploadMaterialService {
@@ -38,11 +41,27 @@ public class UploadMaterialServiceImpl implements IUploadMaterialService {
 
     @Override
     public String almacenar(MultipartFile archivo) throws IOException {
-        return null;
+        // obtener el nombre original random único
+        String nombreArchivo = UUID.randomUUID().toString() + "_" + archivo.getOriginalFilename().replace(" ", "");
+        // Ruta para almacenar los archivos
+        Path rutaArchivo = getPath(nombreArchivo);
+        // Se guarda
+        Files.copy(archivo.getInputStream(),rutaArchivo);
+        return nombreArchivo;
     }
 
     @Override
     public boolean eliminar(String nombreArchivo) {
+        // Si el archivo existe y se tiene permiso de escritura, se elimina
+        if ( nombreArchivo != null && nombreArchivo.length() > 0 ) {
+            Path rutaFotoAnterior = getPath(nombreArchivo);
+            File archivoFotoAnterior = rutaFotoAnterior.toFile();
+            if (archivoFotoAnterior.exists() &&  archivoFotoAnterior.canRead() ){
+                archivoFotoAnterior.delete();
+                return true;
+            }
+        }
+        // No se pudo eliminar
         return false;
     }
 

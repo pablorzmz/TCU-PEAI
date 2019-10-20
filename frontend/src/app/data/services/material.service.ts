@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {HttpClient, HttpHeaders, HttpRequest} from '@angular/common/http';
+import {Observable, throwError, EMPTY} from 'rxjs';
 import {AuthService} from './auth.service';
 import {catchError} from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import {MaterialPK} from '../schema/MaterialPK';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class MaterialService {
+export class MaterialService  {
 
   private urlEndPoint = 'http://localhost:8080/api/material';
 
@@ -39,6 +40,78 @@ export class MaterialService {
           text: err.error.error,
           type: 'error',
           confirmButtonText: 'Aceptar'
+        });
+        return throwError(err);
+      })
+    );
+  }
+
+  /**
+   * Metodo que hace comunicación con el backend para crear un archivo
+   * @param nombreMaterial Nombre del material
+   * @param descripcionMaterial Descripción del material
+   * @param sbmId Identificador entero de la subsección de material
+   * @param archivo Archivo seleccionado para el material
+   */
+  crearMaterial( nombreMaterial: string, descripcionMaterial: string, sbmId: number, archivo: File): Observable<any> {
+    // subruta para acceder al backend
+    const subRutaCrearMaterial = this.urlEndPoint + '/materiales_grupo/upload';
+    // datos para el formulario
+    const formData = new FormData();
+    formData.append('archivo', archivo);
+    formData.append('nombreMaterial', nombreMaterial);
+    formData.append('descripcion', descripcionMaterial);
+    formData.append('sbmId', sbmId.toString());
+    // cabeceras de autorizacion
+    const httpHeaders = new HttpHeaders(
+      {
+        Authorization: 'Bearer' + this.authService.accessToken
+      });
+    // para control del progreso
+    const req = new HttpRequest('POST', subRutaCrearMaterial, formData, {
+      reportProgress: true, headers: httpHeaders
+    });
+    // finalmente se retorna el resultado
+    return this.http.request(req).pipe(
+      catchError ( err => {
+        Swal.fire({
+          title: 'Ocurrió un error al crear el material',
+          text: err.error.error,
+          type: 'error',
+          confirmButtonText: 'Aceptar',
+          backdrop: 'transparent'
+        });
+        // Ya no se lanza más la excepcion
+        return throwError(err);
+      })
+    );
+  }
+
+
+  /**
+   * Método que permite eliminar un material de una subsección específica
+   * @param materialPK identificador del material a eliminar
+   */
+  eliminarMaterial( materialPK: MaterialPK ): Observable<any> {
+    // parametros
+    const paramNombre = '?nombre=' +  materialPK.nombre;
+    const paramSBMId = '&subSeccionMaterialId=' +  materialPK.subSeccionMaterialId;
+    // Se construye la subruta
+    const subRutaEliminar =  this.urlEndPoint + '/materiales_grupo/eliminar' + paramNombre + paramSBMId;
+    // Se establecen los escabezados
+    const httpHeaders = new HttpHeaders(
+      {
+        Authorization: 'Bearer' + this.authService.accessToken
+      });
+    // Se hace la solicitud
+    return this.http.delete<any>( subRutaEliminar, { headers: httpHeaders } ).pipe(
+      catchError ( err => {
+        Swal.fire({
+          title: 'Ocurrió un error al eliminar el material',
+          text: err.error.error,
+          type: 'error',
+          confirmButtonText: 'Aceptar',
+          backdrop: 'transparent'
         });
         return throwError(err);
       })

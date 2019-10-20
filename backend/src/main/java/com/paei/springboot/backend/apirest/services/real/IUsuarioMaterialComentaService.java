@@ -8,6 +8,12 @@ import java.util.List;
 public interface IUsuarioMaterialComentaService {
 
     /**
+     * Método que permite eliminar los comentarios asociados a un material
+     * @param materialPK El material a eliminar
+     */
+    public void eliminarComentariosDeMaterial(MaterialPK materialPK);
+
+    /**
      * Método que agrega comentarios a un materia
      * @param usuarioMaterialComenta es el comentario a guardar
      * @return retorna el comentario guardado

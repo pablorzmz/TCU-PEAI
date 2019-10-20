@@ -104,6 +104,29 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     /**
+     * Excepcion para cuando la información para crear el material es incorrecta
+     * @param ex Excepcion lanzada
+     * @return retorna la excepcion de error en datos para crear el material
+     */
+    @ExceptionHandler(MaterialDataException.class)
+    public ResponseEntity<CustomErrorResponse> MaterialDataException(Exception ex) {
+        CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+
+    /**
+     * Excepción cuando no se pudo almacenar el archivo en el servidot
+     * @param ex Excepcion lanzada
+     * @return la excepción de cuando falle crear un archivo de material en el server
+     */
+    @ExceptionHandler(ArchivoMaterialIOException.class)
+    public ResponseEntity<CustomErrorResponse> ArchivoMaterialIOException(Exception ex) {
+        CustomErrorResponse errors = new CustomErrorResponse(LocalDateTime.now(),  HttpStatus.INTERNAL_SERVER_ERROR, ex.getMessage());
+        return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
      * Metodo para manejar la excepcion de no encontrar un grupo
      * @param ex Excepción lanzada
      * @return Retorna un CustomErrorResponse con la información del error

@@ -65,8 +65,9 @@
               <div class="card-body">
                 <div class="row my-2">
                   <div class="d-flex flex-wrap justify-content-end w-100 mx-3">
-                      <app-editar-subseccion-material-grupo (sbmActualizarValueChange)="actualizarSubseccionMaterial($event)" [grupo]="grupo" [sbmAEditar]="sbm" class="mx-1"></app-editar-subseccion-material-grupo>
-                      <app-eliminar-subseccion-material-grupo (sbmEliminarValueChange)="eliminarSubseccionMaterial($event)" [nombreInstitucion]="grupo.curso.areaTematica.institucion.institucionPK.nombre" [sbm]="sbm"></app-eliminar-subseccion-material-grupo>
+                    <app-crear-material-subseccion [grupo]="grupo" (nuevoMaterialValueChange)="actualizarNuevoMaterial($event)" [sbm]="sbm"></app-crear-material-subseccion>
+                    <app-editar-subseccion-material-grupo (sbmActualizarValueChange)="actualizarSubseccionMaterial($event)" [grupo]="grupo" [sbmAEditar]="sbm" class="mx-1"></app-editar-subseccion-material-grupo>
+                    <app-eliminar-subseccion-material-grupo (sbmEliminarValueChange)="eliminarSubseccionMaterial($event)" [nombreInstitucion]="grupo.curso.areaTematica.institucion.institucionPK.nombre" [sbm]="sbm"></app-eliminar-subseccion-material-grupo>
                   </div>
                 </div>
                 <div class="row">
@@ -89,10 +90,18 @@
                               </p>
                             </div>
                             <div class="card-body">
-                              <p class="card-subtitle mb-2 text-muted"> Descripción: {{' ' + m.descripcion}}</p>
+                              <p *ngIf="m.descripcion !== 'null' && m.descripcion" class="card-subtitle mb-2 text-muted"> Descripción: {{' ' + m.descripcion }}</p>
+                              <p *ngIf="m.descripcion === 'null' || m.descripcion === null" class="card-subtitle mb-2 text-muted"> Descripción: {{' Sin descripción disponible'}}</p>
                             </div>
                             <div class="card-footer bg-transparent">
-                              <button [routerLink]="['material',m.id.nombre,m.id.subSeccionMaterialId]" type="button" class="btn btn-primary btn-sm">Ir al material</button>
+                              <div class="row">
+                                <div class="col">
+                                  <button [routerLink]="['material',m.id.nombre,m.id.subSeccionMaterialId]" type="button" class="btn btn-primary btn-sm">Ir al material</button>
+                                </div>
+                                <div class="col">
+                                  <app-eliminar-material-grupo (materialEliminarValueChange)="eliminarMaterial($event)" [grupo]="grupo" [materialPk]="m.id" class="float-right"></app-eliminar-material-grupo>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>

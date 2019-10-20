@@ -1,6 +1,6 @@
 <div *ngIf="material" class="p-5">
   <h2 style="word-break: break-all" class="my-4">{{material.id.nombre}}</h2>
-  <a href="comentarios">Ver comentarios</a>
+  <a href="#comentarios">Ver comentarios</a>
   <div *ngIf="!pdfError" class="mb-3" style="height: 90vh;">
     <ngx-extended-pdf-viewer
       [src]="ruta"

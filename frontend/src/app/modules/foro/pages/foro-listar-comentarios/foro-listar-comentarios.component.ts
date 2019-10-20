@@ -30,6 +30,9 @@ export class ForoListarComentariosComponent implements OnInit {
   // Indica si los comentarios se están cargando
   cargando: boolean;
 
+  // Ordenado de mas reciente a mas antiguo
+  ordenadoRecienteAntiguo = false;
+
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success m-1',
@@ -53,6 +56,7 @@ export class ForoListarComentariosComponent implements OnInit {
         this.comentarios = res;
         // Permite que el spiner se muestre al menos 1 sec
         setTimeout(() => this.cargando = false, 1000);
+        this.ordenadoRecienteAntiguo = false;
       },
       err => {
         this.mensajeNoSePudieronObtenerComentarios();
@@ -80,5 +84,13 @@ export class ForoListarComentariosComponent implements OnInit {
       text: 'Los comentarios de este material no están disponibles',
       confirmButtonText: 'Aceptar'
     });
+  }
+
+  /**
+   * Método que reordena los comentarios por fecha
+   */
+  ordenarComentarios(): any {
+    this.comentarios = this.comentarios.reverse();
+    this.ordenadoRecienteAntiguo = !this.ordenadoRecienteAntiguo;
   }
 }

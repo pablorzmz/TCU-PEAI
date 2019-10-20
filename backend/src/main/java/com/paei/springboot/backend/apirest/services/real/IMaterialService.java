@@ -26,4 +26,11 @@ public interface IMaterialService {
      * @return El material o null si no existe
      */
     public Material findMaterialById(MaterialPK materialPK);
+
+
+    /**
+     * Metodo que permite eliminar un material por su llave primaria
+     * @param materialPK Id del material
+     */
+    public void eliminarMaterialPorId(MaterialPK materialPK);
 }

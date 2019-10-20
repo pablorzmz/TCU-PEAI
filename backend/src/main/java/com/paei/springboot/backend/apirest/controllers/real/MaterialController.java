@@ -10,10 +10,12 @@ import com.paei.springboot.backend.apirest.services.real.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import javax.validation.Valid;
 import java.util.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -36,6 +38,8 @@ public class MaterialController {
 
     @Autowired
     private IUploadMaterialService iUploadMaterialService;
+
+    @Autowired IUsuarioMaterialComentaService iUsuarioMaterialComentaService;
 
     /**
      * Método que permite recuperar todos lo materiales de un grupo por cada una de sus subsecciones de material
@@ -105,7 +109,7 @@ public class MaterialController {
                     nombreArchivo = iUploadMaterialService.almacenar(archivo);
                 }catch ( Exception ex ) {
                     // retornar una excepcion de que el archivo no se pudo almacenar
-                    throw new ArchivoMaterialIOException();
+                    throw new ArchivoMaterialIOException("Ocurrió un error a la hora de almacenar el crear para el material");
                 }
                 // Para almacenar el material
                 try {
@@ -135,11 +139,41 @@ public class MaterialController {
                 }
             } else {
                 // retornar una excepcion de que el archivo no se pudo almacenar
-                throw new ArchivoMaterialIOException();
+                throw new ArchivoMaterialIOException("Ocurrió un error a la hora de almacenar el archivo para el material");
             }
         } else {
             // en caso de que sea nulo, se retorna una excepcion
             throw new SubseccionMaterialNotFoundException();
+        }
+    }
+
+    @DeleteMapping("/materiales_grupo/eliminar")
+    public ResponseEntity<?> eliminarMaterialSubseccion(@RequestParam String nombre, @RequestParam Long subSeccionMaterialId ){
+        // Se crean el mapa para la respuesta
+        Map<String,Object> response = new HashMap<>();
+        // intenta eliminar el material y en caso de error, se muestra la excepcion
+        MaterialPK materialPK = new MaterialPK(nombre,subSeccionMaterialId);
+        Material material = iMaterialService.findMaterialById(materialPK);
+        if (material == null ){
+            throw new MaterialDataException("La información para eliminar el material no es correcta.");
+        }
+        // se intenta eliminar el archivo del material
+        if ( !iUploadMaterialService.eliminar( material.getUrl()) ){
+            throw new ArchivoMaterialIOException("Ocurrió un error a la hora de eliminar el archivo del material");
+        }
+        // Se eliminan comentarios y entidad
+        try {
+            // se eliminan todos los comentarios asociados a ese material
+            iUsuarioMaterialComentaService.eliminarComentariosDeMaterial(material.getId());
+            // Se elimina el material
+            iMaterialService.eliminarMaterialPorId(material.getId());
+            // se retorna el mensaje de que se elimina correctamente
+            response.put("mensaje","¡Material eliminado con éxito!");
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }catch ( Exception e ){
+            // lanzar la respectiva excepcion
+            //throw new MaterialDataException("No se pudo eliminar el material " + material.getId().getNombre());
+            throw new MaterialDataException(e.toString());
         }
     }
 }

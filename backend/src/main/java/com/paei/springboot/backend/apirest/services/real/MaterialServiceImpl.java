@@ -28,4 +28,9 @@ public class MaterialServiceImpl implements IMaterialService {
     public Material findMaterialById(MaterialPK materialPK) {
         return iMaterialDao.findById(materialPK).orElse(null);
     }
+
+    @Override
+    public void eliminarMaterialPorId(MaterialPK materialPK) {
+        iMaterialDao.deleteById(materialPK);
+    }
 }

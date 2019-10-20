@@ -172,7 +172,8 @@ public class MaterialController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         }catch ( Exception e ){
             // lanzar la respectiva excepcion
-            throw new MaterialDataException("No se pudo eliminar el material " + material.getId().getNombre());
+            //throw new MaterialDataException("No se pudo eliminar el material " + material.getId().getNombre());
+            throw new MaterialDataException(e.toString());
         }
     }
 }

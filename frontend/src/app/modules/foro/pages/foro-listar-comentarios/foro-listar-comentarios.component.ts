@@ -56,7 +56,9 @@ export class ForoListarComentariosComponent implements OnInit {
         this.comentarios = res;
         // Permite que el spiner se muestre al menos 1 sec
         setTimeout(() => this.cargando = false, 1000);
-        this.ordenadoRecienteAntiguo = false;
+        if (this.ordenadoRecienteAntiguo === true) {
+          this.comentarios = this.comentarios.reverse();
+        }
       },
       err => {
         this.mensajeNoSePudieronObtenerComentarios();

@@ -7,6 +7,7 @@ import {AuthService} from '../../../../data/services/auth.service';
 import {CONSTANTES} from '../../../../data/util/Constantes';
 import {SubseccionMaterial} from '../../../../data/schema/SubseccionMaterial';
 import {MaterialService} from '../../../../data/services/material.service';
+import {Material} from '../../../../data/schema/Material';
 
 @Component({
   selector: 'app-listar-grupos-curso',

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Material} from '../../../../data/schema/Material';
 import {MaterialService} from '../../../../data/services/material.service';
@@ -27,6 +27,8 @@ export class VerMaterialComponent implements OnInit {
   // indica si el pdf no fue cargado correctamente
   private pdfError = false;
 
+  @ViewChild('comentarios', {static: false}) comentarios: ElementRef;
+
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe(
       params => {
@@ -53,6 +55,13 @@ export class VerMaterialComponent implements OnInit {
       });
   }
 
+  /**
+   * Método para ir a la sección de comentarios
+   */
+  irAComentarios() {
+    const el = document.getElementById('comentarios');
+    el.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
+  }
 
   /**
    * Método que se activa si el pdf no puede ser cargado

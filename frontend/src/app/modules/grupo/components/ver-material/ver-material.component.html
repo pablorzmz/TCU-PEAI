@@ -1,6 +1,9 @@
 <div *ngIf="material" class="p-5">
   <h2 style="word-break: break-all" class="my-4">{{material.id.nombre}}</h2>
-  <a href="#comentarios">Ver comentarios</a>
+  <button class="btn btn-primary d-flex align-items-center my-2" (click)="irAComentarios()">
+    <mat-icon class="mr-1">chat_bubble_outline</mat-icon>
+    Ver comentarios
+  </button>
   <div *ngIf="!pdfError" class="mb-3" style="height: 90vh;">
     <ngx-extended-pdf-viewer
       [src]="ruta"
@@ -11,8 +14,8 @@
   <div *ngIf="pdfError" class="alert alert-warning my-4" role="alert">
     Actualmente no se puede mostrar el material
   </div>
-  <div id="comentarios">
-    <h2 class="my-4">Discute sobre el material</h2>
+  <div>
+    <h2 class="my-4" id="comentarios">Discute sobre el material</h2>
     <app-foro-listar-comentarios [idMaterial]="idMaterial" [idSubSeccion]="idSubSeccion"></app-foro-listar-comentarios>
   </div>
 </div>

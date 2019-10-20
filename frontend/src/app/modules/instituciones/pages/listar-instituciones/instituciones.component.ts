@@ -13,7 +13,7 @@ export class InstitucionesComponent implements OnInit {
   paginador: any; // Objeto donde se guarda el resultado de la consulta, que será enviado para la paginación
   rutaPag = '/instituciones/page/';
 
-  constructor(private institucionService: InstitucionService,
+  constructor(public institucionService: InstitucionService,
               private activatedRoute: ActivatedRoute) {
     this.instituciones = new Array();
   }

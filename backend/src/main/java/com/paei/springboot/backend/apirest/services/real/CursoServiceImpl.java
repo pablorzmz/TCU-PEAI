@@ -74,7 +74,7 @@ public class CursoServiceImpl implements ICursoService {
         // Se obtienen los grupos del Curso actual
         List<Grupo> grupos = c.getGrupos();
         // Se itera y se busca hasta hacer match para saber si el profesor que imparte
-        for (var grupo: grupos) {
+        for (Grupo grupo: grupos) {
             if (grupo.getUsuario().getUsuarioPK().getNombreUsuario().equals(u.getUsuarioPK().getNombreUsuario())){
                 return true;
             }

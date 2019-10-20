@@ -4,6 +4,7 @@ import {Observable, throwError, EMPTY} from 'rxjs';
 import {AuthService} from './auth.service';
 import {catchError} from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import {URL_BACKEND} from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import Swal from 'sweetalert2';
 
 export class MaterialService  {
 
-  private urlEndPoint = 'http://localhost:8080/api/material';
+  private urlEndPoint =  URL_BACKEND + '/api/material';
 
   constructor(private http: HttpClient , private authService: AuthService) {}
 

@@ -13,15 +13,15 @@ import {SubseccionMaterial} from '../../../../data/schema/SubseccionMaterial';
 })
 export class VistaPrincipalCursoComponent implements OnInit {
 
-  private curso: Curso;
-  private nombreAreaTematica: string;
-  private nombreInstitucion: string;
-  private nombreProfesorCurso: string;
-  private listaSubseccionMateriales: any;
+  public curso: Curso;
+  public nombreAreaTematica: string;
+  public nombreInstitucion: string;
+  public nombreProfesorCurso: string;
+  public listaSubseccionMateriales: any;
 
   constructor(
       private activatedRoute: ActivatedRoute,
-      private vistaPrincipalService: VistaPrincipalCursoService,
+      public vistaPrincipalService: VistaPrincipalCursoService,
       private  router: Router
     ) {
     // Datos dummies mientras incializa

@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {AuthService} from './auth.service';
 import {Observable} from 'rxjs';
+import {URL_BACKEND} from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InstitucionPerfilUsuarioService {
-  private urlEndPoint = 'http://localhost:8080/api/ins_perf_usr/';
+  private urlEndPoint =  URL_BACKEND +  '/api/ins_perf_usr/';
 
   constructor(private http: HttpClient,
               private authService: AuthService) { }

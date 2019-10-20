@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
+import {URL_BACKEND} from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class GrupoService {
 
   constructor(private authService: AuthService, private http: HttpClient) { }
 
-  readonly urlEndpoint = 'http://localhost:8080/api/grupos';
+  readonly urlEndpoint =  URL_BACKEND + '/api/grupos';
 
   getGruposCurso(idCurso: number): Observable<any> {
     const rutaConsultarGrupos = '/listar_grupos_de_curso?';

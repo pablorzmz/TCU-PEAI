@@ -16,7 +16,7 @@ import {Material} from '../../../../data/schema/Material';
 })
 export class ListarGruposCursoComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private grupoService: GrupoService, private authService: AuthService, private materialService: MaterialService) { }
+  constructor(private route: ActivatedRoute, public grupoService: GrupoService, public authService: AuthService, public materialService: MaterialService) { }
 
   // Se agrega la lista de subsecciones de materiales para ajustar por grupo
   @Input() listaSubseccionMateriales: Array<SubseccionMaterial>;

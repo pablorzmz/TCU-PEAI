@@ -5,6 +5,7 @@ import {AuthService} from './auth.service';
 import {catchError, map} from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {SubseccionMaterial} from '../schema/SubseccionMaterial';
+import {URL_BACKEND} from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class SubseccionMaterialService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  readonly urlEndpoint = 'http://localhost:8080/api/subseccion_material';
+  readonly urlEndpoint =  URL_BACKEND +  '/api/subseccion_material';
 
   /**
    * Metodo del servicio que permite hacer un post y crear una nueva subsección de material en un grupo

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "*"})
 @RestController
 @RequestMapping("/api/vista_principal_curso")
 public class VistaPrincipalCursoController {
@@ -97,23 +97,23 @@ public class VistaPrincipalCursoController {
         // Se verifica si el usuario imparte el curso, o bien, si es un estudiante del curso
         if (imparteCurso) {
             // Se obtienen los grupos en los que el profesor imparte
-            for (var g: curso.getGrupos())
+            for (Grupo g: curso.getGrupos())
                 if (g.getUsuario().getUsuarioPK() == usuario.getUsuarioPK())
                     grupos.add(g);
         }else{
             // Se obtiene el grupo en el que el usuario está inscrito en ese curso.
-            for (var ugi: usuario.getUsuarioGrupoInscritos())
+            for (UsuarioGrupoInscrito ugi: usuario.getUsuarioGrupoInscritos())
                 if (ugi.getGrupo().getCurso().getId() == curso.getId())
                     grupos.add(ugi.getGrupo());
         }
         // Por cada grupo es necesario recuperar la subseccion de materiales
         Map<String, Object> subListaSubseccionesMateriales = new HashMap<>();
         response.put("subseccionesMaterialPorGrupo", subListaSubseccionesMateriales);
-        for (var g: grupos){
+        for (Grupo g: grupos){
             // Se obtienen las subsecciones de materiales
-            var sbmLista = iSubseccionMaterialService.obtenerSubseccionesPorGrupoPK(g.getId());
+            List<SubseccionMaterial> sbmLista = iSubseccionMaterialService.obtenerSubseccionesPorGrupoPK(g.getId());
             // Se limpian se atributos innnecsario para frontend
-            for (var sbm: sbmLista){
+            for (SubseccionMaterial sbm: sbmLista){
                 sbm.getGrupo().setCurso(null);
                 sbm.getGrupo().setUsuario(null);
             }
@@ -131,9 +131,9 @@ public class VistaPrincipalCursoController {
      */
     private String obtenerGrupoUsuarioEstudiante(Usuario usuario, Curso curso) {
         // Se obtiene los grupos a los que pertenece el usuario
-        var gruposUsuario = usuario.getUsuarioGrupoInscritos();
+        List<UsuarioGrupoInscrito> gruposUsuario = usuario.getUsuarioGrupoInscritos();
         // Se itera sobre los grupos del usuario y se retorna el profesor de ese curso
-        for (var gu: gruposUsuario){
+        for (UsuarioGrupoInscrito gu: gruposUsuario){
             if (gu.getGrupo().getCurso().getId() == curso.getId()){
                 return gu.getGrupo().getUsuario().getNombre() + " " + gu.getGrupo().getUsuario().getApellidos();
             }
@@ -151,7 +151,7 @@ public class VistaPrincipalCursoController {
         // Se obtienen los grupos del Curso actual
         List<Grupo> grupos = c.getGrupos();
         // Se itera y se busca hasta hacer match para saber si el profesor que imparte
-        for (var grupo: grupos) {
+        for (Grupo grupo: grupos) {
             if (grupo.getUsuario().getUsuarioPK().getNombreUsuario().equals(u.getUsuarioPK().getNombreUsuario())){
                 return true;
             }

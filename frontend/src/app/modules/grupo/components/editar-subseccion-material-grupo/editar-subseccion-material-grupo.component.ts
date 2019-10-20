@@ -36,7 +36,7 @@ export class EditarSubseccionMaterialGrupoComponent implements OnInit {
   // acceso a los valores constantes
   constantes: CONSTANTES;
 
-  constructor(private dialog: MatDialog, private authService: AuthService, private sbmService: SubseccionMaterialService) {
+  constructor(private dialog: MatDialog, public authService: AuthService, public sbmService: SubseccionMaterialService) {
     this.dialogConfig = new MatDialogConfig();
     this.constantes = new CONSTANTES();
   }

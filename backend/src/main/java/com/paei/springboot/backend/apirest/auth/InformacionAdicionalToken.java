@@ -1,6 +1,8 @@
 package com.paei.springboot.backend.apirest.auth;
 
 import com.paei.springboot.backend.apirest.dao.real.IInstitucionPerfilPermisoDao;
+import com.paei.springboot.backend.apirest.model.entity.real.InstitucionPerfilPermiso;
+import com.paei.springboot.backend.apirest.model.entity.real.InstitucionPerfilUsuario;
 import com.paei.springboot.backend.apirest.model.entity.real.Usuario;
 import com.paei.springboot.backend.apirest.services.real.IUsuarioService;
 import org.slf4j.Logger;
@@ -12,10 +14,7 @@ import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class InformacionAdicionalToken implements TokenEnhancer {
@@ -40,9 +39,9 @@ public class InformacionAdicionalToken implements TokenEnhancer {
         info.put("apellidos",usuario.getApellidos());
         
         // Se recuperan los perfiles y las instalaciones correspondientes
-        var listaInstalacionesPerfiles = usuario.getInstitucionPerfilUsuarios();
+        Set<InstitucionPerfilUsuario> listaInstalacionesPerfiles = usuario.getInstitucionPerfilUsuarios();
         Map<String, List<String>> perfilesInstituciones = new HashMap<>();
-        for (var ipu: listaInstalacionesPerfiles) {
+        for (InstitucionPerfilUsuario ipu: listaInstalacionesPerfiles) {
             // Si no existe la llave se agrega
             perfilesInstituciones.computeIfAbsent(ipu.getPerfil().getNombre(), k -> new ArrayList<>());
             // Se reemplaza espacio en blanco por guión en el nombre de la institucion
@@ -52,11 +51,11 @@ public class InformacionAdicionalToken implements TokenEnhancer {
         info.put("perfiles_instituciones",perfilesInstituciones);
         // Se obtienen los permisos por cada perfil e institucion del usuario
         Map<String, List<String>> perfilesInstitucionesPermisos = new HashMap<>();
-        for (var ipu: listaInstalacionesPerfiles) {
-            var permisosInstitucionPerfil = iInstitucionPerfilPermisoService.findInstitucionPerfilPermisoByInstitucionAndPerfil(ipu.getPerfil(),ipu.getInstitucion());
-            for (var permiso: permisosInstitucionPerfil) {
+        for (InstitucionPerfilUsuario ipu: listaInstalacionesPerfiles) {
+            List<InstitucionPerfilPermiso> permisosInstitucionPerfil = iInstitucionPerfilPermisoService.findInstitucionPerfilPermisoByInstitucionAndPerfil(ipu.getPerfil(),ipu.getInstitucion());
+            for (InstitucionPerfilPermiso permiso: permisosInstitucionPerfil) {
                 // Se reemplaza espacio en blanco por * en el nombre de la institucion
-                var llaveTemporal =ipu.getPerfil().getNombre()+"*"+ipu.getInstitucion().getInstitucionPK().getNombre().replace(" ","-");
+                String llaveTemporal =ipu.getPerfil().getNombre()+"*"+ipu.getInstitucion().getInstitucionPK().getNombre().replace(" ","-");
                 // Si no existe la llave se crea
                 perfilesInstitucionesPermisos.computeIfAbsent(llaveTemporal, k -> new ArrayList<>());
                 perfilesInstitucionesPermisos.get(llaveTemporal).add(permiso.getPermiso().getId().getId().toString());

@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.util.*;
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "*"})
 @RestController
 
 @RequestMapping("/api/material")
@@ -53,10 +53,10 @@ public class MaterialController {
             // Se recupera cada grupo de ese curso
             List<Grupo> gruposCurso = iGrupoService.getGruposCurso(cursoId);
             // Por cada grupo, se recuperan las subsecciones de material
-            for ( var g: gruposCurso ){
+            for (Grupo g: gruposCurso ){
                 List<SubseccionMaterial> subseccionesGrupo = iSubseccionMaterialService.obtenerSubseccionesPorGrupoPK(g.getId());
                 // Ahora por cada subseccion se recupera sus materiales
-                for ( var sbm: subseccionesGrupo ) {
+                for (SubseccionMaterial sbm: subseccionesGrupo ) {
                     // Se crea un map temporal para organizar mejor el response
                     Map<String,Object> tmpMap = new HashMap<>();
                     List<Material> materialesSubseccion = iMaterialService.obtenerMaterialesDeSubseccionMaterial(sbm.getId());

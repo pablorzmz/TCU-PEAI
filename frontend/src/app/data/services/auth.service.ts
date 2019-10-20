@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Usuario} from '../schema/Usuario';
 import {objectLiteralExpression} from 'codelyzer/util/astQuery';
 import {UsuarioPK} from '../schema/UsuarioPK';
+import {URL_BACKEND} from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,7 @@ export class AuthService {
    */
   login(usuario: Usuario): Observable<any> {
     // La dirección del enlace para la autorización con sprint security de clientes frontend
-    const urlEndpoint = 'http://localhost:8080/oauth/token';
+    const urlEndpoint = URL_BACKEND + '/oauth/token';
     const credenciales = btoa('peai_angulaapp' + ':' + '12345');
     // Se definen los encabezados para el tipo de autorización del protocolo
     const httpHeaders = new HttpHeaders(

@@ -18,7 +18,7 @@ import {Grupo} from '../../../../data/schema/Grupo';
 export class CrearMaterialSubseccionComponent implements OnInit {
 
   // Para controlar el archivo actualmente seleccionado
-  private archivoSeleccionado: File;
+  public archivoSeleccionado: File;
 
   // La subsección de material actual para agregar el material
   @Input() sbm: SubseccionMaterial;
@@ -44,7 +44,7 @@ export class CrearMaterialSubseccionComponent implements OnInit {
   // para mostrar el progreso de carga del archivo
   progreso: number;
 
-  constructor(private dialog: MatDialog, private authService: AuthService, private materialService: MaterialService) {
+  constructor(private dialog: MatDialog, public authService: AuthService, public materialService: MaterialService) {
     this.dialogConfig = new MatDialogConfig();
     this.constantes = new CONSTANTES();
   }

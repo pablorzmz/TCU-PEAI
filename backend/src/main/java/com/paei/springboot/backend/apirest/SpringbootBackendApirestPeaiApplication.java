@@ -1,11 +1,13 @@
 package com.paei.springboot.backend.apirest;
 
 import com.paei.springboot.backend.apirest.dao.real.IMaterialDao;
+import com.paei.springboot.backend.apirest.model.entity.real.Material;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -22,8 +24,8 @@ public class SpringbootBackendApirestPeaiApplication implements CommandLineRunne
     @Override
     public void run(String... args) throws Exception {
         // Se generan las rutas para los archivos TEMPORAL hasta que se puedan insertar de verdad
-        var materiales = iMaterialDao.findAll();
-        for (var m: materiales ){
+        List<Material> materiales = iMaterialDao.findAll();
+        for (Material m: materiales ){
             String nombreArchivo = UUID.randomUUID().toString() + "_" + "nombreDeUnPDFRealQueVieneDeFrontend.pdf";
             m.setUrl(nombreArchivo);
             this.iMaterialDao.save(m);

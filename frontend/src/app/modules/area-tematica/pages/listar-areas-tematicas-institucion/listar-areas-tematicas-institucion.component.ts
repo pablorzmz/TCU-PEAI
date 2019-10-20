@@ -10,7 +10,7 @@ import { AreaTematica } from '../../../../data/schema/AreaTematica';
 })
 export class ListarAreasTematicasInstitucionComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private areaTematicaService: AreaTematicaService) { }
+  constructor(private route: ActivatedRoute, public areaTematicaService: AreaTematicaService) { }
 
   nombreInstitucion: string;             // Contiene el nombre de la area-tematica de la cual se espera obtener las areas tematicas
   areasTematicas: AreaTematica[];   // Contiene las áreas temáticas de institucón

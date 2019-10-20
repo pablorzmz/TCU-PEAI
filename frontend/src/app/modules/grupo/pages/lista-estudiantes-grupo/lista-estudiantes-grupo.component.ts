@@ -36,9 +36,9 @@ export class ListaEstudiantesGrupoComponent implements OnInit {
   constantes = new CONSTANTES();
 
   constructor(private activatedRoute: ActivatedRoute,
-              private institucionPerfilUsuarioService: InstitucionPerfilUsuarioService,
-              private usuarioGrupoInscritoService: UsuarioGrupoInscritoService,
-              private authService: AuthService,
+              public institucionPerfilUsuarioService: InstitucionPerfilUsuarioService,
+              public usuarioGrupoInscritoService: UsuarioGrupoInscritoService,
+              public authService: AuthService,
               private router: Router) {
     // Inicializamos el grupoPK
     this.grupoPK = new GrupoPK();

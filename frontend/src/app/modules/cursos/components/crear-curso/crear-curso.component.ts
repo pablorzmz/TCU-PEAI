@@ -54,10 +54,10 @@ export class CrearCursoComponent implements OnInit {
   });
 
   constructor(private dialog: MatDialog,
-              private authService: AuthService,
-              private cursoService: CursoService,
-              private areaTematicaService: AreaTematicaService,
-              private institucionService: InstitucionService) {
+              public authService: AuthService,
+              public cursoService: CursoService,
+              public areaTematicaService: AreaTematicaService,
+              public institucionService: InstitucionService) {
     this.dialogConfig = new MatDialogConfig();
   }
 

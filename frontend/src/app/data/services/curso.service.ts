@@ -3,13 +3,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
 import {Curso} from '../schema/Curso';
+import {URL_BACKEND} from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class CursoService {
-  private urlEndPoint = 'http://localhost:8080/api/cursos';
+  private urlEndPoint =  URL_BACKEND + '/api/cursos';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

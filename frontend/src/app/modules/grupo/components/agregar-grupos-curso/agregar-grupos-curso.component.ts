@@ -45,7 +45,7 @@ export class AgregarGruposCursoComponent implements OnInit {
     buttonsStyling: false,
   });
 
-  constructor(private dialog: MatDialog, private authService: AuthService, private grupoService: GrupoService) {
+  constructor(private dialog: MatDialog, public authService: AuthService, public grupoService: GrupoService) {
     this.dialogConfig = new MatDialogConfig();
   }
 

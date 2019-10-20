@@ -33,7 +33,7 @@ export class AgregarSubseccionMaterialGrupoComponent implements OnInit {
   // accesso a constante
   private constantes: CONSTANTES;
 
-  constructor( private dialog: MatDialog, private authService: AuthService, private subseccionMaterialService: SubseccionMaterialService) {
+  constructor( private dialog: MatDialog, public authService: AuthService, public subseccionMaterialService: SubseccionMaterialService) {
     this.dialogConfig = new MatDialogConfig();
     this.constantes = new CONSTANTES();
   }
@@ -89,7 +89,7 @@ export class AgregarSubseccionMaterialGrupoComponent implements OnInit {
           // se dispara el mensaje
           Swal.fire( '¡Éxtio al agregar!', response.mensaje , 'success');
           // se cierra el modal
-          this.cerrarAgregarSBM()
+          this.cerrarAgregarSBM();
           // desubscribirse
           request.unsubscribe();
         }

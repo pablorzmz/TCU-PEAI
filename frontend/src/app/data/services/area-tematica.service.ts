@@ -2,6 +2,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {AuthService} from './auth.service';
+import {URL_BACKEND} from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class AreaTematicaService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  readonly urlEndpoint = 'http://localhost:8080/api/areas_tematicas';
+  readonly urlEndpoint =  URL_BACKEND + '/api/areas_tematicas';
 
   getAreasTematicasInstitucion(nombreInstitucion: string): Observable<any>  {
     const rutaConsultarAreasTematicas = '/listar_areas_tematicas_de_institucion';

@@ -17,9 +17,9 @@ export class ListarCursosComponent implements OnInit {
   // Se obtienen las contantes de permisos
   constantes = new CONSTANTES();
 
-  constructor(private cursoService: CursoService,
+  constructor(public cursoService: CursoService,
               private activatedRoute: ActivatedRoute,
-              private authService: AuthService) { }
+              public authService: AuthService) { }
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe( params => {

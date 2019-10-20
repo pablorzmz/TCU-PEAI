@@ -24,7 +24,7 @@ export class EliminarSubseccionMaterialGrupoComponent implements OnInit {
   // acceso a las constantes
   private constantes: CONSTANTES;
 
-  constructor( private authService: AuthService, private sbmService: SubseccionMaterialService ) {
+  constructor( public authService: AuthService, public sbmService: SubseccionMaterialService ) {
     this.constantes = new CONSTANTES();
   }
 

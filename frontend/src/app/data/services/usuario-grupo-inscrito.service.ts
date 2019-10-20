@@ -4,12 +4,13 @@ import {AuthService} from './auth.service';
 import {Observable} from 'rxjs';
 import {UsuarioGrupoInscritoPK} from '../schema/UsuarioGrupoInscritoPK';
 import {GrupoPK} from '../schema/GrupoPK';
+import {URL_BACKEND} from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioGrupoInscritoService {
-  private urlEndPoint = 'http://localhost:8080/api/usr_grp_incs/';
+  private urlEndPoint =  URL_BACKEND +  '/api/usr_grp_incs/';
 
   constructor(private http: HttpClient,
               private authService: AuthService) { }

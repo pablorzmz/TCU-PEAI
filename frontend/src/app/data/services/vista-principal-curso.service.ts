@@ -4,6 +4,7 @@ import {Observable, throwError} from 'rxjs';
 import {AuthService} from './auth.service';
 import {catchError, map} from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import {URL_BACKEND} from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class VistaPrincipalCursoService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
-  readonly urlEndpoint = 'http://localhost:8080/api/vista_principal_curso';
+  readonly urlEndpoint =  URL_BACKEND + '/api/vista_principal_curso';
 
   /**
    * Método principal del servicio para obtener la información básica del curso

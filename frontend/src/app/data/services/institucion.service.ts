@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {AuthService} from './auth.service';
+import {URL_BACKEND} from '../../config/config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InstitucionService {
-  private urlEndPoint = 'http://localhost:8080/api/instituciones';
+  private urlEndPoint = URL_BACKEND + '/api/instituciones';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 

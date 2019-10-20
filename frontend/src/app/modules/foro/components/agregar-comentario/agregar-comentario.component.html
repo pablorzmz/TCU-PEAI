@@ -1,0 +1,12 @@
+<form [formGroup]="comentarForm">
+  <div class="form-group my-0">
+    <textarea  type="textarea" autocomplete="off"
+               formControlName="comentario"
+               id="comentario" class="form-control"
+               maxlength="100"
+               placeholder="Escribe un comentario"
+               [minlength]="1"
+               required (keydown.enter)="comentarForm.valid && agregarComentario()"
+               rows="2" style="resize: none"></textarea>
+  </div>
+</form>

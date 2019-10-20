@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {Routes, RouterModule, ExtraOptions} from '@angular/router';
 import {AuthGuardService} from '../../core/guard/auth.guard';
 import {ListaEstudiantesGrupoComponent} from './pages/lista-estudiantes-grupo/lista-estudiantes-grupo.component';
 
+const routerOptions: ExtraOptions = {
+  useHash: false,
+  anchorScrolling: 'enabled'
+};
 
 const routes: Routes = [
   {
@@ -13,7 +17,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    RouterModule.forChild(routes),
+    RouterModule.forRoot(routes, routerOptions)
+  ],
   exports: [RouterModule]
 })
 export class GrupoRoutingModule {

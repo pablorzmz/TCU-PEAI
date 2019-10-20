@@ -7,7 +7,16 @@ import com.paei.springboot.backend.apirest.exceptions.MaterialDataException;
 import com.paei.springboot.backend.apirest.exceptions.SubseccionMaterialNotFoundException;
 import com.paei.springboot.backend.apirest.model.entity.real.*;
 import com.paei.springboot.backend.apirest.services.real.*;
+import com.paei.springboot.backend.apirest.exceptions.MaterialNotFoundException;
+import com.paei.springboot.backend.apirest.exceptions.SolicitudInvalidaException;
+import com.paei.springboot.backend.apirest.model.entity.real.Curso;
+import com.paei.springboot.backend.apirest.model.entity.real.Grupo;
+import com.paei.springboot.backend.apirest.model.entity.real.Material;
+import com.paei.springboot.backend.apirest.model.entity.real.SubseccionMaterial;
+import com.paei.springboot.backend.apirest.services.real.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -15,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import java.net.MalformedURLException;
 import javax.validation.Valid;
 import java.util.*;
 
@@ -176,4 +186,51 @@ public class MaterialController {
             throw new MaterialDataException(e.toString());
         }
     }
+    /**
+     * Método que permite recuperar un material especifico de una subseccion especifica
+     * @param idMaterial Id del material
+     * @param idSubSeccion Id de la subseccion a la que pertenece
+     * @return El material solicitado o una excepcion de que no existe
+     */
+    @GetMapping("/obtener_material_subseccion")
+    public Material obtenerMaterialSubseccion( @RequestParam String idMaterial, @RequestParam Long idSubSeccion) {
+        Material material = iMaterialService.getById(idMaterial, idSubSeccion);
+        if(material != null){
+            // Si el material existe se retorna
+            return material;
+        }
+        else {
+            // Si el material no existe se retorna una excecpcion
+            throw new MaterialNotFoundException(idMaterial);
+        }
+    }
+
+    /**
+     * Método que permite recuperar el contenido de un material especifico de una subseccion especifica
+     * @param nombreMaterial es el url del material en la BD
+     * @return El contenido de material solicitado o una excepcion si falla la busqueda
+     */
+    @GetMapping("/uploads/materiales/{nombreMaterial:.+}")
+    public ResponseEntity<Resource> verMaterial(@PathVariable String nombreMaterial){
+        Resource recurso = null;
+
+        // Se pide el recurso
+        try {
+            recurso = iUploadMaterialService.cargar(nombreMaterial);
+        }catch (MalformedURLException e){
+            recurso = null;
+        }
+
+        // Se envia el contenido con header de contenido y se indica cuál es el archivo
+        HttpHeaders cabecera = new HttpHeaders();
+
+        if(recurso == null){
+            cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + "" + "\"");
+        }else {
+            cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"");
+        }
+
+        return new ResponseEntity<Resource>(recurso, cabecera, HttpStatus.OK);
+    }
+
 }

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import com.paei.springboot.backend.apirest.model.entity.real.MaterialPK;
+
 @Service
 public class MaterialServiceImpl implements IMaterialService {
 
@@ -33,4 +35,16 @@ public class MaterialServiceImpl implements IMaterialService {
     public void eliminarMaterialPorId(MaterialPK materialPK) {
         iMaterialDao.deleteById(materialPK);
     }
+
+    /**
+     * Método que retorna un material según si id
+     * @param idMaterial es el id del material
+     * @return retorna el material que tiene ese id
+     */
+    @Override
+    public Material getById(String idMaterial, Long idSubSeccionMaterial){
+        MaterialPK materialPK = new MaterialPK(idMaterial, idSubSeccionMaterial);
+        return iMaterialDao.findById(materialPK).orElse(null);
+    };
+
 }

@@ -86,7 +86,7 @@ export class AgregarSubseccionMaterialGrupoComponent implements OnInit {
           // se emite el nuevo valor
           const sbmRecibida: SubseccionMaterial = response.nuevaSBM as SubseccionMaterial;
           this.sbmValueChange.emit({ sbm: sbmRecibida } );
-          // se dispara el mensaje
+          // se dispara el comentario
           Swal.fire( '¡Éxtio al agregar!', response.mensaje , 'success');
           // se cierra el modal
           this.cerrarAgregarSBM()
@@ -95,7 +95,7 @@ export class AgregarSubseccionMaterialGrupoComponent implements OnInit {
         }
       );
     } else {
-      // mostrar mensaje de acceso no autorizado
+      // mostrar comentario de acceso no autorizado
       Swal.fire( 'Accesso no autorizado', 'No tiene permisos para realizar esta acción.' , 'error');
     }
   }

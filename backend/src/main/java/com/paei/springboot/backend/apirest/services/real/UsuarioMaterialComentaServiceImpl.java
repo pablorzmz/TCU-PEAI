@@ -5,6 +5,12 @@ import com.paei.springboot.backend.apirest.model.entity.real.MaterialPK;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.paei.springboot.backend.apirest.model.entity.real.UsuarioMaterialComenta;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
 public class UsuarioMaterialComentaServiceImpl implements IUsuarioMaterialComentaService {
 
@@ -15,4 +21,24 @@ public class UsuarioMaterialComentaServiceImpl implements IUsuarioMaterialComent
     public void eliminarComentariosDeMaterial(MaterialPK materialPK) {
         iUsuarioMaterialComentaDao.eliminarComentarioDeMaterial(materialPK);
     }
+
+    /**
+     * Método que agrega comentarios a un materia
+     * @param usuarioMaterialComenta es el comentario a guardar
+     * @return retorna el comentario guardado
+     */
+    @Override
+    public UsuarioMaterialComenta agregarComentarioMaterial(UsuarioMaterialComenta usuarioMaterialComenta) {
+        return iUsuarioMaterialComentaDao.save(usuarioMaterialComenta);
+    }
+
+    /**
+     * Encuentra todos los comentarios de un material según su pk, sin fecha
+     * @param materialPK el pk del material
+     * @return Lista de comentarios guardados
+     */
+    @Override
+    public List<UsuarioMaterialComenta> findAllByMaterialPK(MaterialPK materialPK){
+        return iUsuarioMaterialComentaDao.findAllByMaterialPK(materialPK);
+    };
 }

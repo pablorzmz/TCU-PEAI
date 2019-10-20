@@ -17,13 +17,16 @@ import { EditarSubseccionMaterialGrupoComponent } from
 import { CrearMaterialSubseccionComponent } from './components/crear-material-subseccion/crear-material-subseccion.component';
 import { ListaEstudiantesGrupoComponent } from './pages/lista-estudiantes-grupo/lista-estudiantes-grupo.component';
 import { EliminarMaterialGrupoComponent } from './components/eliminar-material-grupo/eliminar-material-grupo.component';
+import {ForoModule} from '../foro/foro.module';
+import { VerMaterialComponent } from './components/ver-material/ver-material.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
 @NgModule({
   declarations: [ListarGruposCursoComponent, AgregarGruposCursoComponent,
     AgregarSubseccionMaterialGrupoComponent, EliminarSubseccionMaterialGrupoComponent, EditarSubseccionMaterialGrupoComponent,
     EditarSubseccionMaterialGrupoComponent, ListaEstudiantesGrupoComponent, CrearMaterialSubseccionComponent,
-    EliminarMaterialGrupoComponent],
+    EliminarMaterialGrupoComponent, VerMaterialComponent],
   exports: [
     ListarGruposCursoComponent,
     AgregarSubseccionMaterialGrupoComponent,
@@ -38,7 +41,9 @@ import { EliminarMaterialGrupoComponent } from './components/eliminar-material-g
     MatDialogModule,
     MatIconModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ForoModule,
+    NgxExtendedPdfViewerModule
   ],
   providers: [
     GrupoService

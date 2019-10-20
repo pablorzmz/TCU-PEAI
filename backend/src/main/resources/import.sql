@@ -9,9 +9,9 @@ INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,no
 INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('bran24', 'Dota Noria', 'bran24@yopmail.com', '1995-01-01', 'ruta/foto/server', 'Brandon',1, '$2a$10$8RPnZmMcNjAYLExOjvanvudAmfHJ3wO2uoQsCSzQrjIAeZQtN.7RS', 'Otro', '76382838');
 
 /*Estudiantes*/
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('steveen', 'Fort Castro', 'steveen@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Steven',1, '$2a$10$sSyjvSJM7JIuQ8XyUj7xz.DIj6ba0jMhTWOF8PYH0KaBn.mhNB3A.', 'Otro', '84376838');
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('stephXO', 'Loria Perez', 'sthephanieLP@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Sthephanie',1, '$2a$10$mbgCttJe87jG8XEteSeds.9hDFeKGdc/SCMcrPgFUpNoE1Z9nmU7.', 'Otro', '88288738');
-INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('devora45', 'Zeledón Álvarez', 'nanaAL@yopmail.com', '1998-01-01', 'ruta/foto/server', 'Devora',1, '$2a$10$GeCFnD90HZLsd1GXVHd.nuVwHMtGgE11WE0IIXAWtYqWMIPI.KFwi', 'Otro', '71232838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('steveen', 'Fort Castro', 'steveen@yopmail.com', '1998-01-01', 'https://icon-library.net/images/default-user-icon/default-user-icon-14.jpg', 'Steven',1, '$2a$10$sSyjvSJM7JIuQ8XyUj7xz.DIj6ba0jMhTWOF8PYH0KaBn.mhNB3A.', 'Otro', '84376838');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('stephXO', 'Loria Perez', 'sthephanieLP@yopmail.com', '1998-01-01', 'https://icon-library.net/images/default-user-icon/default-user-icon-14.jpg', 'Sthephanie',1, '$2a$10$mbgCttJe87jG8XEteSeds.9hDFeKGdc/SCMcrPgFUpNoE1Z9nmU7.', 'Otro', '88288738');
+INSERT INTO usuario (nombre_usuario, apellidos, correo, fecha_nacimiento,foto,nombre,habilitado,salt,sexo,telefono) VALUES ('devora45', 'Zeledón Álvarez', 'nanaAL@yopmail.com', '1998-01-01', 'https://icon-library.net/images/default-user-icon/default-user-icon-14.jpg', 'Devora',1, '$2a$10$GeCFnD90HZLsd1GXVHd.nuVwHMtGgE11WE0IIXAWtYqWMIPI.KFwi', 'Otro', '71232838');
 
 
 /*Instituciones*/
@@ -140,7 +140,7 @@ INSERT INTO subseccion_material(curso_id, periodo_tiempo, numero, nombre, habili
 /* Se insertan algunos materiales */
 
 /* Grupo 1, Curso 4 */
-INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',1, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Electromagnetismo',1, 'PDF de electromagnetismo (Conceptos básicos)', 'Archivo PDF', 'Carpeta al server', null);
 INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',2, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
 INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',3, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
 
@@ -168,3 +168,6 @@ INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,ca
 
 /*Grupo 2, Curso 3*/
 INSERT INTO material (material_id,subseccion_material_id,descripcion,tipo,url,categoria_id) VALUES ('Material 1',16, 'PDF simple de materia 1', 'Archivo PDF', 'Carpeta al server', null);
+
+/*Usuario_Material_Comenta*/
+INSERT INTO usuario_material_comenta (nombre_usuario, fecha, texto_comentario, visible, material_id, subseccion_material_id) VALUES ('steveen', current_date() , 'Excelente para aprender los conceptos basicos de electromagnetismo :)', true, 'Electromagnetismo', 1);

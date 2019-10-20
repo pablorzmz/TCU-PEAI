@@ -33,4 +33,12 @@ public interface IMaterialService {
      * @param materialPK Id del material
      */
     public void eliminarMaterialPorId(MaterialPK materialPK);
+
+    /**
+     * Método que retorna un material según si id
+     * @param idMaterial es el id del material
+     * @param idSubSeccionMaterial es el id de la subseccion a la que pertenece
+     * @return retorna el material que tiene ese id
+     */
+    Material getById(String idMaterial, Long idSubSeccionMaterial);
 }

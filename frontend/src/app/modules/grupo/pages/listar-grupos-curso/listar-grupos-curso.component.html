@@ -2,9 +2,9 @@
   <!--Navbar-->
   <div class="row mx-0 w-100 my-4">
     <div class="col-sm">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between flex-wrap">
         <h5>Grupos</h5>
-        <app-agregar-grupos-curso *ngIf="this.authService.validarTienePermisoEnAlgunPerfilDeInstitucion(constantes.AGREGAR_GRUPOS.ID, this.nombreInstitucion)" (valueChange)="actualizarGrupos($event)" [curso]="curso"></app-agregar-grupos-curso>
+        <app-agregar-grupos-curso class="flex-shrink-0" *ngIf="this.authService.validarTienePermisoEnAlgunPerfilDeInstitucion(constantes.AGREGAR_GRUPOS.ID, this.nombreInstitucion)" (valueChange)="actualizarGrupos($event)" [curso]="curso"></app-agregar-grupos-curso>
       </div>
       <div *ngIf="grupos.length == 0" class="alert alert-warning my-4" role="alert">
         Este curso no cuenta con grupos asociados
@@ -47,7 +47,7 @@
             <div class="card" *ngIf="grupo.id.numero == sbm.grupo.id.numero">
               <div class="card-header" style="font-style: oblique">
                 <div class="row">
-                  <div class="col">
+                  <div class="col-sm">
                     Subsección: {{' ' + sbm.nombre}}
                   </div>
                   <div class="mx-3" *ngIf="sbm.habilitada">
@@ -63,11 +63,11 @@
                 </div>
               </div>
               <div class="card-body">
-                <div class="row">
-                  <div class="d-flex ml-auto mx-3 my-2 overflow-auto">
-                      <app-crear-material-subseccion [grupo]="grupo" (nuevoMaterialValueChange)="actualizarNuevoMaterial($event)" [sbm]="sbm"></app-crear-material-subseccion>
-                      <app-editar-subseccion-material-grupo (sbmActualizarValueChange)="actualizarSubseccionMaterial($event)" [grupo]="grupo" [sbmAEditar]="sbm" class="mx-1"></app-editar-subseccion-material-grupo>
-                      <app-eliminar-subseccion-material-grupo (sbmEliminarValueChange)="eliminarSubseccionMaterial($event)" [nombreInstitucion]="grupo.curso.areaTematica.institucion.institucionPK.nombre" [sbm]="sbm"></app-eliminar-subseccion-material-grupo>
+                <div class="row my-2">
+                  <div class="d-flex flex-wrap justify-content-end w-100 mx-3">
+                    <app-crear-material-subseccion [grupo]="grupo" (nuevoMaterialValueChange)="actualizarNuevoMaterial($event)" [sbm]="sbm"></app-crear-material-subseccion>
+                    <app-editar-subseccion-material-grupo (sbmActualizarValueChange)="actualizarSubseccionMaterial($event)" [grupo]="grupo" [sbmAEditar]="sbm" class="mx-1"></app-editar-subseccion-material-grupo>
+                    <app-eliminar-subseccion-material-grupo (sbmEliminarValueChange)="eliminarSubseccionMaterial($event)" [nombreInstitucion]="grupo.curso.areaTematica.institucion.institucionPK.nombre" [sbm]="sbm"></app-eliminar-subseccion-material-grupo>
                   </div>
                 </div>
                 <div class="row">
@@ -79,7 +79,7 @@
                           Sin materiales disponibles.
                         </p>
                         <div *ngFor="let m of materiales.sbm_material">
-                          <div class="card my-2">
+                          <div class="card mb-2">
                             <div class="card-header" style="background-color: #DCEDF6">
                               <h6 class="card-title" style="color: #005A70">
                                 {{m.id.nombre}}
@@ -96,7 +96,7 @@
                             <div class="card-footer bg-transparent">
                               <div class="row">
                                 <div class="col">
-                                  <button type="button" class="btn btn-primary btn-sm">Ir al material</button>
+                                  <button [routerLink]="['material',m.id.nombre,m.id.subSeccionMaterialId]" type="button" class="btn btn-primary btn-sm">Ir al material</button>
                                 </div>
                                 <div class="col">
                                   <app-eliminar-material-grupo (materialEliminarValueChange)="eliminarMaterial($event)" [grupo]="grupo" [materialPk]="m.id" class="float-right"></app-eliminar-material-grupo>

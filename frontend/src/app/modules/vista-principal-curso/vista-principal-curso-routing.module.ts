@@ -2,14 +2,20 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AuthGuardService} from '../../core/guard/auth.guard';
 import {VistaPrincipalCursoComponent} from './pages/principal/vista-principal-curso.component';
+import {VerMaterialComponent} from '../grupo/components/ver-material/ver-material.component';
 
 
 const routes: Routes = [
   {
     path: 'vista_principal_curso/:id',
-    pathMatch: 'full',
     component: VistaPrincipalCursoComponent,
-    canActivate: [AuthGuardService]
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: 'material/:idMaterial/:idSubSeccion',
+        component: VerMaterialComponent
+      }
+    ]
   }
 ];
 

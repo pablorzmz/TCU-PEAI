@@ -1,0 +1,33 @@
+<div class="row" >
+  <div class="col-md-12">
+    <div class="d-flex align-items-center w-100">
+      <img src="https://icon-library.net/images/default-user-icon/default-user-icon-14.jpg"  style="width: 40px; height: 40px" class="img-fluid mr-2" alt="Imagen de perfil">
+      <app-agregar-comentario style="width: 90vh" [idMaterial]="idMaterial" [idSubSeccion]="idSubSeccion" (valueChange)="actualizarcomentarios($event)" class="my-0"></app-agregar-comentario>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="d-flex align-items-center justify-content-start">
+        <button class="btn btn-outline-primary d-flex align-items-center mr-1 my-2" [disabled]="cargando" (click)="obtenerComentarios()">
+          <mat-icon *ngIf="!cargando" class="mr-1">cached</mat-icon>
+          <mat-spinner *ngIf="cargando" class="mr-1" diameter="20" ></mat-spinner>
+          Refrescar
+        </button>
+      <div class="d-flex align-items-center my-2">
+        <button class="btn btn-outline-primary d-flex align-items-center mr-1" [disabled]="cargando" *ngIf="comentarios && comentarios.length > 1" (click)="ordenarComentarios()">
+          <mat-icon *ngIf="ordenadoRecienteAntiguo" class="mr-1">keyboard_arrow_down</mat-icon>
+          <mat-icon *ngIf="!ordenadoRecienteAntiguo" class="mr-1">keyboard_arrow_up</mat-icon>
+          Ordenar
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 d-flex justify-content-start">
+    <div *ngIf="comentarios" style="height: 50vh; overflow-x: hidden;overflow-y: scroll">
+      <div *ngFor="let comentario of comentarios">
+        <div class="my-3">
+          <app-comentario  [nombrePersona]="comentario.nombrePersona" [usuarioMaterialComenta]="comentario.usuarioMaterialComenta"></app-comentario>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

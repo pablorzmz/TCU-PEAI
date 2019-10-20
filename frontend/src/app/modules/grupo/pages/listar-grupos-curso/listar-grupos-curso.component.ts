@@ -16,6 +16,7 @@ import {Material} from '../../../../data/schema/Material';
 })
 export class ListarGruposCursoComponent implements OnInit {
 
+  // tslint:disable-next-line:max-line-length
   constructor(private route: ActivatedRoute, private grupoService: GrupoService, private authService: AuthService, private materialService: MaterialService) { }
 
   // Se agrega la lista de subsecciones de materiales para ajustar por grupo

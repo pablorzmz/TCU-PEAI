@@ -27,6 +27,10 @@ import java.util.Arrays;
 @EnableAuthorizationServer
 
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
+
+    // Duración del token es de 5h por el momento
+    private static final int TIEMPO_TOKEN = 5 * ( 60 * 60 );
+
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
@@ -63,8 +67,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .secret(passwordEncoder.encode("12345"))
                 .scopes("read","write")
                 .authorizedGrantTypes("password","refresh_token")
-                .accessTokenValiditySeconds(3600)
-                .refreshTokenValiditySeconds(3600)
+                .accessTokenValiditySeconds(TIEMPO_TOKEN)
+                .refreshTokenValiditySeconds(TIEMPO_TOKEN)
         ;
     }
 

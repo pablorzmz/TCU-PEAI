@@ -37,6 +37,9 @@ export class AgregarGruposCursoComponent implements OnInit {
   // Se obtienen las contantes de permisos
   constantes = new CONSTANTES();
 
+  // control boton creado habilitado o no
+  btnCrearHabilitado: boolean;
+
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success m-1',
@@ -47,6 +50,7 @@ export class AgregarGruposCursoComponent implements OnInit {
 
   constructor(private dialog: MatDialog, private authService: AuthService, private grupoService: GrupoService) {
     this.dialogConfig = new MatDialogConfig();
+    this.btnCrearHabilitado = true;
   }
 
   ngOnInit() {
@@ -105,7 +109,9 @@ export class AgregarGruposCursoComponent implements OnInit {
    */
    crearGrupo(): any {
      // Se verifica si tiene el permiso
-    if (this.authService.validarTienePermisoEnAlgunPerfil(this.constantes.AGREGAR_GRUPOS.ID)) {
+    if ( this.authService.validarTienePermisoEnAlgunPerfil(this.constantes.AGREGAR_GRUPOS.ID) && this.btnCrearHabilitado ) {
+      // se pone el boton como deshabilitado
+      this.btnCrearHabilitado = false;
       // Variable que almacena el grupo que será guardado
       let grupo: Grupo;
       // tslint:disable-next-line:max-line-length
@@ -120,11 +126,16 @@ export class AgregarGruposCursoComponent implements OnInit {
           // Se emite el cambio de que ya ha sido creado el grupo
           this.valueChange.emit({grupo});
           // Quitamos la subscripcion
+          // se activa nuevamente el boton
+          this.btnCrearHabilitado = true;
           request.unsubscribe();
         },
         // En caso de que no se reciba correctamente se lanza una excepcion
         // Esto se implementa cuando esté el interceptor
         err => {
+          // se activa nuevamente el boton
+          this.btnCrearHabilitado = true;
+          // se maneja el error.
           this.manejarError(err);
         }
       );

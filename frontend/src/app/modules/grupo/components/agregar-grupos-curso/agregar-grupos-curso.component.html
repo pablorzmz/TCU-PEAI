@@ -29,7 +29,7 @@
           <div class="text-danger" *ngIf="profesor.touched && profesor.status== 'INVALID' ">El valor del profesor seleccionado es incorrecto</div>
         </div>
         <div class="d-flex justify-content-end">
-          <button type="submit" [disabled]="agregarGrupoForm.invalid" (click)="crearGrupo()" class="btn btn-primary mr-1">
+          <button type="submit" [disabled]="agregarGrupoForm.invalid || !this.btnCrearHabilitado" (click)="crearGrupo()" class="btn btn-primary mr-1">
             Agregar
           </button>
           <button (click)="cerrarAgregarGrupo()" class="btn btn-danger">

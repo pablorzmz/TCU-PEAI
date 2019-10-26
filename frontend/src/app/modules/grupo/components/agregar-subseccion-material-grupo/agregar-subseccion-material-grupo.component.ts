@@ -30,12 +30,16 @@ export class AgregarSubseccionMaterialGrupoComponent implements OnInit {
   // Form para controlar los campos
   agregarSubseccionMaterialForm: FormGroup;
 
+  // Bloqueo de boton
+  bloqueoBtnSMG: boolean
+
   // accesso a constante
   private constantes: CONSTANTES;
 
   constructor( private dialog: MatDialog, private authService: AuthService, private subseccionMaterialService: SubseccionMaterialService) {
     this.dialogConfig = new MatDialogConfig();
     this.constantes = new CONSTANTES();
+    this.bloqueoBtnSMG = false;
   }
 
   ngOnInit() {
@@ -73,6 +77,7 @@ export class AgregarSubseccionMaterialGrupoComponent implements OnInit {
    * Metodo que realiza la creación de la nueva subsección de material
    */
   crearSubseccionMaterial(): void {
+    this.bloqueoBtnSMG = true;
     // Si el usuario tiene permiso para hacerlo
     if (this.puedeAgregarSubseccionMaterial()) {
       // Se crea una nueva subsección de material
@@ -89,12 +94,14 @@ export class AgregarSubseccionMaterialGrupoComponent implements OnInit {
           // se dispara el comentario
           Swal.fire( '¡Éxtio al agregar!', response.mensaje , 'success');
           // se cierra el modal
-          this.cerrarAgregarSBM()
+          this.cerrarAgregarSBM();
+          this.bloqueoBtnSMG = false;
           // desubscribirse
           request.unsubscribe();
         }
       );
     } else {
+      this.bloqueoBtnSMG = false;
       // mostrar comentario de acceso no autorizado
       Swal.fire( 'Accesso no autorizado', 'No tiene permisos para realizar esta acción.' , 'error');
     }

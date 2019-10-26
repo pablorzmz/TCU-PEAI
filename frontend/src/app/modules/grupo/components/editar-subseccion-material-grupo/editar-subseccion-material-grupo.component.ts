@@ -36,9 +36,14 @@ export class EditarSubseccionMaterialGrupoComponent implements OnInit {
   // acceso a los valores constantes
   constantes: CONSTANTES;
 
+  // controlar desactivar / activar boton para editar
+  activarBtnEditar: boolean;
+
+
   constructor(private dialog: MatDialog, private authService: AuthService, private sbmService: SubseccionMaterialService) {
     this.dialogConfig = new MatDialogConfig();
     this.constantes = new CONSTANTES();
+    this.activarBtnEditar = true;
   }
 
   ngOnInit() {
@@ -67,6 +72,8 @@ export class EditarSubseccionMaterialGrupoComponent implements OnInit {
    * Metodo principal para editar finalmente la sbm
    */
   editarSBM(): void {
+    // se desactiva el boton
+    this.activarBtnEditar = false;
     // se establece el nuevo nombre para la subsección material
     this.sbmAEditar.nombre = this.editarSBMForm.get('nombreSBM').value;
     // Se establece el grupo
@@ -82,9 +89,15 @@ export class EditarSubseccionMaterialGrupoComponent implements OnInit {
           confirmButtonText: 'Aceptar'
         });
         // Se emite para actualizar
-        this.sbmActualizarValueChange.emit({sbm: this.sbmAEditar})
+        this.sbmActualizarValueChange.emit({sbm: this.sbmAEditar});
+        // se activa el boton
+        this.activarBtnEditar = true;
         // se desubscribe
         request.unsubscribe();
+      },
+      error => {
+        // se activa el boton
+        this.activarBtnEditar = true;
       }
     );
     // Se cierra el modal

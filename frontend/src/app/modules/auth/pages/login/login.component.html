@@ -20,7 +20,7 @@
                 <button type="button" (click)="mensajeRegistro()" class="btn btn-primary ">Registrarme</button>
               </div>
               <div class="col-sm p-2">
-                <button (click)="login()" type="Submit" class="btn btn-warning">Iniciar Sesión</button>
+                <button [disabled]="bloqueoBtnIS" (click)="login()" type="Submit" class="btn btn-warning">Iniciar Sesión</button>
               </div>
             </div>
         </form>

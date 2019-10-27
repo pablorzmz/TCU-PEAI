@@ -22,7 +22,7 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button type="submit" [disabled]="editarSBMForm.invalid" (click)="editarSBM()" class="btn btn-primary mr-1">
+      <button type="submit" [disabled]="editarSBMForm.invalid  ||  !activarBtnEditar" (click)="editarSBM()" class="btn btn-primary mr-1">
         Editar
       </button>
       <button (click)="cerrarEditarSBMForm()" class="btn btn-danger">

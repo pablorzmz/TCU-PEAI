@@ -31,7 +31,7 @@ export class AgregarSubseccionMaterialGrupoComponent implements OnInit {
   agregarSubseccionMaterialForm: FormGroup;
 
   // Bloqueo de boton
-  bloqueoBtnSMG: boolean
+  bloqueoBtnSMG: boolean;
 
   // accesso a constante
   private constantes: CONSTANTES;
@@ -98,6 +98,8 @@ export class AgregarSubseccionMaterialGrupoComponent implements OnInit {
           this.bloqueoBtnSMG = false;
           // desubscribirse
           request.unsubscribe();
+        }, error => {
+          this.bloqueoBtnSMG = false;
         }
       );
     } else {

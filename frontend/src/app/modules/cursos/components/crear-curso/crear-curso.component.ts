@@ -45,6 +45,9 @@ export class CrearCursoComponent implements OnInit {
   // Se obtienen las contantes de permisos
   constantes = new CONSTANTES();
 
+  // Se usa para indicar si el curso está siendo creado
+  creandoCurso = false;
+
   swalWithBootstrapButtons = Swal.mixin({
     customClass: {
       confirmButton: 'btn btn-success m-1',
@@ -150,6 +153,7 @@ export class CrearCursoComponent implements OnInit {
   crearCurso(): any {
     // Se verifica si tiene el permiso
     if (this.authService.validarTienePermisoEnAlgunPerfilDeInstitucion(this.constantes.CREAR_CURSO.ID, this.institucionCurso.value)) {
+      this.creandoCurso = true;
       // Variable que almacena el grupo que será guardado
       const cursoN: Curso = new Curso();
       cursoN.nombre = this.nombreCurso.value;
@@ -159,6 +163,8 @@ export class CrearCursoComponent implements OnInit {
         res => {
           // Si lo recibe se le asigna el grupo a la variable
           const curso = res as Curso;
+          // El curso ha sido creado
+          this.creandoCurso = false;
           // Se cierra el dialog
           this.cerrarCrearCurso();
           // Se indica que el grupo ha sido creado
@@ -172,6 +178,8 @@ export class CrearCursoComponent implements OnInit {
         // Esto se implementa cuando esté el interceptor
         err => {
           this.manejarError(err);
+          // El curso no ha sido creado
+          this.creandoCurso = false;
         }
       );
     } else {

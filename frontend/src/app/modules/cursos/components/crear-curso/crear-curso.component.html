@@ -43,7 +43,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" data-dismiss="modal" [disabled]="this.institucionCurso.value == 'Seleccione la institucion'" [disabled]="crearCursoForm.invalid" (click)="crearCurso()" class="btn btn-primary mr-1">
+        <button type="submit" data-dismiss="modal" [disabled]="this.institucionCurso.value == 'Seleccione la institucion'" [disabled]="crearCursoForm.invalid  || this.creandoCurso" (click)="crearCurso()" class="btn btn-primary mr-1">
           Crear
         </button>
         <button data-dismiss="modal" (click)="cerrarCrearCurso()" class="btn btn-danger">

@@ -7,9 +7,8 @@
           <h3 class="my-4">Iniciar Sesión</h3>
           <form method="post">
           <div class="form-group">
-            <label for="nombreUsuario">Correo</label>
+            <label for="nombreUsuario">Usuario</label>
             <input [(ngModel)]="usuario.usuarioPK.nombreUsuario" type="text" class="form-control" id="nombreUsuario" name="nombreUsuario" placeholder="Ingrese su nombre de usuario" required autofocus>
-            <small id="nombreUsuarioHelp" class="form-text text-muted">Nunca comparta su correo con alguien mas.</small>
           </div>
           <div class="form-group">
             <label for="salt">Contraseña</label>
@@ -20,7 +19,7 @@
                 <button type="button" (click)="mensajeRegistro()" class="btn btn-primary ">Registrarme</button>
               </div>
               <div class="col-sm p-2">
-                <button (click)="login()" type="Submit" class="btn btn-warning">Iniciar Sesión</button>
+                <button [disabled]="bloqueoBtnIS" (click)="login()" type="Submit" class="btn btn-warning">Iniciar Sesión</button>
               </div>
             </div>
         </form>

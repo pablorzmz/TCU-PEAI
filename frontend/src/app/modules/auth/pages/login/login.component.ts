@@ -12,11 +12,14 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 
   usuario: Usuario;
+  bloqueoBtnIS: boolean;
+
   private  RUTA_REDIRECCION = '/instituciones';
 
   constructor(private  authService: AuthService,
               private router: Router) {
     this.usuario = new Usuario();
+    this.bloqueoBtnIS = false;
   }
 
   ngOnInit() {
@@ -33,6 +36,7 @@ export class LoginComponent implements OnInit {
     }
 
     login(): void {
+      this.bloqueoBtnIS = true;
       // Caso en que los campos del formulario sean vacíos
       if (this.usuario.usuarioPK.nombreUsuario == null || this.usuario.salt == null || this.usuario.usuarioPK.nombreUsuario === ''
         || this.usuario.salt === '') {
@@ -49,12 +53,14 @@ export class LoginComponent implements OnInit {
           this.authService.guardarToken(respuesta.access_token);
           this.authService.guardarPerfilesInstitucionUsuario(respuesta.perfiles_instituciones);
           this.authService.guardarPerfilesInstitucionesPermisosUsuario(respuesta.perfiles_instituciones_permisos);
+          this.bloqueoBtnIS = false;
           this.router.navigate([this.RUTA_REDIRECCION]);
           swal.fire('Bienvenido al sistema',
             '¡Hola ' + `${this.authService.usuario.nombre} ${this.authService.usuario.apellidos}!`,
             'success');
         },
         error => {
+            this.bloqueoBtnIS = false;
             if (error.status === 400 ) {
               swal.fire('Datos de inicio de sesión incorrectos',
                 'Usuario o contraseña incorrectos',

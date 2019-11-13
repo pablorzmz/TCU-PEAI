@@ -20,7 +20,7 @@
       </div>
       <!-- Botones de accion-->
       <div class="d-flex justify-content-end">
-        <button type="submit" [disabled]="agregarSubseccionMaterialForm.invalid" (click)="crearSubseccionMaterial()" class="btn btn-primary mr-1">
+        <button type="submit" [disabled]="agregarSubseccionMaterialForm.invalid || bloqueoBtnSMG" (click)="crearSubseccionMaterial()" class="btn btn-primary mr-1">
           Agregar
         </button>
         <button (click)="cerrarAgregarSBM()" class="btn btn-danger">

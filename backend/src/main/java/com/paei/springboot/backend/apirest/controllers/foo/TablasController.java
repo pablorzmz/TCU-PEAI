@@ -6,10 +6,14 @@ import com.paei.springboot.backend.apirest.services.foo.ITabla1Service;
 import com.paei.springboot.backend.apirest.services.foo.ITabla2Service;
 import com.paei.springboot.backend.apirest.services.foo.ITabla3Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -58,4 +62,21 @@ public class TablasController {
 
         return iTabla1Service.findAll();
     }
+
+    @GetMapping("/test_tonto")
+    public String retornoStringTonto(){
+        return "STRING TONTO";
+    }
+
+    @GetMapping("/test_tonto_2")
+    public ResponseEntity<?> retornoDatosTabla1(){
+        Map<String, Object> response = new HashMap<>();
+        response.put("datos",this.iTabla1Service.findAll());
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    public void establecerMock(ITabla1Service iTabla1Service){
+        this.iTabla1Service = iTabla1Service;
+    }
+
 }

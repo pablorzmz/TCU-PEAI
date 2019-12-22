@@ -7,10 +7,12 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestInstance( TestInstance.Lifecycle.PER_CLASS )
@@ -20,7 +22,9 @@ public class GrupoServiceTest {
     private final Long AREA_TEMATICA_ID_1 = 1234L;
     private final String CURSO_NOMBRE_1 =  "GrupoServiceTest_Curso_1";
     private final String USUARIO_NOMBRE_1 =  "GrupoServiceTest_USUARIO_1";
-    private final int GRUPO_NUMERO = 1;
+    private final int GRUPO_NUMERO_1 = 1;
+    private final int GRUPO_NUMERO_2 = 2;
+    private final int GRUPO_NUMERO_3 = 3;
     private final String GRUPO_PERIODO_TIEMPO = "GrupoServiceTest_Periodo_1";
 
     // Acceso al dao para poder insertar los valores reales en la base de datos y probar
@@ -87,8 +91,11 @@ public class GrupoServiceTest {
         institucionPK.setNombre( INSTITUCION_ID_1 );
         AreaTematica areaTematica = iAreaTematicaDao.findAreaTematicaByInstitucion( institucionPK ).get( 0 );
         Curso curso =  iCursoDao.findCursosByAreaTematica( areaTematica.getId() ).get( 0 );
+        List<Grupo> grupos = iGrupoDao.findGruposByCurso( curso.getId() );
         // Grupos
-        iGrupoDao.deleteById( new GrupoPK( curso.getId(), GRUPO_NUMERO, GRUPO_PERIODO_TIEMPO ) );
+        grupos.forEach( grupo -> {
+            iGrupoDao.delete( grupo );
+        } );
         //Usuarios
         Usuario usuario = new Usuario();
         usuario.setUsuarioPK( new UsuarioPK( USUARIO_NOMBRE_1 ) );
@@ -105,6 +112,47 @@ public class GrupoServiceTest {
     @Test
     @DisplayName("CrearNuevoGrupoCurso")
     void CrearNuevoGrupoCursoYObtenerGrupos(){
+        Map<String, Object> resultado = crearNuevoGrupo( GRUPO_NUMERO_1, GRUPO_PERIODO_TIEMPO, true );
+        // Obtener grupos de un curso
+        List<Grupo> grupos = iGrupoService.getGruposCurso(  ( (Curso)resultado.get( "curso" )).getId() );
+        // Assert cantidad
+        AtomicBoolean existeGrupo = new AtomicBoolean(false);
+        grupos.forEach( grupo -> {
+            Grupo grupoResultado = ( (Grupo)resultado.get( "grupo" ));
+            if ( grupo.getId().getNumero() == grupoResultado.getId().getNumero() ){
+                existeGrupo.set( true );
+            }
+        } );
+        assertTrue( existeGrupo.get() );
+    }
+
+    @DisplayName( "TestEncontrarGrupoPorId" )
+    @Test
+    void EncontrarGrupoPorId(){
+        Map<String, Object> resultado = crearNuevoGrupo( GRUPO_NUMERO_2, GRUPO_PERIODO_TIEMPO, true );
+        Grupo grupo = iGrupoService.findById( ((Grupo)resultado.get("grupo")).getId() );
+        assertNotEquals( null, grupo );
+        assertEquals( ((Grupo)resultado.get("grupo")).getId(), grupo.getId() );
+    }
+
+    @DisplayName( "EstablecerGrupoACurso" )
+    @Test
+    void establecerGrupoACurso(){
+        Map<String, Object> resultado = crearNuevoGrupo( 0, "", false );
+        GrupoPK grupoPK = new GrupoPK();
+        grupoPK.setCurso( ((Curso)resultado.get("curso")).getId() );
+        grupoPK.setNumero( GRUPO_NUMERO_3 );
+        grupoPK.setPeriodoTiempo( GRUPO_PERIODO_TIEMPO );
+        Grupo grupo = new Grupo();
+        grupo.setId( grupoPK );
+        grupo.setCurso( ((Curso)resultado.get("curso")) );
+        grupo.setUsuario( ((Usuario)resultado.get("usuario")) );
+        Grupo nuevoGrupo  = iGrupoService.setGrupoCurso( grupo );
+        assertNotEquals( grupo, nuevoGrupo );
+    }
+
+    Map<String,Object> crearNuevoGrupo(int numero, String periodoTiempo, boolean crearGrupo ){
+        Map< String, Object > resultado = new HashMap<>();
         // Encontrar el curso por el area tematica
         InstitucionPK institucionPK = new InstitucionPK();
         institucionPK.setNombre( INSTITUCION_ID_1 );
@@ -120,18 +168,21 @@ public class GrupoServiceTest {
         // Assert no null
         assertNotEquals( null, usuario );
         // Crea un nuevo grupo
-        Grupo grupo = new Grupo();
-        GrupoPK grupoPK = new GrupoPK();
-        grupoPK.setCurso( curso.getId() );
-        grupoPK.setNumero( GRUPO_NUMERO );
-        grupoPK.setPeriodoTiempo( GRUPO_PERIODO_TIEMPO );
-        grupo.setId( grupoPK );
-        grupo.setUsuario( usuario );
-        grupo.setCurso( curso );
-        iGrupoDao.save( grupo );
-        // Obtener grupos de un curso
-        List<Grupo> grupos = iGrupoService.getGruposCurso( curso.getId() );
-        // Assert cantidad
-        assertEquals( 1, grupos.size() );
+        if ( crearGrupo ){
+            Grupo grupo = new Grupo();
+            GrupoPK grupoPK = new GrupoPK();
+            grupoPK.setCurso( curso.getId() );
+            grupoPK.setNumero( numero );
+            grupoPK.setPeriodoTiempo( periodoTiempo );
+            grupo.setId( grupoPK );
+            grupo.setUsuario( usuario );
+            grupo.setCurso( curso );
+            Grupo nuevoGrupo = iGrupoDao.save(grupo);
+            resultado.put( "grupo", nuevoGrupo );
+        }
+        // Set de los resultados y return
+        resultado.put( "curso", curso );
+        resultado.put( "usuario", usuario );
+        return resultado;
     }
 }

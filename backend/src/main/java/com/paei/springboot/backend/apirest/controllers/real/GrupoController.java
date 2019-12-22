@@ -32,6 +32,11 @@ public class GrupoController {
 
     private final int PERMISO_AGREGAR_GRUPO_CURSO = 6;
 
+    public void establecerMock(  IGrupoService iGrupoService, ICursoService iCursoService, IUsuarioService iUsuarioService ){
+        this.iGrupoService = iGrupoService;
+        this.iUsuarioService = iUsuarioService;
+        this.iCursoService = iCursoService;
+    }
 
     @GetMapping("/listar_grupos_de_curso")
         public List<Grupo> recuperarGruposDeCurso(@RequestParam Long idCurso,  @RequestParam String nombreUsuario){

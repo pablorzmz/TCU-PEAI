@@ -19,10 +19,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest()
 public class GrupoControllerTest {
@@ -31,6 +30,7 @@ public class GrupoControllerTest {
     private final String USUARIO2_NOMBRE       = "usuario2_grupo_test";
     private final int GRUPO_NUMERO_1          = 1;
     private final int GRUPO_NUMERO_2          = 2;
+    private final int GRUPO_NUMERO_3          = 3;
     private final String GRUPO_PERIODO_TIEMPO = "periodo_tiempo_1";
     private final Long CURSO_ID_1             = 666L;
     private final Long CURSO_ID_2             = 667L;
@@ -74,6 +74,8 @@ public class GrupoControllerTest {
         Grupo grupo1      = new Grupo();
         GrupoPK grupoPK_2 = new GrupoPK( curso2.getId(), GRUPO_NUMERO_2, GRUPO_PERIODO_TIEMPO );
         Grupo grupo2      = new Grupo();
+        GrupoPK grupoPK_3 = new GrupoPK( curso2.getId(), GRUPO_NUMERO_3, GRUPO_PERIODO_TIEMPO );
+        Grupo grupo3      = new Grupo();
         grupo1.setUsuario( usuario1 );
         grupo2.setUsuario( usuario1 );
         grupo1.setCurso( curso1 );
@@ -107,6 +109,8 @@ public class GrupoControllerTest {
         when( iCursoDao.findById( eq( curso2.getId() ) )).thenReturn( java.util.Optional.of(curso2) );
         when( iUsuarioDao.findByNombreUsuario( eq( usuario1.getUsuarioPK().getNombreUsuario() ) )).thenReturn( usuario1 );
         when( iUsuarioDao.findByNombreUsuario( eq( usuario2.getUsuarioPK().getNombreUsuario() ) )).thenReturn( usuario2 );
+        when( iGrupoDao.findById( grupoPK_3 )).thenReturn( null );
+        when ( iGrupoDao.save( grupo3 ) ).thenReturn( grupo3 );
     }
 
     @Test
@@ -126,7 +130,7 @@ public class GrupoControllerTest {
     @Test
     @DisplayName( "TestRecupararGruposCursoEstudiante" )
     void recuperarGruposCursoEstudiante(){
-        // Arrage
+        // Arrange
         establecerMock();
         GrupoController grupoController = new GrupoController();
         grupoController.establecerMock( this.iGrupoService, this.iCursoService, this.iUsuarioService );
@@ -135,5 +139,18 @@ public class GrupoControllerTest {
         // Assert
         assertNotNull( gruposResultado );
         assertEquals( 0, gruposResultado.size() );
+    }
+
+    @Test
+    @DisplayName( "TestCrearUnNuevoCurso" )
+    void crearGrupoParaCurso(){
+        // Arrange
+        establecerMock();
+        GrupoController grupoController = new GrupoController();
+        grupoController.establecerMock( this.iGrupoService, this.iCursoService, this.iUsuarioService );
+        // Act
+        Grupo grupoResultado = grupoController.crearGrupoDeCurso( CURSO_ID_1, GRUPO_NUMERO_3, GRUPO_PERIODO_TIEMPO, USUARIO1_NOMBRE );
+        // Assert
+        assertNull(grupoResultado);
     }
 }

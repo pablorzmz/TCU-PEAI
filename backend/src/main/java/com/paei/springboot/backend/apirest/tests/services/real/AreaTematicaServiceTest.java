@@ -38,12 +38,6 @@ public class AreaTematicaServiceTest {
     @Autowired
     private IAreaTematicaDao iAreaTematicaDao;
 
-    @Autowired
-    private IInstitucionDao institucionDao;
-
-    @Autowired
-    private ISiglaTematicaDao iSiglaTematicaDao;
-
     // Se crea el servicio de Area Tematica, para probarlo
     @Autowired
     private IAreaTematicaService iAreaTematicaService;
@@ -122,7 +116,7 @@ public class AreaTematicaServiceTest {
      * Metodo que prueba que se busquen las areas tematicas por id
      * Se buscan las que se insertan en el inicializar
      */
-    void encontrarAreasTematicas() {
+    void getAreaTematica() {
         // Prueba 1
         AreaTematicaPK areaTematicaPK1 = new AreaTematicaPK();
         areaTematicaPK1.setId(AREA_TEMATICA_ID_1);
@@ -156,7 +150,7 @@ public class AreaTematicaServiceTest {
     /**
      * Metodo que prueba que se encuentren las areas tematicas segun el pk de una institucion
      */
-    void buscarAreasTematicasPorInstitucion() {
+    void getAreaTematicaPorInstitucion() {
         // Esta institucion tiene asociadas dos areas tematicas
         InstitucionPK institucionPK1 = new InstitucionPK();
         institucionPK1.setNombre(INSTITUCION_ID_1);
@@ -182,7 +176,7 @@ public class AreaTematicaServiceTest {
      * Metodo que prueba que se encuentren las areas tematicas insertadas al inicio, además de las ya existentes.
      * Verifica que entre todas las areas tematicas se encuentren las insertadas en el inicializar
      */
-    void buscarTodosAreasTematicasPorInstitucion() {
+    void getAreasTematicas() {
 
         List<AreaTematica> listaAreasTematicas = iAreaTematicaService.getAreasTematicas();
 

@@ -27,6 +27,18 @@ public class AreaTematicaController {
     private IInstitucionService iInstitucionService;
 
     /**
+     * Constructor para hacer los test con mock
+     * @param iAreaTematicaService El servicio del area tematica
+     * @param iInstitucionService El servicio de Institucion
+     * @param iInstitucionService El servicio de Institucion
+     */
+    public AreaTematicaController(IAreaTematicaService iAreaTematicaService, IInstitucionService iInstitucionService){
+        this.iAreaTematicaService = iAreaTematicaService;
+        this.iInstitucionService = iInstitucionService;
+    }
+
+
+    /**
      * Metodo que devuelve las areas tematicas de una isntitución
      * @param nombre Representa el nombre de la institución
      * @return retorna la lista de areas tematicas que tenga la institución

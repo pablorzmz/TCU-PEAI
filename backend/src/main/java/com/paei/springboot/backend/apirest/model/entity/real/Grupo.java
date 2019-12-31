@@ -54,7 +54,8 @@ public class Grupo implements Serializable {
     @OneToMany(mappedBy = "grupo", fetch = FetchType.LAZY)
     private List<SubseccionMaterial> subseccionMateriales = new ArrayList<>();
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    // Cascade se pasa a persist porque borraba el usuario al borrar el curso
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "nombre_usuario_imparte")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private Usuario usuario;

@@ -117,6 +117,8 @@ public class Institucion implements Serializable {
     public void setAreaTematicas(List<AreaTematica> areaTematicas) {
         this.areaTematicas = areaTematicas;
     }
+
+
 }
 
 

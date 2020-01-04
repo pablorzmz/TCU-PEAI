@@ -35,6 +35,8 @@ public class InstitucionServiceTest {
     private final String ID_INSTITUCION_2 = "Universidad_2";
     private final String ID_INSTITUCION_3 = "Colegio_1";
 
+    private final int TAMANO_PAGINA = 4;
+
     private final List<String> LISTA_ID_INSTITUCIONES = Arrays.asList(ID_INSTITUCION_1, ID_INSTITUCION_2, ID_INSTITUCION_3);
 
     @BeforeEach
@@ -112,18 +114,17 @@ public class InstitucionServiceTest {
         // Contiene la lista de instituciones opbtenida de la pagina
         List<Institucion> paginaListada = null;
         // Se prueba que los ids de las instituciones paginadas coincidan con la lista de todas las intituciones
-        // Cada vez que se puede pedir una pagina se hace
-        // En este caso cada 4 instituciones se pide una pagina
-        int institucionesPorPagina = 4;
+        // Cada vez que se puede pedir una pagina se hace  la verificacion
+        // En este caso cada 4 instituciones se pide una pagina nueva
         // Se empieza por la pagina 0
         int pagina = 0;
         for (int i = 0; i<listaInstituciones.size(); i++){
-            if(i % 4  == 0){
-                paginaInstituciones = iInstitucionService.findAll(PageRequest.of(pagina, institucionesPorPagina));
+            if(i % TAMANO_PAGINA  == 0){
+                paginaInstituciones = iInstitucionService.findAll(PageRequest.of(pagina, TAMANO_PAGINA));
                 paginaListada = paginaInstituciones.getContent();
                 pagina++;
             }
-            assertEquals(listaInstituciones.get(i).getInstitucionPK().getNombre(), paginaListada.get(i % 4).getInstitucionPK().getNombre());
+            assertEquals(listaInstituciones.get(i).getInstitucionPK().getNombre(), paginaListada.get(i % TAMANO_PAGINA).getInstitucionPK().getNombre());
         }
     }
 

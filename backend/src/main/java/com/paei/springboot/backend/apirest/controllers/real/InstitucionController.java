@@ -17,6 +17,10 @@ public class InstitucionController {
     @Autowired
     private IInstitucionService iInstitucionService;
 
+    public InstitucionController(IInstitucionService iInstitucionService){
+        this.iInstitucionService = iInstitucionService;
+    }
+
     /**
      * Metodo para pedir las TODAS las intituciones en paginas
      * @param page nuemero de pagina que se quiere consultar

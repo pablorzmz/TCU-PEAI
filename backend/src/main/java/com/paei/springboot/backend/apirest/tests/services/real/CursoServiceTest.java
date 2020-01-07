@@ -10,9 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 
@@ -25,6 +23,7 @@ public class CursoServiceTest {
     // Valores constantes de la clase
     private final String INSTITUCION = "CursoServiceTest_Inst_1";
     private final Long AREA_TEMATICA = 0133L;
+    private final Long AREA_TEMATICA_2 = 1153L;
 
     @Autowired
     private ICursoDao iCursoDao;
@@ -43,20 +42,31 @@ public class CursoServiceTest {
         institucionPK.setNombre(INSTITUCION);
         institucion.setInstitucionPK(institucionPK);
         // Area Tematica
-        AreaTematica areaTematica = new AreaTematica();
-        AreaTematicaPK areaTematicaPK = new AreaTematicaPK();
-        areaTematicaPK.setId(AREA_TEMATICA);
-        areaTematica.setId(areaTematicaPK);
-        areaTematica.setInstitucion(institucion);
+        AreaTematica areaTematica1 = new AreaTematica();
+        AreaTematica areaTematica2 = new AreaTematica();
+        AreaTematicaPK areaTematicaPK1 = new AreaTematicaPK();
+        AreaTematicaPK areaTematicaPK2 = new AreaTematicaPK();
+        areaTematicaPK1.setId(AREA_TEMATICA);
+        areaTematicaPK2.setId(AREA_TEMATICA_2);
+        areaTematica1.setId(areaTematicaPK1);
+        areaTematica2.setId(areaTematicaPK2);
+        areaTematica1.setInstitucion(institucion);
+        areaTematica2.setInstitucion(institucion);
         SiglaTematica siglaTematica =  new SiglaTematica();
         SiglaTematicaPK siglaTematicaPK = new SiglaTematicaPK();
         siglaTematicaPK.setId( 1234L );
         siglaTematica.setId( siglaTematicaPK );
-        areaTematica.setSiglaTematica( siglaTematica );
+        areaTematica1.setSiglaTematica( siglaTematica );
+        areaTematica2.setSiglaTematica( siglaTematica );
         // Curso
-        Curso curso = new Curso();
-        curso.setAreaTematica(areaTematica);
-        iCursoDao.save(curso);
+        Curso curso1 = new Curso();
+        Curso curso2 = new Curso();
+        curso1.setAreaTematica(areaTematica1);
+        curso2.setAreaTematica(areaTematica1);
+        var cursos = new ArrayList<Curso>();
+        cursos.add( curso1 );
+        cursos.add( curso2 );
+        iCursoDao.saveAll(cursos);
     }
 
     @Test
@@ -74,12 +84,20 @@ public class CursoServiceTest {
     @Test
     void obtenerCursoPorAreaTematica(){
         // Arrage
-        AreaTematica areaTematica = iAreaTematicaDao.findAreaTematicaByInstitucion( new InstitucionPK( INSTITUCION ) ).get(0);
+        var areaTematicas = iAreaTematicaDao.findAreaTematicaByInstitucion( new InstitucionPK( INSTITUCION ) );
         // Act
-        var cursos = cursoService.findCursosByAreaTematica( areaTematica.getId() );
-        // Assert
-        assertNotNull( cursos );
-        assertEquals( cursos.size(), 1 );
+        areaTematicas.forEach( areaTematica -> {
+            var cursos = cursoService.findCursosByAreaTematica( areaTematica.getId() );
+            // Assert
+            assertNotNull( cursos );
+            if ( areaTematica.getId().getId() == AREA_TEMATICA ){
+                // caso con cursos
+                assertEquals( cursos.size(), 2 );
+            } else if ( areaTematica.getId().getId() == AREA_TEMATICA_2 ){
+                // caso sin cursos
+                assertEquals( cursos.size(), 0 );
+            }
+        } );
     }
 
     @Test
@@ -123,10 +141,10 @@ public class CursoServiceTest {
         // Se limpiarn todos los valores que se insertaron previamente
         InstitucionPK institucionPK = new InstitucionPK();
         institucionPK.setNombre( INSTITUCION );
-        AreaTematica areaTematica = iAreaTematicaDao.findAreaTematicaByInstitucion( institucionPK ).get( 0 );
-        iCursoDao.findCursosByAreaTematica( areaTematica.getId() ).forEach( curso -> {
-            iCursoDao.delete( curso );
+        iAreaTematicaDao.findAreaTematicaByInstitucion( institucionPK ).forEach(areaTematica -> {
+            iCursoDao.findCursosByAreaTematica( areaTematica.getId() ).forEach( curso -> {
+                iCursoDao.delete( curso );
+            } );
         } );
     }
-
 }

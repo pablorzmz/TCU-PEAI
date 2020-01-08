@@ -36,7 +36,7 @@ public class Curso implements Serializable {
     @Column( name = "foto" )
     private String Foto;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name = "area_tematica_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
     private AreaTematica areaTematica;

@@ -2,6 +2,7 @@ package com.paei.springboot.backend.apirest.tests.services.real;
 
 import com.paei.springboot.backend.apirest.dao.real.IAreaTematicaDao;
 import com.paei.springboot.backend.apirest.dao.real.ICursoDao;
+import com.paei.springboot.backend.apirest.dao.real.IInstitucionDao;
 import com.paei.springboot.backend.apirest.model.entity.real.*;
 import com.paei.springboot.backend.apirest.services.real.CursoServiceImpl;
 import org.junit.jupiter.api.AfterAll;
@@ -27,6 +28,9 @@ public class CursoServiceTest {
 
     @Autowired
     private ICursoDao iCursoDao;
+
+    @Autowired
+    private IInstitucionDao iInstitucionDao;
 
     @Autowired
     private IAreaTematicaDao iAreaTematicaDao;
@@ -141,10 +145,15 @@ public class CursoServiceTest {
         // Se limpiarn todos los valores que se insertaron previamente
         InstitucionPK institucionPK = new InstitucionPK();
         institucionPK.setNombre( INSTITUCION );
-        iAreaTematicaDao.findAreaTematicaByInstitucion( institucionPK ).forEach(areaTematica -> {
-            iCursoDao.findCursosByAreaTematica( areaTematica.getId() ).forEach( curso -> {
-                iCursoDao.delete( curso );
-            } );
-        } );
+        var areasTematicas = iAreaTematicaDao.findAreaTematicaByInstitucion( institucionPK );
+        for( int index = 0; index < areasTematicas.size(); ++index){
+            var areaTematicaActual = areasTematicas.get( index );
+            var cursosActuales = iCursoDao.findCursosByAreaTematica( areaTematicaActual.getId() );
+            for(int index2 = 0; index2 < cursosActuales.size(); ++index2 ){
+                var cursoActual = cursosActuales.get( index2 );
+                iCursoDao.deleteById( cursoActual.getId() );
+            }
+            iAreaTematicaDao.deleteById( areaTematicaActual.getId() );
+        }
     }
 }

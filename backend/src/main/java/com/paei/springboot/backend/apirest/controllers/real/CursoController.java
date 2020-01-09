@@ -32,6 +32,13 @@ public class CursoController {
     @Autowired
     IUsuarioService iUsuarioService;
 
+    public void establecerMock( ICursoService iCursoService, IAreaTematicaService iAreaTematicaService, IGrupoService iGrupoService, IUsuarioService iUsuarioService ){
+        this.iCursoService        = iCursoService;
+        this.iAreaTematicaService = iAreaTematicaService;
+        this.iGrupoService        = iGrupoService;
+        this.iUsuarioService      = iUsuarioService;
+    }
+
     /**
      * Método para consultar todos los cursos que existen
      * @param page Numero de página que se quiere consultar
